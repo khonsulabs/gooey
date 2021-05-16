@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["Ceil","Defines the smallest integer equal or greater than the original value."],["Floor","Defines the biggest integer equal or lower than the original value."],["One",""],["Round","Defines the nearest integer value to the original value."],["Zero",""]]});

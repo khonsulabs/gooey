@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["core",""],["frontends",""],["widgets",""]]});

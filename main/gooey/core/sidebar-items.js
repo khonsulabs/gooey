@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["euclid","A collection of strongly typed math tools for computer graphics with an inclination towards 2d graphics and layout."],["renderer",""],["stylecs",""]],"struct":[["Gooey",""],["WidgetLayout",""],["WidgetState",""]],"trait":[["AnyWidget",""],["Frontend",""],["Layout",""],["Renderer",""],["Transmogrifier",""],["Widget",""]]});

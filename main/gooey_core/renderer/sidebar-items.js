@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["StrokeOptions",""],["TextMetrics",""],["TextOptions",""]],"trait":[["Renderer",""]]});

@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["gooey_kludgine"] = [{"text":"impl&lt;'a&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/convert/trait.From.html\" title=\"trait core::convert::From\">From</a>&lt;&amp;'a Target&gt; for <a class=\"struct\" href=\"gooey_kludgine/struct.Kludgine.html\" title=\"struct gooey_kludgine::Kludgine\">Kludgine</a>","synthetic":false,"types":["gooey_kludgine::Kludgine"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
