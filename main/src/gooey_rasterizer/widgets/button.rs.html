@@ -59,8 +59,8 @@
 <span class="kw">const</span> <span class="ident">BUTTON_PADDING</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Length</span>::<span class="ident">new</span>(<span class="number">5.</span>);
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span> <span class="ident">Transmogrifier</span><span class="op">&lt;</span><span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ButtonTransmogrifier</span> {
-    <span class="kw">type</span> <span class="ident">Widget</span> <span class="op">=</span> <span class="ident">Button</span>;
     <span class="kw">type</span> <span class="ident">Context</span> <span class="op">=</span> <span class="ident">R</span>;
+    <span class="kw">type</span> <span class="ident">Widget</span> <span class="op">=</span> <span class="ident">Button</span>;
 
     <span class="kw">fn</span> <span class="ident">content_size</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,

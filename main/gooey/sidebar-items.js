@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["core",""],["frontends",""],["widgets",""]]});
+initSidebarItems({"mod":[["core","Core traits and types used to create Graphical User Interfaces (GUIs - `gooey`s)."],["frontends",""],["widgets",""]]});

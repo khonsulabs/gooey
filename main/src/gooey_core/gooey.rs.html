@@ -22,30 +22,24 @@
 <span id="19">19</span>
 <span id="20">20</span>
 <span id="21">21</span>
-<span id="22">22</span>
-<span id="23">23</span>
-<span id="24">24</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">AnyWidget</span>, <span class="ident">Widget</span>, <span class="ident">WidgetState</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">AnyWidget</span>, <span class="ident">Widget</span>};
 
+<span class="doccomment">/// A graphical user interface.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gooey</span> {
     <span class="ident">root</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">AnyWidget</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Gooey</span> {
+    <span class="doccomment">/// Creates a user interface using `root`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span><span class="op">&gt;</span>(<span class="ident">root</span>: <span class="ident">W</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
-            <span class="ident">root</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">WidgetState</span> {
-                <span class="ident">widget</span>: <span class="ident">root</span>,
-                <span class="ident">state</span>: <span class="prelude-val">None</span>,
-            }),
+            <span class="ident">root</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">root</span>),
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">root</span>.<span class="ident">update</span>()
-    }
-
+    <span class="doccomment">/// Returns the root widget.</span>
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">root_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">AnyWidget</span> {
         <span class="self">self</span>.<span class="ident">root</span>.<span class="ident">as_ref</span>()
     }

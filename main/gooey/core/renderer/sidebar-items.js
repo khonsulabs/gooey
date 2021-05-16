@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["StrokeOptions",""],["TextMetrics",""],["TextOptions",""]],"trait":[["Renderer",""]]});
+initSidebarItems({"struct":[["StrokeOptions","Shape outline drawing options."],["TextMetrics","A measurement of text."],["TextOptions","Text rendering and measurement options."]],"trait":[["Renderer","Implements drawing APIs."]]});
