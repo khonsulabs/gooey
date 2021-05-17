@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["max",""],["min",""]]});

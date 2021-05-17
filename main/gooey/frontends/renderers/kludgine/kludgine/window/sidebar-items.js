@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["CloseResponse","How to react to a request to close a window"]],"mod":[["event",""]],"struct":[["Icon","An icon used for the window titlebar, taskbar, etc."],["OpenWindow",""],["RedrawStatus",""],["WindowBuilder",""]],"trait":[["OpenableWindow",""],["Window","Trait to implement a Window"],["WindowCreator",""]]});

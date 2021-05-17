@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["PathEvent",""]],"struct":[["Batch",""],["Fill",""],["Path",""],["PathBuilder",""],["Shape",""],["Stroke",""]],"type":[["ControlPoint",""],["Endpoint",""]]});

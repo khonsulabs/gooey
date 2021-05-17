@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["gooey_rasterizer"] = [{"text":"impl&lt;R:&nbsp;<a class=\"trait\" href=\"gooey_core/renderer/trait.Renderer.html\" title=\"trait gooey_core::renderer::Renderer\">Renderer</a>&gt; <a class=\"trait\" href=\"gooey_core/trait.Frontend.html\" title=\"trait gooey_core::Frontend\">Frontend</a> for <a class=\"struct\" href=\"gooey_rasterizer/struct.Rasterizer.html\" title=\"struct gooey_rasterizer::Rasterizer\">Rasterizer</a>&lt;R&gt;","synthetic":false,"types":["gooey_rasterizer::Rasterizer"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -22,19 +22,37 @@
 <span id="19">19</span>
 <span id="20">20</span>
 <span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">AnyWidget</span>, <span class="ident">Widget</span>};
+<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any</span>::<span class="ident">TypeId</span>, <span class="ident">collections</span>::<span class="ident">HashMap</span>, <span class="ident">marker</span>::<span class="ident">PhantomData</span>};
+
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">AnyWidget</span>, <span class="ident">Frontend</span>, <span class="ident">Widget</span>};
+
+<span class="kw">type</span> <span class="ident">WidgetTypeId</span> <span class="op">=</span> <span class="ident">TypeId</span>;
 
 <span class="doccomment">/// A graphical user interface.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gooey</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gooey</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Frontend</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// The available widget transmogrifiers.</span>
+    <span class="kw">pub</span> <span class="ident">transmogrifiers</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">WidgetTypeId</span>, <span class="op">&lt;</span><span class="ident">F</span> <span class="kw">as</span> <span class="ident">Frontend</span><span class="op">&gt;</span>::<span class="ident">AnyWidgetTransmogrifier</span><span class="op">&gt;</span>,
     <span class="ident">root</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">AnyWidget</span><span class="op">&gt;</span>,
+    <span class="ident">_phantom</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">Gooey</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Frontend</span><span class="op">&gt;</span> <span class="ident">Gooey</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Creates a user interface using `root`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span><span class="op">&gt;</span>(<span class="ident">root</span>: <span class="ident">W</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>(<span class="ident">root</span>: <span class="ident">W</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">root</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">root</span>),
+            <span class="ident">transmogrifiers</span>: <span class="ident">HashMap</span>::<span class="ident">default</span>(),
+            <span class="ident">_phantom</span>: <span class="ident">PhantomData</span>::<span class="ident">default</span>(),
         }
     }
 

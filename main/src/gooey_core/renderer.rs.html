@@ -115,7 +115,7 @@
 <span class="kw">use</span> <span class="ident">stylecs</span>::{<span class="ident">palette</span>::<span class="ident">Srgba</span>, <span class="ident">Pixels</span>, <span class="ident">Points</span>};
 
 <span class="doccomment">/// Implements drawing APIs.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Renderer</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Renderer</span> {
     <span class="doccomment">/// The size of the area being drawn.</span>
     <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>;
     <span class="doccomment">/// The scale when converting between [`Points`] and [`Pixels`].</span>

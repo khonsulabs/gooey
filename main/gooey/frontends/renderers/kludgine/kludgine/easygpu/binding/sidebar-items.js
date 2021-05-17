@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["BindingType","A binding type."]],"struct":[["Binding",""],["BindingGroup","A group of bindings."],["BindingGroupLayout","The layout of a `BindingGroup`."]],"trait":[["Bind","A trait representing a resource that can be bound."]]});

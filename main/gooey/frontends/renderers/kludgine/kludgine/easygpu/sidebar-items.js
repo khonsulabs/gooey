@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["binding",""],["buffers",""],["canvas",""],["color",""],["device",""],["error",""],["frame",""],["pipeline",""],["prelude",""],["renderable",""],["renderer",""],["sampler",""],["shader",""],["swapchain",""],["texture",""],["transform",""],["vertex",""]]});

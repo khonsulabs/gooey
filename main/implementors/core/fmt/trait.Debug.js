@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["xtask"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"xtask/enum.Args.html\" title=\"enum xtask::Args\">Args</a>","synthetic":false,"types":["xtask::Args"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

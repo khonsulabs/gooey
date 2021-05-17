@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Kludgine",""]]});
+initSidebarItems({"mod":[["kludgine",""]],"struct":[["Kludgine",""]]});
