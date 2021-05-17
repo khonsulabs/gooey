@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["button",""]]});
+initSidebarItems({"mod":[["button",""],["container",""]]});

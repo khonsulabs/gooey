@@ -6,11 +6,15 @@
 <span id="3">3</span>
 <span id="4">4</span>
 <span id="5">5</span>
+<span id="6">6</span>
+<span id="7">7</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">/// A frontend is an implementation of widgets and layouts.</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Frontend</span>: <span class="ident">Sized</span> {
     <span class="doccomment">/// The generic-free type of the frontend-specific transmogrifier trait.</span>
     <span class="kw">type</span> <span class="ident">AnyWidgetTransmogrifier</span>;
+    <span class="doccomment">/// The context type provided to aide in transmogrifying.</span>
+    <span class="kw">type</span> <span class="ident">Context</span>;
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gooey_core" data-search-js="../../search-index.js"></div>
