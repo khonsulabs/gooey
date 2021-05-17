@@ -45,11 +45,25 @@
 <span id="42">42</span>
 <span id="43">43</span>
 <span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">stylecs</span>::{<span class="ident">Dimension</span>, <span class="ident">Points</span>, <span class="ident">Surround</span>},
+    <span class="ident">euclid</span>::<span class="ident">Length</span>,
+    <span class="ident">stylecs</span>::{<span class="ident">Points</span>, <span class="ident">Surround</span>},
     <span class="ident">AnyWidget</span>, <span class="ident">Widget</span>,
 };
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gooey-rasterizer&quot;</span>)]</span>
+<span class="kw">mod</span> <span class="ident">rasterizer</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-browser&quot;</span>)]</span>
+<span class="kw">mod</span> <span class="ident">browser</span>;
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Container</span> {
     <span class="kw">pub</span> <span class="ident">child</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">AnyWidget</span><span class="op">&gt;</span>,
@@ -64,23 +78,23 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pad_left</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Dimension</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">padding</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">left</span> <span class="op">=</span> <span class="ident">padding</span>.<span class="ident">into</span>();
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pad_left</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">padding</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">left</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">padding</span>.<span class="ident">into</span>().<span class="ident">get</span>());
         <span class="self">self</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pad_right</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Dimension</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">padding</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">right</span> <span class="op">=</span> <span class="ident">padding</span>.<span class="ident">into</span>();
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pad_right</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">padding</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">right</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">padding</span>.<span class="ident">into</span>().<span class="ident">get</span>());
         <span class="self">self</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pad_top</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Dimension</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">padding</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">top</span> <span class="op">=</span> <span class="ident">padding</span>.<span class="ident">into</span>();
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pad_top</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">padding</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">padding</span>.<span class="ident">into</span>().<span class="ident">get</span>());
         <span class="self">self</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pad_bottom</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Dimension</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">padding</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">bottom</span> <span class="op">=</span> <span class="ident">padding</span>.<span class="ident">into</span>();
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pad_bottom</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">padding</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">padding</span>.<span class="ident">into</span>().<span class="ident">get</span>());
         <span class="self">self</span>
     }
 }

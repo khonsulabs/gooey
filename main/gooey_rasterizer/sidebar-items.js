@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Rasterizer",""]],"trait":[["AnyWidgetRasterizer",""],["WidgetRasterizer",""]]});
+initSidebarItems({"macro":[["make_rasterized",""]],"struct":[["Rasterizer",""],["RegisteredTransmogrifier",""]],"trait":[["AnyWidgetRasterizer",""],["WidgetRasterizer",""]]});

@@ -18,13 +18,31 @@
 <span id="15">15</span>
 <span id="16">16</span>
 <span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">gooey_core</span>::<span class="ident">Widget</span>;
+<span class="kw">use</span> <span class="ident">gooey_core</span>::{
+    <span class="ident">stylecs</span>::{<span class="ident">Points</span>, <span class="ident">Style</span>},
+    <span class="ident">Widget</span>,
+};
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gooey-rasterizer&quot;</span>)]</span>
+<span class="kw">mod</span> <span class="ident">rasterizer</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-browser&quot;</span>)]</span>
+<span class="kw">mod</span> <span class="ident">browser</span>;
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Button</span> {
     <span class="kw">pub</span> <span class="ident">label</span>: <span class="ident">String</span>,
-    <span class="kw">pub</span> <span class="ident">disabled</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">style</span>: <span class="ident">Style</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ButtonEvent</span> {
