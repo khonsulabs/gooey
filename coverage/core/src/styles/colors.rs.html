@@ -2,28 +2,28 @@
 <html lang="en-us">
     <head><meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Grcov report - main.rs </title>
+        <title>Grcov report - colors.rs </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"></head>
     <body>
         <div class="container">
     <nav class="breadcrumb is-right" aria-label="breadcrumbs">
-        <ul><li><a href="../../index.html">top_level</a></li><li><a href="./index.html">xtask&#x2F;src</a></li><li class="is-active"><a href="#">main.rs</a></li>
+        <ul><li><a href="../../../index.html">top_level</a></li><li><a href="./index.html">core&#x2F;src&#x2F;styles</a></li><li class="is-active"><a href="#">colors.rs</a></li>
         </ul>
     </nav>
     <nav class="level">
         <div class="level-item has-text-centered">
         <div>
             <p class="heading">Lines</p>
-            <p class="title has-text-success">
-                <abbr title="1 / 1">100 %</abbr></p>
+            <p class="title has-text-danger">
+                <abbr title="0 / 8">0 %</abbr></p>
         </div>
     </div>
 
         <div class="level-item has-text-centered">
         <div>
             <p class="heading">Functions</p>
-            <p class="title has-text-success">
-                <abbr title="1 / 1">100 %</abbr></p>
+            <p class="title has-text-danger">
+                <abbr title="0 / 1">0 %</abbr></p>
         </div>
     </div>
 
@@ -43,11 +43,11 @@
                 <a href="#1">1</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                1
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">use devx_cmd::run;</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">use stylecs::{palette::Srgba, ColorPair, UnscaledStyleComponent};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -60,7 +60,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use structopt::StructOpt;</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -73,7 +73,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; The foreground color. Used for text and line&#x2F;border drawing.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -82,11 +82,11 @@
                 <a href="#4">4</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">#[derive(Debug, StructOpt)]</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug, Clone)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -99,7 +99,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">enum Args {</pre>
+                <pre class="has-background-white py-0 px-2">pub struct ForegroundColor(pub ColorPair);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -112,7 +112,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    BuildBrowserExample,</pre>
+                <pre class="has-background-white py-0 px-2">impl UnscaledStyleComponent for ForegroundColor {}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -125,7 +125,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -138,7 +138,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">impl Default for ForegroundColor {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -147,11 +147,11 @@
                 <a href="#9">9</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">fn main() -&gt; Result&lt;(), devx_cmd::Error&gt; {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    fn default() -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -160,11 +160,11 @@
                 <a href="#10">10</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    let args = Args::from_args();</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        Self(ColorPair {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -173,11 +173,11 @@
                 <a href="#11">11</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    let Args::BuildBrowserExample = args;</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            light_color: Srgba::new(0., 0., 0., 1.),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -186,11 +186,11 @@
                 <a href="#12">12</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    build_browser_example()?;</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            dark_color: Srgba::new(1., 1., 1., 1.),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -199,11 +199,11 @@
                 <a href="#13">13</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    Ok(())</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        })</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -212,11 +212,11 @@
                 <a href="#14">14</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -229,7 +229,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -242,7 +242,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">fn build_browser_example() -&gt; Result&lt;(), devx_cmd::Error&gt; {</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -255,7 +255,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    println!(&quot;Executing cargo build&quot;);</pre>
+                <pre class="has-background-white py-0 px-2">impl From&lt;ForegroundColor&gt; for ColorPair {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -268,7 +268,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    run!(</pre>
+                <pre class="has-background-white py-0 px-2">    fn from(color: ForegroundColor) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -281,7 +281,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;cargo&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">        color.0</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -294,7 +294,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;build&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -307,7 +307,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;--example&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -320,7 +320,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;basic&quot;,</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -333,7 +333,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;--no-default-features&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; The background color. Used for shape fills. Is not inherited.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -342,11 +342,11 @@
                 <a href="#24">24</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;--features&quot;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug, Clone)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -359,7 +359,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;frontend-browser&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">pub struct BackgroundColor(pub ColorPair);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -372,7 +372,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;--target&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">impl UnscaledStyleComponent for BackgroundColor {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -385,7 +385,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;wasm32-unknown-unknown&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">    fn should_be_inherited(&amp;self) -&gt; bool {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -398,7 +398,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    )?;</pre>
+                <pre class="has-background-white py-0 px-2">        false</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -411,7 +411,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -424,7 +424,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    println!(&quot;Executing wasm-bindgen (cargo install wasm-bindgen if you don&#x27;t have this)&quot;);</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -437,7 +437,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    run!(</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -450,7 +450,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;wasm-bindgen&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">impl Default for BackgroundColor {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -463,7 +463,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;target&#x2F;wasm32-unknown-unknown&#x2F;debug&#x2F;examples&#x2F;basic.wasm&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">    fn default() -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -476,7 +476,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;--target&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">        Self(ColorPair {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -489,7 +489,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;web&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">            light_color: Srgba::new(1., 1., 1., 1.),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -502,7 +502,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;--out-dir&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">            dark_color: Srgba::new(0., 0., 0., 1.),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -515,7 +515,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;gooey&#x2F;examples&#x2F;browser&#x2F;pkg&#x2F;&quot;,</pre>
+                <pre class="has-background-white py-0 px-2">        })</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -528,7 +528,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;--remove-producers-section&quot;</pre>
+                <pre class="has-background-white py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -541,7 +541,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    )?;</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -567,7 +567,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    println!(</pre>
+                <pre class="has-background-white py-0 px-2">impl From&lt;BackgroundColor&gt; for ColorPair {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -580,7 +580,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &quot;Build succeeded. .&#x2F;examples&#x2F;browser&#x2F;index.html can be loaded through any http server \</pre>
+                <pre class="has-background-white py-0 px-2">    fn from(color: BackgroundColor) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -593,7 +593,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">         that supports wasm.&quot;</pre>
+                <pre class="has-background-white py-0 px-2">        color.0</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -606,91 +606,13 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    );</pre>
+                <pre class="has-background-white py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="45">
                 <a href="#45">45</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    println!();</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="46">
-                <a href="#46">46</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    println!(&quot;For example, using `miniserve` (`cargo install miniserve`):&quot;);</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="47">
-                <a href="#47">47</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    println!();</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="48">
-                <a href="#48">48</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    println!(&quot;miniserve gooey&#x2F;examples&#x2F;browser&#x2F;&quot;);</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="49">
-                <a href="#49">49</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="50">
-                <a href="#50">50</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    Ok(())</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="51">
-                <a href="#51">51</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
