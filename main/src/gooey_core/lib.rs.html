@@ -25,6 +25,7 @@
 <span id="22">22</span>
 <span id="23">23</span>
 <span id="24">24</span>
+<span id="25">25</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Core traits and types used to create Graphical User Interfaces (GUIs -</span>
 <span class="doccomment">//! `gooey`s).</span>
@@ -44,10 +45,11 @@
 <span class="kw">mod</span> <span class="ident">gooey</span>;
 <span class="doccomment">/// Types used for drawing.</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">renderer</span>;
+<span class="doccomment">/// Types used for styling.</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">styles</span>;
 <span class="kw">mod</span> <span class="ident">widget</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">euclid</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">stylecs</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::{<span class="ident">frontend</span>::<span class="kw-2">*</span>, <span class="ident">gooey</span>::<span class="kw-2">*</span>, <span class="ident">widget</span>::<span class="kw-2">*</span>};
 </pre></div>

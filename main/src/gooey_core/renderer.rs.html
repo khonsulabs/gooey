@@ -112,7 +112,7 @@
 <span id="109">109</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Scale</span>, <span class="ident">Size2D</span>};
-<span class="kw">use</span> <span class="ident">stylecs</span>::{<span class="ident">palette</span>::<span class="ident">Srgba</span>, <span class="ident">Pixels</span>, <span class="ident">Points</span>};
+<span class="kw">use</span> <span class="ident">stylecs</span>::{<span class="ident">palette</span>::<span class="ident">Srgba</span>, <span class="ident">Pixels</span>, <span class="ident">Points</span>, <span class="ident">Style</span>};
 
 <span class="doccomment">/// Implements drawing APIs.</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Renderer</span> {
@@ -122,22 +122,22 @@
     <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Scale</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span>, <span class="ident">Pixels</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Renders `text` at `baseline_origin` with `options`.</span>
-    <span class="kw">fn</span> <span class="ident">render_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">baseline_origin</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TextOptions</span>);
+    <span class="kw">fn</span> <span class="ident">render_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">baseline_origin</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>);
     <span class="doccomment">/// Measures `text` using `options`.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">fn</span> <span class="ident">measure_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TextOptions</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">measure_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Strokes the outline of `rect` using `options`.</span>
-    <span class="kw">fn</span> <span class="ident">stroke_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">options</span>: <span class="ident">StrokeOptions</span>);
+    <span class="kw">fn</span> <span class="ident">stroke_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>);
     <span class="doccomment">/// Fills `rect` using `color`.</span>
-    <span class="kw">fn</span> <span class="ident">fill_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">color</span>: <span class="ident">Srgba</span>);
+    <span class="kw">fn</span> <span class="ident">fill_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Draws a line between `point_a` and `point_b` using `options`.</span>
     <span class="kw">fn</span> <span class="ident">stroke_line</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">point_a</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">point_b</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">options</span>: <span class="ident">StrokeOptions</span>,
+        <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>,
     );
 }
 
