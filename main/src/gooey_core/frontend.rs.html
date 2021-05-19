@@ -16,8 +16,14 @@
 <span id="13">13</span>
 <span id="14">14</span>
 <span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">any</span>::<span class="ident">TypeId</span>;
+
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">TransmogrifierState</span>;
 
 <span class="doccomment">/// A frontend is an implementation of widgets and layouts.</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Frontend</span>: <span class="ident">Sized</span> {
@@ -31,6 +37,8 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">AnyTransmogrifier</span> {
     <span class="doccomment">/// Returns the [`TypeId`] of the underlying [`Widget`](crate::Widget).</span>
     <span class="kw">fn</span> <span class="ident">widget_type_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TypeId</span>;
+    <span class="doccomment">/// Initializes default state for a newly created widget.</span>
+    <span class="kw">fn</span> <span class="ident">default_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TransmogrifierState</span>;
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gooey_core" data-search-js="../../search-index.js"></div>
