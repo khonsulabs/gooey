@@ -110,14 +110,50 @@
 <span id="107">107</span>
 <span id="108">108</span>
 <span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
 </pre><div class="example-wrap"><pre class="rust ">
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Debug</span>;
+
 <span class="kw">use</span> <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Scale</span>, <span class="ident">Size2D</span>};
 <span class="kw">use</span> <span class="ident">stylecs</span>::{<span class="ident">palette</span>::<span class="ident">Srgba</span>, <span class="ident">Pixels</span>, <span class="ident">Points</span>, <span class="ident">Style</span>};
 
 <span class="doccomment">/// Implements drawing APIs.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Renderer</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Renderer</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="ident">Sized</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// The size of the area being drawn.</span>
     <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>;
+
+    <span class="doccomment">/// A [`Rect`] representing the area being drawn. Due to how rendering</span>
+    <span class="doccomment">/// works, the origin is always zero.</span>
+    <span class="kw">fn</span> <span class="ident">bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+        <span class="ident">Rect</span>::<span class="ident">new</span>(<span class="ident">Point2D</span>::<span class="ident">default</span>(), <span class="self">self</span>.<span class="ident">size</span>())
+    }
+
+    <span class="doccomment">/// Returns a new renderer instance with the state such that each operation</span>
+    <span class="doccomment">/// executes as if the origin is `bounds.origin`. The returned instance&#39;s</span>
+    <span class="doccomment">/// `size()` should equal `bounds.size`.</span>
+    <span class="kw">fn</span> <span class="ident">clip_to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">bounds</span>: <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
+
+    <span class="doccomment">/// A [`Rect`] representing the area being drawn. This rect should be offset</span>
+    <span class="doccomment">/// relative to the origin of the renderer.</span>
+    <span class="kw">fn</span> <span class="ident">clip_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>;
+
     <span class="doccomment">/// The scale when converting between [`Points`] and [`Pixels`].</span>
     <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Scale</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span>, <span class="ident">Pixels</span><span class="op">&gt;</span>;
 

@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["browser_main",""],["kludgine_main",""],["main",""]],"mod":[["core","Core traits and types used to create Graphical User Interfaces (GUIs - `gooey`s)."],["frontends",""],["widgets",""]]});
+initSidebarItems({"fn":[["browser_main",""],["browser_main_with",""],["kludgine_main",""],["kludgine_main_with",""],["main",""],["main_with",""]],"mod":[["core","Core traits and types used to create Graphical User Interfaces (GUIs - `gooey`s)."],["frontends",""],["widgets",""]],"struct":[["App",""]],"type":[["ActiveFrontend",""]]});

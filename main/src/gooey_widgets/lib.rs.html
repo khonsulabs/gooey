@@ -46,8 +46,18 @@
 <span id="43">43</span>
 <span id="44">44</span>
 <span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">button</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">component</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">container</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-browser&quot;</span>)]</span>
@@ -57,18 +67,22 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-rasterizer&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">rasterized</span> {
-    <span class="kw">use</span> <span class="ident">gooey_core</span>::<span class="ident">Gooey</span>;
-    <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::<span class="ident">make_rasterized</span>;
+    <span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">renderer</span>::<span class="ident">Renderer</span>, <span class="ident">Transmogrifiers</span>};
+    <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{<span class="ident">make_rasterized</span>, <span class="ident">Rasterizer</span>};
 
     <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">button</span>::<span class="ident">ButtonTransmogrifier</span>, <span class="ident">container</span>::<span class="ident">ContainerTransmogrifier</span>};
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_transmogrifiers</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">gooey_core</span>::<span class="ident">renderer</span>::<span class="ident">Renderer</span><span class="op">&gt;</span>(
-        <span class="kw-2">mut</span> <span class="ident">ui</span>: <span class="ident">Gooey</span><span class="op">&lt;</span><span class="ident">gooey_rasterizer</span>::<span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Gooey</span><span class="op">&lt;</span><span class="ident">gooey_rasterizer</span>::<span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident">drop</span>(<span class="ident">ui</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">ButtonTransmogrifier</span>));
-        <span class="ident">drop</span>(<span class="ident">ui</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">ContainerTransmogrifier</span>));
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_transmogrifiers</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
+        <span class="ident">transmogrifiers</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    ) {
+        <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">ButtonTransmogrifier</span>));
+        <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">ContainerTransmogrifier</span>));
+    }
 
-        <span class="ident">ui</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_transmogrifiers</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">transmogrifiers</span> <span class="op">=</span> <span class="ident">Transmogrifiers</span>::<span class="ident">default</span>();
+        <span class="ident">register_transmogrifiers</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">transmogrifiers</span>);
+        <span class="ident">transmogrifiers</span>
     }
 
     <span class="macro">make_rasterized</span><span class="macro">!</span>(<span class="ident">ButtonTransmogrifier</span>);
@@ -78,15 +92,19 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-browser&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">browser</span> {
     <span class="kw">use</span> <span class="ident">gooey_browser</span>::{<span class="ident">make_browser</span>, <span class="ident">WebSys</span>};
-    <span class="kw">use</span> <span class="ident">gooey_core</span>::<span class="ident">Gooey</span>;
+    <span class="kw">use</span> <span class="ident">gooey_core</span>::<span class="ident">Transmogrifiers</span>;
 
     <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">button</span>::<span class="ident">ButtonTransmogrifier</span>, <span class="ident">container</span>::<span class="ident">ContainerTransmogrifier</span>};
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_transmogrifiers</span>(<span class="kw-2">mut</span> <span class="ident">ui</span>: <span class="ident">Gooey</span><span class="op">&lt;</span><span class="ident">WebSys</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Gooey</span><span class="op">&lt;</span><span class="ident">WebSys</span><span class="op">&gt;</span> {
-        <span class="ident">drop</span>(<span class="ident">ui</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">ButtonTransmogrifier</span>));
-        <span class="ident">drop</span>(<span class="ident">ui</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">ContainerTransmogrifier</span>));
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_transmogrifiers</span>(<span class="ident">transmogrifiers</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="ident">WebSys</span><span class="op">&gt;</span>) {
+        <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">ButtonTransmogrifier</span>));
+        <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">ContainerTransmogrifier</span>));
+    }
 
-        <span class="ident">ui</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_transmogrifiers</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="ident">WebSys</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">transmogrifiers</span> <span class="op">=</span> <span class="ident">Transmogrifiers</span>::<span class="ident">default</span>();
+        <span class="ident">register_transmogrifiers</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">transmogrifiers</span>);
+        <span class="ident">transmogrifiers</span>
     }
 
     <span class="macro">make_browser</span><span class="macro">!</span>(<span class="ident">ButtonTransmogrifier</span>);

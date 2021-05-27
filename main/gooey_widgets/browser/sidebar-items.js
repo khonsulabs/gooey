@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["register_transmogrifiers",""]]});
+initSidebarItems({"fn":[["default_transmogrifiers",""],["register_transmogrifiers",""]]});
