@@ -26,6 +26,14 @@
 <span id="23">23</span>
 <span id="24">24</span>
 <span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Core traits and types used to create Graphical User Interfaces (GUIs -</span>
 <span class="doccomment">//! `gooey`s).</span>
@@ -39,7 +47,7 @@
     <span class="ident">future_incompatible</span>,
     <span class="ident">rust_2018_idioms</span>
 )]</span>
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc</span>, <span class="ident">deny</span>(<span class="ident">rustdoc</span>))]</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc</span>, <span class="ident">deny</span>(<span class="ident">rustdoc</span>::<span class="ident">all</span>))]</span>
 
 <span class="kw">mod</span> <span class="ident">frontend</span>;
 <span class="kw">mod</span> <span class="ident">gooey</span>;
@@ -52,6 +60,14 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">euclid</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::{<span class="ident">frontend</span>::<span class="kw-2">*</span>, <span class="ident">gooey</span>::<span class="kw-2">*</span>, <span class="ident">widget</span>::<span class="kw-2">*</span>};
+
+<span class="doccomment">/// A unit representing physical pixels on a display.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pixels</span>;
+
+<span class="doccomment">/// A unit representing [Desktop publishing points/PostScript points](https://en.wikipedia.org/wiki/Point_(typography)#Desktop_publishing_point). Measurements in this scale are equal to 1/72 of an [imperial inch](https://en.wikipedia.org/wiki/Inch).</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Points</span>;
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gooey_core" data-search-js="../../search-index.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>

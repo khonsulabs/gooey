@@ -23,7 +23,7 @@
 <span class="doccomment">/// The font family name for drawing text.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontFamily</span>(<span class="kw">pub</span> <span class="ident">String</span>);
-<span class="kw">impl</span> <span class="ident">stylecs</span>::<span class="ident">UnscaledStyleComponent</span> <span class="kw">for</span> <span class="ident">FontFamily</span> {}
+<span class="kw">impl</span> <span class="ident">stylecs</span>::<span class="ident">StyleComponent</span> <span class="kw">for</span> <span class="ident">FontFamily</span> {}
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">FontFamily</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>(<span class="string">&quot;Roboto&quot;</span>.<span class="ident">to_owned</span>())

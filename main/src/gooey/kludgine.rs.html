@@ -72,6 +72,8 @@
 <span id="69">69</span>
 <span id="70">70</span>
 <span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">core</span>::{<span class="ident">Frontend</span>, <span class="ident">Gooey</span>, <span class="ident">Transmogrifiers</span>, <span class="ident">Widget</span>, <span class="ident">WidgetStorage</span>},
@@ -130,7 +132,9 @@
                 <span class="ident">state</span>,
             },
             <span class="ident">Event</span>::<span class="ident">MouseButton</span> { <span class="ident">button</span>, <span class="ident">state</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">GooeyInputEvent</span>::<span class="ident">MouseButton</span> { <span class="ident">button</span>, <span class="ident">state</span> },
-            <span class="ident">Event</span>::<span class="ident">MouseMoved</span> { <span class="ident">position</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">GooeyInputEvent</span>::<span class="ident">MouseMoved</span> { <span class="ident">position</span> },
+            <span class="ident">Event</span>::<span class="ident">MouseMoved</span> { <span class="ident">position</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">GooeyInputEvent</span>::<span class="ident">MouseMoved</span> {
+                <span class="ident">position</span>: <span class="ident">position</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">cast_unit</span>()),
+            },
             <span class="ident">Event</span>::<span class="ident">MouseWheel</span> { <span class="ident">delta</span>, <span class="ident">touch_phase</span> } <span class="op">=</span><span class="op">&gt;</span>
                 <span class="ident">GooeyInputEvent</span>::<span class="ident">MouseWheel</span> { <span class="ident">delta</span>, <span class="ident">touch_phase</span> },
         };
