@@ -19,9 +19,7 @@
 <span id="16">16</span>
 <span id="17">17</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">stylecs</span>::{
-    <span class="ident">palette</span>::<span class="ident">Srgba</span>, <span class="ident">AnyStyleComponent</span>, <span class="ident">ColorPair</span>, <span class="ident">Style</span>, <span class="ident">StyleComponent</span>, <span class="ident">Surround</span>, <span class="ident">SystemTheme</span>,
-};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">stylecs</span>::{<span class="ident">AnyStyleComponent</span>, <span class="ident">FallbackComponent</span>, <span class="ident">Style</span>, <span class="ident">StyleComponent</span>};
 
 <span class="kw">mod</span> <span class="ident">alignment</span>;
 <span class="kw">mod</span> <span class="ident">colors</span>;
@@ -29,12 +27,14 @@
 <span class="kw">mod</span> <span class="ident">font_size</span>;
 <span class="kw">mod</span> <span class="ident">font_style</span>;
 <span class="kw">mod</span> <span class="ident">lines</span>;
+<span class="doccomment">/// Types for defining sets of rules.</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">style_sheet</span>;
+<span class="kw">mod</span> <span class="ident">surround</span>;
 <span class="kw">mod</span> <span class="ident">weight</span>;
-<span class="kw">mod</span> <span class="ident">widget</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::{
-    <span class="ident">alignment</span>::<span class="kw-2">*</span>, <span class="ident">colors</span>::<span class="kw-2">*</span>, <span class="ident">font_family</span>::<span class="kw-2">*</span>, <span class="ident">font_size</span>::<span class="kw-2">*</span>, <span class="ident">font_style</span>::<span class="kw-2">*</span>, <span class="ident">lines</span>::<span class="kw-2">*</span>, <span class="ident">weight</span>::<span class="kw-2">*</span>,
-    <span class="ident">widget</span>::<span class="kw-2">*</span>,
+    <span class="ident">alignment</span>::<span class="kw-2">*</span>, <span class="ident">colors</span>::<span class="kw-2">*</span>, <span class="ident">font_family</span>::<span class="kw-2">*</span>, <span class="ident">font_size</span>::<span class="kw-2">*</span>, <span class="ident">font_style</span>::<span class="kw-2">*</span>, <span class="ident">lines</span>::<span class="kw-2">*</span>, <span class="ident">surround</span>::<span class="kw-2">*</span>,
+    <span class="ident">weight</span>::<span class="kw-2">*</span>,
 };
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gooey_core" data-search-js="../../../search-index.js"></div>

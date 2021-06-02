@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["EventStatus",""]],"macro":[["make_rasterized",""]],"mod":[["events",""]],"struct":[["AnyRasterContext",""],["EventResult",""],["RasterContext",""],["Rasterizer",""],["RegisteredTransmogrifier",""]],"trait":[["AnyWidgetRasterizer",""],["WidgetRasterizer",""]]});
+initSidebarItems({"enum":[["EventStatus",""]],"macro":[["make_rasterized",""]],"mod":[["events",""]],"struct":[["EventResult",""],["Rasterizer",""],["RegisteredTransmogrifier",""]],"trait":[["AnyWidgetRasterizer",""],["WidgetRasterizer",""]]});

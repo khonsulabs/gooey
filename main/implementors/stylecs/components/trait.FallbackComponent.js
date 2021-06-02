@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["gooey_widgets"] = [{"text":"impl FallbackComponent for <a class=\"struct\" href=\"gooey_widgets/button/struct.ButtonColor.html\" title=\"struct gooey_widgets::button::ButtonColor\">ButtonColor</a>","synthetic":false,"types":["gooey_widgets::button::ButtonColor"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

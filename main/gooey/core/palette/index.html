@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A library that makes linear color calculations and conversion easy and accessible for anyone. It uses the type system to enforce correctness and to avoid mistakes, such as mixing incompatible color types."><meta name="keywords" content="rust, rustlang, rust-lang, palette"><title>gooey::core::palette - Rust</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gooey/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a><p class="location">Module palette</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#traits">Traits</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class="location"><a href="../../index.html">gooey</a>::<wbr><a href="../index.html">core</a></p><div id="sidebar-vars" data-name="palette" data-ty="mod" data-relpath="../"></div><script defer src="../sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
+                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Module <a href="../../index.html">gooey</a>::<wbr><a href="../index.html">core</a>::<wbr><a class="mod" href="">palette</a></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="https://docs.rs/palette/0.5.0/palette/src/palette/lib.rs.html#1-658" title="goto source code">[src]</a></span></h1><div class="docblock"><p>A library that makes linear color calculations and conversion easy and
+accessible for anyone. It uses the type system to enforce correctness and
+to avoid mistakes, such as mixing incompatible color types.</p>
+<h1 id="its-never-just-rgb" class="section-header"><a href="#its-never-just-rgb">It’s Never “Just RGB”</a></h1>
+<p>Colors in, for example, images are often “gamma corrected” or stored in
+sRGB format as a compression method and to prevent banding. This is also a
+bit of a legacy from the ages of the CRT monitors, where the output from
+the electron gun was nonlinear. The problem is that these formats doesn’t
+represent the actual intensities, and the compression has to be reverted to
+make sure that any operations on the colors are accurate. This library uses
+a completely linear work flow, and comes with the tools for transitioning
+between linear and non-linear RGB.</p>
+<p>Adding to that, there are more than one kind of non-linear RGB. Ironically
+enough, this turns RGB into one of the most complex color spaces.</p>
+<p>For example, this does not work:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="comment">// An alias for Rgb&lt;Srgb&gt;, which is what most pictures store.</span>
+<span class="kw">use</span> <span class="ident">palette</span>::<span class="ident">Srgb</span>;
+
+<span class="kw">let</span> <span class="ident">orangeish</span> <span class="op">=</span> <span class="ident">Srgb</span>::<span class="ident">new</span>(<span class="number">1.0</span>, <span class="number">0.6</span>, <span class="number">0.0</span>);
+<span class="kw">let</span> <span class="ident">blueish</span> <span class="op">=</span> <span class="ident">Srgb</span>::<span class="ident">new</span>(<span class="number">0.0</span>, <span class="number">0.2</span>, <span class="number">1.0</span>);
+<span class="comment">// let whateve_it_becomes = orangeish + blueish;</span></pre></div>
+<p>Instead, they have to be made linear before adding:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="comment">// An alias for Rgb&lt;Srgb&gt;, which is what most pictures store.</span>
+<span class="kw">use</span> <span class="ident">palette</span>::{<span class="ident">Pixel</span>, <span class="ident">Srgb</span>};
+
+<span class="kw">let</span> <span class="ident">orangeish</span> <span class="op">=</span> <span class="ident">Srgb</span>::<span class="ident">new</span>(<span class="number">1.0</span>, <span class="number">0.6</span>, <span class="number">0.0</span>).<span class="ident">into_linear</span>();
+<span class="kw">let</span> <span class="ident">blueish</span> <span class="op">=</span> <span class="ident">Srgb</span>::<span class="ident">new</span>(<span class="number">0.0</span>, <span class="number">0.2</span>, <span class="number">1.0</span>).<span class="ident">into_linear</span>();
+<span class="kw">let</span> <span class="ident">whateve_it_becomes</span> <span class="op">=</span> <span class="ident">orangeish</span> <span class="op">+</span> <span class="ident">blueish</span>;
+
+<span class="comment">// Encode the result back into sRGB and create a byte array</span>
+<span class="kw">let</span> <span class="ident">pixel</span>: [<span class="ident">u8</span>; <span class="number">3</span>] <span class="op">=</span> <span class="ident">Srgb</span>::<span class="ident">from_linear</span>(<span class="ident">whateve_it_becomes</span>)
+    .<span class="ident">into_format</span>()
+    .<span class="ident">into_raw</span>();</pre></div>
+<h1 id="transparency" class="section-header"><a href="#transparency">Transparency</a></h1>
+<p>There are many cases where pixel transparency is important, but there are
+also many cases where it becomes a dead weight, if it’s always stored
+together with the color, but not used. Palette has therefore adopted a
+structure where the transparency component (alpha) is attachable using the
+<a href="struct.Alpha.html"><code>Alpha</code></a> type, instead of having copies of each color
+space.</p>
+<p>This approach comes with the extra benefit of allowing operations to
+selectively affect the alpha component:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">palette</span>::{<span class="ident">LinSrgb</span>, <span class="ident">LinSrgba</span>};
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">c1</span> <span class="op">=</span> <span class="ident">LinSrgba</span>::<span class="ident">new</span>(<span class="number">1.0</span>, <span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.8</span>);
+<span class="kw">let</span> <span class="ident">c2</span> <span class="op">=</span> <span class="ident">LinSrgb</span>::<span class="ident">new</span>(<span class="number">0.5</span>, <span class="number">1.0</span>, <span class="number">1.0</span>);
+
+<span class="ident">c1</span>.<span class="ident">color</span> <span class="op">=</span> <span class="ident">c1</span>.<span class="ident">color</span> <span class="op">*</span> <span class="ident">c2</span>; <span class="comment">//Leave the alpha as it is</span>
+<span class="ident">c1</span>.<span class="ident">blue</span> <span class="op">+</span><span class="op">=</span> <span class="number">0.2</span>; <span class="comment">//The color components can easily be accessed</span>
+<span class="ident">c1</span> <span class="op">=</span> <span class="ident">c1</span> <span class="op">*</span> <span class="number">0.5</span>; <span class="comment">//Scale both the color and the alpha</span></pre></div>
+<h1 id="a-basic-workflow" class="section-header"><a href="#a-basic-workflow">A Basic Workflow</a></h1>
+<p>The overall workflow can be divided into three steps, where the first and
+last may be taken care of by other parts of the application:</p>
+<pre><code class="language-text">Decoding -&gt; Processing -&gt; Encoding
+</code></pre>
+<h2 id="1-decoding" class="section-header"><a href="#1-decoding">1. Decoding</a></h2>
+<p>Find out what the source format is and convert it to a linear color space.
+There may be a specification, such as when working with SVG or CSS.</p>
+<p>When working with RGB or gray scale (luma):</p>
+<ul>
+<li>
+<p>If you are asking your user to enter an RGB value, you are in a gray zone
+where it depends on the context. It’s usually safe to assume sRGB, but
+sometimes it’s already linear.</p>
+</li>
+<li>
+<p>If you are decoding an image, there may be some meta data that gives you
+the necessary details. Otherwise it’s most commonly sRGB. Usually you
+will end up with a slice or vector with RGB bytes, which can easily be
+converted to Palette colors:</p>
+</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">palette</span>::{<span class="ident">Srgb</span>, <span class="ident">Pixel</span>};
+
+<span class="comment">// This works for any (even non-RGB) color type that can have the</span>
+<span class="comment">// buffer element type as component.</span>
+<span class="kw">let</span> <span class="ident">color_buffer</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">Srgb</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>] <span class="op">=</span> <span class="ident">Pixel</span>::<span class="ident">from_raw_slice_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">image_buffer</span>);</pre></div>
+<ul>
+<li>If you are getting your colors from the GPU, in a game or other graphical
+application, or if they are otherwise generated by the application, then
+chances are that they are already linear. Still, make sure to check that
+they are not being encoded somewhere.</li>
+</ul>
+<p>When working with other colors:</p>
+<ul>
+<li>
+<p>For HSL, HSV, HWB: Check if they are based on any other color space than
+sRGB, such as Adobe or Apple RGB.</p>
+</li>
+<li>
+<p>For any of the CIE color spaces, check for a specification of white point
+and light source. These are necessary for converting to RGB and other
+colors, that depend on perception and “viewing devices”. Common defaults
+are the D65 light source and the sRGB white point. The Palette defaults
+should take you far.</p>
+</li>
+</ul>
+<h2 id="2-processing" class="section-header"><a href="#2-processing">2. Processing</a></h2>
+<p>When your color has been decoded into some Palette type, it’s ready for
+processing. This includes things like blending, hue shifting, darkening and
+conversion to other formats. Just make sure that your non-linear RGB is
+made linear first (<code>my_srgb.into_linear()</code>), to make the operations
+available.</p>
+<p>Different color spaced have different capabilities, pros and cons. You may
+have to experiment a bit (or look at the example programs) to find out what
+gives the desired result.</p>
+<h2 id="3-encoding" class="section-header"><a href="#3-encoding">3. Encoding</a></h2>
+<p>When the desired processing is done, it’s time to encode the colors back
+into some image format. The same rules applies as for the decoding, but the
+process reversed.</p>
+</div><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<table><tr class="module-item"><td><a class="mod" href="blend/index.html" title="gooey::core::palette::blend mod">blend</a></td><td class="docblock-short"><p>Color blending and blending equations.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="chromatic_adaptation/index.html" title="gooey::core::palette::chromatic_adaptation mod">chromatic_adaptation</a></td><td class="docblock-short"><p>Convert colors from one reference white point to another</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="encoding/index.html" title="gooey::core::palette::encoding mod">encoding</a></td><td class="docblock-short"><p>Various encoding traits, types and standards.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="float/index.html" title="gooey::core::palette::float mod">float</a></td><td class="docblock-short"><p>Floating point trait</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="gradient/index.html" title="gooey::core::palette::gradient mod">gradient</a></td><td class="docblock-short"><p>Types for interpolation between multiple colors.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="luma/index.html" title="gooey::core::palette::luma mod">luma</a></td><td class="docblock-short"><p>Luminance types.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="named/index.html" title="gooey::core::palette::named mod">named</a></td><td class="docblock-short"><p>A collection of named color constants. Can be toggled with the <code>&quot;named&quot;</code> and <code>&quot;named_from_str&quot;</code>
+Cargo features.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="rgb/index.html" title="gooey::core::palette::rgb mod">rgb</a></td><td class="docblock-short"><p>RGB types, spaces and standards.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="white_point/index.html" title="gooey::core::palette::white_point mod">white_point</a></td><td class="docblock-short"><p>Defines the tristimulus values of the CIE Illuminants.</p>
+</td></tr></table><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+<table><tr class="module-item"><td><a class="struct" href="struct.Alpha.html" title="gooey::core::palette::Alpha struct">Alpha</a></td><td class="docblock-short"><p>An alpha component wrapper for colors.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.Gradient.html" title="gooey::core::palette::Gradient struct">Gradient</a></td><td class="docblock-short"><p>A linear interpolation between colors.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.Hsl.html" title="gooey::core::palette::Hsl struct">Hsl</a></td><td class="docblock-short"><p>Linear HSL color space.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.Hsv.html" title="gooey::core::palette::Hsv struct">Hsv</a></td><td class="docblock-short"><p>Linear HSV color space.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.Hwb.html" title="gooey::core::palette::Hwb struct">Hwb</a></td><td class="docblock-short"><p>Linear HWB color space.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.Lab.html" title="gooey::core::palette::Lab struct">Lab</a></td><td class="docblock-short"><p>The CIE L*a*b* (CIELAB) color space.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.LabHue.html" title="gooey::core::palette::LabHue struct">LabHue</a></td><td class="docblock-short"><p>A hue type for the CIE L*a*b* family of color spaces.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.Lch.html" title="gooey::core::palette::Lch struct">Lch</a></td><td class="docblock-short"><p>CIE L*C*h°, a polar version of <a href="struct.Lab.html">CIE L*a*b*</a>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.OutOfBounds.html" title="gooey::core::palette::OutOfBounds struct">OutOfBounds</a></td><td class="docblock-short"><p>The error type for a color conversion that converted a color into a color with invalid values.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.RgbHue.html" title="gooey::core::palette::RgbHue struct">RgbHue</a></td><td class="docblock-short"><p>A hue type for the RGB family of color spaces.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.Xyz.html" title="gooey::core::palette::Xyz struct">Xyz</a></td><td class="docblock-short"><p>The CIE 1931 XYZ color space.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.Yxy.html" title="gooey::core::palette::Yxy struct">Yxy</a></td><td class="docblock-short"><p>The CIE 1931 Yxy (xyY)  color space.</p>
+</td></tr></table><h2 id="traits" class="section-header"><a href="#traits">Traits</a></h2>
+<table><tr class="module-item"><td><a class="trait" href="trait.Blend.html" title="gooey::core::palette::Blend trait">Blend</a></td><td class="docblock-short"><p>A trait for colors that can be blended together.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.Component.html" title="gooey::core::palette::Component trait">Component</a></td><td class="docblock-short"><p>Common trait for color components.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.ComponentWise.html" title="gooey::core::palette::ComponentWise trait">ComponentWise</a></td><td class="docblock-short"><p>Perform a unary or binary operation on each component of a color.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.ConvertFrom.html" title="gooey::core::palette::ConvertFrom trait">ConvertFrom</a></td><td class="docblock-short"><p>A trait for converting one color from another.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.ConvertInto.html" title="gooey::core::palette::ConvertInto trait">ConvertInto</a></td><td class="docblock-short"><p>A trait for converting a color into another.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.FromColor.html" title="gooey::core::palette::FromColor trait">FromColor</a></td><td class="docblock-short"><p>FromColor provides conversion from the colors.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.GetHue.html" title="gooey::core::palette::GetHue trait">GetHue</a></td><td class="docblock-short"><p>A trait for colors where a hue may be calculated.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.Hue.html" title="gooey::core::palette::Hue trait">Hue</a></td><td class="docblock-short"><p>A trait for colors where the hue can be manipulated without conversion.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.IntoColor.html" title="gooey::core::palette::IntoColor trait">IntoColor</a></td><td class="docblock-short"><p>IntoColor provides conversion to the colors.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.Limited.html" title="gooey::core::palette::Limited trait">Limited</a></td><td class="docblock-short"><p>A trait for clamping and checking if colors are within their ranges.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.Mix.html" title="gooey::core::palette::Mix trait">Mix</a></td><td class="docblock-short"><p>A trait for linear color interpolation.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.Pixel.html" title="gooey::core::palette::Pixel trait">Pixel</a></td><td class="docblock-short"><p>Represents colors that can be serialized and deserialized from raw color components.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.Saturate.html" title="gooey::core::palette::Saturate trait">Saturate</a></td><td class="docblock-short"><p>A trait for colors where the saturation (or chroma) can be manipulated
+without conversion.</p>
+</td></tr><tr class="module-item"><td><a class="trait" href="trait.Shade.html" title="gooey::core::palette::Shade trait">Shade</a></td><td class="docblock-short"><p>The <code>Shade</code> trait allows a color to be lightened or darkened.</p>
+</td></tr></table><h2 id="types" class="section-header"><a href="#types">Type Definitions</a></h2>
+<table><tr class="module-item"><td><a class="type" href="type.GammaLuma.html" title="gooey::core::palette::GammaLuma type">GammaLuma</a></td><td class="docblock-short"><p>Gamma 2.2 encoded luminance.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.GammaLumaa.html" title="gooey::core::palette::GammaLumaa type">GammaLumaa</a></td><td class="docblock-short"><p>Gamma 2.2 encoded luminance with an alpha component.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.GammaSrgb.html" title="gooey::core::palette::GammaSrgb type">GammaSrgb</a></td><td class="docblock-short"><p>Gamma 2.2 encoded sRGB.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.GammaSrgba.html" title="gooey::core::palette::GammaSrgba type">GammaSrgba</a></td><td class="docblock-short"><p>Gamma 2.2 encoded sRGB with an alpha component.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.Hsla.html" title="gooey::core::palette::Hsla type">Hsla</a></td><td class="docblock-short"><p>Linear HSL with an alpha component. See the <a href="struct.Alpha.html#Hsla"><code>Hsla</code> implementation in
+<code>Alpha</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.Hsva.html" title="gooey::core::palette::Hsva type">Hsva</a></td><td class="docblock-short"><p>Linear HSV with an alpha component. See the <a href="struct.Alpha.html#Hsva"><code>Hsva</code> implementation in
+<code>Alpha</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.Hwba.html" title="gooey::core::palette::Hwba type">Hwba</a></td><td class="docblock-short"><p>Linear HWB with an alpha component. See the <a href="struct.Alpha.html#Hwba"><code>Hwba</code> implementation in
+<code>Alpha</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.Laba.html" title="gooey::core::palette::Laba type">Laba</a></td><td class="docblock-short"><p>CIE L*a*b* (CIELAB) with an alpha component. See the <a href="struct.Alpha.html#Laba"><code>Laba</code>
+implementation in <code>Alpha</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.Lcha.html" title="gooey::core::palette::Lcha type">Lcha</a></td><td class="docblock-short"><p>CIE L*C*h° with an alpha component. See the <a href="struct.Alpha.html#Lcha"><code>Lcha</code> implementation in
+<code>Alpha</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.LinLuma.html" title="gooey::core::palette::LinLuma type">LinLuma</a></td><td class="docblock-short"><p>Linear luminance.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.LinLumaa.html" title="gooey::core::palette::LinLumaa type">LinLumaa</a></td><td class="docblock-short"><p>Linear luminance with an alpha component.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.LinSrgb.html" title="gooey::core::palette::LinSrgb type">LinSrgb</a></td><td class="docblock-short"><p>Linear sRGB.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.LinSrgba.html" title="gooey::core::palette::LinSrgba type">LinSrgba</a></td><td class="docblock-short"><p>Linear sRGB with an alpha component.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.Mat3.html" title="gooey::core::palette::Mat3 type">Mat3</a></td><td class="docblock-short"><p>A 9 element array representing a 3x3 matrix</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.Srgb.html" title="gooey::core::palette::Srgb type">Srgb</a></td><td class="docblock-short"><p>Nonlinear sRGB.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.SrgbLuma.html" title="gooey::core::palette::SrgbLuma type">SrgbLuma</a></td><td class="docblock-short"><p>sRGB encoded luminance.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.SrgbLumaa.html" title="gooey::core::palette::SrgbLumaa type">SrgbLumaa</a></td><td class="docblock-short"><p>sRGB encoded luminance with an alpha component.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.Srgba.html" title="gooey::core::palette::Srgba type">Srgba</a></td><td class="docblock-short"><p>Nonlinear sRGB with an alpha component.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.Xyza.html" title="gooey::core::palette::Xyza type">Xyza</a></td><td class="docblock-short"><p>CIE 1931 XYZ with an alpha component. See the <a href="struct.Alpha.html#Xyza"><code>Xyza</code> implementation in
+<code>Alpha</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="type" href="type.Yxya.html" title="gooey::core::palette::Yxya type">Yxya</a></td><td class="docblock-short"><p>CIE 1931 Yxy (xyY) with an alpha component. See the <a href="struct.Alpha.html#Yxya"><code>Yxya</code> implementation
+in <code>Alpha</code></a>.</p>
+</td></tr></table><h2 id="derives" class="section-header"><a href="#derives">Derive Macros</a></h2>
+<table><tr class="module-item"><td><a class="derive" href="derive.FromColor.html" title="gooey::core::palette::FromColor derive">FromColor</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="derive" href="derive.IntoColor.html" title="gooey::core::palette::IntoColor derive">IntoColor</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="derive" href="derive.Pixel.html" title="gooey::core::palette::Pixel derive">Pixel</a></td><td class="docblock-short"></td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gooey" data-search-js="../../../search-index.js"></div>
+    <script src="../../../main.js"></script></body></html>

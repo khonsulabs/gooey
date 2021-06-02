@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Selector","A filter for a [`Rule`]."]],"struct":[["Classes","A list of class names. Not inherited when merging styles."],["Rule","A style rule."],["State","An element state."],["StyleSheet","A set of style [`Rule`]s to apply to a program."]]});

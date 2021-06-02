@@ -23,8 +23,11 @@
 <span id="20">20</span>
 <span id="21">21</span>
 <span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">Frontend</span>, <span class="ident">Transmogrifiers</span>, <span class="ident">Widget</span>, <span class="ident">WidgetStorage</span>};
+<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">Frontend</span>, <span class="ident">StyledWidget</span>, <span class="ident">Transmogrifiers</span>, <span class="ident">Widget</span>, <span class="ident">WidgetStorage</span>};
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">App</span> {
@@ -42,7 +45,10 @@
         <span class="self">self</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>, <span class="ident">C</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">W</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">initializer</span>: <span class="ident">C</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>, <span class="ident">C</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+        <span class="self">self</span>,
+        <span class="ident">initializer</span>: <span class="ident">C</span>,
+    ) {
         <span class="kw">crate</span>::<span class="ident">main_with</span>(<span class="self">self</span>.<span class="ident">transmogrifiers</span>, <span class="ident">initializer</span>)
     }
 }

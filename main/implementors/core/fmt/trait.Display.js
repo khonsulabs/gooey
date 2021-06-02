@@ -1,0 +1,4 @@
+(function() {var implementors = {};
+implementors["gooey_browser"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html\" title=\"trait core::fmt::Display\">Display</a> for <a class=\"struct\" href=\"gooey_browser/utils/struct.CssBlockBuilder.html\" title=\"struct gooey_browser::utils::CssBlockBuilder\">CssBlockBuilder</a>","synthetic":false,"types":["gooey_browser::utils::CssBlockBuilder"]}];
+implementors["gooey_core"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html\" title=\"trait core::fmt::Display\">Display</a> for <a class=\"struct\" href=\"gooey_core/styles/struct.Color.html\" title=\"struct gooey_core::styles::Color\">Color</a>","synthetic":false,"types":["gooey_core::styles::colors::Color"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

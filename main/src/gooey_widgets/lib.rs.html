@@ -50,20 +50,10 @@
 <span id="47">47</span>
 <span id="48">48</span>
 <span id="49">49</span>
-<span id="50">50</span>
-<span id="51">51</span>
-<span id="52">52</span>
-<span id="53">53</span>
-<span id="54">54</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">button</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">component</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">container</span>;
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-browser&quot;</span>)]</span>
-<span class="kw">fn</span> <span class="ident">window_document</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">web_sys</span>::<span class="ident">Document</span> {
-    <span class="ident">web_sys</span>::<span class="ident">window</span>().<span class="ident">unwrap</span>().<span class="ident">document</span>().<span class="ident">unwrap</span>()
-}
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-rasterizer&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">rasterized</span> {
