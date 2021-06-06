@@ -142,6 +142,13 @@
 <span id="139">139</span>
 <span id="140">140</span>
 <span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Write</span>;
 
@@ -232,6 +239,13 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_id</span>(<span class="ident">widget_id</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">selector</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;#{}&quot;</span>, <span class="ident">widget_css_id</span>(<span class="ident">widget_id</span>)),
+            <span class="ident">statements</span>: <span class="ident">Vec</span>::<span class="ident">default</span>(),
+        }
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_css_selector</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="ident">selector</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">selector</span>: <span class="ident">selector</span>.<span class="ident">to_string</span>(),
             <span class="ident">statements</span>: <span class="ident">Vec</span>::<span class="ident">default</span>(),
         }
     }

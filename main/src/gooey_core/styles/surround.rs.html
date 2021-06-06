@@ -35,85 +35,39 @@
 <span id="32">32</span>
 <span id="33">33</span>
 <span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
-<span id="49">49</span>
-<span id="50">50</span>
-<span id="51">51</span>
-<span id="52">52</span>
-<span id="53">53</span>
-<span id="54">54</span>
-<span id="55">55</span>
-<span id="56">56</span>
-<span id="57">57</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>;
-
 <span class="kw">use</span> <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Size2D</span>};
 
 <span class="doccomment">/// Measurements that surrouned a box/rect.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Surround</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The left measurement.</span>
-    <span class="kw">pub</span> <span class="ident">left</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">left</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The top measurement.</span>
-    <span class="kw">pub</span> <span class="ident">top</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">top</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The right measurement.</span>
-    <span class="kw">pub</span> <span class="ident">right</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">right</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The bottom measurement.</span>
-    <span class="kw">pub</span> <span class="ident">bottom</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">_phantom</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">bottom</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span> <span class="ident">Surround</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Returns the minimum width that this surround will occupy.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minimum_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">left</span>().<span class="ident">unwrap_or_default</span>() <span class="op">+</span> <span class="self">self</span>.<span class="ident">right</span>().<span class="ident">unwrap_or_default</span>()
+        <span class="self">self</span>.<span class="ident">left</span>.<span class="ident">unwrap_or_default</span>() <span class="op">+</span> <span class="self">self</span>.<span class="ident">right</span>.<span class="ident">unwrap_or_default</span>()
     }
 
     <span class="doccomment">/// Returns the minimum height that this surround will occupy.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minimum_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">top</span>().<span class="ident">unwrap_or_default</span>() <span class="op">+</span> <span class="self">self</span>.<span class="ident">bottom</span>().<span class="ident">unwrap_or_default</span>()
+        <span class="self">self</span>.<span class="ident">top</span>.<span class="ident">unwrap_or_default</span>() <span class="op">+</span> <span class="self">self</span>.<span class="ident">bottom</span>.<span class="ident">unwrap_or_default</span>()
     }
 
     <span class="doccomment">/// Returns the minimum [`Size2D`] that this surround will occupy.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minimum_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span> {
         <span class="ident">Size2D</span>::<span class="ident">from_lengths</span>(<span class="self">self</span>.<span class="ident">minimum_width</span>(), <span class="self">self</span>.<span class="ident">minimum_height</span>())
-    }
-
-    <span class="doccomment">/// Returns the left measurement using the unit-aware type: [`Length`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">left</span>.<span class="ident">map</span>(<span class="ident">Length</span>::<span class="ident">new</span>)
-    }
-
-    <span class="doccomment">/// Returns the right measurement using the unit-aware type: [`Length`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">right</span>.<span class="ident">map</span>(<span class="ident">Length</span>::<span class="ident">new</span>)
-    }
-
-    <span class="doccomment">/// Returns the bottom measurement using the unit-aware type: [`Length`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">bottom</span>.<span class="ident">map</span>(<span class="ident">Length</span>::<span class="ident">new</span>)
-    }
-
-    <span class="doccomment">/// Returns the top measurement using the unit-aware type: [`Length`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">top</span>.<span class="ident">map</span>(<span class="ident">Length</span>::<span class="ident">new</span>)
     }
 }
 </pre></div>
