@@ -135,6 +135,11 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Debug</span>;
 
@@ -168,7 +173,12 @@
     <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Scale</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span>, <span class="ident">Pixels</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Renders `text` at `baseline_origin` with `options`.</span>
-    <span class="kw">fn</span> <span class="ident">render_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">baseline_origin</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>);
+    <span class="kw">fn</span> <span class="ident">render_text</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+        <span class="ident">baseline_origin</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
+    );
     <span class="doccomment">/// Measures `text` using `options`.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">fn</span> <span class="ident">measure_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>;
