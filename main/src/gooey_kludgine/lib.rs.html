@@ -177,7 +177,6 @@
 <span id="174">174</span>
 <span id="175">175</span>
 <span id="176">176</span>
-<span id="177">177</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Point2D</span>, <span class="ident">Rect</span>},
@@ -190,7 +189,7 @@
     <span class="ident">Pixels</span>, <span class="ident">Points</span>,
 };
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">kludgine</span>;
-<span class="kw">use</span> <span class="ident">kludgine</span>::{<span class="ident">prelude</span>::<span class="kw-2">*</span>, <span class="ident">text</span>::<span class="ident">prepared</span>::<span class="ident">PreparedSpan</span>};
+<span class="kw">use</span> <span class="ident">kludgine</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Kludgine</span> {
@@ -316,12 +315,11 @@
 
     <span class="kw">fn</span> <span class="ident">measure_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">prepare_text</span>::<span class="op">&lt;</span><span class="ident">TextColor</span><span class="op">&gt;</span>(<span class="ident">text</span>, <span class="ident">options</span>);
-        <span class="kw">let</span> <span class="ident">vmetrics</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">metrics</span>();
         <span class="ident">TextMetrics</span> {
-            <span class="ident">width</span>: <span class="ident">text</span>.<span class="ident">data</span>.<span class="ident">width</span>.<span class="ident">cast_unit</span>::<span class="op">&lt;</span><span class="ident">Pixels</span><span class="op">&gt;</span>(),
-            <span class="ident">ascent</span>: <span class="ident">Length</span>::<span class="ident">new</span>(<span class="ident">vmetrics</span>.<span class="ident">ascent</span>),
-            <span class="ident">descent</span>: <span class="ident">Length</span>::<span class="ident">new</span>(<span class="ident">vmetrics</span>.<span class="ident">descent</span>),
-            <span class="ident">line_gap</span>: <span class="ident">Length</span>::<span class="ident">new</span>(<span class="ident">vmetrics</span>.<span class="ident">line_gap</span>),
+            <span class="ident">width</span>: <span class="ident">text</span>.<span class="ident">width</span>.<span class="ident">cast_unit</span>::<span class="op">&lt;</span><span class="ident">Pixels</span><span class="op">&gt;</span>(),
+            <span class="ident">ascent</span>: <span class="ident">Length</span>::<span class="ident">new</span>(<span class="ident">text</span>.<span class="ident">metrics</span>.<span class="ident">ascent</span>),
+            <span class="ident">descent</span>: <span class="ident">Length</span>::<span class="ident">new</span>(<span class="ident">text</span>.<span class="ident">metrics</span>.<span class="ident">descent</span>),
+            <span class="ident">line_gap</span>: <span class="ident">Length</span>::<span class="ident">new</span>(<span class="ident">text</span>.<span class="ident">metrics</span>.<span class="ident">line_gap</span>),
         } <span class="op">/</span> <span class="self">self</span>.<span class="ident">scale</span>()
     }
 

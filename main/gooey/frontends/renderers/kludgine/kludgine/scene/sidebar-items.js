@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Modifiers",""],["Scene",""],["Target",""]]});

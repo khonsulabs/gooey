@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["AnimationMode",""],["SpriteSourceLocation",""]],"struct":[["Sprite",""],["SpriteAnimation",""],["SpriteAnimations",""],["SpriteFrame",""],["SpriteFrameBuilder",""],["SpriteMap",""],["SpriteRotation",""],["SpriteSheet",""],["SpriteSource",""],["SpriteSourceSublocation",""]],"trait":[["SpriteCollection",""]]});

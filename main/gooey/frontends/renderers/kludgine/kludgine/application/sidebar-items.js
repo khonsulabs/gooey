@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["SingleWindowApplication",""]],"trait":[["Application",""]]});

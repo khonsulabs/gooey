@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["SelectError","An error that may be emitted when attempting to wait for a value on a receiver."]],"struct":[["Selector","A type used to wait upon multiple blocking operations at once."]]});

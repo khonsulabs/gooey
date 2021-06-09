@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["GlyphInfo","Information about a font glyph"],["PreparedSpan","A formatted span of text that is ready to render. Cheap to clone."],["PreparedSpanData","The shared data of a [`PreparedSpan`]."],["VMetrics","A vertical metrics measurement."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["RecvFut","A future which allows asynchronously receiving a message."],["RecvStream","A stream which allows asynchronously receiving messages."],["SendFut","A future that sends a value into a channel."],["SendSink","A sink that allows sending values into a channel."]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["kludgine",""]],"struct":[["Kludgine",""]]});
+initSidebarItems({"mod":[["kludgine","2d graphics and app framework built atop wgpu."]],"struct":[["Kludgine",""]]});
