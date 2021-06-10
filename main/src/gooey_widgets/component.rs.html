@@ -269,6 +269,7 @@
 <span id="266">266</span>
 <span id="267">267</span>
 <span id="268">268</span>
+<span id="269">269</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">collections</span>::<span class="ident">HashMap</span>,
@@ -339,6 +340,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>) <span class="op">=</span> <span class="ident">storage</span>.<span class="ident">widget_state</span>(<span class="ident">widget</span>.<span class="ident">id</span>().<span class="ident">id</span>) {
                 <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">channels</span>::<span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>().<span class="ident">expect</span>(<span class="string">&quot;incorrect widget type&quot;</span>);
                 <span class="ident">channels</span>.<span class="ident">post_command</span>(<span class="ident">command</span>);
+                <span class="ident">storage</span>.<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>.<span class="ident">id</span>().<span class="ident">clone</span>());
                 <span class="kw">return</span> <span class="bool-val">true</span>;
             }
         }
