@@ -270,6 +270,11 @@
 <span id="267">267</span>
 <span id="268">268</span>
 <span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">collections</span>::<span class="ident">HashMap</span>,
@@ -366,6 +371,9 @@
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">ComponentBuilder</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Content</span><span class="op">&gt;</span>;
+
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">initialize</span>(<span class="ident">component</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Component</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span><span class="op">&lt;</span><span class="ident">Component</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>) {}
 
     <span class="kw">fn</span> <span class="ident">receive_event</span>(
         <span class="ident">component</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Component</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
@@ -505,13 +513,15 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">Behavior</span><span class="op">&gt;</span> <span class="ident">ComponentTransmogrifier</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">initialize_component</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Frontend</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">component</span>: <span class="kw-2">&amp;</span><span class="ident">Component</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span>,
+        <span class="ident">component</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Component</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetRef</span><span class="op">&lt;</span><span class="ident">Component</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">frontend</span>: <span class="kw-2">&amp;</span><span class="ident">F</span>,
     ) {
         <span class="kw">let</span> <span class="ident">widget</span> <span class="op">=</span> <span class="ident">widget</span>.<span class="ident">registration</span>().<span class="ident">unwrap</span>().<span class="ident">id</span>().<span class="ident">clone</span>();
         <span class="kw">let</span> <span class="ident">widget_state</span> <span class="op">=</span> <span class="ident">frontend</span>.<span class="ident">gooey</span>().<span class="ident">widget_state</span>(<span class="ident">widget</span>.<span class="ident">id</span>).<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="ident">widget_state</span>.<span class="ident">channels</span>::<span class="op">&lt;</span><span class="ident">Component</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
+        <span class="ident">B</span>::<span class="ident">initialize</span>(<span class="ident">component</span>, <span class="kw-2">&amp;</span><span class="ident">Context</span>::<span class="ident">new</span>(<span class="ident">channels</span>, <span class="ident">frontend</span>));
+
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">callback_widget</span> <span class="op">=</span> <span class="ident">component</span>.<span class="ident">callback_widget</span>.<span class="ident">write</span>().<span class="ident">unwrap</span>();
         <span class="kw-2">*</span><span class="ident">callback_widget</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">EventPoster</span> {
             <span class="ident">widget</span>,

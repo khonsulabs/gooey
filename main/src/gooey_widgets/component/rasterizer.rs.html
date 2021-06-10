@@ -127,7 +127,7 @@
 
     <span class="kw">fn</span> <span class="ident">initialize</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">component</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Widget</span>,
+        <span class="ident">component</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">Widget</span>,
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetRef</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Widget</span><span class="op">&gt;</span>,
         <span class="ident">frontend</span>: <span class="kw-2">&amp;</span><span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">State</span> {
