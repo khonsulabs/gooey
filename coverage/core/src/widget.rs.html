@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="0 / 196">0 %</abbr></p>
+                <abbr title="0 / 192">0 %</abbr></p>
         </div>
     </div>
 
@@ -3492,7 +3492,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            self.frontend</pre>
+                <pre class="has-background-danger-light py-0 px-2">            self.frontend.set_widget_has_messages(widget.id().clone());</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3505,7 +3505,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                .storage()</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3518,7 +3518,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                .set_widget_has_messages(widget.id().clone());</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3527,11 +3527,11 @@
                 <a href="#269">269</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3540,11 +3540,11 @@
                 <a href="#270">270</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Send `command` to the widget.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3557,7 +3557,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    pub fn send_command_to&lt;OW: Widget&gt;(&amp;self, widget: &amp;WidgetId, command: OW::Command) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3566,11 +3566,11 @@
                 <a href="#272">272</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Send `command` to the widget.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        if let Some(state) = self.widget_state(widget.id) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3579,11 +3579,11 @@
                 <a href="#273">273</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    pub fn send_command_to&lt;OW: Widget&gt;(&amp;self, widget: &amp;WidgetId, command: OW::Command) {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            let channels = state.channels::&lt;OW&gt;().expect(&quot;incorrect widget type&quot;);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3596,7 +3596,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if let Some(state) = self.widget_state(widget.id) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            channels.post_command(command);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3609,7 +3609,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            let channels = state.channels::&lt;OW&gt;().expect(&quot;incorrect widget type&quot;);</pre>
+                <pre class="has-background-danger-light py-0 px-2">            self.frontend.set_widget_has_messages(widget.clone());</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3622,7 +3622,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            channels.post_command(command);</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3635,7 +3635,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            self.frontend</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3644,11 +3644,11 @@
                 <a href="#278">278</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                .storage()</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3657,11 +3657,11 @@
                 <a href="#279">279</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                .set_widget_has_messages(widget.clone());</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3670,11 +3670,11 @@
                 <a href="#280">280</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl&lt;W: Widget&gt; Deref for Context&lt;W&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3683,11 +3683,11 @@
                 <a href="#281">281</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    type Target = WidgetStorage;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3700,7 +3700,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3709,11 +3709,11 @@
                 <a href="#283">283</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    fn deref(&amp;self) -&gt; &amp;Self::Target {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3722,11 +3722,11 @@
                 <a href="#284">284</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl&lt;W: Widget&gt; Deref for Context&lt;W&gt; {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.frontend.storage()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3735,11 +3735,11 @@
                 <a href="#285">285</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    type Target = WidgetStorage;</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3752,7 +3752,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3761,11 +3761,11 @@
                 <a href="#287">287</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn deref(&amp;self) -&gt; &amp;Self::Target {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3774,11 +3774,11 @@
                 <a href="#288">288</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.frontend.storage()</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; Communication channels used to communicate between [`Widget`]s and</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3787,11 +3787,11 @@
                 <a href="#289">289</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; [`Transmogrifier`](crate::Transmogrifier)s.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3800,11 +3800,11 @@
                 <a href="#290">290</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3817,7 +3817,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">pub struct Channels&lt;W: Widget&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3830,7 +3830,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; Communication channels used to communicate between [`Widget`]s and</pre>
+                <pre class="has-background-white py-0 px-2">    widget: WeakWidgetRegistration,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3843,7 +3843,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; [`Transmogrifier`](crate::Transmogrifier)s.</pre>
+                <pre class="has-background-white py-0 px-2">    command_sender: Sender&lt;W::Command&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3852,11 +3852,11 @@
                 <a href="#294">294</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug)]</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    command_receiver: Receiver&lt;W::Command&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3869,7 +3869,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct Channels&lt;W: Widget&gt; {</pre>
+                <pre class="has-background-white py-0 px-2">    transmogrifier_command_sender: Sender&lt;W::TransmogrifierCommand&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3882,7 +3882,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    widget: WeakWidgetRegistration,</pre>
+                <pre class="has-background-white py-0 px-2">    transmogrifier_command_receiver: Receiver&lt;W::TransmogrifierCommand&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3895,7 +3895,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    command_sender: Sender&lt;W::Command&gt;,</pre>
+                <pre class="has-background-white py-0 px-2">    event_sender: Sender&lt;W::TransmogrifierEvent&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3908,7 +3908,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    command_receiver: Receiver&lt;W::Command&gt;,</pre>
+                <pre class="has-background-white py-0 px-2">    event_receiver: Receiver&lt;W::TransmogrifierEvent&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3921,7 +3921,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    transmogrifier_command_sender: Sender&lt;W::TransmogrifierCommand&gt;,</pre>
+                <pre class="has-background-white py-0 px-2">    _phantom: PhantomData&lt;W&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3934,7 +3934,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    transmogrifier_command_receiver: Receiver&lt;W::TransmogrifierCommand&gt;,</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3947,7 +3947,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    event_sender: Sender&lt;W::TransmogrifierEvent&gt;,</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3960,7 +3960,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    event_receiver: Receiver&lt;W::TransmogrifierEvent&gt;,</pre>
+                <pre class="has-background-white py-0 px-2">impl&lt;W: Widget&gt; Clone for Channels&lt;W&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3969,11 +3969,11 @@
                 <a href="#303">303</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    _phantom: PhantomData&lt;W&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    fn clone(&amp;self) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3982,11 +3982,11 @@
                 <a href="#304">304</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -3995,11 +3995,11 @@
                 <a href="#305">305</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            widget: self.widget.clone(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4008,11 +4008,11 @@
                 <a href="#306">306</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl&lt;W: Widget&gt; Clone for Channels&lt;W&gt; {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            command_sender: self.command_sender.clone(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4025,7 +4025,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn clone(&amp;self) -&gt; Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            command_receiver: self.command_receiver.clone(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4038,7 +4038,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            transmogrifier_command_sender: self.transmogrifier_command_sender.clone(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4051,7 +4051,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            widget: self.widget.clone(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">            transmogrifier_command_receiver: self.transmogrifier_command_receiver.clone(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4064,7 +4064,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            command_sender: self.command_sender.clone(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">            event_sender: self.event_sender.clone(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4077,7 +4077,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            command_receiver: self.command_receiver.clone(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">            event_receiver: self.event_receiver.clone(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4090,7 +4090,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            transmogrifier_command_sender: self.transmogrifier_command_sender.clone(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">            _phantom: PhantomData::default(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4103,7 +4103,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            transmogrifier_command_receiver: self.transmogrifier_command_receiver.clone(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4116,7 +4116,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            event_sender: self.event_sender.clone(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4125,11 +4125,11 @@
                 <a href="#315">315</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            event_receiver: self.event_receiver.clone(),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4138,11 +4138,11 @@
                 <a href="#316">316</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            _phantom: PhantomData::default(),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4151,11 +4151,11 @@
                 <a href="#317">317</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl&lt;W: Widget&gt; AnyChannels for Channels&lt;W&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4168,7 +4168,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn widget_type_id(&amp;self) -&gt; TypeId {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4177,11 +4177,11 @@
                 <a href="#319">319</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        TypeId::of::&lt;W&gt;()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4190,11 +4190,11 @@
                 <a href="#320">320</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4207,7 +4207,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl&lt;W: Widget&gt; AnyChannels for Channels&lt;W&gt; {</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4220,7 +4220,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn widget_type_id(&amp;self) -&gt; TypeId {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn command_sender(&amp;self) -&gt; Box&lt;dyn AnySendSync&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4233,7 +4233,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        TypeId::of::&lt;W&gt;()</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Box::new(self.command_sender.clone())</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4272,7 +4272,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn command_sender(&amp;self) -&gt; Box&lt;dyn AnySendSync&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn event_sender(&amp;self) -&gt; &amp;&#x27;_ dyn AnySendSync {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4285,7 +4285,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Box::new(self.command_sender.clone())</pre>
+                <pre class="has-background-danger-light py-0 px-2">        &amp;self.event_sender</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4311,7 +4311,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4320,11 +4320,11 @@
                 <a href="#330">330</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn event_sender(&amp;self) -&gt; &amp;&#x27;_ dyn AnySendSync {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4333,11 +4333,11 @@
                 <a href="#331">331</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &amp;self.event_sender</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl&lt;W: Widget&gt; Channels&lt;W&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4346,11 +4346,11 @@
                 <a href="#332">332</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Creates a new set of channels for a widget and transmogrifier.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4363,7 +4363,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4372,11 +4372,11 @@
                 <a href="#334">334</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn new(widget: &amp;WidgetRegistration) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4385,11 +4385,11 @@
                 <a href="#335">335</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl&lt;W: Widget&gt; Channels&lt;W&gt; {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        let (command_sender, command_receiver) = flume::unbounded();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4398,11 +4398,11 @@
                 <a href="#336">336</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Creates a new set of channels for a widget and transmogrifier.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        let (transmogrifier_command_sender, transmogrifier_command_receiver) = flume::unbounded();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4411,11 +4411,11 @@
                 <a href="#337">337</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        let (event_sender, event_receiver) = flume::unbounded();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4428,7 +4428,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn new(widget: &amp;WidgetRegistration) -&gt; Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4441,7 +4441,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let (command_sender, command_receiver) = flume::unbounded();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4454,7 +4454,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let (transmogrifier_command_sender, transmogrifier_command_receiver) = flume::unbounded();</pre>
+                <pre class="has-background-danger-light py-0 px-2">            widget: WeakWidgetRegistration::from(widget),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4467,7 +4467,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let (event_sender, event_receiver) = flume::unbounded();</pre>
+                <pre class="has-background-danger-light py-0 px-2">            command_sender,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4480,7 +4480,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2"></pre>
+                <pre class="has-background-danger-light py-0 px-2">            command_receiver,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4493,7 +4493,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            transmogrifier_command_sender,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4506,7 +4506,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            widget: WeakWidgetRegistration::from(widget),</pre>
+                <pre class="has-background-danger-light py-0 px-2">            transmogrifier_command_receiver,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4519,7 +4519,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            command_sender,</pre>
+                <pre class="has-background-danger-light py-0 px-2">            event_sender,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4532,7 +4532,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            command_receiver,</pre>
+                <pre class="has-background-danger-light py-0 px-2">            event_receiver,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4545,7 +4545,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            transmogrifier_command_sender,</pre>
+                <pre class="has-background-danger-light py-0 px-2">            _phantom: PhantomData::default(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4558,7 +4558,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            transmogrifier_command_receiver,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4571,7 +4571,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            event_sender,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4580,11 +4580,11 @@
                 <a href="#350">350</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            event_receiver,</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4593,11 +4593,11 @@
                 <a href="#351">351</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            _phantom: PhantomData::default(),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Sends an event to the [`Widget`].</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4606,11 +4606,11 @@
                 <a href="#352">352</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    pub fn post_event(&amp;self, event: W::TransmogrifierEvent) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4623,7 +4623,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        if let Some(registration) = self.widget() {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4632,11 +4632,11 @@
                 <a href="#354">354</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            drop(self.event_sender.send(event));</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4645,11 +4645,11 @@
                 <a href="#355">355</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Sends an event to the [`Widget`].</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            registration.set_has_messages();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4658,11 +4658,11 @@
                 <a href="#356">356</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    pub fn post_event(&amp;self, event: W::TransmogrifierEvent) {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4675,7 +4675,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if let Some(registration) = self.widget() {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4684,11 +4684,11 @@
                 <a href="#358">358</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            drop(self.event_sender.send(event));</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4697,11 +4697,11 @@
                 <a href="#359">359</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            registration.set_has_messages();</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Sends a `command` to the [`Widget`].</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4710,11 +4710,11 @@
                 <a href="#360">360</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    pub fn post_command(&amp;self, command: W::Command) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4727,7 +4727,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        if let Some(registration) = self.widget() {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4736,11 +4736,11 @@
                 <a href="#362">362</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            drop(self.command_sender.send(command));</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4749,11 +4749,11 @@
                 <a href="#363">363</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Sends a `command` to the [`Widget`].</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            registration.set_has_messages();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4762,11 +4762,11 @@
                 <a href="#364">364</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    pub fn post_command(&amp;self, command: W::Command) {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4779,65 +4779,13 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if let Some(registration) = self.widget() {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="366">
                 <a href="#366">366</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            drop(self.command_sender.send(command));</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="367">
-                <a href="#367">367</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            registration.set_has_messages();</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="368">
-                <a href="#368">368</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="369">
-                <a href="#369">369</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="370">
-                <a href="#370">370</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -4849,8 +4797,8 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="371">
-                <a href="#371">371</a>
+                id="367">
+                <a href="#367">367</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -4862,8 +4810,8 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="372">
-                <a href="#372">372</a>
+                id="368">
+                <a href="#368">368</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -4871,6 +4819,58 @@
             </div>
             <div class="column has-background-white p-0">
                 <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; destroyed.</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="369">
+                <a href="#369">369</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="370">
+                <a href="#370">370</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn widget(&amp;self) -&gt; Option&lt;WidgetRegistration&gt; {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="371">
+                <a href="#371">371</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.widget.upgrade()</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="372">
+                <a href="#372">372</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4883,65 +4883,13 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="374">
                 <a href="#374">374</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn widget(&amp;self) -&gt; Option&lt;WidgetRegistration&gt; {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="375">
-                <a href="#375">375</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.widget.upgrade()</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="376">
-                <a href="#376">376</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="377">
-                <a href="#377">377</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="378">
-                <a href="#378">378</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -4953,8 +4901,8 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="379">
-                <a href="#379">379</a>
+                id="375">
+                <a href="#375">375</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -4962,6 +4910,58 @@
             </div>
             <div class="column has-background-white p-0">
                 <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; has been destroyed.</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="376">
+                <a href="#376">376</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="377">
+                <a href="#377">377</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn widget_ref&lt;F: Frontend&gt;(&amp;self, frontend: F) -&gt; Option&lt;WidgetRef&lt;W&gt;&gt; {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="378">
+                <a href="#378">378</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.widget().and_then(|reg| WidgetRef::new(&amp;reg, frontend))</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="379">
+                <a href="#379">379</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4974,7 +4974,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4983,11 +4983,11 @@
                 <a href="#381">381</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn widget_ref&lt;F: Frontend&gt;(&amp;self, frontend: F) -&gt; Option&lt;WidgetRef&lt;W&gt;&gt; {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4996,11 +4996,11 @@
                 <a href="#382">382</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.widget().and_then(|reg| WidgetRef::new(&amp;reg, frontend))</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; A callback that receives information `I`, and returns `R`.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5009,11 +5009,11 @@
                 <a href="#383">383</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">pub struct Callback&lt;I = (), R = ()&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5026,7 +5026,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">    callback: Option&lt;Box&lt;dyn CallbackFn&lt;I, R&gt;&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5039,7 +5039,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5052,7 +5052,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; A callback that receives information `I`, and returns `R`.</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5065,7 +5065,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct Callback&lt;I = (), R = ()&gt; {</pre>
+                <pre class="has-background-white py-0 px-2">impl&lt;I, R&gt; Debug for Callback&lt;I, R&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5078,7 +5078,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    callback: Option&lt;Box&lt;dyn CallbackFn&lt;I, R&gt;&gt;&gt;,</pre>
+                <pre class="has-background-white py-0 px-2">    fn fmt(&amp;self, f: &amp;mut std::fmt::Formatter&lt;&#x27;_&gt;) -&gt; std::fmt::Result {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5087,11 +5087,11 @@
                 <a href="#389">389</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        f.write_str(type_name::&lt;Self&gt;())?;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5100,11 +5100,11 @@
                 <a href="#390">390</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        f.write_str(&quot; { callback: &quot;)?;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5113,11 +5113,11 @@
                 <a href="#391">391</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl&lt;I, R&gt; Debug for Callback&lt;I, R&gt; {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        if self.callback.is_some() {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5126,11 +5126,11 @@
                 <a href="#392">392</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    fn fmt(&amp;self, f: &amp;mut std::fmt::Formatter&lt;&#x27;_&gt;) -&gt; std::fmt::Result {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            f.write_str(&quot;Some(_) }&quot;)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5139,11 +5139,11 @@
                 <a href="#393">393</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        f.write_str(type_name::&lt;Self&gt;())?;</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        } else {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5156,7 +5156,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        f.write_str(&quot; { callback: &quot;)?;</pre>
+                <pre class="has-background-danger-light py-0 px-2">            f.write_str(&quot;None }&quot;)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5165,11 +5165,11 @@
                 <a href="#395">395</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if self.callback.is_some() {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5182,7 +5182,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            f.write_str(&quot;Some(_) }&quot;)</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5195,7 +5195,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        } else {</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5204,11 +5204,11 @@
                 <a href="#398">398</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            f.write_str(&quot;None }&quot;)</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5221,7 +5221,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        }</pre>
+                <pre class="has-background-white py-0 px-2">impl&lt;I, R&gt; Default for Callback&lt;I, R&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5234,7 +5234,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn default() -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5243,11 +5243,11 @@
                 <a href="#401">401</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        Self { callback: None }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5256,11 +5256,11 @@
                 <a href="#402">402</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5273,7 +5273,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl&lt;I, R&gt; Default for Callback&lt;I, R&gt; {</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5282,11 +5282,11 @@
                 <a href="#404">404</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn default() -&gt; Self {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5295,11 +5295,11 @@
                 <a href="#405">405</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Self { callback: None }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; A callback implementation. Not typically directly implemented, as this trait</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5308,11 +5308,11 @@
                 <a href="#406">406</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; is auto-implemented for any `Fn(I) -&gt; R` types.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5325,7 +5325,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">pub trait CallbackFn&lt;I, R&gt;: Send + Sync {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5338,7 +5338,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Invoke the callback with `info`.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5351,7 +5351,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; A callback implementation. Not typically directly implemented, as this trait</pre>
+                <pre class="has-background-white py-0 px-2">    fn invoke(&amp;self, info: I) -&gt; R;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5364,7 +5364,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; is auto-implemented for any `Fn(I) -&gt; R` types.</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5377,7 +5377,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub trait CallbackFn&lt;I, R&gt;: Send + Sync {</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5390,7 +5390,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Invoke the callback with `info`.</pre>
+                <pre class="has-background-white py-0 px-2">impl&lt;I, R&gt; Callback&lt;I, R&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5403,7 +5403,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    fn invoke(&amp;self, info: I) -&gt; R;</pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Create a new callback with the provided function.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5412,11 +5412,11 @@
                 <a href="#414">414</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn new&lt;C: CallbackFn&lt;I, R&gt; + &#x27;static&gt;(callback: C) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5425,11 +5425,11 @@
                 <a href="#415">415</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5438,11 +5438,11 @@
                 <a href="#416">416</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl&lt;I, R&gt; Callback&lt;I, R&gt; {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            callback: Some(Box::new(callback)),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5451,11 +5451,11 @@
                 <a href="#417">417</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Create a new callback with the provided function.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5468,7 +5468,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn new&lt;C: CallbackFn&lt;I, R&gt; + &#x27;static&gt;(callback: C) -&gt; Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5477,11 +5477,11 @@
                 <a href="#419">419</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5490,11 +5490,11 @@
                 <a href="#420">420</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            callback: Some(Box::new(callback)),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Invoke the callback. If implemented, a the result is returned.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5507,7 +5507,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn invoke(&amp;self, info: I) -&gt; Option&lt;R&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5520,7 +5520,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self.callback.as_ref().map(|cb| cb.invoke(info))</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5529,11 +5529,11 @@
                 <a href="#423">423</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5546,7 +5546,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Invoke the callback. If implemented, a the result is returned.</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5555,11 +5555,11 @@
                 <a href="#425">425</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn invoke(&amp;self, info: I) -&gt; Option&lt;R&gt; {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5568,11 +5568,11 @@
                 <a href="#426">426</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.callback.as_ref().map(|cb| cb.invoke(info))</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl&lt;I, R, T&gt; CallbackFn&lt;I, R&gt; for T</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5581,11 +5581,11 @@
                 <a href="#427">427</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">where</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5598,7 +5598,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">    T: Fn(I) -&gt; R + Send + Sync,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5611,7 +5611,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">{</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5620,11 +5620,11 @@
                 <a href="#430">430</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl&lt;I, R, T&gt; CallbackFn&lt;I, R&gt; for T</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    fn invoke(&amp;self, info: I) -&gt; R {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5633,11 +5633,11 @@
                 <a href="#431">431</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">where</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self(info)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5646,11 +5646,11 @@
                 <a href="#432">432</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    T: Fn(I) -&gt; R + Send + Sync,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -5663,64 +5663,12 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">{</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="434">
-                <a href="#434">434</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn invoke(&amp;self, info: I) -&gt; R {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="435">
-                <a href="#435">435</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self(info)</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="436">
-                <a href="#436">436</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="437">
-                <a href="#437">437</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
                 <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-06-10 23:03</p>
+                <p class="heading">Date: 2021-06-11 04:14</p>
             </div>
         </footer>
     </body>
