@@ -434,10 +434,6 @@
 <span id="431">431</span>
 <span id="432">432</span>
 <span id="433">433</span>
-<span id="434">434</span>
-<span id="435">435</span>
-<span id="436">436</span>
-<span id="437">437</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">any</span>::{<span class="ident">type_name</span>, <span class="ident">Any</span>, <span class="ident">TypeId</span>},
@@ -704,9 +700,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_command</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">command</span>: <span class="ident">W</span>::<span class="ident">TransmogrifierCommand</span>) {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">widget</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget</span>.<span class="ident">upgrade</span>() {
             <span class="ident">drop</span>(<span class="self">self</span>.<span class="ident">command_sender</span>.<span class="ident">send</span>(<span class="ident">command</span>));
-            <span class="self">self</span>.<span class="ident">frontend</span>
-                .<span class="ident">storage</span>()
-                .<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>.<span class="ident">id</span>().<span class="ident">clone</span>());
+            <span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>.<span class="ident">id</span>().<span class="ident">clone</span>());
         }
     }
 
@@ -715,9 +709,7 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget</span>.<span class="ident">id</span>) {
             <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">channels</span>::<span class="op">&lt;</span><span class="ident">OW</span><span class="op">&gt;</span>().<span class="ident">expect</span>(<span class="string">&quot;incorrect widget type&quot;</span>);
             <span class="ident">channels</span>.<span class="ident">post_command</span>(<span class="ident">command</span>);
-            <span class="self">self</span>.<span class="ident">frontend</span>
-                .<span class="ident">storage</span>()
-                .<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>.<span class="ident">clone</span>());
+            <span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>.<span class="ident">clone</span>());
         }
     }
 }

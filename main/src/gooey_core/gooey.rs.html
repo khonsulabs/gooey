@@ -805,7 +805,7 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget_id</span>.<span class="ident">id</span>) {
             <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">channels</span>::<span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
             <span class="ident">channels</span>.<span class="ident">post_event</span>(<span class="ident">event</span>);
-            <span class="self">self</span>.<span class="ident">set_widget_has_messages</span>(<span class="ident">widget_id</span>.<span class="ident">clone</span>());
+            <span class="ident">frontend</span>.<span class="ident">set_widget_has_messages</span>(<span class="ident">widget_id</span>.<span class="ident">clone</span>());
         }
 
         <span class="comment">// Process any messages that may have been triggered onto other widgets.</span>
@@ -821,7 +821,7 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget_id</span>.<span class="ident">id</span>) {
             <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">channels</span>::<span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
             <span class="ident">channels</span>.<span class="ident">post_command</span>(<span class="ident">event</span>);
-            <span class="self">self</span>.<span class="ident">set_widget_has_messages</span>(<span class="ident">widget_id</span>.<span class="ident">clone</span>());
+            <span class="ident">frontend</span>.<span class="ident">set_widget_has_messages</span>(<span class="ident">widget_id</span>.<span class="ident">clone</span>());
         }
 
         <span class="comment">// Process any messages that may have been triggered onto other widgets.</span>
