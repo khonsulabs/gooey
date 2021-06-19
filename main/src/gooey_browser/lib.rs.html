@@ -287,8 +287,36 @@
 <span id="284">284</span>
 <span id="285">285</span>
 <span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any</span>::<span class="ident">TypeId</span>, <span class="ident">convert</span>::<span class="ident">TryFrom</span>, <span class="ident">ops</span>::<span class="ident">Deref</span>, <span class="ident">sync</span>::<span class="ident">Arc</span>};
+<span class="kw">use</span> <span class="ident">std</span>::{
+    <span class="ident">any</span>::<span class="ident">TypeId</span>,
+    <span class="ident">convert</span>::<span class="ident">TryFrom</span>,
+    <span class="ident">ops</span>::<span class="ident">Deref</span>,
+    <span class="ident">sync</span>::{
+        <span class="ident">atomic</span>::{<span class="ident">AtomicBool</span>, <span class="ident">Ordering</span>},
+        <span class="ident">Arc</span>,
+    },
+};
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">styles</span>::{<span class="ident">style_sheet</span>::<span class="ident">Classes</span>, <span class="ident">Style</span>, <span class="ident">StyleComponent</span>},
@@ -302,6 +330,8 @@
 <span class="kw">use</span> <span class="ident">utils</span>::{<span class="ident">set_widget_classes</span>, <span class="ident">set_widget_id</span>, <span class="ident">CssBlockBuilder</span>, <span class="ident">CssManager</span>, <span class="ident">CssRule</span>};
 <span class="kw">use</span> <span class="ident">web_sys</span>::<span class="ident">HtmlElement</span>;
 
+<span class="kw">static</span> <span class="ident">INITIALIZED</span>: <span class="ident">AtomicBool</span> <span class="op">=</span> <span class="ident">AtomicBool</span>::<span class="ident">new</span>(<span class="bool-val">false</span>);
+
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WebSys</span> {
     <span class="kw">pub</span> <span class="ident">ui</span>: <span class="ident">Gooey</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
@@ -309,8 +339,18 @@
 }
 
 <span class="kw">impl</span> <span class="ident">WebSys</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">initialize</span>() {
+        <span class="kw">if</span> <span class="ident">INITIALIZED</span>
+            .<span class="ident">compare_exchange</span>(<span class="bool-val">false</span>, <span class="bool-val">true</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>)
+            .<span class="ident">is_ok</span>()
+        {
+            <span class="ident">wasm_logger</span>::<span class="ident">init</span>(<span class="ident">wasm_logger</span>::<span class="ident">Config</span>::<span class="ident">default</span>());
+        }
+    }
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">ui</span>: <span class="ident">Gooey</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="ident">wasm_logger</span>::<span class="ident">init</span>(<span class="ident">wasm_logger</span>::<span class="ident">Config</span>::<span class="ident">default</span>());
+        <span class="self">Self</span>::<span class="ident">initialize</span>();
+
         <span class="kw">let</span> <span class="ident">manager</span> <span class="op">=</span> <span class="ident">CssManager</span>::<span class="ident">shared</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">styles</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[
             <span class="ident">manager</span>.<span class="ident">register_rule</span>(
