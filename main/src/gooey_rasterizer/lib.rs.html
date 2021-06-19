@@ -428,21 +428,6 @@
 <span id="425">425</span>
 <span id="426">426</span>
 <span id="427">427</span>
-<span id="428">428</span>
-<span id="429">429</span>
-<span id="430">430</span>
-<span id="431">431</span>
-<span id="432">432</span>
-<span id="433">433</span>
-<span id="434">434</span>
-<span id="435">435</span>
-<span id="436">436</span>
-<span id="437">437</span>
-<span id="438">438</span>
-<span id="439">439</span>
-<span id="440">440</span>
-<span id="441">441</span>
-<span id="442">442</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections</span>::<span class="ident">HashSet</span>, <span class="ident">sync</span>::<span class="ident">Arc</span>};
 
@@ -453,7 +438,7 @@
         <span class="ident">style_sheet</span>::{<span class="self">self</span>},
         <span class="ident">Style</span>,
     },
-    <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">Frontend</span>, <span class="ident">Gooey</span>, <span class="ident">Points</span>, <span class="ident">WidgetId</span>,
+    <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">Gooey</span>, <span class="ident">Points</span>, <span class="ident">WidgetId</span>,
 };
 <span class="kw">use</span> <span class="ident">winit</span>::<span class="ident">event</span>::{
     <span class="ident">ElementState</span>, <span class="ident">MouseButton</span>, <span class="ident">MouseScrollDelta</span>, <span class="ident">ScanCode</span>, <span class="ident">TouchPhase</span>, <span class="ident">VirtualKeyCode</span>,
@@ -520,24 +505,9 @@
     <span class="kw">fn</span> <span class="ident">set_widget_has_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>) {
         <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>);
         <span class="comment">// If we&#39;re not inside of a render</span>
-        <span class="kw">if</span> <span class="kw">let</span> (<span class="bool-val">false</span>, <span class="prelude-val">Some</span>(<span class="ident">callback</span>)) <span class="op">=</span> (<span class="self">self</span>.<span class="ident">state</span>.<span class="ident">is_managed</span>(), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">refresh_callback</span>) {
+        <span class="kw">if</span> <span class="kw">let</span> (<span class="bool-val">false</span>, <span class="prelude-val">Some</span>(<span class="ident">callback</span>)) <span class="op">=</span> (<span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">is_managed_code</span>(), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">refresh_callback</span>) {
             <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Refreshing because of widget messages&quot;</span>);
             <span class="ident">callback</span>.<span class="ident">refresh</span>();
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">process_widget_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">entered</span> <span class="op">=</span> <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">state</span>.<span class="ident">is_managed</span>() {
-            <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">enter_managed_code</span>();
-            <span class="bool-val">true</span>
-        } <span class="kw">else</span> {
-            <span class="bool-val">false</span>
-        };
-
-        <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">process_widget_messages</span>(<span class="self">self</span>);
-
-        <span class="kw">if</span> <span class="ident">entered</span> {
-            <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">exit_managed_code</span>();
         }
     }
 }
@@ -553,9 +523,9 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">scene</span>: <span class="ident">R</span>) {
-        <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">enter_managed_code</span>();
+        <span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">enter_managed_code</span>();
         <span class="comment">// Process messages after new_frame,</span>
-        <span class="self">self</span>.<span class="ident">process_widget_messages</span>();
+        <span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">process_widget_messages</span>(<span class="self">self</span>);
 
         <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">new_frame</span>();
 
@@ -574,7 +544,7 @@
                 <span class="kw-2">&amp;</span><span class="ident">Style</span>::<span class="ident">default</span>(),
             );
         });
-        <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">exit_managed_code</span>();
+        <span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">exit_managed_code</span>();
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clipped_to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">clip</span>: <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
@@ -587,7 +557,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">handle_event</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">event</span>: <span class="ident">WindowEvent</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventResult</span> {
-        <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">enter_managed_code</span>();
+        <span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">enter_managed_code</span>();
         <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">event</span> {
             <span class="ident">WindowEvent</span>::<span class="ident">Input</span>(<span class="ident">input_event</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">input_event</span> {
                 <span class="ident">InputEvent</span>::<span class="ident">Keyboard</span> {
@@ -606,8 +576,8 @@
             <span class="ident">WindowEvent</span>::<span class="ident">LayerChanged</span> { .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">EventResult</span>::<span class="ident">ignored</span>(),
             <span class="ident">WindowEvent</span>::<span class="ident">SystemThemeChanged</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">EventResult</span>::<span class="ident">ignored</span>(),
         };
-        <span class="self">self</span>.<span class="ident">process_widget_messages</span>();
-        <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">exit_managed_code</span>();
+        <span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">process_widget_messages</span>(<span class="self">self</span>);
+        <span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">exit_managed_code</span>();
         <span class="ident">result</span>
     }
 
@@ -788,7 +758,7 @@
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_needs_redraw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">set_needs_redraw</span>();
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">state</span>.<span class="ident">is_managed</span>() {
+        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">is_managed_code</span>() {
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">callback</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">refresh_callback</span> {
                 <span class="ident">callback</span>.<span class="ident">refresh</span>();
             }

@@ -279,6 +279,14 @@
 <span id="276">276</span>
 <span id="277">277</span>
 <span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any</span>::<span class="ident">TypeId</span>, <span class="ident">convert</span>::<span class="ident">TryFrom</span>, <span class="ident">ops</span>::<span class="ident">Deref</span>, <span class="ident">sync</span>::<span class="ident">Arc</span>};
 
@@ -408,6 +416,14 @@
 
     <span class="kw">fn</span> <span class="ident">gooey</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">Gooey</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ui</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">set_widget_has_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>) {
+        <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>);
+        <span class="comment">// If we&#39;re not inside of a render</span>
+        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">is_managed_code</span>() {
+            <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">process_widget_messages</span>(<span class="self">self</span>);
+        }
     }
 }
 

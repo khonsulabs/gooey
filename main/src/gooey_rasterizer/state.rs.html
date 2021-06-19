@@ -173,22 +173,6 @@
 <span id="170">170</span>
 <span id="171">171</span>
 <span id="172">172</span>
-<span id="173">173</span>
-<span id="174">174</span>
-<span id="175">175</span>
-<span id="176">176</span>
-<span id="177">177</span>
-<span id="178">178</span>
-<span id="179">179</span>
-<span id="180">180</span>
-<span id="181">181</span>
-<span id="182">182</span>
-<span id="183">183</span>
-<span id="184">184</span>
-<span id="185">185</span>
-<span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">collections</span>::{<span class="ident">HashMap</span>, <span class="ident">HashSet</span>},
@@ -219,7 +203,6 @@
     <span class="ident">last_mouse_position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">mouse_button_handlers</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">MouseButton</span>, <span class="ident">WidgetId</span><span class="op">&gt;</span>,
     <span class="ident">needs_redraw</span>: <span class="ident">bool</span>,
-    <span class="ident">inside_event_loop</span>: <span class="ident">bool</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">State</span> {
@@ -338,21 +321,6 @@
             <span class="ident">active</span>: <span class="ident">data</span>.<span class="ident">active</span>.<span class="ident">as_ref</span>() <span class="op">=</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">widget_id</span>),
             <span class="ident">focused</span>: <span class="ident">data</span>.<span class="ident">focus</span>.<span class="ident">as_ref</span>() <span class="op">=</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">widget_id</span>),
         }
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enter_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-        <span class="ident">data</span>.<span class="ident">inside_event_loop</span> <span class="op">=</span> <span class="bool-val">true</span>;
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">exit_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-        <span class="ident">data</span>.<span class="ident">inside_event_loop</span> <span class="op">=</span> <span class="bool-val">false</span>;
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_managed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-        <span class="ident">data</span>.<span class="ident">inside_event_loop</span>
     }
 }
 

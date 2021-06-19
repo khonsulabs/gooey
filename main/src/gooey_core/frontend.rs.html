@@ -111,20 +111,6 @@
 <span id="108">108</span>
 <span id="109">109</span>
 <span id="110">110</span>
-<span id="111">111</span>
-<span id="112">112</span>
-<span id="113">113</span>
-<span id="114">114</span>
-<span id="115">115</span>
-<span id="116">116</span>
-<span id="117">117</span>
-<span id="118">118</span>
-<span id="119">119</span>
-<span id="120">120</span>
-<span id="121">121</span>
-<span id="122">122</span>
-<span id="123">123</span>
-<span id="124">124</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any</span>::<span class="ident">TypeId</span>, <span class="ident">convert</span>::<span class="ident">TryFrom</span>, <span class="ident">fmt</span>::<span class="ident">Debug</span>};
 
@@ -151,17 +137,10 @@
         <span class="ident">State</span>::<span class="ident">default</span>()
     }
 
-    <span class="doccomment">/// Processes any pending messages for widgets and transmogrifiers.</span>
-    <span class="kw">fn</span> <span class="ident">process_widget_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">process_widget_messages</span>(<span class="self">self</span>);
-    }
-
     <span class="doccomment">/// Notifies the frontend that a widget has messages. Frontends should</span>
     <span class="doccomment">/// ensure that `process_widget_messages` is called at some point after this</span>
     <span class="doccomment">/// method is called.</span>
-    <span class="kw">fn</span> <span class="ident">set_widget_has_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>) {
-        <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>);
-    }
+    <span class="kw">fn</span> <span class="ident">set_widget_has_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>);
 }
 
 <span class="doccomment">/// An interface for Frontend that doesn&#39;t requier knowledge of associated</span>
@@ -174,9 +153,6 @@
     <span class="doccomment">/// Returns the widget storage.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">fn</span> <span class="ident">storage</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">WidgetStorage</span>;
-
-    <span class="doccomment">/// Processes any pending messages for widgets and transmogrifiers.</span>
-    <span class="kw">fn</span> <span class="ident">process_widget_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Notifies the frontend that a widget has messages. Frontends should</span>
     <span class="doccomment">/// ensure that `process_widget_messages` is called at some point after this</span>
@@ -194,10 +170,6 @@
 
     <span class="kw">fn</span> <span class="ident">storage</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">WidgetStorage</span> {
         <span class="self">self</span>.<span class="ident">gooey</span>()
-    }
-
-    <span class="kw">fn</span> <span class="ident">process_widget_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">process_widget_messages</span>()
     }
 
     <span class="kw">fn</span> <span class="ident">set_widget_has_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>) {

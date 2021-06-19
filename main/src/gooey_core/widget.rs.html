@@ -434,6 +434,7 @@
 <span id="431">431</span>
 <span id="432">432</span>
 <span id="433">433</span>
+<span id="434">434</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">any</span>::{<span class="ident">type_name</span>, <span class="ident">Any</span>, <span class="ident">TypeId</span>},
@@ -665,6 +666,7 @@
 
 <span class="doccomment">/// Enables [`Widget`]s to send commands to the</span>
 <span class="doccomment">/// [`Transmogrifier`](crate::Transmogrifier).</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The frontend that created this context.</span>
     <span class="kw">pub</span> <span class="ident">frontend</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">AnyFrontend</span><span class="op">&gt;</span>,

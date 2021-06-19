@@ -55,7 +55,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gooey_rasterizer</span> <span class="kw">as</span> <span class="ident">rasterizer</span>;
     <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">renderers</span> {
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-kludgine&quot;</span>)]</span>
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-kludgine&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)))]</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
         <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gooey_kludgine</span> <span class="kw">as</span> <span class="ident">kludgine</span>;
     }
@@ -66,9 +66,9 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gooey_widgets</span> <span class="kw">as</span> <span class="ident">widgets</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-kludgine&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-kludgine&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)))]</span>
 <span class="kw">mod</span> <span class="ident">kludgine</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-kludgine&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-kludgine&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)))]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">kludgine</span>::{<span class="ident">kludgine_main</span>, <span class="ident">kludgine_main_with</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-browser&quot;</span>)]</span>
