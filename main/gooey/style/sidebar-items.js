@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["default_stylesheet",""]]});
+initSidebarItems({"fn":[["default_stylesheet","The default [`StyleSheet`] for `Gooey`."]]});

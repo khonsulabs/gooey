@@ -41,15 +41,24 @@
 <span id="38">38</span>
 <span id="39">39</span>
 <span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">Frontend</span>, <span class="ident">StyledWidget</span>, <span class="ident">Transmogrifiers</span>, <span class="ident">Widget</span>, <span class="ident">WidgetStorage</span>};
 
+<span class="doccomment">/// A cross-platform application.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">App</span> {
     <span class="ident">transmogrifiers</span>: <span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="kw">crate</span>::<span class="ident">ActiveFrontend</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">App</span> {
+    <span class="doccomment">/// Registers a [`Transmogrifier`](gooey_core::Transmogrifier). This will</span>
+    <span class="doccomment">/// allow `T::Widget` to be used in this application.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="kw">crate</span>::<span class="ident">ActiveFrontend</span> <span class="kw">as</span> <span class="ident">Frontend</span><span class="op">&gt;</span>::<span class="ident">AnyTransmogrifier</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">transmogrifier</span>: <span class="ident">T</span>,
@@ -60,6 +69,8 @@
         <span class="self">self</span>
     }
 
+    <span class="doccomment">/// Spawns an asynchronous task using the runtime that the `App` uses.</span>
+    <span class="doccomment">/// Requires feature `async` to be enabled.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;async&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spawn</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">std</span>::<span class="ident">future</span>::<span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> ()<span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="ident">future</span>: <span class="ident">F</span>) {
         <span class="ident">cfg_if</span>::<span class="macro">cfg_if</span><span class="macro">!</span> {
@@ -75,6 +86,7 @@
         }
     }
 
+    <span class="doccomment">/// Runs this application using the root widget provided by `initializer`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>, <span class="ident">C</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="self">self</span>,
         <span class="ident">initializer</span>: <span class="ident">C</span>,

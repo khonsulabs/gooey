@@ -27,6 +27,14 @@
 <span id="24">24</span>
 <span id="25">25</span>
 <span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">core</span>::{<span class="ident">Frontend</span>, <span class="ident">Gooey</span>, <span class="ident">StyledWidget</span>, <span class="ident">Transmogrifiers</span>, <span class="ident">Widget</span>, <span class="ident">WidgetStorage</span>},
@@ -35,6 +43,10 @@
     <span class="ident">widgets</span>::<span class="ident">browser</span>::{<span class="ident">default_transmogrifiers</span>, <span class="ident">register_transmogrifiers</span>},
 };
 
+<span class="doccomment">/// Runs a browser-based [`App`](crate::app::App) with `transmogrifiers` and the</span>
+<span class="doccomment">/// root widget from `initializer`. Unless overriden by `transmogrifier`, all</span>
+<span class="doccomment">/// widgets from [`gooey::widget`](crate::widgets) will use the built-in</span>
+<span class="doccomment">/// transmogrifiers.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">browser_main_with</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>, <span class="ident">C</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="kw-2">mut</span> <span class="ident">transmogrifiers</span>: <span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="ident">WebSys</span><span class="op">&gt;</span>,
     <span class="ident">initializer</span>: <span class="ident">C</span>,
@@ -49,6 +61,10 @@
     <span class="ident">ui</span>.<span class="ident">install_in_id</span>(<span class="string">&quot;gooey&quot;</span>)
 }
 
+<span class="doccomment">/// Runs a browser-based [`App`](crate::app::App) with the root widget from</span>
+<span class="doccomment">/// `initializer`. All widgets from [`gooey::widget`](crate::widgets) will be</span>
+<span class="doccomment">/// usable. If you wish to use other widgets, use `browser_main_with` and</span>
+<span class="doccomment">/// provide the transmogrifiers for the widgets you wish to use.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">browser_main</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>, <span class="ident">C</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">initializer</span>: <span class="ident">C</span>,
 ) {

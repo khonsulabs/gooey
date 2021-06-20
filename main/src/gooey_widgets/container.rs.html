@@ -65,6 +65,7 @@
 <span id="62">62</span>
 <span id="63">63</span>
 <span id="64">64</span>
+<span id="65">65</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::<span class="ident">Length</span>, <span class="ident">styles</span>::<span class="ident">Surround</span>, <span class="ident">Frontend</span>, <span class="ident">Points</span>, <span class="ident">StyledWidget</span>, <span class="ident">Widget</span>, <span class="ident">WidgetRef</span>,
@@ -88,6 +89,7 @@
         <span class="self">Self</span>::<span class="ident">from_registration</span>(<span class="ident">storage</span>.<span class="ident">register</span>(<span class="ident">child</span>))
     }
 
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_registration</span>(<span class="ident">child</span>: <span class="ident">WidgetRegistration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="ident">StyledWidget</span>::<span class="ident">default_for</span>(<span class="self">Self</span> {
             <span class="ident">child</span>,

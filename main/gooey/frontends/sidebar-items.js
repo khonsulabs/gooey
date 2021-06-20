@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["browser",""],["rasterizer",""],["renderers",""]]});
+initSidebarItems({"mod":[["browser","A `Frontend` for `Gooey` that targets web browsers by creating DOM elements using `web-sys` and `wasm-bindgen`."],["rasterizer","A `Frontend` for `Gooey` that rasterizes widgets using a `Renderer`."],["renderers","Available `Renderers`."]]});

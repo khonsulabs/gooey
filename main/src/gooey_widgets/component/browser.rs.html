@@ -116,16 +116,16 @@
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetRef</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Widget</span><span class="op">&gt;</span>,
         <span class="ident">frontend</span>: <span class="kw-2">&amp;</span><span class="ident">WebSys</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">State</span> {
-        <span class="self">self</span>.<span class="ident">initialize_component</span>(<span class="ident">component</span>, <span class="ident">widget</span>, <span class="ident">frontend</span>);
+        <span class="self">Self</span>::<span class="ident">initialize_component</span>(<span class="ident">component</span>, <span class="ident">widget</span>, <span class="ident">frontend</span>);
         <span class="prelude-val">None</span>
     }
 
     <span class="kw">fn</span> <span class="ident">receive_command</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">command</span>: <span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Widget</span> <span class="kw">as</span> <span class="ident">Widget</span><span class="op">&gt;</span>::<span class="ident">TransmogrifierCommand</span>,
-        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">WebSys</span><span class="op">&gt;</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">WebSys</span><span class="op">&gt;</span>,
     ) {
-        <span class="self">self</span>.<span class="ident">forward_command_to_content</span>(<span class="ident">command</span>, <span class="ident">context</span>);
+        <span class="self">Self</span>::<span class="ident">forward_command_to_content</span>(<span class="ident">command</span>, <span class="ident">context</span>);
     }
 }
 </pre></div>

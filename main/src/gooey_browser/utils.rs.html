@@ -149,6 +149,13 @@
 <span id="146">146</span>
 <span id="147">147</span>
 <span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Write</span>;
 
@@ -159,10 +166,12 @@
 <span class="kw">use</span> <span class="ident">wasm_bindgen</span>::<span class="ident">JsCast</span>;
 <span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">CssStyleSheet</span>, <span class="ident">HtmlElement</span>, <span class="ident">HtmlStyleElement</span>};
 
+<span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_document</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">web_sys</span>::<span class="ident">Document</span> {
     <span class="ident">web_sys</span>::<span class="ident">window</span>().<span class="ident">unwrap</span>().<span class="ident">document</span>().<span class="ident">unwrap</span>()
 }
 
+<span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">widget_css_id</span>(<span class="ident">widget_id</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;gooey-{}&quot;</span>, <span class="ident">widget_id</span>)
 }
@@ -180,28 +189,31 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CssManager</span> {
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shared</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">doc</span> <span class="op">=</span> <span class="ident">window_document</span>();
-        <span class="kw">let</span> <span class="ident">style_tag</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">style_tag</span>) <span class="op">=</span> <span class="ident">doc</span>.<span class="ident">get_element_by_id</span>(<span class="string">&quot;gooey-styles&quot;</span>) {
-            <span class="ident">style_tag</span>.<span class="ident">unchecked_into</span>::<span class="op">&lt;</span><span class="ident">HtmlStyleElement</span><span class="op">&gt;</span>()
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">style</span> <span class="op">=</span> <span class="ident">doc</span>
-                .<span class="ident">create_element</span>(<span class="string">&quot;style&quot;</span>)
-                .<span class="ident">expect</span>(<span class="string">&quot;error creating style&quot;</span>)
-                .<span class="ident">unchecked_into</span>::<span class="op">&lt;</span><span class="ident">web_sys</span>::<span class="ident">HtmlStyleElement</span><span class="op">&gt;</span>();
-            <span class="ident">style</span>.<span class="ident">set_id</span>(<span class="string">&quot;gooey-styles&quot;</span>);
-            <span class="ident">doc</span>.<span class="ident">head</span>()
-                .<span class="ident">expect</span>(<span class="string">&quot;missing &lt;head&gt;&quot;</span>)
-                .<span class="ident">append_child</span>(<span class="kw-2">&amp;</span><span class="ident">style</span>)
-                .<span class="ident">unwrap</span>();
-            <span class="ident">style</span>
-        };
+        <span class="kw">let</span> <span class="ident">style_tag</span> <span class="op">=</span> <span class="ident">doc</span>.<span class="ident">get_element_by_id</span>(<span class="string">&quot;gooey-styles&quot;</span>).<span class="ident">map_or_else</span>(
+            <span class="op">|</span><span class="op">|</span> {
+                <span class="kw">let</span> <span class="ident">style</span> <span class="op">=</span> <span class="ident">doc</span>
+                    .<span class="ident">create_element</span>(<span class="string">&quot;style&quot;</span>)
+                    .<span class="ident">expect</span>(<span class="string">&quot;error creating style&quot;</span>)
+                    .<span class="ident">unchecked_into</span>::<span class="op">&lt;</span><span class="ident">web_sys</span>::<span class="ident">HtmlStyleElement</span><span class="op">&gt;</span>();
+                <span class="ident">style</span>.<span class="ident">set_id</span>(<span class="string">&quot;gooey-styles&quot;</span>);
+                <span class="ident">doc</span>.<span class="ident">head</span>()
+                    .<span class="ident">expect</span>(<span class="string">&quot;missing &lt;head&gt;&quot;</span>)
+                    .<span class="ident">append_child</span>(<span class="kw-2">&amp;</span><span class="ident">style</span>)
+                    .<span class="ident">unwrap</span>();
+                <span class="ident">style</span>
+            },
+            <span class="ident">JsCast</span>::<span class="ident">unchecked_into</span>::<span class="op">&lt;</span><span class="ident">HtmlStyleElement</span><span class="op">&gt;</span>,
+        );
 
         <span class="self">Self</span> {
             <span class="ident">sheet</span>: <span class="ident">style_tag</span>.<span class="ident">sheet</span>().<span class="ident">expect</span>(<span class="string">&quot;missing sheet&quot;</span>).<span class="ident">unchecked_into</span>(),
         }
     }
 
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_rule</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rule</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CssRule</span> {
         <span class="ident">CssRule</span> {
             <span class="ident">index</span>: <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">sheet</span>.<span class="ident">insert_rule</span>(<span class="ident">rule</span>).<span class="ident">unwrap</span>()),
@@ -236,6 +248,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CssBlockBuilder</span> {
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_id</span>(<span class="ident">widget_id</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">selector</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;#{}&quot;</span>, <span class="ident">widget_css_id</span>(<span class="ident">widget_id</span>)),
@@ -250,6 +263,7 @@
         }
     }
 
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_classes</span>(<span class="ident">classes</span>: <span class="kw-2">&amp;</span><span class="ident">Classes</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">selector</span>: <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;.{}&quot;</span>, <span class="ident">classes</span>.<span class="ident">to_vec</span>().<span class="ident">join</span>(<span class="string">&quot;.&quot;</span>)),
@@ -257,12 +271,12 @@
         }
     }
 
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_classes_and_rule</span>(<span class="ident">classes</span>: <span class="kw-2">&amp;</span><span class="ident">Classes</span>, <span class="ident">rule</span>: <span class="kw-2">&amp;</span><span class="ident">Rule</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">rule_classes</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">rule</span>.<span class="ident">classes</span> {
-            <span class="self">Self</span>::<span class="ident">for_classes</span>(<span class="kw-2">&amp;</span><span class="ident">classes</span>.<span class="ident">merge</span>(<span class="ident">rule_classes</span>))
-        } <span class="kw">else</span> {
-            <span class="self">Self</span>::<span class="ident">for_classes</span>(<span class="ident">classes</span>)
-        };
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">rule</span>.<span class="ident">classes</span>.<span class="ident">as_ref</span>().<span class="ident">map_or_else</span>(
+            <span class="op">|</span><span class="op">|</span> <span class="self">Self</span>::<span class="ident">for_classes</span>(<span class="ident">classes</span>),
+            <span class="op">|</span><span class="ident">rule_classes</span><span class="op">|</span> <span class="self">Self</span>::<span class="ident">for_classes</span>(<span class="kw-2">&amp;</span><span class="ident">classes</span>.<span class="ident">merge</span>(<span class="ident">rule_classes</span>)),
+        );
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">active</span>) <span class="op">=</span> <span class="ident">rule</span>.<span class="ident">active</span> {
             <span class="ident">builder</span>.<span class="ident">selector</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="ident">active</span> { <span class="string">&quot;:active&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;:not(:active)&quot;</span> };
         }
@@ -292,7 +306,7 @@
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">selector</span>)<span class="question-mark">?</span>;
         <span class="ident">f</span>.<span class="ident">write_char</span>(<span class="string">&#39;{&#39;</span>)<span class="question-mark">?</span>;
         <span class="kw">for</span> <span class="ident">statement</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">statements</span> {
-            <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="ident">statement</span>)<span class="question-mark">?</span>;
+            <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="ident">statement</span>)<span class="question-mark">?</span>;
             <span class="ident">f</span>.<span class="ident">write_char</span>(<span class="string">&#39;;&#39;</span>)<span class="question-mark">?</span>;
         }
         <span class="ident">f</span>.<span class="ident">write_char</span>(<span class="string">&#39;}&#39;</span>)
