@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["pliantdb_counter_server"] = [{"text":"impl Backend for <a class=\"enum\" href=\"pliantdb_counter_server/enum.Example.html\" title=\"enum pliantdb_counter_server::Example\">Example</a>","synthetic":false,"types":["pliantdb_counter_server::Example"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

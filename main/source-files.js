@@ -5,5 +5,8 @@ sourcesIndex["gooey_core"] = {"name":"","dirs":[{"name":"styles","files":["align
 sourcesIndex["gooey_kludgine"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["gooey_rasterizer"] = {"name":"","files":["events.rs","lib.rs","state.rs","transmogrifier.rs"]};
 sourcesIndex["gooey_widgets"] = {"name":"","dirs":[{"name":"button","files":["browser.rs","rasterizer.rs"]},{"name":"component","files":["browser.rs","rasterizer.rs"]},{"name":"container","files":["browser.rs","rasterizer.rs"]},{"name":"label","files":["browser.rs","rasterizer.rs"]},{"name":"layout","files":["browser.rs","rasterizer.rs"]}],"files":["button.rs","component.rs","container.rs","label.rs","layout.rs","lib.rs"]};
+sourcesIndex["pliantdb_counter_client"] = {"name":"","files":["main.rs"]};
+sourcesIndex["pliantdb_counter_server"] = {"name":"","files":["main.rs"]};
+sourcesIndex["pliantdb_counter_shared"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["xtask"] = {"name":"","files":["main.rs"]};
 createSourceSidebar();

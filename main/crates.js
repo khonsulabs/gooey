@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["gooey","gooey_browser","gooey_core","gooey_kludgine","gooey_rasterizer","gooey_widgets","xtask"];
+window.ALL_CRATES = ["gooey","gooey_browser","gooey_core","gooey_kludgine","gooey_rasterizer","gooey_widgets","pliantdb_counter_client","pliantdb_counter_server","pliantdb_counter_shared","xtask"];
