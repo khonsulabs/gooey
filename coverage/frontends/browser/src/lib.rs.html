@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="1 / 189">0.53 %</abbr></p>
+                <abbr title="1 / 185">0.54 %</abbr></p>
         </div>
     </div>
 
@@ -4155,7 +4155,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn new&lt;</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn new&lt;F: Frontend, W: Widget, C: FnMut() -&gt; &lt;W as Widget&gt;::Event + &#x27;static&gt;(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4168,7 +4168,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        F: Frontend,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        widget: WidgetRef&lt;W&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4181,7 +4181,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        W: Widget,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        mut event_generator: C,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4194,7 +4194,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        C: FnMut() -&gt; &lt;W as Widget&gt;::TransmogrifierEvent + &#x27;static,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; Closure&lt;dyn FnMut()&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4207,7 +4207,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    &gt;(</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Closure::wrap(Box::new(move || {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4220,7 +4220,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        widget: WidgetRef&lt;W&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">            let event = event_generator();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4233,7 +4233,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        mut event_generator: C,</pre>
+                <pre class="has-background-danger-light py-0 px-2">            widget.post_event::&lt;F&gt;(event);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4246,7 +4246,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; Closure&lt;dyn FnMut()&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }) as Box&lt;dyn FnMut()&gt;)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4259,65 +4259,13 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Closure::wrap(Box::new(move || {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="326">
                 <a href="#326">326</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            let event = event_generator();</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="327">
-                <a href="#327">327</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            widget.post_event::&lt;F&gt;(event);</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="328">
-                <a href="#328">328</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }) as Box&lt;dyn FnMut()&gt;)</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="329">
-                <a href="#329">329</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="330">
-                <a href="#330">330</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -4329,7 +4277,7 @@
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-06-21 17:54</p>
+                <p class="heading">Date: 2021-06-22 03:13</p>
             </div>
         </footer>
     </body>

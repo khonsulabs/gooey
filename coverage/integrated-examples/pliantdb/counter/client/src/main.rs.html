@@ -23,7 +23,7 @@
         <div>
             <p class="heading">Functions</p>
             <p class="title has-text-danger">
-                <abbr title="1 / 20">5 %</abbr></p>
+                <abbr title="1 / 22">4.55 %</abbr></p>
         </div>
     </div>
 
@@ -86,7 +86,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        button::{Button, ButtonCommand},</pre>
+                <pre class="has-background-white py-0 px-2">        button::Button,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2439,7 +2439,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; Tell the button to change its label to the new count.</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2452,7 +2452,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        context.context.send_command_to::&lt;Button&gt;(</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .context</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2465,7 +2465,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            &amp;context.button_id,</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .with_widget_mut(&amp;context.button_id, |button: &amp;mut Button, context| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2478,7 +2478,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            ButtonCommand::SetLabel(new_count.to_string()),</pre>
+                <pre class="has-background-danger-light py-0 px-2">                button.set_label(new_count.to_string(), context);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2491,7 +2491,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        );</pre>
+                <pre class="has-background-danger-light py-0 px-2">            });</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2660,7 +2660,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            &#x2F;&#x2F; Tell the button to change its label to the new count.</pre>
+                <pre class="has-background-danger-light py-0 px-2">            context</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2673,7 +2673,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            context.context.send_command_to::&lt;Button&gt;(</pre>
+                <pre class="has-background-danger-light py-0 px-2">                .context</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2686,7 +2686,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                &amp;context.button_id,</pre>
+                <pre class="has-background-danger-light py-0 px-2">                .with_widget_mut(&amp;context.button_id, |button: &amp;mut Button, context| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2699,7 +2699,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                ButtonCommand::SetLabel(count.to_string()),</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    button.set_label(count.to_string(), context);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2712,7 +2712,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            );</pre>
+                <pre class="has-background-danger-light py-0 px-2">                });</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2808,7 +2808,7 @@
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-06-21 17:54</p>
+                <p class="heading">Date: 2021-06-22 03:13</p>
             </div>
         </footer>
     </body>
