@@ -111,6 +111,35 @@
 <span id="108">108</span>
 <span id="109">109</span>
 <span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any</span>::<span class="ident">TypeId</span>, <span class="ident">convert</span>::<span class="ident">TryFrom</span>, <span class="ident">fmt</span>::<span class="ident">Debug</span>};
 
@@ -158,6 +187,27 @@
     <span class="doccomment">/// ensure that `process_widget_messages` is called at some point after this</span>
     <span class="doccomment">/// method is called.</span>
     <span class="kw">fn</span> <span class="ident">set_widget_has_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>);
+
+    <span class="doccomment">/// Marks that managed code is being executed. Can be nested. Automatically exited when the returned guard is dropped.</span>
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
+    <span class="kw">fn</span> <span class="ident">enter_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ManagedCodeGuard</span>;
+
+    <span class="doccomment">/// Internal API used by `ManagedCodeGuard`. Do not call directly.</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">_exit_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">allow_process_messages</span>: <span class="ident">bool</span>);
+}
+
+<span class="doccomment">/// A guard marking that Gooey-managed code is executing.</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ManagedCodeGuard</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">frontend</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">AnyFrontend</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">allow_process_messages</span>: <span class="ident">bool</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">ManagedCodeGuard</span> {
+    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+        <span class="self">self</span>.<span class="ident">frontend</span>
+            .<span class="ident">_exit_managed_code</span>(<span class="self">self</span>.<span class="ident">allow_process_messages</span>);
+    }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">AnyFrontend</span> <span class="kw">for</span> <span class="ident">T</span>
@@ -174,6 +224,14 @@
 
     <span class="kw">fn</span> <span class="ident">set_widget_has_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>) {
         <span class="self">self</span>.<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>);
+    }
+
+    <span class="kw">fn</span> <span class="ident">enter_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ManagedCodeGuard</span> {
+        <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">enter_managed_code</span>(<span class="self">self</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">_exit_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">allow_process_messages</span>: <span class="ident">bool</span>) {
+        <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">exit_managed_code</span>(<span class="self">self</span>, <span class="ident">allow_process_messages</span>);
     }
 }
 
