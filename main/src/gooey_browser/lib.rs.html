@@ -327,10 +327,6 @@
 <span id="324">324</span>
 <span id="325">325</span>
 <span id="326">326</span>
-<span id="327">327</span>
-<span id="328">328</span>
-<span id="329">329</span>
-<span id="330">330</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that targets web browsers</span>
 <span class="doccomment">//! by creating DOM elements using `web-sys` and `wasm-bindgen`.</span>
@@ -648,11 +644,7 @@
 
 <span class="kw">impl</span> <span class="ident">WidgetClosure</span> {
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">new_ret_no_self</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span>
-        <span class="ident">F</span>: <span class="ident">Frontend</span>,
-        <span class="ident">W</span>: <span class="ident">Widget</span>,
-        <span class="ident">C</span>: <span class="ident">FnMut</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="op">&lt;</span><span class="ident">W</span> <span class="kw">as</span> <span class="ident">Widget</span><span class="op">&gt;</span>::<span class="ident">TransmogrifierEvent</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
-    <span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Frontend</span>, <span class="ident">W</span>: <span class="ident">Widget</span>, <span class="ident">C</span>: <span class="ident">FnMut</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="op">&lt;</span><span class="ident">W</span> <span class="kw">as</span> <span class="ident">Widget</span><span class="op">&gt;</span>::<span class="ident">Event</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="ident">widget</span>: <span class="ident">WidgetRef</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>,
         <span class="kw-2">mut</span> <span class="ident">event_generator</span>: <span class="ident">C</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Closure</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnMut</span>()<span class="op">&gt;</span> {

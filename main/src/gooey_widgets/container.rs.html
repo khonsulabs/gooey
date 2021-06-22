@@ -65,7 +65,6 @@
 <span id="62">62</span>
 <span id="63">63</span>
 <span id="64">64</span>
-<span id="65">65</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::<span class="ident">Length</span>, <span class="ident">styles</span>::<span class="ident">Surround</span>, <span class="ident">Frontend</span>, <span class="ident">Points</span>, <span class="ident">StyledWidget</span>, <span class="ident">Widget</span>, <span class="ident">WidgetRef</span>,
@@ -124,8 +123,7 @@
 
 <span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="ident">Container</span> {
     <span class="kw">type</span> <span class="ident">Command</span> <span class="op">=</span> ();
-    <span class="kw">type</span> <span class="ident">TransmogrifierCommand</span> <span class="op">=</span> ();
-    <span class="kw">type</span> <span class="ident">TransmogrifierEvent</span> <span class="op">=</span> ();
+    <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> ();
 
     <span class="kw">const</span> <span class="ident">CLASS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;gooey-container&quot;</span>;
 }
