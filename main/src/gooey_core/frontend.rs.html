@@ -140,6 +140,10 @@
 <span id="137">137</span>
 <span id="138">138</span>
 <span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any</span>::<span class="ident">TypeId</span>, <span class="ident">convert</span>::<span class="ident">TryFrom</span>, <span class="ident">fmt</span>::<span class="ident">Debug</span>};
 
@@ -170,6 +174,9 @@
     <span class="doccomment">/// ensure that `process_widget_messages` is called at some point after this</span>
     <span class="doccomment">/// method is called.</span>
     <span class="kw">fn</span> <span class="ident">set_widget_has_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>);
+
+    <span class="doccomment">/// Executed when `Gooey` exits a managed code block.</span>
+    <span class="kw">fn</span> <span class="ident">exit_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {}
 }
 
 <span class="doccomment">/// An interface for Frontend that doesn&#39;t requier knowledge of associated</span>
@@ -232,6 +239,7 @@
 
     <span class="kw">fn</span> <span class="ident">_exit_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">allow_process_messages</span>: <span class="ident">bool</span>) {
         <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">exit_managed_code</span>(<span class="self">self</span>, <span class="ident">allow_process_messages</span>);
+        <span class="self">self</span>.<span class="ident">exit_managed_code</span>();
     }
 }
 

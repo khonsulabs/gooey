@@ -447,6 +447,13 @@
 <span id="444">444</span>
 <span id="445">445</span>
 <span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that rasterizes widgets</span>
 <span class="doccomment">//! using a [`Renderer`](gooey_core::renderer::Renderer).</span>
@@ -545,9 +552,16 @@
     <span class="kw">fn</span> <span class="ident">set_widget_has_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>) {
         <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>);
         <span class="comment">// If we&#39;re not inside of a render</span>
-        <span class="kw">if</span> <span class="kw">let</span> (<span class="bool-val">false</span>, <span class="prelude-val">Some</span>(<span class="ident">callback</span>)) <span class="op">=</span> (<span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">is_managed_code</span>(), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">refresh_callback</span>) {
-            <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Refreshing because of widget messages&quot;</span>);
-            <span class="ident">callback</span>.<span class="ident">refresh</span>();
+        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">is_managed_code</span>() {
+            <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">process_widget_messages</span>(<span class="self">self</span>);
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">exit_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">needs_redraw</span>() {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">callback</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">refresh_callback</span> {
+                <span class="ident">callback</span>.<span class="ident">refresh</span>();
+            }
         }
     }
 }
