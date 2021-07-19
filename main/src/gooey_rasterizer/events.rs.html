@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `frontends/rasterizer/src/events.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>events.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gooey_rasterizer/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gooey_rasterizer/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1"> 1</span>
 <span id="2"> 2</span>
 <span id="3"> 3</span>
@@ -89,10 +89,10 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Point2D</span>, <span class="ident">Scale</span>},
-    <span class="ident">styles</span>::<span class="ident">SystemTheme</span>,
+    <span class="ident">styles::SystemTheme</span>,
     <span class="ident">Pixels</span>, <span class="ident">Points</span>,
 };
-<span class="kw">use</span> <span class="ident">winit</span>::<span class="ident">event</span>::{
+<span class="kw">use</span> <span class="ident">winit::event</span>::{
     <span class="ident">ElementState</span>, <span class="ident">ModifiersState</span>, <span class="ident">MouseButton</span>, <span class="ident">MouseScrollDelta</span>, <span class="ident">ScanCode</span>, <span class="ident">TouchPhase</span>,
     <span class="ident">VirtualKeyCode</span>, <span class="ident">WindowEvent</span> <span class="kw">as</span> <span class="ident">WinitWindowEvent</span>,
 };
@@ -138,33 +138,33 @@
         <span class="ident">scale</span>: <span class="ident">Scale</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span>, <span class="ident">Pixels</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">WinitWindowEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="ident">WinitWindowEvent</span>::<span class="ident">ReceivedCharacter</span>(<span class="ident">c</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">ReceiveCharacter</span>(<span class="ident">c</span>)),
-            <span class="ident">WinitWindowEvent</span>::<span class="ident">Focused</span>(<span class="ident">is_focused</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">LayerChanged</span> { <span class="ident">is_focused</span> }),
-            <span class="ident">WinitWindowEvent</span>::<span class="ident">KeyboardInput</span> { <span class="ident">input</span>, .. } <span class="op">=</span><span class="op">&gt;</span>
-                <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">Input</span>(<span class="ident">InputEvent</span>::<span class="ident">Keyboard</span> {
+            <span class="ident">WinitWindowEvent::ReceivedCharacter</span>(<span class="ident">c</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::ReceiveCharacter</span>(<span class="ident">c</span>)),
+            <span class="ident">WinitWindowEvent::Focused</span>(<span class="ident">is_focused</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::LayerChanged</span> { <span class="ident">is_focused</span> }),
+            <span class="ident">WinitWindowEvent::KeyboardInput</span> { <span class="ident">input</span>, .. } <span class="op">=</span><span class="op">&gt;</span>
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::Input</span>(<span class="ident">InputEvent::Keyboard</span> {
                     <span class="ident">key</span>: <span class="ident">input</span>.<span class="ident">virtual_keycode</span>,
                     <span class="ident">scancode</span>: <span class="ident">input</span>.<span class="ident">scancode</span>,
                     <span class="ident">state</span>: <span class="ident">input</span>.<span class="ident">state</span>,
                 })),
-            <span class="ident">WinitWindowEvent</span>::<span class="ident">ModifiersChanged</span>(<span class="ident">state</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">ModifiersChanged</span>(<span class="ident">state</span>)),
-            <span class="ident">WinitWindowEvent</span>::<span class="ident">CursorMoved</span> { <span class="ident">position</span>, .. } <span class="op">=</span><span class="op">&gt;</span>
-                <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">Input</span>(<span class="ident">InputEvent</span>::<span class="ident">MouseMoved</span> {
+            <span class="ident">WinitWindowEvent::ModifiersChanged</span>(<span class="ident">state</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::ModifiersChanged</span>(<span class="ident">state</span>)),
+            <span class="ident">WinitWindowEvent::CursorMoved</span> { <span class="ident">position</span>, .. } <span class="op">=</span><span class="op">&gt;</span>
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::Input</span>(<span class="ident">InputEvent::MouseMoved</span> {
                     <span class="ident">position</span>: <span class="prelude-val">Some</span>(
-                        <span class="ident">Point2D</span>::<span class="op">&lt;</span><span class="ident">f64</span>, <span class="ident">Pixels</span><span class="op">&gt;</span>::<span class="ident">new</span>(<span class="ident">position</span>.<span class="ident">x</span>, <span class="ident">position</span>.<span class="ident">y</span>).<span class="ident">to_f32</span>() <span class="op">/</span> <span class="ident">scale</span>,
+                        <span class="ident">Point2D</span>::<span class="op">&lt;</span><span class="ident">f64</span>, <span class="ident">Pixels</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">position</span>.<span class="ident">x</span>, <span class="ident">position</span>.<span class="ident">y</span>).<span class="ident">to_f32</span>() <span class="op">/</span> <span class="ident">scale</span>,
                     ),
                 })),
-            <span class="ident">WinitWindowEvent</span>::<span class="ident">CursorLeft</span> { .. } <span class="op">=</span><span class="op">&gt;</span>
-                <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">Input</span>(<span class="ident">InputEvent</span>::<span class="ident">MouseMoved</span> { <span class="ident">position</span>: <span class="prelude-val">None</span> })),
-            <span class="ident">WinitWindowEvent</span>::<span class="ident">MouseWheel</span> { <span class="ident">delta</span>, <span class="ident">phase</span>, .. } <span class="op">=</span><span class="op">&gt;</span>
-                <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">Input</span>(<span class="ident">InputEvent</span>::<span class="ident">MouseWheel</span> {
+            <span class="ident">WinitWindowEvent::CursorLeft</span> { .. } <span class="op">=</span><span class="op">&gt;</span>
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::Input</span>(<span class="ident">InputEvent::MouseMoved</span> { <span class="ident">position</span>: <span class="prelude-val">None</span> })),
+            <span class="ident">WinitWindowEvent::MouseWheel</span> { <span class="ident">delta</span>, <span class="ident">phase</span>, .. } <span class="op">=</span><span class="op">&gt;</span>
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::Input</span>(<span class="ident">InputEvent::MouseWheel</span> {
                     <span class="ident">delta</span>,
                     <span class="ident">touch_phase</span>: <span class="ident">phase</span>,
                 })),
-            <span class="ident">WinitWindowEvent</span>::<span class="ident">MouseInput</span> { <span class="ident">state</span>, <span class="ident">button</span>, .. } <span class="op">=</span><span class="op">&gt;</span>
-                <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">Input</span>(<span class="ident">InputEvent</span>::<span class="ident">MouseButton</span> { <span class="ident">state</span>, <span class="ident">button</span> })),
-            <span class="ident">WinitWindowEvent</span>::<span class="ident">ThemeChanged</span>(<span class="ident">theme</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">SystemThemeChanged</span>(<span class="kw">match</span> <span class="ident">theme</span> {
-                <span class="ident">winit</span>::<span class="ident">window</span>::<span class="ident">Theme</span>::<span class="ident">Light</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span>::<span class="ident">Light</span>,
-                <span class="ident">winit</span>::<span class="ident">window</span>::<span class="ident">Theme</span>::<span class="ident">Dark</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span>::<span class="ident">Dark</span>,
+            <span class="ident">WinitWindowEvent::MouseInput</span> { <span class="ident">state</span>, <span class="ident">button</span>, .. } <span class="op">=</span><span class="op">&gt;</span>
+                <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::Input</span>(<span class="ident">InputEvent::MouseButton</span> { <span class="ident">state</span>, <span class="ident">button</span> })),
+            <span class="ident">WinitWindowEvent::ThemeChanged</span>(<span class="ident">theme</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::SystemThemeChanged</span>(<span class="kw">match</span> <span class="ident">theme</span> {
+                <span class="ident">winit::window::Theme::Light</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Light</span>,
+                <span class="ident">winit::window::Theme::Dark</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Dark</span>,
             })),
 
             <span class="comment">// Ignored</span>
@@ -173,5 +173,5 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gooey_rasterizer" data-search-js="../../search-index.js"></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gooey_rasterizer" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>

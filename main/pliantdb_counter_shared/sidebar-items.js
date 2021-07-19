@@ -1,1 +1,0 @@
-initSidebarItems({"constant":[["COUNTER_CHANGED_TOPIC","The topic `PubSub` messages will be delivered on when the counter is changed."],["DATABASE_NAME","The name of the database that the counter will use."]],"enum":[["ExampleApi","The [`CustomApi`] definition."],["Request","The API requests for this example."],["Response","The API responses for this example."]]});

@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["bonsaidb_counter_shared"] = [{"text":"impl CustomApi for <a class=\"enum\" href=\"bonsaidb_counter_shared/enum.ExampleApi.html\" title=\"enum bonsaidb_counter_shared::ExampleApi\">ExampleApi</a>","synthetic":false,"types":["bonsaidb_counter_shared::ExampleApi"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

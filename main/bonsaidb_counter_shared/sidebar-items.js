@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["DATABASE_NAME","The name of the database that the counter will use."]],"enum":[["ExampleApi","The [`CustomApi`] definition."],["Request","The API requests for this example."],["Response","The API responses for this example."]]});
