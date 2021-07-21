@@ -201,6 +201,12 @@
 <span id="198">198</span>
 <span id="199">199</span>
 <span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! A [`Renderer`](gooey_core::renderer::Renderer) for `Gooey` that uses</span>
 <span class="doccomment">//! [`Kludgine`](https://github.com/kludgine/kludgine/) to draw. Under the hood,</span>
@@ -237,7 +243,7 @@
 };
 <span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">TextMetrics</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">kludgine</span>;
-<span class="kw">use</span> <span class="ident">kludgine::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">kludgine</span>::{<span class="ident">core::winit::window::Theme</span>, <span class="ident">prelude</span>::<span class="kw-2">*</span>};
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Kludgine</span> {
@@ -264,7 +270,10 @@
         <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PreparedSpan</span> {
-        <span class="kw">let</span> <span class="ident">system_theme</span> <span class="op">=</span> <span class="ident">options</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">SystemTheme</span><span class="op">&gt;</span>().<span class="ident">cloned</span>().<span class="ident">unwrap_or_default</span>();
+        <span class="kw">let</span> <span class="ident">system_theme</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">target</span>.<span class="ident">system_theme</span>() {
+            <span class="ident">Theme::Light</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Light</span>,
+            <span class="ident">Theme::Dark</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Dark</span>,
+        };
         <span class="ident">Text::prepare</span>(
             <span class="ident">text</span>,
             <span class="kw-2">&amp;</span><span class="ident">bundled_fonts::ROBOTO</span>,
@@ -279,7 +288,7 @@
                     .<span class="ident">get_with_fallback</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>()
                     .<span class="ident">copied</span>()
                     .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Srgba::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>).<span class="ident">into</span>())
-                    .<span class="ident">themed_color</span>(<span class="kw-2">&amp;</span><span class="ident">system_theme</span>)
+                    .<span class="ident">themed_color</span>(<span class="ident">system_theme</span>)
                     .<span class="number">0</span>,
             ),
             <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">target</span>,
@@ -287,7 +296,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">stroke_shape</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">shape</span>: <span class="ident">Shape</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) {
-        <span class="kw">let</span> <span class="ident">system_theme</span> <span class="op">=</span> <span class="ident">style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">SystemTheme</span><span class="op">&gt;</span>().<span class="ident">cloned</span>().<span class="ident">unwrap_or_default</span>();
+        <span class="kw">let</span> <span class="ident">system_theme</span> <span class="op">=</span> <span class="ident">style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">SystemTheme</span><span class="op">&gt;</span>().<span class="ident">copied</span>().<span class="ident">unwrap_or_default</span>();
         <span class="ident">shape</span>
             .<span class="ident">cast_unit</span>()
             .<span class="ident">stroke</span>(
@@ -297,7 +306,7 @@
                         .<span class="ident">cloned</span>()
                         .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ForegroundColor</span>(<span class="ident">Srgba::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>).<span class="ident">into</span>()))
                         .<span class="number">0</span>
-                        .<span class="ident">themed_color</span>(<span class="kw-2">&amp;</span><span class="ident">system_theme</span>)
+                        .<span class="ident">themed_color</span>(<span class="ident">system_theme</span>)
                         .<span class="number">0</span>,
                 ))
                 .<span class="ident">line_width</span>(
@@ -380,14 +389,17 @@
         <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
     ) {
-        <span class="kw">let</span> <span class="ident">system_theme</span> <span class="op">=</span> <span class="ident">style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">SystemTheme</span><span class="op">&gt;</span>().<span class="ident">cloned</span>().<span class="ident">unwrap_or_default</span>();
+        <span class="kw">let</span> <span class="ident">system_theme</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">target</span>.<span class="ident">system_theme</span>() {
+            <span class="ident">Theme::Light</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Light</span>,
+            <span class="ident">Theme::Dark</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Dark</span>,
+        };
         <span class="ident">Shape::rect</span>(<span class="ident">rect</span>.<span class="ident">cast_unit</span>())
             .<span class="ident">fill</span>(<span class="ident">Fill::new</span>(<span class="ident">Color::from</span>(
                 <span class="ident">style</span>
                     .<span class="ident">get_with_fallback</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>()
                     .<span class="ident">copied</span>()
                     .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Srgba::new</span>(<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>).<span class="ident">into</span>())
-                    .<span class="ident">themed_color</span>(<span class="kw-2">&amp;</span><span class="ident">system_theme</span>)
+                    .<span class="ident">themed_color</span>(<span class="ident">system_theme</span>)
                     .<span class="number">0</span>,
             )))
             .<span class="ident">render_at</span>(<span class="ident">Point2D::default</span>(), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">target</span>);

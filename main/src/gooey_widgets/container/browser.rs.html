@@ -75,7 +75,7 @@
 <span id="72">72</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_browser</span>::{
-    <span class="ident">utils</span>::{<span class="ident">window_document</span>, <span class="ident">CssBlockBuilder</span>, <span class="ident">CssManager</span>, <span class="ident">CssRule</span>},
+    <span class="ident">utils</span>::{<span class="ident">window_document</span>, <span class="ident">CssBlockBuilder</span>, <span class="ident">CssManager</span>, <span class="ident">CssRules</span>},
     <span class="ident">WebSys</span>, <span class="ident">WebSysTransmogrifier</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">euclid::Length</span>, <span class="ident">Points</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>};
@@ -84,7 +84,7 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::container</span>::{<span class="ident">Container</span>, <span class="ident">ContainerTransmogrifier</span>};
 
 <span class="kw">impl</span> <span class="ident">Transmogrifier</span><span class="op">&lt;</span><span class="ident">WebSys</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ContainerTransmogrifier</span> {
-    <span class="kw">type</span> <span class="ident">State</span> <span class="op">=</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CssRule</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">State</span> <span class="op">=</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CssRules</span><span class="op">&gt;</span>;
     <span class="kw">type</span> <span class="ident">Widget</span> <span class="op">=</span> <span class="ident">Container</span>;
 }
 
