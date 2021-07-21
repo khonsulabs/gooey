@@ -127,6 +127,7 @@
 <span id="124">124</span>
 <span id="125">125</span>
 <span id="126">126</span>
+<span id="127">127</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core::Points</span>;
 <span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">TextMetrics</span>};
@@ -191,14 +192,15 @@
                     <span class="self">self</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">ParserStatus::TrailingPunctuation</span>;
                 }
             },
-            <span class="ident">Token::Whitespace</span>(<span class="ident">span</span>) <span class="op">=</span><span class="op">&gt;</span>
+            <span class="ident">Token::Whitespace</span>(<span class="ident">span</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="ident">ParserStatus::Whitespace</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">status</span> {
                     <span class="self">self</span>.<span class="ident">push_whitespace_span</span>(<span class="ident">span</span>);
                 } <span class="kw">else</span> {
                     <span class="self">self</span>.<span class="ident">commit_current_group</span>();
                     <span class="self">self</span>.<span class="ident">push_whitespace_span</span>(<span class="ident">span</span>);
                     <span class="self">self</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">ParserStatus::Whitespace</span>;
-                },
+                }
+            }
         }
     }
 

@@ -115,6 +115,7 @@
 <span id="112">112</span>
 <span id="113">113</span>
 <span id="114">114</span>
+<span id="115">115</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">devx_cmd::run</span>;
 <span class="kw">use</span> <span class="ident">khonsu_tools</span>::{<span class="ident">anyhow</span>, <span class="ident">code_coverage::CodeCoverage</span>};
@@ -134,8 +135,9 @@
 <span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">anyhow::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">args</span> <span class="op">=</span> <span class="ident">Args::from_args</span>();
     <span class="kw">match</span> <span class="ident">args</span> {
-        <span class="ident">Args::BuildBrowserExample</span> { <span class="ident">name</span> } <span class="op">=</span><span class="op">&gt;</span>
-            <span class="ident">build_browser_example</span>(<span class="ident">name</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">String::from</span>(<span class="string">&quot;basic&quot;</span>)))<span class="question-mark">?</span>,
+        <span class="ident">Args::BuildBrowserExample</span> { <span class="ident">name</span> } <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">build_browser_example</span>(<span class="ident">name</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">String::from</span>(<span class="string">&quot;basic&quot;</span>)))<span class="question-mark">?</span>
+        }
         <span class="ident">Args::GenerateCodeCoverageReport</span> {
             <span class="ident">install_dependencies</span>,
         } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">CodeCoverage</span>::<span class="op">&lt;</span><span class="ident">CodeCoverageConfig</span><span class="op">&gt;</span><span class="ident">::execute</span>(<span class="ident">install_dependencies</span>)<span class="question-mark">?</span>,

@@ -151,6 +151,7 @@
 <span id="148">148</span>
 <span id="149">149</span>
 <span id="150">150</span>
+<span id="151">151</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std::path::PathBuf</span>;
 
@@ -289,8 +290,9 @@
             <span class="ident">Event::MouseMoved</span> { <span class="ident">position</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">GooeyInputEvent::MouseMoved</span> {
                 <span class="ident">position</span>: <span class="ident">position</span>.<span class="ident">map</span>(<span class="ident">Point::cast_unit</span>),
             },
-            <span class="ident">Event::MouseWheel</span> { <span class="ident">delta</span>, <span class="ident">touch_phase</span> } <span class="op">=</span><span class="op">&gt;</span>
-                <span class="ident">GooeyInputEvent::MouseWheel</span> { <span class="ident">delta</span>, <span class="ident">touch_phase</span> },
+            <span class="ident">Event::MouseWheel</span> { <span class="ident">delta</span>, <span class="ident">touch_phase</span> } <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">GooeyInputEvent::MouseWheel</span> { <span class="ident">delta</span>, <span class="ident">touch_phase</span> }
+            }
         };
         <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">ui</span>
