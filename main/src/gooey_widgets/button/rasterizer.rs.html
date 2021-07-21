@@ -116,14 +116,16 @@
 <span id="113">113</span>
 <span id="114">114</span>
 <span id="115">115</span>
+<span id="116">116</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Size2D</span>, <span class="ident">Vector2D</span>},
-    <span class="ident">renderer::Renderer</span>,
     <span class="ident">styles::TextColor</span>,
     <span class="ident">Points</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
 };
-<span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{<span class="ident">winit::event::MouseButton</span>, <span class="ident">EventStatus</span>, <span class="ident">Rasterizer</span>, <span class="ident">WidgetRasterizer</span>};
+<span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{
+    <span class="ident">winit::event::MouseButton</span>, <span class="ident">EventStatus</span>, <span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>, <span class="ident">WidgetRasterizer</span>,
+};
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::button</span>::{
     <span class="ident">Button</span>, <span class="ident">ButtonColor</span>, <span class="ident">ButtonCommand</span>, <span class="ident">ButtonTransmogrifier</span>, <span class="ident">InternalButtonEvent</span>,

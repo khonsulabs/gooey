@@ -117,8 +117,8 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-rasterizer&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">rasterized</span> {
-    <span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">renderer::Renderer</span>, <span class="ident">Transmogrifiers</span>};
-    <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{<span class="ident">make_rasterized</span>, <span class="ident">Rasterizer</span>};
+    <span class="kw">use</span> <span class="ident">gooey_core::Transmogrifiers</span>;
+    <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{<span class="ident">make_rasterized</span>, <span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>};
 
     <span class="kw">use</span> <span class="kw">crate</span>::{
         <span class="ident">button::ButtonTransmogrifier</span>, <span class="ident">container::ContainerTransmogrifier</span>,

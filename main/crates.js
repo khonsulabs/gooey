@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["bonsaidb_counter_client","bonsaidb_counter_server","bonsaidb_counter_shared","gooey","gooey_browser","gooey_core","gooey_kludgine","gooey_rasterizer","gooey_widgets","xtask"];
+window.ALL_CRATES = ["bonsaidb_counter_client","bonsaidb_counter_server","bonsaidb_counter_shared","gooey","gooey_browser","gooey_core","gooey_kludgine","gooey_rasterizer","gooey_renderer","gooey_text","gooey_widgets","xtask"];

@@ -105,15 +105,12 @@
 <span id="102">102</span>
 <span id="103">103</span>
 <span id="104">104</span>
-<span id="105">105</span>
-<span id="106">106</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Size2D</span>, <span class="ident">Vector2D</span>},
-    <span class="ident">renderer::Renderer</span>,
     <span class="ident">Points</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
 };
-<span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{<span class="ident">Rasterizer</span>, <span class="ident">WidgetRasterizer</span>};
+<span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{<span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>, <span class="ident">WidgetRasterizer</span>};
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::LayoutChild</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::layout</span>::{<span class="ident">Layout</span>, <span class="ident">LayoutTransmogrifier</span>};
@@ -166,12 +163,11 @@
             <span class="ident">Length::new</span>(<span class="ident">constraints</span>.<span class="ident">width</span>) <span class="op">-</span> <span class="ident">layout_surround</span>.<span class="ident">minimum_width</span>(),
             <span class="ident">Length::new</span>(<span class="ident">constraints</span>.<span class="ident">height</span>) <span class="op">-</span> <span class="ident">layout_surround</span>.<span class="ident">minimum_height</span>(),
         );
+        <span class="kw">let</span> <span class="ident">layout_max_size</span> <span class="op">=</span> <span class="ident">child</span>.<span class="ident">layout</span>.<span class="ident">size_in_points</span>(<span class="ident">child_constrained_size</span>);
         <span class="comment">// Constrain the child to whatever remains after the left/right/top/bottom</span>
         <span class="comment">// measurements</span>
-        <span class="kw">let</span> <span class="ident">child_constraints</span> <span class="op">=</span> <span class="ident">Size2D::new</span>(
-            <span class="prelude-val">Some</span>(<span class="ident">child_constrained_size</span>.<span class="ident">width</span>),
-            <span class="prelude-val">Some</span>(<span class="ident">child_constrained_size</span>.<span class="ident">height</span>),
-        );
+        <span class="kw">let</span> <span class="ident">child_constraints</span> <span class="op">=</span>
+            <span class="ident">Size2D::new</span>(<span class="prelude-val">Some</span>(<span class="ident">layout_max_size</span>.<span class="ident">width</span>), <span class="prelude-val">Some</span>(<span class="ident">layout_max_size</span>.<span class="ident">height</span>));
         <span class="comment">// Ask the child to measure</span>
         <span class="kw">let</span> <span class="ident">child_size</span> <span class="op">=</span> <span class="ident">context</span>
             .<span class="ident">frontend</span>
@@ -185,7 +181,7 @@
 
         <span class="comment">// If the layout has an explicit width/height, we should return it if it&#39;s a</span>
         <span class="comment">// value larger than what the child reported</span>
-        <span class="kw">let</span> <span class="ident">child_size</span> <span class="op">=</span> <span class="ident">child_size</span>.<span class="ident">max</span>(<span class="ident">child</span>.<span class="ident">layout</span>.<span class="ident">size_in_points</span>(<span class="ident">child_constrained_size</span>));
+        <span class="kw">let</span> <span class="ident">child_size</span> <span class="op">=</span> <span class="ident">child_size</span>.<span class="ident">max</span>(<span class="ident">layout_max_size</span>);
         <span class="comment">// If either top or left are Auto, we need to divide it equally with the</span>
         <span class="comment">// corresponding measurement if it&#39;s also auto.</span>
         <span class="kw">let</span> <span class="ident">child_left</span> <span class="op">=</span> <span class="ident">layout_surround</span>.<span class="ident">left</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
