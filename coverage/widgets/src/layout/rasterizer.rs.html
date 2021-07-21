@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="0 / 82">0 %</abbr></p>
+                <abbr title="0 / 81">0 %</abbr></p>
         </div>
     </div>
 
@@ -73,7 +73,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    renderer::Renderer,</pre>
+                <pre class="has-background-white py-0 px-2">    Points, Transmogrifier, TransmogrifierContext,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -86,7 +86,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    Points, Transmogrifier, TransmogrifierContext,</pre>
+                <pre class="has-background-white py-0 px-2">};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -99,7 +99,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">};</pre>
+                <pre class="has-background-white py-0 px-2">use gooey_rasterizer::{Rasterizer, Renderer, WidgetRasterizer};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -112,7 +112,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use gooey_rasterizer::{Rasterizer, WidgetRasterizer};</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -125,7 +125,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">use super::LayoutChild;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -138,7 +138,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use super::LayoutChild;</pre>
+                <pre class="has-background-white py-0 px-2">use crate::layout::{Layout, LayoutTransmogrifier};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -151,7 +151,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use crate::layout::{Layout, LayoutTransmogrifier};</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -164,7 +164,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">impl&lt;R: Renderer&gt; Transmogrifier&lt;Rasterizer&lt;R&gt;&gt; for LayoutTransmogrifier {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -177,7 +177,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl&lt;R: Renderer&gt; Transmogrifier&lt;Rasterizer&lt;R&gt;&gt; for LayoutTransmogrifier {</pre>
+                <pre class="has-background-white py-0 px-2">    type State = ();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -190,7 +190,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    type State = ();</pre>
+                <pre class="has-background-white py-0 px-2">    type Widget = Layout;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -203,7 +203,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    type Widget = Layout;</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -216,7 +216,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -229,7 +229,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">impl&lt;R: Renderer&gt; WidgetRasterizer&lt;R&gt; for LayoutTransmogrifier {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -238,11 +238,11 @@
                 <a href="#16">16</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl&lt;R: Renderer&gt; WidgetRasterizer&lt;R&gt; for LayoutTransmogrifier {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    fn render(&amp;self, context: TransmogrifierContext&lt;&#x27;_, Self, Rasterizer&lt;R&gt;&gt;) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -255,7 +255,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn render(&amp;self, context: TransmogrifierContext&lt;&#x27;_, Self, Rasterizer&lt;R&gt;&gt;) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let context_size = context.frontend.renderer().unwrap().size();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -268,7 +268,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let context_size = context.frontend.renderer().unwrap().size();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        for_each_measured_widget(&amp;context, context_size, |layout, child_bounds| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -281,7 +281,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        for_each_measured_widget(&amp;context, context_size, |layout, child_bounds| {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            context.frontend.with_transmogrifier(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -294,7 +294,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            context.frontend.with_transmogrifier(</pre>
+                <pre class="has-background-danger-light py-0 px-2">                layout.registration.id(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -307,7 +307,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                layout.registration.id(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">                |transmogrifier, mut child_context| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -320,7 +320,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                |transmogrifier, mut child_context| {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    transmogrifier.render_within(&amp;mut child_context, child_bounds, context.style);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -333,7 +333,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    transmogrifier.render_within(&amp;mut child_context, child_bounds, context.style);</pre>
+                <pre class="has-background-danger-light py-0 px-2">                },</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -346,7 +346,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                },</pre>
+                <pre class="has-background-danger-light py-0 px-2">            );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -359,7 +359,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            );</pre>
+                <pre class="has-background-danger-light py-0 px-2">        });</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -372,7 +372,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        });</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -381,11 +381,11 @@
                 <a href="#27">27</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -394,11 +394,11 @@
                 <a href="#28">28</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    fn content_size(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -411,7 +411,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn content_size(</pre>
+                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -424,7 +424,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context: TransmogrifierContext&lt;&#x27;_, Self, Rasterizer&lt;R&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -437,7 +437,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        context: TransmogrifierContext&lt;&#x27;_, Self, Rasterizer&lt;R&gt;&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        constraints: Size2D&lt;Option&lt;f32&gt;, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -450,7 +450,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        constraints: Size2D&lt;Option&lt;f32&gt;, Points&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; Size2D&lt;f32, Points&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -463,7 +463,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; Size2D&lt;f32, Points&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let mut extents = Vector2D::default();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -476,7 +476,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut extents = Vector2D::default();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let context_size = context.frontend.renderer().unwrap().size();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -489,7 +489,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let context_size = context.frontend.renderer().unwrap().size();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let constrained_size = Size2D::new(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -502,7 +502,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let constrained_size = Size2D::new(</pre>
+                <pre class="has-background-danger-light py-0 px-2">            constraints.width.unwrap_or(context_size.width),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -515,7 +515,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            constraints.width.unwrap_or(context_size.width),</pre>
+                <pre class="has-background-danger-light py-0 px-2">            constraints.height.unwrap_or(context_size.height),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -528,7 +528,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            constraints.height.unwrap_or(context_size.height),</pre>
+                <pre class="has-background-danger-light py-0 px-2">        );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -541,7 +541,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        );</pre>
+                <pre class="has-background-danger-light py-0 px-2">        for_each_measured_widget(&amp;context, constrained_size, |_layout, child_bounds| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -554,7 +554,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        for_each_measured_widget(&amp;context, constrained_size, |_layout, child_bounds| {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            extents = extents.max(child_bounds.max().to_vector());</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -567,7 +567,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            extents = extents.max(child_bounds.max().to_vector());</pre>
+                <pre class="has-background-danger-light py-0 px-2">        });</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -580,7 +580,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        });</pre>
+                <pre class="has-background-danger-light py-0 px-2">        extents.to_size()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -593,7 +593,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        extents.to_size()</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -602,11 +602,11 @@
                 <a href="#44">44</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -619,7 +619,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -632,7 +632,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">#[allow(clippy::cast_precision_loss)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -641,11 +641,11 @@
                 <a href="#47">47</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">#[allow(clippy::cast_precision_loss)]</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">fn for_each_measured_widget&lt;R: Renderer, F: FnMut(&amp;LayoutChild, Rect&lt;f32, Points&gt;)&gt;(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -658,7 +658,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">fn for_each_measured_widget&lt;R: Renderer, F: FnMut(&amp;LayoutChild, Rect&lt;f32, Points&gt;)&gt;(</pre>
+                <pre class="has-background-danger-light py-0 px-2">    context: &amp;TransmogrifierContext&lt;&#x27;_, LayoutTransmogrifier, Rasterizer&lt;R&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -671,7 +671,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    context: &amp;TransmogrifierContext&lt;&#x27;_, LayoutTransmogrifier, Rasterizer&lt;R&gt;&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    constraints: Size2D&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -684,7 +684,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    constraints: Size2D&lt;f32, Points&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    mut callback: F,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -697,7 +697,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    mut callback: F,</pre>
+                <pre class="has-background-danger-light py-0 px-2">) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -710,7 +710,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    for child in context.widget.children.layout_children() {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -723,7 +723,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    for child in context.widget.children.layout_children() {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let layout_surround = child.layout.surround_in_points(constraints);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -736,7 +736,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let layout_surround = child.layout.surround_in_points(constraints);</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let child_constrained_size = Size2D::from_lengths(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -749,7 +749,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let child_constrained_size = Size2D::from_lengths(</pre>
+                <pre class="has-background-danger-light py-0 px-2">            Length::new(constraints.width) - layout_surround.minimum_width(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -762,7 +762,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Length::new(constraints.width) - layout_surround.minimum_width(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">            Length::new(constraints.height) - layout_surround.minimum_height(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -775,7 +775,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Length::new(constraints.height) - layout_surround.minimum_height(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">        );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -788,7 +788,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        );</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let layout_max_size = child.layout.size_in_points(child_constrained_size);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -827,7 +827,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let child_constraints = Size2D::new(</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let child_constraints =</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -840,7 +840,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Some(child_constrained_size.width),</pre>
+                <pre class="has-background-danger-light py-0 px-2">            Size2D::new(Some(layout_max_size.width), Some(layout_max_size.height));</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -853,7 +853,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Some(child_constrained_size.height),</pre>
+                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; Ask the child to measure</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -866,7 +866,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        );</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let child_size = context</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -879,7 +879,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; Ask the child to measure</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .frontend</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -892,7 +892,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let child_size = context</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .with_transmogrifier(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -905,7 +905,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .frontend</pre>
+                <pre class="has-background-danger-light py-0 px-2">                child.registration.id(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -918,7 +918,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .with_transmogrifier(</pre>
+                <pre class="has-background-danger-light py-0 px-2">                |transmogrifier, mut child_context| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -931,7 +931,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                child.registration.id(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    transmogrifier.content_size(&amp;mut child_context, child_constraints)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -944,7 +944,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                |transmogrifier, mut child_context| {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                },</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -957,7 +957,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    transmogrifier.content_size(&amp;mut child_context, child_constraints)</pre>
+                <pre class="has-background-danger-light py-0 px-2">            )</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -970,7 +970,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                },</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .unwrap();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -983,7 +983,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            )</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -996,7 +996,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; If the layout has an explicit width&#x2F;height, we should return it if it&#x27;s a</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1009,7 +1009,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2"></pre>
+                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; value larger than what the child reported</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1022,7 +1022,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; If the layout has an explicit width&#x2F;height, we should return it if it&#x27;s a</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let child_size = child_size.max(layout_max_size);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1035,7 +1035,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; value larger than what the child reported</pre>
+                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; If either top or left are Auto, we need to divide it equally with the</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1048,7 +1048,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let child_size = child_size.max(child.layout.size_in_points(child_constrained_size));</pre>
+                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; corresponding measurement if it&#x27;s also auto.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1061,7 +1061,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; If either top or left are Auto, we need to divide it equally with the</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let child_left = layout_surround.left.unwrap_or_else(|| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1074,7 +1074,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; corresponding measurement if it&#x27;s also auto.</pre>
+                <pre class="has-background-danger-light py-0 px-2">            Length::new(child_size.width)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1087,7 +1087,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let child_left = layout_surround.left.unwrap_or_else(|| {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                &#x2F; count_autos(layout_surround.left, layout_surround.right) as f32</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1100,7 +1100,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Length::new(child_size.width)</pre>
+                <pre class="has-background-danger-light py-0 px-2">        });</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1113,7 +1113,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                &#x2F; count_autos(layout_surround.left, layout_surround.right) as f32</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let child_top = layout_surround.top.unwrap_or_else(|| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1126,7 +1126,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        });</pre>
+                <pre class="has-background-danger-light py-0 px-2">            Length::new(child_size.height)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1139,7 +1139,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let child_top = layout_surround.top.unwrap_or_else(|| {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                &#x2F; count_autos(layout_surround.top, layout_surround.bottom) as f32</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1152,7 +1152,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Length::new(child_size.height)</pre>
+                <pre class="has-background-danger-light py-0 px-2">        });</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1165,7 +1165,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                &#x2F; count_autos(layout_surround.top, layout_surround.bottom) as f32</pre>
+                <pre class="has-background-danger-light py-0 px-2">        callback(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1178,7 +1178,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        });</pre>
+                <pre class="has-background-danger-light py-0 px-2">            &amp;child,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1191,7 +1191,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        callback(</pre>
+                <pre class="has-background-danger-light py-0 px-2">            Rect::new(Point2D::from_lengths(child_left, child_top), child_size),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1204,7 +1204,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            &amp;child,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1217,7 +1217,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Rect::new(Point2D::from_lengths(child_left, child_top), child_size),</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1230,7 +1230,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        );</pre>
+                <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1239,11 +1239,11 @@
                 <a href="#93">93</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1256,7 +1256,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">}</pre>
+                <pre class="has-background-danger-light py-0 px-2">const fn count_autos(a: Option&lt;Length&lt;f32, Points&gt;&gt;, b: Option&lt;Length&lt;f32, Points&gt;&gt;) -&gt; usize {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1265,11 +1265,11 @@
                 <a href="#95">95</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    count_auto(a) + count_auto(b)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1282,7 +1282,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">const fn count_autos(a: Option&lt;Length&lt;f32, Points&gt;&gt;, b: Option&lt;Length&lt;f32, Points&gt;&gt;) -&gt; usize {</pre>
+                <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1291,11 +1291,11 @@
                 <a href="#97">97</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    count_auto(a) + count_auto(b)</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1308,7 +1308,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">}</pre>
+                <pre class="has-background-danger-light py-0 px-2">const fn count_auto(a: Option&lt;Length&lt;f32, Points&gt;&gt;) -&gt; usize {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1317,11 +1317,11 @@
                 <a href="#99">99</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    if a.is_none() {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1334,7 +1334,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">const fn count_auto(a: Option&lt;Length&lt;f32, Points&gt;&gt;) -&gt; usize {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        1</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1343,11 +1343,11 @@
                 <a href="#101">101</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    if a.is_none() {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    } else {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1360,7 +1360,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        1</pre>
+                <pre class="has-background-danger-light py-0 px-2">        0</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1373,7 +1373,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    } else {</pre>
+                <pre class="has-background-white py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1386,38 +1386,12 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        0</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="105">
-                <a href="#105">105</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="106">
-                <a href="#106">106</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
                 <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-07-19 04:31</p>
+                <p class="heading">Date: 2021-07-21 03:57</p>
             </div>
         </footer>
     </body>
