@@ -78,12 +78,14 @@
 <span id="75">75</span>
 <span id="76">76</span>
 <span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">palette::Hsla</span>,
     <span class="ident">styles</span>::{
         <span class="ident">style_sheet</span>::{<span class="ident">Rule</span>, <span class="ident">StyleSheet</span>},
-        <span class="ident">BackgroundColor</span>, <span class="ident">Color</span>, <span class="ident">ColorPair</span>, <span class="ident">TextColor</span>,
+        <span class="ident">Alignment</span>, <span class="ident">BackgroundColor</span>, <span class="ident">Color</span>, <span class="ident">ColorPair</span>, <span class="ident">TextColor</span>, <span class="ident">VerticalAlignment</span>,
     },
     <span class="ident">ROOT_CLASS</span>,
 };
@@ -133,6 +135,8 @@
                     <span class="ident">light_color</span>: <span class="ident">gray60</span>,
                     <span class="ident">dark_color</span>: <span class="ident">gray20</span>,
                 }))
+                .<span class="ident">with</span>(<span class="ident">Alignment::Center</span>)
+                .<span class="ident">with</span>(<span class="ident">VerticalAlignment::Center</span>)
         }))
         .<span class="ident">with</span>(
             <span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Button</span><span class="op">&gt;</span>()

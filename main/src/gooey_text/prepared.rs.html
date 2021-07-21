@@ -179,12 +179,31 @@
 <span id="176">176</span>
 <span id="177">177</span>
 <span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Point2D</span>, <span class="ident">Size2D</span>, <span class="ident">Vector2D</span>},
-    <span class="ident">styles</span>::{<span class="ident">Alignment</span>, <span class="ident">ForegroundColor</span>, <span class="ident">Style</span>},
+    <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Size2D</span>, <span class="ident">Vector2D</span>},
+    <span class="ident">styles</span>::{<span class="ident">Alignment</span>, <span class="ident">ColorPair</span>, <span class="ident">FallbackComponent</span>, <span class="ident">Style</span>, <span class="ident">VerticalAlignment</span>},
     <span class="ident">Points</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">TextMetrics</span>};
@@ -212,23 +231,23 @@
         <span class="ident">Size2D::from_lengths</span>(<span class="ident">width</span>, <span class="ident">height</span>)
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_collect</span>)]</span> <span class="comment">// false positive, needed to get rid of borrow.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">align</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">alignment</span>: <span class="ident">Alignment</span>, <span class="ident">width</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="ident">line_sizes</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">lines</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="ident">PreparedLine::size</span>)
-            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>();
-        <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">size</span>) <span class="kw">in</span> <span class="ident">line_sizes</span>.<span class="ident">into_iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">match</span> <span class="ident">alignment</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">align</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">align_width</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_alignment</span> <span class="op">=</span> <span class="ident">Alignment::Left</span>;
+        <span class="kw">for</span> <span class="ident">line</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">lines</span> {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">span</span>) <span class="op">=</span> <span class="ident">line</span>.<span class="ident">spans</span>.<span class="ident">first</span>() {
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">alignment</span>) <span class="op">=</span> <span class="ident">span</span>.<span class="ident">style</span>().<span class="ident">get</span>() {
+                    <span class="ident">last_alignment</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">alignment</span>;
+                }
+            }
+            <span class="kw">match</span> <span class="ident">last_alignment</span> {
                 <span class="ident">Alignment::Left</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="self">self</span>.<span class="ident">lines</span>[<span class="ident">i</span>].<span class="ident">alignment_offset</span> <span class="op">=</span> <span class="ident">Length::default</span>();
+                    <span class="ident">line</span>.<span class="ident">alignment_offset</span> <span class="op">=</span> <span class="ident">Length::default</span>();
                 }
                 <span class="ident">Alignment::Center</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="self">self</span>.<span class="ident">lines</span>[<span class="ident">i</span>].<span class="ident">alignment_offset</span> <span class="op">=</span> (<span class="ident">width</span> <span class="op">-</span> <span class="ident">Length::new</span>(<span class="ident">size</span>.<span class="ident">width</span>)) <span class="op">/</span> <span class="number">2.</span>;
+                    <span class="ident">line</span>.<span class="ident">alignment_offset</span> <span class="op">=</span> (<span class="ident">align_width</span> <span class="op">-</span> <span class="ident">Length::new</span>(<span class="ident">line</span>.<span class="ident">size</span>().<span class="ident">width</span>)) <span class="op">/</span> <span class="number">2.</span>;
                 }
                 <span class="ident">Alignment::Right</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="self">self</span>.<span class="ident">lines</span>[<span class="ident">i</span>].<span class="ident">alignment_offset</span> <span class="op">=</span> <span class="ident">width</span> <span class="op">-</span> <span class="ident">Length::new</span>(<span class="ident">size</span>.<span class="ident">width</span>);
+                    <span class="ident">line</span>.<span class="ident">alignment_offset</span> <span class="op">=</span> <span class="ident">align_width</span> <span class="op">-</span> <span class="ident">Length::new</span>(<span class="ident">line</span>.<span class="ident">size</span>().<span class="ident">width</span>);
                 }
             }
         }
@@ -238,7 +257,7 @@
     <span class="doccomment">/// will be rendered with an additional offset such that the top-left of the</span>
     <span class="doccomment">/// rendered bounding box will be `location`. Otherwise, the baseline of the</span>
     <span class="doccomment">/// first line will be `location`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">scene</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
@@ -254,7 +273,7 @@
             <span class="kw">let</span> <span class="ident">cursor_position</span> <span class="op">=</span>
                 <span class="ident">location</span> <span class="op">+</span> <span class="ident">Vector2D::from_lengths</span>(<span class="ident">line</span>.<span class="ident">alignment_offset</span>, <span class="ident">current_line_baseline</span>);
             <span class="kw">for</span> <span class="ident">span</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">line</span>.<span class="ident">spans</span> {
-                <span class="ident">scene</span>.<span class="ident">render_text</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span><span class="op">&gt;</span>(
+                <span class="ident">scene</span>.<span class="ident">render_text</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(
                     <span class="kw-2">&amp;</span><span class="ident">span</span>.<span class="ident">data</span>.<span class="ident">text</span>,
                     <span class="ident">cursor_position</span> <span class="op">+</span> <span class="ident">Vector2D::from_lengths</span>(<span class="ident">span</span>.<span class="ident">location</span>(), <span class="ident">Length::default</span>()),
                     <span class="kw-2">&amp;</span><span class="ident">span</span>.<span class="ident">data</span>.<span class="ident">style</span>,
@@ -264,6 +283,25 @@
         }
 
         <span class="ident">current_line_baseline</span>
+    }
+
+    <span class="doccomment">/// Renders this text within `bounds` honoring [`VerticalAlignment`] from</span>
+    <span class="doccomment">/// `style`. This does not affect the alignment of text, just the vertical</span>
+    <span class="doccomment">/// location of the text block rendered within `bounds`.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_within</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">scene</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
+        <span class="ident">bounds</span>: <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">text_size</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">size</span>();
+        <span class="kw">let</span> <span class="ident">origin_y</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">VerticalAlignment</span><span class="op">&gt;</span>() {
+            <span class="prelude-val">Some</span>(<span class="ident">VerticalAlignment::Bottom</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span> <span class="op">-</span> <span class="ident">text_size</span>.<span class="ident">height</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">VerticalAlignment::Center</span>) <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span> <span class="op">-</span> <span class="ident">text_size</span>.<span class="ident">height</span>) <span class="op">/</span> <span class="number">2.</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">VerticalAlignment::Top</span>) <span class="op">|</span> <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0.</span>,
+        };
+
+        <span class="self">self</span>.<span class="ident">render</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">scene</span>, <span class="ident">Point2D::new</span>(<span class="number">0.</span>, <span class="ident">origin_y</span>), <span class="bool-val">true</span>)
     }
 }
 

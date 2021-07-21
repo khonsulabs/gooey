@@ -298,6 +298,10 @@
 <span id="295">295</span>
 <span id="296">296</span>
 <span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Text rendering and wrapping.</span>
 
@@ -314,7 +318,11 @@
 
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">fmt::Display</span>, <span class="ident">ops::Range</span>};
 
-<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">euclid::Point2D</span>, <span class="ident">styles::Style</span>, <span class="ident">Points</span>};
+<span class="kw">use</span> <span class="ident">gooey_core</span>::{
+    <span class="ident">euclid::Point2D</span>,
+    <span class="ident">styles</span>::{<span class="ident">ColorPair</span>, <span class="ident">FallbackComponent</span>, <span class="ident">Style</span>},
+    <span class="ident">Points</span>,
+};
 <span class="kw">use</span> <span class="ident">gooey_renderer::Renderer</span>;
 <span class="kw">use</span> <span class="ident">prepared::PreparedText</span>;
 <span class="kw">use</span> <span class="ident">wrap</span>::{<span class="ident">TextWrap</span>, <span class="ident">TextWrapper</span>};
@@ -371,26 +379,26 @@
     }
 
     <span class="doccomment">/// Renders this text at `location` in `renderer`. The top-left of the bounding box of the text will be at `location`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_at</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_at</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">wrapping</span>: <span class="ident">TextWrap</span>,
     ) {
-        <span class="self">self</span>.<span class="ident">render_core</span>(<span class="ident">renderer</span>, <span class="ident">location</span>, <span class="bool-val">true</span>, <span class="ident">wrapping</span>)
+        <span class="self">self</span>.<span class="ident">render_core</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">renderer</span>, <span class="ident">location</span>, <span class="bool-val">true</span>, <span class="ident">wrapping</span>)
     }
 
     <span class="doccomment">/// Renders this text at `location` in `renderer`. The baseline of the first line will start at `location`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_baseline_at</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_baseline_at</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">scene</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">wrapping</span>: <span class="ident">TextWrap</span>,
     ) {
-        <span class="self">self</span>.<span class="ident">render_core</span>(<span class="ident">scene</span>, <span class="ident">location</span>, <span class="bool-val">false</span>, <span class="ident">wrapping</span>)
+        <span class="self">self</span>.<span class="ident">render_core</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">scene</span>, <span class="ident">location</span>, <span class="bool-val">false</span>, <span class="ident">wrapping</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">render_core</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">render_core</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">scene</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
@@ -398,7 +406,7 @@
         <span class="ident">wrapping</span>: <span class="ident">TextWrap</span>,
     ) {
         <span class="kw">let</span> <span class="ident">prepared_text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wrap</span>(<span class="ident">scene</span>, <span class="ident">wrapping</span>);
-        <span class="ident">prepared_text</span>.<span class="ident">render</span>(<span class="ident">scene</span>, <span class="ident">location</span>, <span class="ident">offset_baseline</span>);
+        <span class="ident">prepared_text</span>.<span class="ident">render</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">scene</span>, <span class="ident">location</span>, <span class="ident">offset_baseline</span>);
     }
 
     <span class="doccomment">/// Removes text in `range`. Empty spans will be removed.</span>

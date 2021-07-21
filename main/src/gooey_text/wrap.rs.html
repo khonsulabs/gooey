@@ -366,42 +366,10 @@
 <span id="363">363</span>
 <span id="364">364</span>
 <span id="365">365</span>
-<span id="366">366</span>
-<span id="367">367</span>
-<span id="368">368</span>
-<span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
-<span id="380">380</span>
-<span id="381">381</span>
-<span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
-<span id="386">386</span>
-<span id="387">387</span>
-<span id="388">388</span>
-<span id="389">389</span>
-<span id="390">390</span>
-<span id="391">391</span>
-<span id="392">392</span>
-<span id="393">393</span>
-<span id="394">394</span>
-<span id="395">395</span>
-<span id="396">396</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">approx::relative_eq</span>;
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Size2D</span>},
-    <span class="ident">styles::Alignment</span>,
     <span class="ident">Points</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">TextMetrics</span>};
@@ -566,6 +534,9 @@
                 }
 
                 <span class="self">self</span>.<span class="ident">prepared_text</span>.<span class="ident">lines</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">finish</span>();
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">width</span>) <span class="op">=</span> <span class="ident">width</span> {
+                    <span class="self">self</span>.<span class="ident">prepared_text</span>.<span class="ident">align</span>(<span class="ident">width</span>);
+                }
             }
             <span class="ident">MeasuredTextInfo::NoText</span>(<span class="ident">metrics</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="self">self</span>.<span class="ident">prepared_text</span>.<span class="ident">lines</span>.<span class="ident">push</span>(<span class="ident">PreparedLine</span> {
@@ -573,12 +544,6 @@
                     <span class="ident">alignment_offset</span>: <span class="ident">Length::default</span>(),
                     <span class="ident">spans</span>: <span class="ident">Vec::default</span>(),
                 });
-            }
-        }
-
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">alignment</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">options</span>.<span class="ident">alignment</span>() {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">max_width</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">options</span>.<span class="ident">width</span>() {
-                <span class="self">self</span>.<span class="ident">prepared_text</span>.<span class="ident">align</span>(<span class="ident">alignment</span>, <span class="ident">max_width</span>);
             }
         }
 
@@ -595,17 +560,11 @@
     <span class="ident">SingleLine</span> {
         <span class="doccomment">/// The width of the line to render within.</span>
         <span class="ident">width</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// If the text cannot fit within a single line, truncate the text.</span>
-        <span class="ident">truncate</span>: <span class="ident">bool</span>,
-        <span class="doccomment">/// Within `max_width`, use this `alignment`.</span>
-        <span class="ident">alignment</span>: <span class="ident">Alignment</span>,
     },
     <span class="doccomment">/// Render a multi-line text block.</span>
     <span class="ident">MultiLine</span> {
-        <span class="doccomment">/// The width of the text area.</span>
+        <span class="doccomment">/// The size of the text area.</span>
         <span class="ident">size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// Controls the alignment of the lines of text.</span>
-        <span class="ident">alignment</span>: <span class="ident">Alignment</span>,
     },
 }
 
@@ -638,25 +597,6 @@
         <span class="kw">match</span> <span class="self">self</span> {
             <span class="self">Self</span><span class="ident">::MultiLine</span> { <span class="ident">size</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">Length::new</span>(<span class="ident">size</span>.<span class="ident">height</span>)),
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
-        }
-    }
-
-    <span class="doccomment">/// Returns whether to truncate the text or not when rendering.</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span><span class="ident">::SingleLine</span> { <span class="ident">truncate</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">truncate</span>,
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
-        }
-    }
-
-    <span class="doccomment">/// Returns the alignment to use.</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">alignment</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Alignment</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span><span class="ident">::NoWrap</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
-            <span class="self">Self</span><span class="ident">::MultiLine</span> { <span class="ident">alignment</span>, .. } <span class="op">|</span> <span class="self">Self</span><span class="ident">::SingleLine</span> { <span class="ident">alignment</span>, .. } <span class="op">=</span><span class="op">&gt;</span>
-                <span class="prelude-val">Some</span>(<span class="kw-2">*</span><span class="ident">alignment</span>),
         }
     }
 }
@@ -758,7 +698,6 @@
         )])
         .<span class="ident">wrap</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>, <span class="ident">TextWrap::MultiLine</span> {
             <span class="ident">size</span>: <span class="ident">Size2D::new</span>(<span class="number">80.0</span>, <span class="ident">f32::MAX</span>),
-            <span class="ident">alignment</span>: <span class="ident">Alignment::Left</span>,
         });
         <span class="macro">println!</span>(<span class="string">&quot;Wrapped text: {:#?}&quot;</span>, <span class="ident">wrap</span>);
         <span class="macro">assert_eq!</span>(<span class="ident">wrap</span>.<span class="ident">lines</span>.<span class="ident">len</span>(), <span class="number">2</span>);
@@ -782,7 +721,6 @@
         ])
         .<span class="ident">wrap</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>, <span class="ident">TextWrap::MultiLine</span> {
             <span class="ident">size</span>: <span class="ident">Size2D::new</span>(<span class="number">130.0</span>, <span class="ident">f32::MAX</span>),
-            <span class="ident">alignment</span>: <span class="ident">Alignment::Left</span>,
         });
         <span class="macro">assert_eq!</span>(<span class="ident">wrap</span>.<span class="ident">lines</span>.<span class="ident">len</span>(), <span class="number">2</span>);
         <span class="macro">assert_eq!</span>(<span class="ident">wrap</span>.<span class="ident">lines</span>[<span class="number">0</span>].<span class="ident">spans</span>.<span class="ident">len</span>(), <span class="number">5</span>);
