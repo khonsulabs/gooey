@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="48 / 97">49.48 %</abbr></p>
+                <abbr title="37 / 111">33.33 %</abbr></p>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
         <div>
             <p class="heading">Functions</p>
             <p class="title has-text-danger">
-                <abbr title="16 / 50">32 %</abbr></p>
+                <abbr title="13 / 58">22.41 %</abbr></p>
         </div>
     </div>
 
@@ -86,7 +86,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    euclid::{Length, Point2D, Size2D, Vector2D},</pre>
+                <pre class="has-background-white py-0 px-2">    euclid::{Length, Point2D, Rect, Size2D, Vector2D},</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -99,7 +99,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    styles::{Alignment, ForegroundColor, Style},</pre>
+                <pre class="has-background-white py-0 px-2">    styles::{Alignment, ColorPair, FallbackComponent, Style, VerticalAlignment},</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -459,11 +459,11 @@
                 <a href="#33">33</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                2
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[allow(clippy::needless_collect)] &#x2F;&#x2F; false positive, needed to get rid of borrow.</pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    pub(crate) fn align(&amp;mut self, align_width: Length&lt;f32, Points&gt;) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -476,7 +476,7 @@
                 2
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    pub(crate) fn align(&amp;mut self, alignment: Alignment, width: Length&lt;f32, Points&gt;) {</pre>
+                <pre class="has-background-success-light py-0 px-2">        let mut last_alignment = Alignment::Left;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -486,10 +486,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                4
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        let line_sizes = self</pre>
+                <pre class="has-background-success-light py-0 px-2">        for line in &amp;mut self.lines {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -499,10 +499,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                4
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            .lines</pre>
+                <pre class="has-background-success-light py-0 px-2">            if let Some(span) = line.spans.first() {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -512,10 +512,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                4
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            .iter()</pre>
+                <pre class="has-background-success-light py-0 px-2">                if let Some(alignment) = span.style().get() {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -524,11 +524,11 @@
                 <a href="#38">38</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            .map(PreparedLine::size)</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                    last_alignment = *alignment;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -538,10 +538,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                4
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            .collect::&lt;Vec&lt;_&gt;&gt;();</pre>
+                <pre class="has-background-success-light py-0 px-2">                }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -550,11 +550,11 @@
                 <a href="#40">40</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        for (i, size) in line_sizes.into_iter().enumerate() {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -567,7 +567,7 @@
                 4
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            match alignment {</pre>
+                <pre class="has-background-success-light py-0 px-2">            match last_alignment {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -593,7 +593,7 @@
                 4
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                    self.lines[i].alignment_offset = Length::default();</pre>
+                <pre class="has-background-success-light py-0 px-2">                    line.alignment_offset = Length::default();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -632,7 +632,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    self.lines[i].alignment_offset = (width - Length::new(size.width)) &#x2F; 2.;</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    line.alignment_offset = (align_width - Length::new(line.size().width)) &#x2F; 2.;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -671,7 +671,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    self.lines[i].alignment_offset = width - Length::new(size.width);</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    line.alignment_offset = align_width - Length::new(line.size().width);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -801,7 +801,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn render&lt;R: Renderer&gt;(</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn render&lt;F: FallbackComponent&lt;Value = ColorPair&gt;, R: Renderer&gt;(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1009,7 +1009,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                scene.render_text::&lt;ForegroundColor&gt;(</pre>
+                <pre class="has-background-danger-light py-0 px-2">                scene.render_text::&lt;F&gt;(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1152,7 +1152,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1165,7 +1165,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Renders this text within `bounds` honoring [`VerticalAlignment`] from</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1178,7 +1178,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; A single line of prepared text.</pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; `style`. This does not affect the alignment of text, just the vertical</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1187,11 +1187,11 @@
                 <a href="#89">89</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">#[derive(Debug, Clone)]</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; location of the text block rendered within `bounds`.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1200,11 +1200,11 @@
                 <a href="#90">90</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct PreparedLine {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn render_within&lt;F: FallbackComponent&lt;Value = ColorPair&gt;, R: Renderer&gt;(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1213,11 +1213,11 @@
                 <a href="#91">91</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; The spans that comprise this line.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1226,11 +1226,11 @@
                 <a href="#92">92</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    pub spans: Vec&lt;PreparedSpan&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        scene: &amp;R,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1239,11 +1239,11 @@
                 <a href="#93">93</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; The metrics of the line as a whole.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        bounds: Rect&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1252,11 +1252,11 @@
                 <a href="#94">94</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    pub metrics: TextMetrics&lt;Points&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        style: &amp;Style,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1265,11 +1265,11 @@
                 <a href="#95">95</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; The offset of this line for the alignment. When rendering, each span&#x27;s</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; Length&lt;f32, Points&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1278,11 +1278,11 @@
                 <a href="#96">96</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; location is offset by this amount to account for [`Alignment`].</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        let text_size = self.size();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1291,11 +1291,11 @@
                 <a href="#97">97</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    pub alignment_offset: Length&lt;f32, Points&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        let origin_y = match style.get::&lt;VerticalAlignment&gt;() {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1304,11 +1304,11 @@
                 <a href="#98">98</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            Some(VerticalAlignment::Bottom) =&gt; bounds.size.height - text_size.height,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1317,11 +1317,11 @@
                 <a href="#99">99</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            Some(VerticalAlignment::Center) =&gt; (bounds.size.height - text_size.height) &#x2F; 2.,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1330,11 +1330,11 @@
                 <a href="#100">100</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl PreparedLine {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            Some(VerticalAlignment::Top) | None =&gt; 0.,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1347,7 +1347,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; The size of the bounding box of this line.</pre>
+                <pre class="has-background-white py-0 px-2">        };</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1360,7 +1360,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1369,11 +1369,11 @@
                 <a href="#103">103</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    pub fn size(&amp;self) -&gt; Size2D&lt;f32, Points&gt; {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.render::&lt;F, R&gt;(scene, Point2D::new(0., origin_y), true)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1382,11 +1382,11 @@
                 <a href="#104">104</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        if self.spans.is_empty() {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1395,11 +1395,11 @@
                 <a href="#105">105</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Size2D::from_lengths(Length::default(), self.height())</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1412,7 +1412,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        } else {</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1421,11 +1421,11 @@
                 <a href="#107">107</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            let width = self</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; A single line of prepared text.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1435,10 +1435,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                2
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                .spans</pre>
+                <pre class="has-background-success-light py-0 px-2">#[derive(Debug, Clone)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1447,11 +1447,11 @@
                 <a href="#109">109</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                .iter()</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">pub struct PreparedLine {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1460,11 +1460,11 @@
                 <a href="#110">110</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                12
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                .map(|s| s.data.metrics.width)</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; The spans that comprise this line.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1473,11 +1473,11 @@
                 <a href="#111">111</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                12
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                .fold(Length::default(), |sum, s| sum + s);</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    pub spans: Vec&lt;PreparedSpan&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1486,11 +1486,11 @@
                 <a href="#112">112</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2"></pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; The metrics of the line as a whole.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1499,11 +1499,11 @@
                 <a href="#113">113</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            Size2D::from_lengths(width, self.height())</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    pub metrics: TextMetrics&lt;Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1516,7 +1516,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        }</pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; The offset of this line for the alignment. When rendering, each span&#x27;s</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1525,11 +1525,11 @@
                 <a href="#115">115</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; location is offset by this amount to account for [`Alignment`].</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1542,7 +1542,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    pub alignment_offset: Length&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1555,7 +1555,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; The height of the line.</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1568,7 +1568,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1577,11 +1577,11 @@
                 <a href="#119">119</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    pub fn height(&amp;self) -&gt; Length&lt;f32, Points&gt; {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl PreparedLine {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1590,11 +1590,11 @@
                 <a href="#120">120</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        self.metrics.line_height()</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; The size of the bounding box of this line.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1603,11 +1603,11 @@
                 <a href="#121">121</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                4
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1616,11 +1616,11 @@
                 <a href="#122">122</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn size(&amp;self) -&gt; Size2D&lt;f32, Points&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1629,6 +1629,162 @@
                 <a href="#123">123</a>
             </div>
             <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        if self.spans.is_empty() {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="124">
+                <a href="#124">124</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            Size2D::from_lengths(Length::default(), self.height())</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="125">
+                <a href="#125">125</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        } else {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="126">
+                <a href="#126">126</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            let width = self</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="127">
+                <a href="#127">127</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                .spans</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="128">
+                <a href="#128">128</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                .iter()</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="129">
+                <a href="#129">129</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                .map(|s| s.data.metrics.width)</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="130">
+                <a href="#130">130</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                .fold(Length::default(), |sum, s| sum + s);</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="131">
+                <a href="#131">131</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2"></pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="132">
+                <a href="#132">132</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            Size2D::from_lengths(width, self.height())</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="133">
+                <a href="#133">133</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="134">
+                <a href="#134">134</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="135">
+                <a href="#135">135</a>
+            </div>
+            <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
@@ -1638,73 +1794,73 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="124">
-                <a href="#124">124</a>
+                id="136">
+                <a href="#136">136</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; A prepared [`Span`].</pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; The height of the line.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="125">
-                <a href="#125">125</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                26
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">#[derive(Clone, Debug)]</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="126">
-                <a href="#126">126</a>
+                id="137">
+                <a href="#137">137</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">#[must_use]</pre>
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="127">
-                <a href="#127">127</a>
+                id="138">
+                <a href="#138">138</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct PreparedSpan {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn height(&amp;self) -&gt; Length&lt;f32, Points&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="128">
-                <a href="#128">128</a>
+                id="139">
+                <a href="#139">139</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    data: Arc&lt;PreparedSpanData&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.metrics.line_height()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="129">
-                <a href="#129">129</a>
+                id="140">
+                <a href="#140">140</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="141">
+                <a href="#141">141</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -1716,8 +1872,8 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="130">
-                <a href="#130">130</a>
+                id="142">
+                <a href="#142">142</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -1725,162 +1881,6 @@
             </div>
             <div class="column has-background-white p-0">
                 <pre class="has-background-white py-0 px-2"></pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="131">
-                <a href="#131">131</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl PreparedSpan {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="132">
-                <a href="#132">132</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns a new span with `style`, `text`, and `metrics`.</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="133">
-                <a href="#133">133</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    pub(crate) fn new(style: Arc&lt;Style&gt;, text: String, metrics: TextMetrics&lt;Points&gt;) -&gt; Self {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="134">
-                <a href="#134">134</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        Self {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="135">
-                <a href="#135">135</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            data: Arc::new(PreparedSpanData {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="136">
-                <a href="#136">136</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                location: Length::default(),</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="137">
-                <a href="#137">137</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                style,</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="138">
-                <a href="#138">138</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                text,</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="139">
-                <a href="#139">139</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                metrics,</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="140">
-                <a href="#140">140</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            }),</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="141">
-                <a href="#141">141</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="142">
-                <a href="#142">142</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1893,7 +1893,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; A prepared [`Span`].</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1903,10 +1903,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                12
+                26
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    pub(crate) fn set_location(&amp;mut self, location: Length&lt;f32, Points&gt;) {</pre>
+                <pre class="has-background-success-light py-0 px-2">#[derive(Clone, Debug)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1915,11 +1915,11 @@
                 <a href="#145">145</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                12
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        Arc::make_mut(&amp;mut self.data).location = location;</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">#[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1928,11 +1928,11 @@
                 <a href="#146">146</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                12
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">pub struct PreparedSpan {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1945,7 +1945,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    data: Arc&lt;PreparedSpanData&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1958,7 +1958,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns the offset within the line of this text. Does not include alignment.</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1971,7 +1971,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1980,11 +1980,11 @@
                 <a href="#150">150</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn location(&amp;self) -&gt; Length&lt;f32, Points&gt; {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl PreparedSpan {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1993,11 +1993,11 @@
                 <a href="#151">151</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.data.location</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns a new span with `style`, `text`, and `metrics`.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2006,11 +2006,11 @@
                 <a href="#152">152</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                14
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    pub(crate) fn new(style: Arc&lt;Style&gt;, text: String, metrics: TextMetrics&lt;Points&gt;) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2019,11 +2019,11 @@
                 <a href="#153">153</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                14
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">        Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2032,11 +2032,11 @@
                 <a href="#154">154</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                14
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns the metrics of this span.</pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">            data: Arc::new(PreparedSpanData {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2046,10 +2046,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                40
+                14
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    pub fn metrics(&amp;self) -&gt; &amp;TextMetrics&lt;Points&gt; {</pre>
+                <pre class="has-background-success-light py-0 px-2">                location: Length::default(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2059,10 +2059,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                40
+                14
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        &amp;self.data.metrics</pre>
+                <pre class="has-background-success-light py-0 px-2">                style,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2072,10 +2072,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                40
+                14
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
+                <pre class="has-background-success-light py-0 px-2">                text,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2084,11 +2084,11 @@
                 <a href="#158">158</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                14
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">                metrics,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2097,11 +2097,11 @@
                 <a href="#159">159</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                14
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns the style of this span.</pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">            }),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2110,11 +2110,11 @@
                 <a href="#160">160</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                14
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2123,43 +2123,17 @@
                 <a href="#161">161</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                14
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn style(&amp;self) -&gt; &amp;Style {</pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="162">
                 <a href="#162">162</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &amp;self.data.style</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="163">
-                <a href="#163">163</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="164">
-                <a href="#164">164</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -2171,15 +2145,41 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
+                id="163">
+                <a href="#163">163</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                12
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    pub(crate) fn set_location(&amp;mut self, location: Length&lt;f32, Points&gt;) {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="164">
+                <a href="#164">164</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                12
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">        Arc::make_mut(&amp;mut self.data).location = location;</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
                 id="165">
                 <a href="#165">165</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                12
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns the text of this span.</pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2192,7 +2192,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2201,11 +2201,11 @@
                 <a href="#167">167</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    pub fn text(&amp;self) -&gt; &amp;str {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns the offset within the line of this text. Does not include alignment.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2214,11 +2214,11 @@
                 <a href="#168">168</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        &amp;self.data.text</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2227,11 +2227,11 @@
                 <a href="#169">169</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn location(&amp;self) -&gt; Length&lt;f32, Points&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2240,11 +2240,11 @@
                 <a href="#170">170</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.data.location</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2253,11 +2253,11 @@
                 <a href="#171">171</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2266,11 +2266,11 @@
                 <a href="#172">172</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                12
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">#[derive(Clone, Debug)]</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2283,7 +2283,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">struct PreparedSpanData {</pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns the metrics of this span.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2292,11 +2292,11 @@
                 <a href="#174">174</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                40
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    location: Length&lt;f32, Points&gt;,</pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    pub fn metrics(&amp;self) -&gt; &amp;TextMetrics&lt;Points&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2305,11 +2305,11 @@
                 <a href="#175">175</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                40
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    style: Arc&lt;Style&gt;,</pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">        &amp;self.data.metrics</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2318,11 +2318,11 @@
                 <a href="#176">176</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                40
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    text: String,</pre>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2335,7 +2335,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    metrics: TextMetrics&lt;Points&gt;,</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2348,12 +2348,259 @@
                 
             </div>
             <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns the style of this span.</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="179">
+                <a href="#179">179</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="180">
+                <a href="#180">180</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                4
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    pub fn style(&amp;self) -&gt; &amp;Style {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="181">
+                <a href="#181">181</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                4
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">        &amp;self.data.style</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="182">
+                <a href="#182">182</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                4
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="183">
+                <a href="#183">183</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="184">
+                <a href="#184">184</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns the text of this span.</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="185">
+                <a href="#185">185</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="186">
+                <a href="#186">186</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                2
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    pub fn text(&amp;self) -&gt; &amp;str {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="187">
+                <a href="#187">187</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                2
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">        &amp;self.data.text</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="188">
+                <a href="#188">188</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                2
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="189">
+                <a href="#189">189</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="190">
+                <a href="#190">190</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="191">
+                <a href="#191">191</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                12
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">#[derive(Clone, Debug)]</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="192">
+                <a href="#192">192</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">struct PreparedSpanData {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="193">
+                <a href="#193">193</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    location: Length&lt;f32, Points&gt;,</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="194">
+                <a href="#194">194</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    style: Arc&lt;Style&gt;,</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="195">
+                <a href="#195">195</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    text: String,</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="196">
+                <a href="#196">196</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    metrics: TextMetrics&lt;Points&gt;,</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="197">
+                <a href="#197">197</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
                 <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-07-21 03:57</p>
+                <p class="heading">Date: 2021-07-21 17:06</p>
             </div>
         </footer>
     </body>
