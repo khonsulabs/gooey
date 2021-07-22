@@ -125,7 +125,7 @@
                 }
                 <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">receiver</span>.<span class="ident">recv_async</span>().<span class="kw">await</span>;
             } <span class="kw">else</span> <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-kludgine&quot;</span>)]</span> {
-                <span class="ident">tokio::time::sleep</span>(<span class="ident">duration</span>).<span class="kw">await</span>
+                <span class="ident">tokio::time::sleep</span>(<span class="ident">duration</span>).<span class="kw">await</span>;
             } <span class="kw">else</span> {
                 <span class="macro">compile_error!</span>(<span class="string">&quot;unsupported async configuration&quot;</span>)
             }
@@ -137,7 +137,7 @@
         <span class="self">self</span>,
         <span class="ident">initializer</span>: <span class="ident">C</span>,
     ) {
-        <span class="kw">crate</span><span class="ident">::main_with</span>(<span class="self">self</span>.<span class="ident">transmogrifiers</span>, <span class="ident">initializer</span>)
+        <span class="kw">crate</span><span class="ident">::main_with</span>(<span class="self">self</span>.<span class="ident">transmogrifiers</span>, <span class="ident">initializer</span>);
     }
 }
 </pre></div>

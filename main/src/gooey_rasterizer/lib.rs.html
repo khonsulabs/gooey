@@ -649,7 +649,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_refresh_callback</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">RefreshCallback</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">F</span>) {
-        <span class="self">self</span>.<span class="ident">refresh_callback</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Arc::new</span>(<span class="ident">callback</span>))
+        <span class="self">self</span>.<span class="ident">refresh_callback</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Arc::new</span>(<span class="ident">callback</span>));
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">system_theme</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span> {
@@ -657,7 +657,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_system_theme</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">theme</span>: <span class="ident">SystemTheme</span>) {
-        <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">set_system_theme</span>(<span class="ident">theme</span>)
+        <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">set_system_theme</span>(<span class="ident">theme</span>);
     }
 
     <span class="kw">fn</span> <span class="ident">handle_cursor_moved</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventResult</span> {
@@ -929,7 +929,7 @@
     <span class="ident">T</span>: <span class="ident">Fn</span>() <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 {
     <span class="kw">fn</span> <span class="ident">refresh</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="self">self</span>()
+        <span class="self">self</span>();
     }
 }
 </pre></div>

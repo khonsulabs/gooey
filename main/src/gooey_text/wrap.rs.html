@@ -478,7 +478,7 @@
         <span class="self">self</span>.<span class="ident">current_span_offset</span> <span class="op">=</span> <span class="ident">Length::default</span>();
         <span class="kw">for</span> <span class="ident">span</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">spans</span> {
             <span class="self">self</span>.<span class="ident">update_vmetrics</span>(<span class="kw-2">*</span><span class="ident">span</span>.<span class="ident">metrics</span>());
-            <span class="self">self</span>.<span class="ident">position_span</span>(<span class="ident">span</span>)
+            <span class="self">self</span>.<span class="ident">position_span</span>(<span class="ident">span</span>);
         }
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">metrics</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">current_vmetrics</span>.<span class="ident">take</span>() {

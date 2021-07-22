@@ -385,7 +385,7 @@
         <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">wrapping</span>: <span class="ident">TextWrap</span>,
     ) {
-        <span class="self">self</span>.<span class="ident">render_core</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">renderer</span>, <span class="ident">location</span>, <span class="bool-val">true</span>, <span class="ident">wrapping</span>)
+        <span class="self">self</span>.<span class="ident">render_core</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">renderer</span>, <span class="ident">location</span>, <span class="bool-val">true</span>, <span class="ident">wrapping</span>);
     }
 
     <span class="doccomment">/// Renders this text at `location` in `renderer`. The baseline of the first line will start at `location`.</span>
@@ -395,7 +395,7 @@
         <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">wrapping</span>: <span class="ident">TextWrap</span>,
     ) {
-        <span class="self">self</span>.<span class="ident">render_core</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">scene</span>, <span class="ident">location</span>, <span class="bool-val">false</span>, <span class="ident">wrapping</span>)
+        <span class="self">self</span>.<span class="ident">render_core</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">scene</span>, <span class="ident">location</span>, <span class="bool-val">false</span>, <span class="ident">wrapping</span>);
     }
 
     <span class="kw">fn</span> <span class="ident">render_core</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
@@ -413,7 +413,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_range</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">range</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) {
         <span class="self">self</span>.<span class="ident">for_each_in_range_mut</span>(<span class="ident">range</span>, <span class="op">|</span><span class="ident">span</span>, <span class="ident">relative_range</span><span class="op">|</span> {
             <span class="ident">span</span>.<span class="ident">text</span>.<span class="ident">replace_range</span>(<span class="ident">relative_range</span>, <span class="string">&quot;&quot;</span>);
-        })
+        });
     }
 
     <span class="doccomment">/// Inserts `value` at `offset`. Inserts into an existing span.</span>
@@ -421,7 +421,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_str</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="self">self</span>.<span class="ident">for_each_in_range_mut</span>(<span class="ident">offset</span>..<span class="ident">offset</span> <span class="op">+</span> <span class="number">1</span>, <span class="op">|</span><span class="ident">span</span>, <span class="ident">relative_range</span><span class="op">|</span> {
             <span class="ident">span</span>.<span class="ident">text</span>.<span class="ident">insert_str</span>(<span class="ident">relative_range</span>.<span class="ident">start</span>, <span class="ident">value</span>);
-        })
+        });
     }
 
     <span class="doccomment">/// Returns the total length, in bytes.</span>
@@ -495,7 +495,7 @@
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_empty</span>() {
             <span class="comment">// If we have no actual text in this, keep the first span and dump the rest</span>
             <span class="comment">// Doing this operation separately allows the other branch to be a simple retain operation</span>
-            <span class="self">self</span>.<span class="ident">spans</span>.<span class="ident">resize_with</span>(<span class="number">1</span>, <span class="op">|</span><span class="op">|</span> <span class="macro">unreachable!</span>())
+            <span class="self">self</span>.<span class="ident">spans</span>.<span class="ident">resize_with</span>(<span class="number">1</span>, <span class="op">|</span><span class="op">|</span> <span class="macro">unreachable!</span>());
         } <span class="kw">else</span> {
             <span class="self">self</span>.<span class="ident">spans</span>.<span class="ident">retain</span>(<span class="op">|</span><span class="ident">span</span><span class="op">|</span> <span class="op">!</span><span class="ident">span</span>.<span class="ident">text</span>.<span class="ident">is_empty</span>());
         }

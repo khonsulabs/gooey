@@ -133,13 +133,10 @@
 <span id="130">130</span>
 <span id="131">131</span>
 <span id="132">132</span>
-<span id="133">133</span>
-<span id="134">134</span>
-<span id="135">135</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
-<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">euclid::Length</span>, <span class="ident">styles::Style</span>, <span class="ident">Points</span>};
+<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">styles::Style</span>, <span class="ident">Points</span>};
 <span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">TextMetrics</span>};
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">prepared::PreparedSpan</span>, <span class="ident">Text</span>};
@@ -190,7 +187,6 @@
     <span class="ident">style</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Style</span><span class="op">&gt;</span>,
     <span class="ident">text</span>: <span class="ident">String</span>,
     <span class="ident">lexer_state</span>: <span class="ident">TokenizerStatus</span>,
-    <span class="ident">caret</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">TokenizerState</span> {
@@ -199,7 +195,6 @@
             <span class="ident">style</span>: <span class="ident">Arc::new</span>(<span class="ident">style</span>),
             <span class="ident">lexer_state</span>: <span class="ident">TokenizerStatus::AtSpanStart</span>,
             <span class="ident">text</span>: <span class="ident">String::default</span>(),
-            <span class="ident">caret</span>: <span class="ident">Length::default</span>(),
         }
     }
 
@@ -211,7 +206,6 @@
             <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">clear</span>();
             <span class="kw">let</span> <span class="ident">metrics</span> <span class="op">=</span> <span class="ident">scene</span>.<span class="ident">measure_text</span>(<span class="kw-2">&amp;</span><span class="ident">text</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">style</span>);
             <span class="kw">let</span> <span class="ident">span</span> <span class="op">=</span> <span class="ident">PreparedSpan::new</span>(<span class="self">self</span>.<span class="ident">style</span>.<span class="ident">clone</span>(), <span class="ident">text</span>, <span class="ident">metrics</span>);
-            <span class="self">self</span>.<span class="ident">caret</span> <span class="op">=</span> <span class="ident">Length::default</span>();
 
             <span class="kw">let</span> <span class="ident">token</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">lexer_state</span> {
                 <span class="ident">TokenizerStatus::AtSpanStart</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
