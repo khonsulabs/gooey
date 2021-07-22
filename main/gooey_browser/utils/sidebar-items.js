@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["CssMapping",""]],"fn":[["set_widget_classes",""],["set_widget_id",""],["widget_css_id",""],["window_document",""]],"struct":[["CssBlockBuilder",""],["CssManager",""],["CssRules",""]]});
+initSidebarItems({"enum":[["CssMapping",""]],"fn":[["set_widget_classes",""],["set_widget_id",""],["widget_css_id",""],["window_document",""],["window_element_by_widget_id",""]],"struct":[["CssBlockBuilder",""],["CssManager",""],["CssRules",""]]});

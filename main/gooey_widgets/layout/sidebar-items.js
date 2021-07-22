@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Dimension",""]],"struct":[["Builder",""],["Layout",""],["LayoutChild",""],["LayoutTransmogrifier",""],["WidgetLayout",""]],"trait":[["LayoutChildren",""],["LayoutKey",""]]});
+initSidebarItems({"enum":[["Dimension",""],["LayoutCommand",""]],"struct":[["Builder",""],["Layout",""],["LayoutChild",""],["LayoutTransmogrifier",""],["WidgetLayout",""]],"trait":[["LayoutChildren",""],["LayoutKey",""]]});

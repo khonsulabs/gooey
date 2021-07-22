@@ -179,6 +179,13 @@
 <span id="176">176</span>
 <span id="177">177</span>
 <span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std::fmt::Write</span>;
 
@@ -192,6 +199,13 @@
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_document</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">web_sys::Document</span> {
     <span class="ident">web_sys::window</span>().<span class="ident">unwrap</span>().<span class="ident">document</span>().<span class="ident">unwrap</span>()
+}
+
+<span class="attribute">#[<span class="ident">must_use</span>]</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_element_by_widget_id</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">JsCast</span><span class="op">&gt;</span>(<span class="ident">widget_id</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+    <span class="ident">window_document</span>()
+        .<span class="ident">get_element_by_id</span>(<span class="kw-2">&amp;</span><span class="ident">widget_css_id</span>(<span class="ident">widget_id</span>))
+        .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">dyn_into</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>().<span class="ident">ok</span>())
 }
 
 <span class="attribute">#[<span class="ident">must_use</span>]</span>

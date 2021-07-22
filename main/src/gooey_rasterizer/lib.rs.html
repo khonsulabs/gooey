@@ -463,6 +463,9 @@
 <span id="460">460</span>
 <span id="461">461</span>
 <span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that rasterizes widgets</span>
 <span class="doccomment">//! using a [`Renderer`](gooey_core::renderer::Renderer).</span>
@@ -634,7 +637,10 @@
                     <span class="self">self</span>.<span class="ident">handle_mouse_wheel</span>(<span class="ident">delta</span>, <span class="ident">touch_phase</span>)
                 }
             },
-            <span class="ident">WindowEvent::SystemThemeChanged</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">EventResult::ignored</span>(),
+            <span class="ident">WindowEvent::SystemThemeChanged</span>(<span class="ident">theme</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">set_system_theme</span>(<span class="ident">theme</span>);
+                <span class="ident">EventResult::ignored</span>()
+            }
             <span class="ident">WindowEvent::RedrawRequested</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">EventResult::redraw</span>(),
             <span class="ident">WindowEvent::ReceiveCharacter</span>(<span class="kw">_</span>)
             <span class="op">|</span> <span class="ident">WindowEvent::ModifiersChanged</span>(<span class="kw">_</span>)
