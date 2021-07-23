@@ -197,7 +197,6 @@
 <span id="194">194</span>
 <span id="195">195</span>
 <span id="196">196</span>
-<span id="197">197</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
@@ -269,7 +268,6 @@
             <span class="kw">if</span> <span class="ident">offset_baseline</span> <span class="op">|</span><span class="op">|</span> <span class="ident">line_index</span> <span class="op">&gt;</span> <span class="number">0</span> {
                 <span class="ident">current_line_baseline</span> <span class="op">+</span><span class="op">=</span> <span class="ident">line</span>.<span class="ident">metrics</span>.<span class="ident">ascent</span>;
             }
-            <span class="kw">let</span> <span class="ident">metrics</span> <span class="op">=</span> <span class="ident">line</span>.<span class="ident">metrics</span>;
             <span class="kw">let</span> <span class="ident">cursor_position</span> <span class="op">=</span>
                 <span class="ident">location</span> <span class="op">+</span> <span class="ident">Vector2D::from_lengths</span>(<span class="ident">line</span>.<span class="ident">alignment_offset</span>, <span class="ident">current_line_baseline</span>);
             <span class="kw">for</span> <span class="ident">span</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">line</span>.<span class="ident">spans</span> {
@@ -279,7 +277,7 @@
                     <span class="kw-2">&amp;</span><span class="ident">span</span>.<span class="ident">data</span>.<span class="ident">style</span>,
                 );
             }
-            <span class="ident">current_line_baseline</span> <span class="op">+</span><span class="op">=</span> <span class="ident">metrics</span>.<span class="ident">line_gap</span> <span class="op">-</span> <span class="ident">metrics</span>.<span class="ident">descent</span>;
+            <span class="ident">current_line_baseline</span> <span class="op">+</span><span class="op">=</span> <span class="ident">line</span>.<span class="ident">metrics</span>.<span class="ident">line_gap</span> <span class="op">-</span> <span class="ident">line</span>.<span class="ident">metrics</span>.<span class="ident">descent</span>;
         }
 
         <span class="ident">current_line_baseline</span>
@@ -301,7 +299,7 @@
             <span class="prelude-val">Some</span>(<span class="ident">VerticalAlignment::Top</span>) <span class="op">|</span> <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="number">0.</span>,
         };
 
-        <span class="self">self</span>.<span class="ident">render</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">scene</span>, <span class="ident">Point2D::new</span>(<span class="number">0.</span>, <span class="ident">origin_y</span>), <span class="bool-val">true</span>)
+        <span class="self">self</span>.<span class="ident">render</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">scene</span>, <span class="ident">bounds</span>.<span class="ident">origin</span> <span class="op">+</span> <span class="ident">Vector2D::new</span>(<span class="number">0.</span>, <span class="ident">origin_y</span>), <span class="bool-val">true</span>)
     }
 }
 
