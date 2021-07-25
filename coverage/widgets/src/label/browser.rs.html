@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="0 / 28">0 %</abbr></p>
+                <abbr title="0 / 24">0 %</abbr></p>
         </div>
     </div>
 
@@ -60,7 +60,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    utils::{widget_css_id, window_document, CssRules},</pre>
+                <pre class="has-background-white py-0 px-2">    utils::{create_element, widget_css_id, window_document, CssRules},</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -502,7 +502,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let document = window_document();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let element = create_element::&lt;HtmlDivElement&gt;(&quot;div&quot;);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -515,7 +515,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let element = document</pre>
+                <pre class="has-background-danger-light py-0 px-2">        *context.state = self.initialize_widget_element(&amp;element, &amp;context);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -528,7 +528,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .create_element(&quot;div&quot;)</pre>
+                <pre class="has-background-danger-light py-0 px-2">        element.set_inner_text(&amp;context.widget.label);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -541,7 +541,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .expect(&quot;couldn&#x27;t create div&quot;)</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -554,7 +554,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .unchecked_into::&lt;HtmlDivElement&gt;();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Some(element.unchecked_into())</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -567,65 +567,13 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        *context.state = self.initialize_widget_element(&amp;element, &amp;context);</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="42">
                 <a href="#42">42</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        element.set_inner_text(&amp;context.widget.label);</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="43">
-                <a href="#43">43</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2"></pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="44">
-                <a href="#44">44</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Some(element.unchecked_into())</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="45">
-                <a href="#45">45</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="46">
-                <a href="#46">46</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -637,7 +585,7 @@
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-07-23 15:25</p>
+                <p class="heading">Date: 2021-07-25 21:23</p>
             </div>
         </footer>
     </body>

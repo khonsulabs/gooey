@@ -2,12 +2,12 @@
 <html lang="en-us">
     <head><meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Grcov report - state.rs </title>
+        <title>Grcov report - rasterizer.rs </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"></head>
     <body>
         <div class="container">
     <nav class="breadcrumb is-right" aria-label="breadcrumbs">
-        <ul><li><a href="../../../index.html">top_level</a></li><li><a href="./index.html">frontends&#x2F;rasterizer&#x2F;src</a></li><li class="is-active"><a href="#">state.rs</a></li>
+        <ul><li><a href="../../../index.html">top_level</a></li><li><a href="./index.html">widgets&#x2F;src&#x2F;checkbox</a></li><li class="is-active"><a href="#">rasterizer.rs</a></li>
         </ul>
     </nav>
     <nav class="level">
@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="0 / 128">0 %</abbr></p>
+                <abbr title="0 / 130">0 %</abbr></p>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
         <div>
             <p class="heading">Functions</p>
             <p class="title has-text-danger">
-                <abbr title="0 / 41">0 %</abbr></p>
+                <abbr title="0 / 39">0 %</abbr></p>
         </div>
     </div>
 
@@ -47,7 +47,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use std::{</pre>
+                <pre class="has-background-white py-0 px-2">use gooey_core::{</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -60,7 +60,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    collections::{HashMap, HashSet},</pre>
+                <pre class="has-background-white py-0 px-2">    euclid::{Point2D, Rect, Size2D, Vector2D},</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -73,7 +73,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    sync::{Arc, Mutex},</pre>
+                <pre class="has-background-white py-0 px-2">    styles::ForegroundColor,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -86,7 +86,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">};</pre>
+                <pre class="has-background-white py-0 px-2">    Points, Transmogrifier, TransmogrifierContext,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -99,7 +99,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -112,7 +112,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use gooey_core::{</pre>
+                <pre class="has-background-white py-0 px-2">use gooey_rasterizer::{</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -125,7 +125,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    euclid::{Point2D, Rect},</pre>
+                <pre class="has-background-white py-0 px-2">    winit::event::MouseButton, EventStatus, Rasterizer, Renderer, WidgetRasterizer,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -138,7 +138,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    styles::{style_sheet, SystemTheme},</pre>
+                <pre class="has-background-white py-0 px-2">};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -151,7 +151,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    Points, WidgetId,</pre>
+                <pre class="has-background-white py-0 px-2">use gooey_text::{prepared::PreparedText, wrap::TextWrap, Text};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -164,7 +164,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">};</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -177,7 +177,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use winit::event::MouseButton;</pre>
+                <pre class="has-background-white py-0 px-2">use crate::{</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -190,7 +190,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    button::ButtonColor,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -199,11 +199,11 @@
                 <a href="#13">13</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">#[derive(Clone, Default, Debug)]</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    checkbox::{</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -216,7 +216,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct State {</pre>
+                <pre class="has-background-white py-0 px-2">        Checkbox, CheckboxCommand, CheckboxTransmogrifier, InternalCheckboxEvent, LABEL_PADDING,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -229,7 +229,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    data: Arc&lt;Mutex&lt;StateData&gt;&gt;,</pre>
+                <pre class="has-background-white py-0 px-2">    },</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -242,7 +242,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -264,11 +264,11 @@
                 <a href="#18">18</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">#[derive(Default, Debug)]</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl&lt;R: Renderer&gt; Transmogrifier&lt;Rasterizer&lt;R&gt;&gt; for CheckboxTransmogrifier {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -281,7 +281,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">struct StateData {</pre>
+                <pre class="has-background-white py-0 px-2">    type State = ();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -294,7 +294,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    order: Vec&lt;WidgetId&gt;,</pre>
+                <pre class="has-background-white py-0 px-2">    type Widget = Checkbox;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -307,7 +307,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    bounds: HashMap&lt;u32, Rect&lt;f32, Points&gt;&gt;,</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -316,11 +316,11 @@
                 <a href="#22">22</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    system_theme: SystemTheme,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    fn receive_command(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -329,11 +329,11 @@
                 <a href="#23">23</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -342,11 +342,11 @@
                 <a href="#24">24</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    hover: HashSet&lt;WidgetId&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        _command: CheckboxCommand,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -355,11 +355,11 @@
                 <a href="#25">25</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    focus: Option&lt;WidgetId&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        context: &amp;mut TransmogrifierContext&lt;&#x27;_, Self, Rasterizer&lt;R&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -368,11 +368,11 @@
                 <a href="#26">26</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    active: Option&lt;WidgetId&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    ) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -381,11 +381,11 @@
                 <a href="#27">27</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        context.frontend.set_needs_redraw();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -394,11 +394,11 @@
                 <a href="#28">28</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    last_mouse_position: Option&lt;Point2D&lt;f32, Points&gt;&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -411,7 +411,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    mouse_button_handlers: HashMap&lt;MouseButton, WidgetId&gt;,</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -424,7 +424,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    needs_redraw: bool,</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -433,11 +433,11 @@
                 <a href="#31">31</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Clone, Default, Debug)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -450,7 +450,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">pub struct LayoutState {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -463,7 +463,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl State {</pre>
+                <pre class="has-background-white py-0 px-2">    content_size: Size2D&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -472,11 +472,11 @@
                 <a href="#34">34</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn new_frame(&amp;self) {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    checkbox_size: Size2D&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -485,11 +485,11 @@
                 <a href="#35">35</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    label_size: Size2D&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -498,11 +498,11 @@
                 <a href="#36">36</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.new_frame();</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    label: PreparedText,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -511,11 +511,11 @@
                 <a href="#37">37</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -541,7 +541,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn widget_rendered(&amp;self, widget: WidgetId, bounds: Rect&lt;f32, Points&gt;) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">fn calculate_layout&lt;R: Renderer&gt;(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -554,7 +554,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">    context: &amp;TransmogrifierContext&lt;&#x27;_, CheckboxTransmogrifier, Rasterizer&lt;R&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -567,7 +567,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.widget_rendered(widget, bounds);</pre>
+                <pre class="has-background-danger-light py-0 px-2">    renderer: &amp;R,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -580,7 +580,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    size: Size2D&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -589,11 +589,11 @@
                 <a href="#43">43</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">) -&gt; LayoutState {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -606,7 +606,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn widget_bounds(&amp;self, widget: &amp;WidgetId) -&gt; Option&lt;Rect&lt;f32, Points&gt;&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    &#x2F;&#x2F; Determine the checkbox size by figuring out the line height</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -619,7 +619,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">    let line_height = renderer.measure_text(&quot;m&quot;, context.style).height();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -632,7 +632,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.bounds.get(&amp;widget.id).copied()</pre>
+                <pre class="has-background-danger-light py-0 px-2">    let checkbox_size = Size2D::from_lengths(line_height, line_height);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -645,7 +645,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -654,11 +654,11 @@
                 <a href="#48">48</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    &#x2F;&#x2F; Measure the label, allowing the text to wrap within the remaining space.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -671,7 +671,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn widgets_under_point(&amp;self, location: Point2D&lt;f32, Points&gt;) -&gt; Vec&lt;WidgetId&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    let label_size = Size2D::new(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -684,7 +684,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        (size.width - checkbox_size.width - LABEL_PADDING.get()).max(0.),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -697,7 +697,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.widgets_under_point(location).cloned().collect()</pre>
+                <pre class="has-background-danger-light py-0 px-2">        size.height,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -710,7 +710,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -719,11 +719,11 @@
                 <a href="#53">53</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    let label = Text::span(&amp;context.widget.label, context.style.clone())</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -736,7 +736,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn set_needs_redraw(&amp;self) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        .wrap(renderer, TextWrap::MultiLine { size: label_size });</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -749,7 +749,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -762,7 +762,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.needs_redraw = true;</pre>
+                <pre class="has-background-danger-light py-0 px-2">    let label_size = label.size();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -775,7 +775,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -784,11 +784,11 @@
                 <a href="#58">58</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    LayoutState {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -801,7 +801,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn needs_redraw(&amp;self) -&gt; bool {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        content_size: (label_size.to_vector()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -814,7 +814,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">            + Vector2D::new(checkbox_size.width + LABEL_PADDING.get(), 0.))</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -827,7 +827,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.needs_redraw</pre>
+                <pre class="has-background-danger-light py-0 px-2">        .to_size(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -840,7 +840,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        checkbox_size,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -849,11 +849,11 @@
                 <a href="#63">63</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        label_size,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -866,7 +866,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn set_last_mouse_position(&amp;self, location: Option&lt;Point2D&lt;f32, Points&gt;&gt;) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        label,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -879,7 +879,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -892,7 +892,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.last_mouse_position = location;</pre>
+                <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -901,11 +901,11 @@
                 <a href="#67">67</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -918,7 +918,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">impl&lt;R: Renderer&gt; WidgetRasterizer&lt;R&gt; for CheckboxTransmogrifier {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -927,11 +927,11 @@
                 <a href="#69">69</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn last_mouse_position(&amp;self) -&gt; Option&lt;Point2D&lt;f32, Points&gt;&gt; {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    fn render(&amp;self, context: TransmogrifierContext&lt;&#x27;_, Self, Rasterizer&lt;R&gt;&gt;) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -944,7 +944,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        if let Some(scene) = context.frontend.renderer() {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -957,7 +957,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.last_mouse_position</pre>
+                <pre class="has-background-danger-light py-0 px-2">            let layout = calculate_layout(&amp;context, scene, scene.size());</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -970,7 +970,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            let checkbox_rect = Rect::from_size(layout.checkbox_size);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -979,11 +979,11 @@
                 <a href="#73">73</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            let label_rect = Rect::new(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -996,7 +996,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn clear_hover(&amp;self) -&gt; HashSet&lt;WidgetId&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                Point2D::new(layout.checkbox_size.width + LABEL_PADDING.get(), 0.),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1009,7 +1009,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">                layout.label_size,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1022,7 +1022,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        std::mem::take(&amp;mut data.hover)</pre>
+                <pre class="has-background-danger-light py-0 px-2">            );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1035,7 +1035,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1044,11 +1044,11 @@
                 <a href="#78">78</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            scene.fill_rect::&lt;ButtonColor&gt;(&amp;checkbox_rect, context.style);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1061,7 +1061,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn hover(&amp;self) -&gt; HashSet&lt;WidgetId&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1074,7 +1074,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">            if context.widget.checked {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1087,7 +1087,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.hover.clone()</pre>
+                <pre class="has-background-danger-light py-0 px-2">                &#x2F;&#x2F; Fill a square in the middle with the mark.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1100,7 +1100,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">                let check_box = checkbox_rect.inflate(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1109,11 +1109,11 @@
                 <a href="#83">83</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                    -checkbox_rect.size.width &#x2F; 3.,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1126,7 +1126,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn set_hover(&amp;self, hover: HashSet&lt;WidgetId&gt;) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    -checkbox_rect.size.width &#x2F; 3.,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1139,7 +1139,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">                );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1152,7 +1152,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if data.hover != hover {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                scene.fill_rect::&lt;ForegroundColor&gt;(&amp;check_box, context.style);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1165,7 +1165,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.needs_redraw = true;</pre>
+                <pre class="has-background-danger-light py-0 px-2">            }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1174,11 +1174,11 @@
                 <a href="#88">88</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.hover = hover;</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1191,7 +1191,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            layout</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1204,7 +1204,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">                .label</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1213,11 +1213,11 @@
                 <a href="#91">91</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                .render_within::&lt;ForegroundColor, _&gt;(scene, label_rect, context.style);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1230,7 +1230,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn active(&amp;self) -&gt; Option&lt;WidgetId&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1243,7 +1243,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1252,11 +1252,11 @@
                 <a href="#94">94</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.active.clone()</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1269,7 +1269,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn content_size(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1278,11 +1278,11 @@
                 <a href="#96">96</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1295,7 +1295,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn set_active(&amp;self, active: Option&lt;WidgetId&gt;) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context: TransmogrifierContext&lt;&#x27;_, Self, Rasterizer&lt;R&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1308,7 +1308,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        constraints: Size2D&lt;Option&lt;f32&gt;, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1321,7 +1321,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if data.active != active {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; Size2D&lt;f32, Points&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1334,7 +1334,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.needs_redraw = true;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        &#x2F;&#x2F; Always render a rect</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1347,7 +1347,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.active = active;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1360,7 +1360,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .frontend</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1373,7 +1373,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .renderer()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1382,11 +1382,11 @@
                 <a href="#104">104</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            .map_or_else(Size2D::default, |renderer| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1399,7 +1399,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn focus(&amp;self) -&gt; Option&lt;WidgetId&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                let renderer_size = renderer.size();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1412,7 +1412,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">                let layout = calculate_layout(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1425,7 +1425,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.focus.clone()</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    &amp;context,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1438,7 +1438,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    renderer,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1447,11 +1447,11 @@
                 <a href="#109">109</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                    Size2D::new(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1464,7 +1464,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn set_focus(&amp;self, focus: Option&lt;WidgetId&gt;) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                        constraints.width.unwrap_or(renderer_size.width),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1477,7 +1477,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">                        constraints.height.unwrap_or(renderer_size.height),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1490,7 +1490,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if data.focus != focus {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    ),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1503,7 +1503,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.needs_redraw = true;</pre>
+                <pre class="has-background-danger-light py-0 px-2">                );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1516,7 +1516,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.focus = focus;</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1529,7 +1529,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">                layout.content_size</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1542,7 +1542,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            })</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1551,11 +1551,11 @@
                 <a href="#117">117</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1564,11 +1564,11 @@
                 <a href="#118">118</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn blur(&amp;self) {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1581,7 +1581,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn mouse_down(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1594,7 +1594,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if data.focus.is_some() || data.active.is_some() {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1607,7 +1607,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.focus = None;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context: TransmogrifierContext&lt;&#x27;_, Self, Rasterizer&lt;R&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1620,7 +1620,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.active = None;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        button: MouseButton,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1633,7 +1633,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.needs_redraw = true;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        _location: Point2D&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1646,7 +1646,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        _rastered_size: Size2D&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1659,7 +1659,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; EventStatus {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1668,11 +1668,11 @@
                 <a href="#126">126</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        if button == MouseButton::Left {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1685,7 +1685,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn system_theme(&amp;self) -&gt; SystemTheme {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            context.frontend.activate(context.registration.id());</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1698,7 +1698,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">            EventStatus::Processed</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1707,11 +1707,11 @@
                 <a href="#129">129</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.system_theme</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        } else {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1724,7 +1724,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            EventStatus::Ignored</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1737,7 +1737,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1750,7 +1750,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn set_system_theme(&amp;self, system_theme: SystemTheme) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1759,11 +1759,11 @@
                 <a href="#133">133</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1776,7 +1776,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if data.system_theme != system_theme {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn mouse_drag(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1789,7 +1789,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.needs_redraw = true;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1802,7 +1802,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            data.system_theme = system_theme;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context: TransmogrifierContext&lt;&#x27;_, Self, Rasterizer&lt;R&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1815,7 +1815,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        _button: MouseButton,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1828,7 +1828,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        location: Point2D&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1837,11 +1837,11 @@
                 <a href="#139">139</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        rastered_size: Size2D&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1854,7 +1854,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn register_mouse_handler(&amp;self, button: MouseButton, widget: WidgetId) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    ) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1867,7 +1867,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        if Rect::from_size(rastered_size).contains(location) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1880,7 +1880,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.mouse_button_handlers.insert(button, widget);</pre>
+                <pre class="has-background-danger-light py-0 px-2">            context.frontend.activate(context.registration.id());</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1893,7 +1893,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        } else {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1902,11 +1902,11 @@
                 <a href="#144">144</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            context.frontend.blur();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1919,7 +1919,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn take_mouse_button_handler(&amp;self, button: MouseButton) -&gt; Option&lt;WidgetId&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1932,7 +1932,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1941,11 +1941,11 @@
                 <a href="#147">147</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.mouse_button_handlers.remove(&amp;button)</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1958,7 +1958,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn mouse_up(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1967,11 +1967,11 @@
                 <a href="#149">149</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1984,7 +1984,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn mouse_button_handlers(&amp;self) -&gt; HashMap&lt;MouseButton, WidgetId&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context: TransmogrifierContext&lt;&#x27;_, Self, Rasterizer&lt;R&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1997,7 +1997,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        _button: MouseButton,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2010,7 +2010,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        data.mouse_button_handlers.clone()</pre>
+                <pre class="has-background-danger-light py-0 px-2">        location: Option&lt;Point2D&lt;f32, Points&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2023,7 +2023,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        rastered_size: Size2D&lt;f32, Points&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2032,11 +2032,11 @@
                 <a href="#154">154</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    ) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2049,7 +2049,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn ui_state_for(&amp;self, widget_id: &amp;WidgetId) -&gt; style_sheet::State {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        if location</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2062,7 +2062,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let data = self.data.lock().unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .map(|location| Rect::new(Point2D::default(), rastered_size).contains(location))</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2075,7 +2075,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        style_sheet::State {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .unwrap_or_default()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2084,11 +2084,11 @@
                 <a href="#158">158</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            hovered: data.hover.contains(widget_id),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2101,7 +2101,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            active: data.active.as_ref() == Some(widget_id),</pre>
+                <pre class="has-background-danger-light py-0 px-2">            if let Some(widget) = context</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2114,7 +2114,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            focused: data.focus.as_ref() == Some(widget_id),</pre>
+                <pre class="has-background-danger-light py-0 px-2">                .frontend</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2127,7 +2127,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">                .ui</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2140,7 +2140,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">                .widget_state(context.registration.id().id)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2149,11 +2149,11 @@
                 <a href="#163">163</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2162,11 +2162,11 @@
                 <a href="#164">164</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                widget</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2175,11 +2175,11 @@
                 <a href="#165">165</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl StateData {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                    .channels::&lt;Self::Widget&gt;()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2192,7 +2192,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn new_frame(&amp;mut self) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    .unwrap()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2205,7 +2205,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.order.clear();</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    .post_event(InternalCheckboxEvent::Clicked);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2218,7 +2218,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.bounds.clear();</pre>
+                <pre class="has-background-danger-light py-0 px-2">            }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2231,7 +2231,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.needs_redraw = false;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2244,7 +2244,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context.frontend.deactivate();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2253,199 +2253,17 @@
                 <a href="#171">171</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="172">
                 <a href="#172">172</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn widget_rendered(&amp;mut self, widget: WidgetId, bounds: Rect&lt;f32, Points&gt;) {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="173">
-                <a href="#173">173</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.bounds.insert(widget.id, bounds);</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="174">
-                <a href="#174">174</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.order.push(widget);</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="175">
-                <a href="#175">175</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="176">
-                <a href="#176">176</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="177">
-                <a href="#177">177</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn widgets_under_point(</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="178">
-                <a href="#178">178</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="179">
-                <a href="#179">179</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        location: Point2D&lt;f32, Points&gt;,</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="180">
-                <a href="#180">180</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; impl Iterator&lt;Item = &amp;WidgetId&gt; {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="181">
-                <a href="#181">181</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.order</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="182">
-                <a href="#182">182</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .iter()</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="183">
-                <a href="#183">183</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .rev()</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="184">
-                <a href="#184">184</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .filter(move |id| self.bounds.get(&amp;id.id).unwrap().contains(location))</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="185">
-                <a href="#185">185</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="186">
-                <a href="#186">186</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">

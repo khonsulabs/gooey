@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="1 / 44">2.27 %</abbr></p>
+                <abbr title="1 / 42">2.38 %</abbr></p>
         </div>
     </div>
 
@@ -255,7 +255,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    let server = CustomServer::&lt;Example&gt;::open(</pre>
+                <pre class="has-background-danger-light py-0 px-2">    let server =</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -268,7 +268,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Path::new(&quot;counter-example.bonsaidb&quot;),</pre>
+                <pre class="has-background-danger-light py-0 px-2">        CustomServer::&lt;Example&gt;::open(Path::new(&quot;counter-example.bonsaidb&quot;), Configuration {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -281,7 +281,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Configuration {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            default_permissions: Permissions::allow_all(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -294,7 +294,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            default_permissions: Permissions::allow_all(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">            ..Configuration::default()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -307,7 +307,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            ..Configuration::default()</pre>
+                <pre class="has-background-danger-light py-0 px-2">        })</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -320,7 +320,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        },</pre>
+                <pre class="has-background-danger-light py-0 px-2">        .await?;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -333,7 +333,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    )</pre>
+                <pre class="has-background-danger-light py-0 px-2">    server.register_schema::&lt;()&gt;().await?;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -342,11 +342,11 @@
                 <a href="#24">24</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    .await?;</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F; Create the database if it doesn&#x27;t exist.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -359,7 +359,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    server.register_schema::&lt;()&gt;().await?;</pre>
+                <pre class="has-background-danger-light py-0 px-2">    match server.create_database::&lt;()&gt;(DATABASE_NAME).await {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -368,11 +368,11 @@
                 <a href="#26">26</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F; Create the database if it doesn&#x27;t exist.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        Ok(_) | Err(Error::DatabaseNameAlreadyTaken(_)) =&gt; {}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -385,7 +385,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    match server.create_database::&lt;()&gt;(DATABASE_NAME).await {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Err(other) =&gt; anyhow::bail!(other),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -394,11 +394,11 @@
                 <a href="#28">28</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Ok(_) | Err(Error::DatabaseNameAlreadyTaken(_)) =&gt; {}</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -407,11 +407,11 @@
                 <a href="#29">29</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Err(other) =&gt; anyhow::bail!(other),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F; Start listening for websockets. This does not return until the server</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -424,7 +424,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    }</pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F; shuts down. If you want to listen for multiple types of traffic, you will</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -437,7 +437,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F; Start listening for websockets. This does not return until the server</pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F; need to spawn the tasks.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -446,11 +446,11 @@
                 <a href="#32">32</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F; shuts down. If you want to listen for multiple types of traffic, you will</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    server.listen_for_websockets_on(&quot;127.0.0.1:8081&quot;).await?;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -463,7 +463,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F; need to spawn the tasks.</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -476,39 +476,13 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    server.listen_for_websockets_on(&quot;127.0.0.1:8081&quot;).await?;</pre>
+                <pre class="has-background-danger-light py-0 px-2">    Ok(())</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="35">
                 <a href="#35">35</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="36">
-                <a href="#36">36</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    Ok(())</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="37">
-                <a href="#37">37</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
@@ -520,8 +494,8 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="38">
-                <a href="#38">38</a>
+                id="36">
+                <a href="#36">36</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -529,6 +503,32 @@
             </div>
             <div class="column has-background-white p-0">
                 <pre class="has-background-white py-0 px-2"></pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="37">
+                <a href="#37">37</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; The example database `Backend`.</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="38">
+                <a href="#38">38</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -541,7 +541,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; The example database `Backend`.</pre>
+                <pre class="has-background-white py-0 px-2">enum Example {}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -550,11 +550,11 @@
                 <a href="#40">40</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug)]</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -567,7 +567,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">enum Example {}</pre>
+                <pre class="has-background-white py-0 px-2">impl Backend for Example {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -580,7 +580,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    type CustomApi = ExampleApi;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -593,7 +593,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl Backend for Example {</pre>
+                <pre class="has-background-white py-0 px-2">    type CustomApiDispatcher = ApiDispatcher;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -606,7 +606,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    type CustomApi = ExampleApi;</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -615,11 +615,11 @@
                 <a href="#45">45</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    type CustomApiDispatcher = ApiDispatcher;</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    fn dispatcher_for(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -628,11 +628,11 @@
                 <a href="#46">46</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        server: &amp;CustomServer&lt;Self&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -645,7 +645,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn dispatcher_for(</pre>
+                <pre class="has-background-danger-light py-0 px-2">        _client: &amp;ConnectedClient&lt;Self&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -658,7 +658,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        server: &amp;CustomServer&lt;Self&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; ApiDispatcher {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -671,7 +671,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        _client: &amp;ConnectedClient&lt;Self&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        ApiDispatcher {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -684,7 +684,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; ApiDispatcher {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            server: server.clone(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -697,7 +697,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        ApiDispatcher {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -710,7 +710,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            server: server.clone(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -719,11 +719,11 @@
                 <a href="#53">53</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -732,11 +732,11 @@
                 <a href="#54">54</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -749,7 +749,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; The dispatcher for API requests.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -758,11 +758,11 @@
                 <a href="#56">56</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug, actionable::Dispatcher)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -775,7 +775,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; The dispatcher for API requests.</pre>
+                <pre class="has-background-white py-0 px-2">#[dispatcher(input = Request)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -784,11 +784,11 @@
                 <a href="#58">58</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug, actionable::Dispatcher)]</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">struct ApiDispatcher {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -801,7 +801,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">#[dispatcher(input = Request)]</pre>
+                <pre class="has-background-white py-0 px-2">    server: CustomServer&lt;Example&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -814,7 +814,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">struct ApiDispatcher {</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -827,7 +827,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    server: CustomServer&lt;Example&gt;,</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -840,7 +840,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">impl RequestDispatcher for ApiDispatcher {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -853,7 +853,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    type Error = anyhow::Error;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -866,7 +866,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl RequestDispatcher for ApiDispatcher {</pre>
+                <pre class="has-background-white py-0 px-2">    type Output = Response;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -879,7 +879,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    type Error = anyhow::Error;</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -892,7 +892,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    type Output = Response;</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -905,7 +905,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">#[actionable::async_trait]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -918,7 +918,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">impl GetCounterHandler for ApiDispatcher {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -931,7 +931,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">#[actionable::async_trait]</pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns the current counter value.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -940,11 +940,11 @@
                 <a href="#70">70</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl GetCounterHandler for ApiDispatcher {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    async fn handle(&amp;self, _permissions: &amp;actionable::Permissions) -&gt; anyhow::Result&lt;Response&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -953,11 +953,11 @@
                 <a href="#71">71</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Returns the current counter value.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        println!(&quot;Returning current counter value.&quot;);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -970,7 +970,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    async fn handle(&amp;self, _permissions: &amp;actionable::Permissions) -&gt; anyhow::Result&lt;Response&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let db = self.server.database::&lt;()&gt;(&quot;counter&quot;).await.unwrap();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -979,11 +979,11 @@
                 <a href="#73">73</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        println!(&quot;Returning current counter value.&quot;);</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -996,7 +996,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let db = self.server.database::&lt;()&gt;(&quot;counter&quot;).await.unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let value = db</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1005,11 +1005,11 @@
                 <a href="#75">75</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            .get_key(&quot;count&quot;)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1022,7 +1022,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let value = db</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .into_u64()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1031,11 +1031,11 @@
                 <a href="#77">77</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .get_key(&quot;count&quot;)</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">            .await</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1048,7 +1048,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .into_u64()</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .unwrap()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1057,11 +1057,11 @@
                 <a href="#79">79</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">            .await</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            .unwrap_or_default();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1074,7 +1074,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .unwrap()</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Ok(Response::CounterValue(value))</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1087,7 +1087,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .unwrap_or_default();</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1096,11 +1096,11 @@
                 <a href="#82">82</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Ok(Response::CounterValue(value))</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1109,11 +1109,11 @@
                 <a href="#83">83</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1126,7 +1126,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">#[actionable::async_trait]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1139,7 +1139,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">impl IncrementCounterHandler for ApiDispatcher {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1152,7 +1152,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">#[actionable::async_trait]</pre>
+                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Increments the counter, and publishes a message with the new value.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1161,11 +1161,11 @@
                 <a href="#87">87</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl IncrementCounterHandler for ApiDispatcher {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    async fn handle(&amp;self, _permissions: &amp;actionable::Permissions) -&gt; anyhow::Result&lt;Response&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1174,11 +1174,11 @@
                 <a href="#88">88</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    &#x2F;&#x2F;&#x2F; Increments the counter, and publishes a message with the new value.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        let db = self.server.database::&lt;()&gt;(&quot;counter&quot;).await?;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1187,11 +1187,11 @@
                 <a href="#89">89</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    async fn handle(&amp;self, _permissions: &amp;actionable::Permissions) -&gt; anyhow::Result&lt;Response&gt; {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1204,7 +1204,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let db = self.server.database::&lt;()&gt;(&quot;counter&quot;).await?;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let new_value = db.increment_key_by(&quot;count&quot;, 1_u64).await?;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1213,11 +1213,11 @@
                 <a href="#91">91</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.server</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1230,39 +1230,13 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let new_value = db.increment_key_by(&quot;count&quot;, 1_u64).await?;</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .broadcast(Response::CounterValue(new_value))</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="93">
                 <a href="#93">93</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.server</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="94">
-                <a href="#94">94</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .broadcast(Response::CounterValue(new_value))</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="95">
-                <a href="#95">95</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -1274,8 +1248,8 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="96">
-                <a href="#96">96</a>
+                id="94">
+                <a href="#94">94</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -1287,8 +1261,8 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="97">
-                <a href="#97">97</a>
+                id="95">
+                <a href="#95">95</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
@@ -1300,8 +1274,8 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="98">
-                <a href="#98">98</a>
+                id="96">
+                <a href="#96">96</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
@@ -1313,8 +1287,8 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
-                id="99">
-                <a href="#99">99</a>
+                id="97">
+                <a href="#97">97</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -1326,7 +1300,7 @@
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-07-23 15:25</p>
+                <p class="heading">Date: 2021-07-25 21:23</p>
             </div>
         </footer>
     </body>

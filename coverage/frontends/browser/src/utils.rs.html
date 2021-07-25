@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="0 / 121">0 %</abbr></p>
+                <abbr title="0 / 147">0 %</abbr></p>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
         <div>
             <p class="heading">Functions</p>
             <p class="title has-text-danger">
-                <abbr title="0 / 28">0 %</abbr></p>
+                <abbr title="0 / 39">0 %</abbr></p>
         </div>
     </div>
 
@@ -86,7 +86,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    style_sheet::{Classes, Rule},</pre>
+                <pre class="has-background-white py-0 px-2">    style_sheet::{Classes, Rule, State},</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -242,7 +242,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">pub fn window_element_by_widget_id&lt;T: JsCast&gt;(widget_id: u32) -&gt; Option&lt;T&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">pub fn create_element&lt;T: JsCast&gt;(name: &amp;str) -&gt; T {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -268,7 +268,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        .get_element_by_id(&amp;widget_css_id(widget_id))</pre>
+                <pre class="has-background-danger-light py-0 px-2">        .create_element(name)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -281,7 +281,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        .and_then(|e| e.dyn_into::&lt;T&gt;().ok())</pre>
+                <pre class="has-background-danger-light py-0 px-2">        .unwrap()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -294,7 +294,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">}</pre>
+                <pre class="has-background-danger-light py-0 px-2">        .unchecked_into::&lt;T&gt;()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -303,11 +303,11 @@
                 <a href="#21">21</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -320,7 +320,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">#[must_use]</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -329,11 +329,11 @@
                 <a href="#23">23</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">pub fn widget_css_id(widget_id: u32) -&gt; String {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">#[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -346,7 +346,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    format!(&quot;gooey-{}&quot;, widget_id)</pre>
+                <pre class="has-background-danger-light py-0 px-2">pub fn window_element_by_widget_id&lt;T: JsCast&gt;(widget_id: u32) -&gt; Option&lt;T&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -359,7 +359,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">}</pre>
+                <pre class="has-background-danger-light py-0 px-2">    window_document()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -368,11 +368,11 @@
                 <a href="#26">26</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        .get_element_by_id(&amp;widget_css_id(widget_id))</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -385,7 +385,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">pub fn set_widget_id(element: &amp;HtmlElement, widget_id: u32) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        .and_then(|e| e.dyn_into::&lt;T&gt;().ok())</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -398,7 +398,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    element.set_id(&amp;widget_css_id(widget_id));</pre>
+                <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -407,11 +407,11 @@
                 <a href="#29">29</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">}</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -424,7 +424,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">#[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -437,7 +437,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">pub fn set_widget_classes(element: &amp;HtmlElement, classes: &amp;Classes) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">pub fn widget_css_id(widget_id: u32) -&gt; String {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -450,7 +450,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    element.set_class_name(&amp;classes.to_vec().join(&quot; &quot;));</pre>
+                <pre class="has-background-danger-light py-0 px-2">    format!(&quot;gooey-{}&quot;, widget_id)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -485,11 +485,11 @@
                 <a href="#35">35</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct CssManager {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">pub fn set_widget_id(element: &amp;HtmlElement, widget_id: u32) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -498,11 +498,11 @@
                 <a href="#36">36</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    sheet: CssStyleSheet,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    element.set_id(&amp;widget_css_id(widget_id));</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -511,11 +511,11 @@
                 <a href="#37">37</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -537,11 +537,11 @@
                 <a href="#39">39</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl CssManager {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">pub fn set_widget_classes(element: &amp;HtmlElement, classes: &amp;Classes) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -550,11 +550,11 @@
                 <a href="#40">40</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    element.set_class_name(&amp;classes.to_vec().join(&quot; &quot;));</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -567,7 +567,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn shared() -&gt; Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -576,11 +576,11 @@
                 <a href="#42">42</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let doc = window_document();</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -589,11 +589,11 @@
                 <a href="#43">43</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let style_tag = doc.get_element_by_id(&quot;gooey-styles&quot;).map_or_else(</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">pub struct CssManager {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -602,11 +602,11 @@
                 <a href="#44">44</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            || {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    sheet: CssStyleSheet,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -615,11 +615,11 @@
                 <a href="#45">45</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                let style = doc</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -628,11 +628,11 @@
                 <a href="#46">46</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    .create_element(&quot;style&quot;)</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -641,11 +641,11 @@
                 <a href="#47">47</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    .expect(&quot;error creating style&quot;)</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl CssManager {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -654,11 +654,11 @@
                 <a href="#48">48</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    .unchecked_into::&lt;web_sys::HtmlStyleElement&gt;();</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -671,7 +671,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                style.set_id(&quot;gooey-styles&quot;);</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn shared() -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -684,7 +684,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                doc.head()</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let doc = window_document();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -697,7 +697,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    .expect(&quot;missing &lt;head&gt;&quot;)</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let style_tag = doc.get_element_by_id(&quot;gooey-styles&quot;).map_or_else(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -710,7 +710,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    .append_child(&amp;style)</pre>
+                <pre class="has-background-danger-light py-0 px-2">            || {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -723,7 +723,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    .unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">                let style = doc</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -736,7 +736,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                style</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    .create_element(&quot;style&quot;)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -749,7 +749,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            },</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    .expect(&quot;error creating style&quot;)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -762,7 +762,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            JsCast::unchecked_into::&lt;HtmlStyleElement&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    .unchecked_into::&lt;web_sys::HtmlStyleElement&gt;();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -775,7 +775,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        );</pre>
+                <pre class="has-background-danger-light py-0 px-2">                style.set_id(&quot;gooey-styles&quot;);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -788,7 +788,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2"></pre>
+                <pre class="has-background-danger-light py-0 px-2">                doc.head()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -801,7 +801,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    .expect(&quot;missing &lt;head&gt;&quot;)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -814,7 +814,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            sheet: style_tag.sheet().expect(&quot;missing sheet&quot;).unchecked_into(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    .append_child(&amp;style)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -827,7 +827,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    .unwrap();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -840,7 +840,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">                style</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -849,11 +849,11 @@
                 <a href="#63">63</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            },</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -866,7 +866,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn register_rule(&amp;self, rule: &amp;str) -&gt; CssRules {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            JsCast::unchecked_into::&lt;HtmlStyleElement&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -879,7 +879,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        CssRules {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -892,7 +892,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            index: vec![self.sheet.insert_rule(rule).unwrap()],</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -905,7 +905,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -918,7 +918,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            sheet: style_tag.sheet().expect(&quot;missing sheet&quot;).unchecked_into(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -927,11 +927,11 @@
                 <a href="#69">69</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -944,7 +944,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn unregister_rule(&amp;self, rule: &amp;mut CssRules) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -953,11 +953,11 @@
                 <a href="#71">71</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        for index in std::mem::take(&amp;mut rule.index) {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -970,7 +970,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            self.sheet.delete_rule(index).unwrap();</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn register_rule(&amp;self, rule: &amp;str) -&gt; CssRules {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -983,7 +983,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        CssRules {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -996,7 +996,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            index: vec![self.sheet.insert_rule(rule).unwrap()],</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1005,11 +1005,11 @@
                 <a href="#75">75</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1018,11 +1018,11 @@
                 <a href="#76">76</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1031,11 +1031,11 @@
                 <a href="#77">77</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug)]</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1044,11 +1044,11 @@
                 <a href="#78">78</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">#[must_use]</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn unregister_rule(&amp;self, rule: &amp;mut CssRules) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1057,11 +1057,11 @@
                 <a href="#79">79</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct CssRules {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        for index in std::mem::take(&amp;mut rule.index) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1070,11 +1070,11 @@
                 <a href="#80">80</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    index: Vec&lt;u32&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            self.sheet.delete_rule(index).unwrap();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1083,11 +1083,11 @@
                 <a href="#81">81</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1096,11 +1096,11 @@
                 <a href="#82">82</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1113,7 +1113,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub enum CssMapping {</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1126,7 +1126,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    Color,</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1135,11 +1135,11 @@
                 <a href="#85">85</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug, Default)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1152,7 +1152,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">#[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1165,7 +1165,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl Drop for CssRules {</pre>
+                <pre class="has-background-white py-0 px-2">pub struct CssRules {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1174,11 +1174,11 @@
                 <a href="#88">88</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn drop(&amp;mut self) {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    index: Vec&lt;u32&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1187,11 +1187,11 @@
                 <a href="#89">89</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        CssManager::shared().unregister_rule(self);</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1200,11 +1200,11 @@
                 <a href="#90">90</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1217,7 +1217,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">pub enum CssMapping {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1230,7 +1230,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    Color,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1243,7 +1243,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl CssRules {</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1252,11 +1252,11 @@
                 <a href="#94">94</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn and(mut self, rule: &amp;str) -&gt; Self {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1265,11 +1265,11 @@
                 <a href="#95">95</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.index</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl Drop for CssRules {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1282,7 +1282,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .push(CssManager::shared().sheet.insert_rule(rule).unwrap());</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn drop(&amp;mut self) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1295,7 +1295,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self</pre>
+                <pre class="has-background-danger-light py-0 px-2">        CssManager::shared().unregister_rule(self);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1347,7 +1347,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">#[must_use]</pre>
+                <pre class="has-background-white py-0 px-2">impl CssRules {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1356,11 +1356,11 @@
                 <a href="#102">102</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct CssBlockBuilder {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn and(mut self, rule: &amp;str) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1369,11 +1369,11 @@
                 <a href="#103">103</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    selector: String,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.index</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1382,11 +1382,11 @@
                 <a href="#104">104</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    pub theme: Option&lt;SystemTheme&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            .push(CssManager::shared().sheet.insert_rule(rule).unwrap());</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1395,11 +1395,11 @@
                 <a href="#105">105</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    statements: Vec&lt;String&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1408,11 +1408,11 @@
                 <a href="#106">106</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1434,11 +1434,11 @@
                 <a href="#108">108</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl CssBlockBuilder {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn extend(&amp;mut self, mut other: Self) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1451,7 +1451,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn for_id(widget_id: u32) -&gt; Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let other = std::mem::take(&amp;mut other.index);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1464,7 +1464,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self.index.extend(other.into_iter());</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1477,7 +1477,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            selector: format!(&quot;#{}&quot;, widget_css_id(widget_id)),</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1486,11 +1486,11 @@
                 <a href="#112">112</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            statements: Vec::default(),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1499,11 +1499,11 @@
                 <a href="#113">113</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            theme: None,</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1512,11 +1512,11 @@
                 <a href="#114">114</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">#[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1525,11 +1525,11 @@
                 <a href="#115">115</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">pub struct CssBlockBuilder {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1542,7 +1542,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    selector: String,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1551,11 +1551,11 @@
                 <a href="#117">117</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn for_css_selector&lt;S: ToString&gt;(selector: S) -&gt; Self {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    pub theme: Option&lt;SystemTheme&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1564,11 +1564,11 @@
                 <a href="#118">118</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    statements: Vec&lt;String&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1577,11 +1577,11 @@
                 <a href="#119">119</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            selector: selector.to_string(),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1590,11 +1590,11 @@
                 <a href="#120">120</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            statements: Vec::default(),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1603,11 +1603,11 @@
                 <a href="#121">121</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            theme: None,</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl CssBlockBuilder {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1620,7 +1620,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn for_id(widget_id: u32) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1633,7 +1633,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1642,11 +1642,11 @@
                 <a href="#124">124</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            selector: format!(&quot;#{}&quot;, widget_css_id(widget_id)),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1659,7 +1659,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn for_classes(classes: &amp;Classes) -&gt; Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            statements: Vec::default(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1672,7 +1672,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            theme: None,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1685,7 +1685,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            selector: format!(&quot;.{}&quot;, classes.to_vec().join(&quot;.&quot;)),</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1698,7 +1698,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            statements: Vec::default(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1707,11 +1707,11 @@
                 <a href="#129">129</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            theme: None,</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1724,7 +1724,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn for_css_selector&lt;S: ToString&gt;(selector: S) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1737,7 +1737,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1746,11 +1746,11 @@
                 <a href="#132">132</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            selector: selector.to_string(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1763,7 +1763,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn for_classes_and_rule(classes: &amp;Classes, rule: &amp;Rule) -&gt; Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            statements: Vec::default(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1776,7 +1776,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut builder = rule.classes.as_ref().map_or_else(</pre>
+                <pre class="has-background-danger-light py-0 px-2">            theme: None,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1789,7 +1789,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            || Self::for_classes(classes),</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1802,7 +1802,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            |rule_classes| Self::for_classes(&amp;classes.merge(rule_classes)),</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1811,11 +1811,11 @@
                 <a href="#137">137</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        );</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1828,7 +1828,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if let Some(active) = rule.active {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn for_classes(classes: &amp;Classes) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1841,7 +1841,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            builder.selector += if active { &quot;:active&quot; } else { &quot;:not(:active)&quot; };</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1854,7 +1854,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            selector: format!(&quot;.{}&quot;, classes.to_vec().join(&quot;.&quot;)),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1867,7 +1867,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if let Some(focused) = rule.focused {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            statements: Vec::default(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1880,7 +1880,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            builder.selector += if focused { &quot;:focus&quot; } else { &quot;:not(:focus)&quot; };</pre>
+                <pre class="has-background-danger-light py-0 px-2">            theme: None,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1906,7 +1906,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if let Some(hovered) = rule.hovered {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1915,11 +1915,11 @@
                 <a href="#145">145</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            builder.selector += if hovered { &quot;:hover&quot; } else { &quot;:not(:hover)&quot; };</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1932,7 +1932,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn for_classes_and_rule(classes: &amp;Classes, rule: &amp;Rule) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1941,11 +1941,11 @@
                 <a href="#147">147</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        let mut builder = rule.classes.as_ref().map_or_else(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1958,7 +1958,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        builder</pre>
+                <pre class="has-background-danger-light py-0 px-2">            || Self::for_classes(classes),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1971,7 +1971,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            |rule_classes| Self::for_classes(&amp;classes.merge(rule_classes)),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1980,11 +1980,11 @@
                 <a href="#150">150</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1997,7 +1997,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn with_css_statement&lt;S: ToString&gt;(mut self, css: S) -&gt; Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        if let Some(active) = rule.active {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2010,7 +2010,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.statements.push(css.to_string());</pre>
+                <pre class="has-background-danger-light py-0 px-2">            builder.selector += if active { &quot;:active&quot; } else { &quot;:not(:active)&quot; };</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2023,7 +2023,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2036,7 +2036,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        if let Some(focused) = rule.focused {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2045,11 +2045,11 @@
                 <a href="#155">155</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            builder.selector += if focused { &quot;:focus&quot; } else { &quot;:not(:focus)&quot; };</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2062,7 +2062,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub const fn with_theme(mut self, theme: SystemTheme) -&gt; Self {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2075,7 +2075,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.theme = Some(theme);</pre>
+                <pre class="has-background-danger-light py-0 px-2">        if let Some(hovered) = rule.hovered {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2088,7 +2088,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self</pre>
+                <pre class="has-background-danger-light py-0 px-2">            builder.selector += if hovered { &quot;:hover&quot; } else { &quot;:not(:hover)&quot; };</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2101,7 +2101,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2123,11 +2123,11 @@
                 <a href="#161">161</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        builder</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2140,7 +2140,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub fn is_empty(&amp;self) -&gt; bool {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2149,11 +2149,11 @@
                 <a href="#163">163</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.statements.is_empty()</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2166,7 +2166,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn and_state(mut self, state: &amp;State) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2175,11 +2175,11 @@
                 <a href="#165">165</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.selector += if state.active {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2188,11 +2188,11 @@
                 <a href="#166">166</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            &quot;:active&quot;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2205,7 +2205,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl std::fmt::Display for CssBlockBuilder {</pre>
+                <pre class="has-background-white py-0 px-2">        } else {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2214,11 +2214,11 @@
                 <a href="#168">168</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    fn fmt(&amp;self, f: &amp;mut std::fmt::Formatter&lt;&#x27;_&gt;) -&gt; std::fmt::Result {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            &quot;:not(:active)&quot;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2227,11 +2227,11 @@
                 <a href="#169">169</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if let Some(theme) = self.theme {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        };</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2244,7 +2244,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            f.write_char(&#x27;.&#x27;)?;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self.selector += if state.focused {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2257,7 +2257,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            f.write_str(match theme {</pre>
+                <pre class="has-background-danger-light py-0 px-2">            &quot;:focus&quot;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2266,11 +2266,11 @@
                 <a href="#172">172</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                SystemTheme::Light =&gt; &quot;gooey-light&quot;,</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        } else {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2283,7 +2283,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                SystemTheme::Dark =&gt; &quot;gooey-dark&quot;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">            &quot;:not(:focus)&quot;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2292,11 +2292,11 @@
                 <a href="#174">174</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            })?;</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        };</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2309,7 +2309,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            f.write_char(&#x27; &#x27;)?;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self.selector += if state.hovered {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2322,7 +2322,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            &quot;:hover&quot;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2331,11 +2331,11 @@
                 <a href="#177">177</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        f.write_str(&amp;self.selector)?;</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        } else {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2348,7 +2348,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        f.write_char(&#x27;{&#x27;)?;</pre>
+                <pre class="has-background-danger-light py-0 px-2">            &quot;:not(:hover)&quot;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2357,11 +2357,11 @@
                 <a href="#179">179</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        for statement in &amp;self.statements {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        };</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2374,7 +2374,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            f.write_str(statement)?;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2387,7 +2387,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            f.write_char(&#x27;;&#x27;)?;</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2400,7 +2400,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        }</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2413,7 +2413,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        f.write_str(&quot;}&quot;)</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn and_additional_selector(mut self, selector: &amp;str) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -2426,13 +2426,494 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self.selector.push_str(selector);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="185">
                 <a href="#185">185</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="186">
+                <a href="#186">186</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="187">
+                <a href="#187">187</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="188">
+                <a href="#188">188</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn with_css_statement&lt;S: ToString&gt;(mut self, css: S) -&gt; Self {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="189">
+                <a href="#189">189</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.statements.push(css.to_string());</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="190">
+                <a href="#190">190</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="191">
+                <a href="#191">191</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="192">
+                <a href="#192">192</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="193">
+                <a href="#193">193</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub const fn with_theme(mut self, theme: SystemTheme) -&gt; Self {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="194">
+                <a href="#194">194</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.theme = Some(theme);</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="195">
+                <a href="#195">195</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="196">
+                <a href="#196">196</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="197">
+                <a href="#197">197</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="198">
+                <a href="#198">198</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="199">
+                <a href="#199">199</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn is_empty(&amp;self) -&gt; bool {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="200">
+                <a href="#200">200</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.statements.is_empty()</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="201">
+                <a href="#201">201</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="202">
+                <a href="#202">202</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="203">
+                <a href="#203">203</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="204">
+                <a href="#204">204</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl std::fmt::Display for CssBlockBuilder {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="205">
+                <a href="#205">205</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    fn fmt(&amp;self, f: &amp;mut std::fmt::Formatter&lt;&#x27;_&gt;) -&gt; std::fmt::Result {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="206">
+                <a href="#206">206</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        if let Some(theme) = self.theme {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="207">
+                <a href="#207">207</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            f.write_char(&#x27;.&#x27;)?;</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="208">
+                <a href="#208">208</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            f.write_str(match theme {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="209">
+                <a href="#209">209</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                SystemTheme::Light =&gt; &quot;gooey-light&quot;,</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="210">
+                <a href="#210">210</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">                SystemTheme::Dark =&gt; &quot;gooey-dark&quot;,</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="211">
+                <a href="#211">211</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            })?;</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="212">
+                <a href="#212">212</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            f.write_char(&#x27; &#x27;)?;</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="213">
+                <a href="#213">213</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="214">
+                <a href="#214">214</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        f.write_str(&amp;self.selector)?;</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="215">
+                <a href="#215">215</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        f.write_char(&#x27;{&#x27;)?;</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="216">
+                <a href="#216">216</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        for statement in &amp;self.statements {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="217">
+                <a href="#217">217</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            f.write_str(statement)?;</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="218">
+                <a href="#218">218</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            f.write_char(&#x27;;&#x27;)?;</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="219">
+                <a href="#219">219</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">        }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="220">
+                <a href="#220">220</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        f.write_str(&quot;}&quot;)</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="221">
+                <a href="#221">221</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="222">
+                <a href="#222">222</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -2444,7 +2925,7 @@
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-07-23 15:25</p>
+                <p class="heading">Date: 2021-07-25 21:23</p>
             </div>
         </footer>
     </body>

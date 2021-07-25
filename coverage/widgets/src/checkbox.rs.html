@@ -2,12 +2,12 @@
 <html lang="en-us">
     <head><meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Grcov report - measured.rs </title>
+        <title>Grcov report - checkbox.rs </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"></head>
     <body>
         <div class="container">
     <nav class="breadcrumb is-right" aria-label="breadcrumbs">
-        <ul><li><a href="../../../index.html">top_level</a></li><li><a href="./index.html">text&#x2F;src&#x2F;wrap</a></li><li class="is-active"><a href="#">measured.rs</a></li>
+        <ul><li><a href="../../index.html">top_level</a></li><li><a href="./index.html">widgets&#x2F;src</a></li><li class="is-active"><a href="#">checkbox.rs</a></li>
         </ul>
     </nav>
     <nav class="level">
@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="58 / 84">69.05 %</abbr></p>
+                <abbr title="0 / 53">0 %</abbr></p>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
         <div>
             <p class="heading">Functions</p>
             <p class="title has-text-danger">
-                <abbr title="5 / 23">21.74 %</abbr></p>
+                <abbr title="0 / 19">0 %</abbr></p>
         </div>
     </div>
 
@@ -47,7 +47,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use gooey_core::Points;</pre>
+                <pre class="has-background-white py-0 px-2">use gooey_core::{euclid::Length, Callback, Context, Points, StyledWidget, Widget};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -60,7 +60,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use gooey_renderer::{Renderer, TextMetrics};</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -73,7 +73,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">#[cfg(feature = &quot;gooey-rasterizer&quot;)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -86,7 +86,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use super::{ParserStatus, SpanGroup, Token, Tokenizer};</pre>
+                <pre class="has-background-white py-0 px-2">mod rasterizer;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -99,7 +99,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use crate::{prepared::PreparedSpan, Text};</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -112,7 +112,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">#[cfg(feature = &quot;frontend-browser&quot;)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -121,11 +121,11 @@
                 <a href="#7">7</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug)]</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">mod browser;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -138,7 +138,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct MeasuredText {</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -151,7 +151,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    pub(crate) info: MeasuredTextInfo,</pre>
+                <pre class="has-background-white py-0 px-2">pub const LABEL_PADDING: Length&lt;f32, Points&gt; = Length::new(5.);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -164,7 +164,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -173,11 +173,11 @@
                 <a href="#11">11</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Default, Debug)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -186,11 +186,11 @@
                 <a href="#12">12</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug)]</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">pub struct Checkbox {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -203,7 +203,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub(crate) enum MeasuredTextInfo {</pre>
+                <pre class="has-background-white py-0 px-2">    label: String,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -216,7 +216,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    Groups(Vec&lt;SpanGroup&gt;),</pre>
+                <pre class="has-background-white py-0 px-2">    checked: bool,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -229,7 +229,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    NoText(TextMetrics&lt;Points&gt;),</pre>
+                <pre class="has-background-white py-0 px-2">    toggled: Callback,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -268,7 +268,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">struct TextMeasureState {</pre>
+                <pre class="has-background-white py-0 px-2">impl Checkbox {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -277,11 +277,11 @@
                 <a href="#19">19</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    current_group: Option&lt;SpanGroup&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn build() -&gt; Builder {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -290,11 +290,11 @@
                 <a href="#20">20</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    status: ParserStatus,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        Builder::new()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -303,11 +303,11 @@
                 <a href="#21">21</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    groups: Vec&lt;SpanGroup&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -320,7 +320,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    no_text_metrics: Option&lt;TextMetrics&lt;Points&gt;&gt;,</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -329,11 +329,11 @@
                 <a href="#23">23</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn new&lt;S: Into&lt;String&gt;&gt;(label: S, checked: bool, toggled: Callback) -&gt; StyledWidget&lt;Self&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -342,11 +342,11 @@
                 <a href="#24">24</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        StyledWidget::default_for(Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -355,11 +355,11 @@
                 <a href="#25">25</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl TextMeasureState {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            label: label.into(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -368,11 +368,11 @@
                 <a href="#26">26</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    fn push_token(&amp;mut self, token: Token) {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            toggled,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -381,11 +381,11 @@
                 <a href="#27">27</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        match token {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            checked,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -398,7 +398,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Token::EndOfLine(vmetrics) =&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        })</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -411,7 +411,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                self.commit_current_group();</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -420,11 +420,11 @@
                 <a href="#30">30</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                self.groups.push(SpanGroup::EndOfLine(vmetrics));</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -437,7 +437,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                self.status = ParserStatus::LineStart;</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub fn set_checked(&amp;mut self, checked: bool, context: &amp;Context&lt;Self&gt;) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -450,7 +450,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self.checked = checked;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -463,7 +463,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Token::NoText(vmetrics) =&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context.send_command(CheckboxCommand::Toggled);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -476,104 +476,13 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                self.no_text_metrics = vmetrics;</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
                 id="35">
                 <a href="#35">35</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="36">
-                <a href="#36">36</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                8
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            Token::Characters(span) =&gt; {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="37">
-                <a href="#37">37</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                8
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                match self.status {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="38">
-                <a href="#38">38</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                8
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                    ParserStatus::LineStart | ParserStatus::InWord =&gt; {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="39">
-                <a href="#39">39</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                        self.push_visual_span(span);</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="40">
-                <a href="#40">40</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                        self.status = ParserStatus::InWord;</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="41">
-                <a href="#41">41</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="42">
-                <a href="#42">42</a>
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
@@ -585,15 +494,106 @@
         </div><div class="columns p-0 m-0">
             <div
                 class="column is-1 is-narrow p-0 has-text-centered"
+                id="36">
+                <a href="#36">36</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="37">
+                <a href="#37">37</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub const fn checked(&amp;self) -&gt; bool {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="38">
+                <a href="#38">38</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.checked</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="39">
+                <a href="#39">39</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="40">
+                <a href="#40">40</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
+            </div>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="41">
+                <a href="#41">41</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn set_label&lt;S: Into&lt;String&gt;&gt;(&amp;mut self, label: S, context: &amp;Context&lt;Self&gt;) {</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="42">
+                <a href="#42">42</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
+            </div>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.label = label.into();</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
                 id="43">
                 <a href="#43">43</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                    ParserStatus::Whitespace | ParserStatus::TrailingPunctuation =&gt; {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        context.send_command(CheckboxCommand::LabelChanged);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -602,11 +602,11 @@
                 <a href="#44">44</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                        self.commit_current_group();</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -615,11 +615,11 @@
                 <a href="#45">45</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                        self.push_visual_span(span);</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -628,11 +628,11 @@
                 <a href="#46">46</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                        self.status = ParserStatus::TrailingPunctuation;</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -641,11 +641,11 @@
                 <a href="#47">47</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                    }</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn label(&amp;self) -&gt; &amp;str {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -654,11 +654,11 @@
                 <a href="#48">48</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">                };</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        &amp;self.label</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -667,11 +667,11 @@
                 <a href="#49">49</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">            }</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -680,11 +680,11 @@
                 <a href="#50">50</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            Token::Punctuation(span) =&gt; match self.status {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -693,11 +693,11 @@
                 <a href="#51">51</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                ParserStatus::TrailingPunctuation =&gt; {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -706,11 +706,11 @@
                 <a href="#52">52</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    self.push_visual_span(span);</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">#[must_use]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -719,11 +719,11 @@
                 <a href="#53">53</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">pub struct Builder {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -732,11 +732,11 @@
                 <a href="#54">54</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                ParserStatus::LineStart | ParserStatus::InWord =&gt; {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    checkbox: Checkbox,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -745,11 +745,11 @@
                 <a href="#55">55</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    self.push_visual_span(span);</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -758,11 +758,11 @@
                 <a href="#56">56</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    self.status = ParserStatus::TrailingPunctuation;</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -771,11 +771,11 @@
                 <a href="#57">57</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl Builder {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -788,7 +788,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                ParserStatus::Whitespace =&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn new() -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -801,7 +801,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    self.commit_current_group();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -814,7 +814,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    self.push_visual_span(span);</pre>
+                <pre class="has-background-danger-light py-0 px-2">            checkbox: Checkbox::default(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -827,7 +827,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    self.status = ParserStatus::TrailingPunctuation;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -840,7 +840,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                }</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -853,7 +853,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">            },</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -862,11 +862,11 @@
                 <a href="#64">64</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            Token::Whitespace(span) =&gt; {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn labeled&lt;S: Into&lt;String&gt;&gt;(mut self, label: S) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -875,11 +875,11 @@
                 <a href="#65">65</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                if let ParserStatus::Whitespace = self.status {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.checkbox.label = label.into();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -892,7 +892,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    self.push_whitespace_span(span);</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -901,11 +901,11 @@
                 <a href="#67">67</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                } else {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -914,11 +914,11 @@
                 <a href="#68">68</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                    self.commit_current_group();</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -927,11 +927,11 @@
                 <a href="#69">69</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                    self.push_whitespace_span(span);</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub const fn checked(mut self) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -940,11 +940,11 @@
                 <a href="#70">70</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                    self.status = ParserStatus::Whitespace;</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.checkbox.checked = true;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -953,11 +953,11 @@
                 <a href="#71">71</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                }</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -966,11 +966,11 @@
                 <a href="#72">72</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">            }</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -983,7 +983,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        }</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -992,11 +992,11 @@
                 <a href="#74">74</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    #[allow(clippy::missing_const_for_fn)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1005,11 +1005,11 @@
                 <a href="#75">75</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn on_clicked(mut self, clicked: Callback) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1018,11 +1018,11 @@
                 <a href="#76">76</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    fn push_visual_span(&amp;mut self, span: PreparedSpan) {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.checkbox.toggled = clicked;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1031,11 +1031,11 @@
                 <a href="#77">77</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                8
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        if let Some(SpanGroup::Spans(group)) = &amp;mut self.current_group {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1048,7 +1048,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            group.push(span);</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1057,11 +1057,11 @@
                 <a href="#79">79</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                8
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        } else {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1070,11 +1070,11 @@
                 <a href="#80">80</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                8
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            self.commit_current_group();</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    pub fn finish(self) -&gt; StyledWidget&lt;Checkbox&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1083,11 +1083,11 @@
                 <a href="#81">81</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                8
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            self.current_group = Some(SpanGroup::Spans(vec![span]));</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        StyledWidget::default_for(self.checkbox)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1096,11 +1096,11 @@
                 <a href="#82">82</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                8
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        }</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1109,11 +1109,11 @@
                 <a href="#83">83</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                8
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1135,11 +1135,11 @@
                 <a href="#85">85</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    fn push_whitespace_span(&amp;mut self, span: PreparedSpan) {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1148,11 +1148,11 @@
                 <a href="#86">86</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        if let Some(SpanGroup::Whitespace(group)) = &amp;mut self.current_group {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">pub enum InternalCheckboxEvent {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1161,11 +1161,11 @@
                 <a href="#87">87</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            group.push(span);</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    Clicked,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1174,11 +1174,11 @@
                 <a href="#88">88</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        } else {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1187,11 +1187,11 @@
                 <a href="#89">89</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            self.commit_current_group();</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1200,11 +1200,11 @@
                 <a href="#90">90</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            self.current_group = Some(SpanGroup::Whitespace(vec![span]));</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1213,11 +1213,11 @@
                 <a href="#91">91</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">pub enum CheckboxCommand {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1226,11 +1226,11 @@
                 <a href="#92">92</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                6
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    Toggled,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1243,7 +1243,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    LabelChanged,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1256,7 +1256,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    fn commit_current_group(&amp;mut self) {</pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1265,11 +1265,11 @@
                 <a href="#95">95</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                28
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        if let Some(group) = self.current_group.take() {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1278,11 +1278,11 @@
                 <a href="#96">96</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            self.groups.push(group);</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl Widget for Checkbox {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1291,11 +1291,11 @@
                 <a href="#97">97</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    type Command = CheckboxCommand;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1304,11 +1304,11 @@
                 <a href="#98">98</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                28
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    type Event = InternalCheckboxEvent;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1330,11 +1330,11 @@
                 <a href="#100">100</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    fn finish(mut self) -&gt; Vec&lt;SpanGroup&gt; {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    const CLASS: &amp;&#x27;static str = &quot;gooey-checkbox&quot;;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1343,11 +1343,11 @@
                 <a href="#101">101</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        self.commit_current_group();</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1356,11 +1356,11 @@
                 <a href="#102">102</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        self.groups</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    fn receive_event(&amp;mut self, event: Self::Event, context: &amp;Context&lt;Self&gt;) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1369,11 +1369,11 @@
                 <a href="#103">103</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        let InternalCheckboxEvent::Clicked = event;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1382,11 +1382,11 @@
                 <a href="#104">104</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.set_checked(!self.checked, context);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1395,11 +1395,11 @@
                 <a href="#105">105</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        self.toggled.invoke(());</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1408,11 +1408,11 @@
                 <a href="#106">106</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl MeasuredText {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1421,11 +1421,11 @@
                 <a href="#107">107</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    pub fn new&lt;R: Renderer&gt;(text: &amp;Text, scene: &amp;R) -&gt; Self {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1434,11 +1434,11 @@
                 <a href="#108">108</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        let mut state = TextMeasureState {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1447,11 +1447,11 @@
                 <a href="#109">109</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                
             </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            no_text_metrics: None,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">#[derive(Debug)]</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1460,232 +1460,11 @@
                 <a href="#110">110</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            current_group: None,</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="111">
-                <a href="#111">111</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            status: ParserStatus::LineStart,</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="112">
-                <a href="#112">112</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            groups: Vec::new(),</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="113">
-                <a href="#113">113</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        };</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="114">
-                <a href="#114">114</a>
-            </div>
-            <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="115">
-                <a href="#115">115</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        &#x2F;&#x2F; Tokens -&gt; &quot;Words&quot; (groups of characters, and where the breaks would happen)</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="116">
-                <a href="#116">116</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        for token in Tokenizer::default().prepare_spans(text, scene) {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="117">
-                <a href="#117">117</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            state.push_token(token);</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="118">
-                <a href="#118">118</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                14
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="119">
-                <a href="#119">119</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="120">
-                <a href="#120">120</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        let info = state.no_text_metrics.map_or_else(</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="121">
-                <a href="#121">121</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            || MeasuredTextInfo::Groups(state.finish()),</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="122">
-                <a href="#122">122</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            MeasuredTextInfo::NoText,</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="123">
-                <a href="#123">123</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        );</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="124">
-                <a href="#124">124</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2"></pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="125">
-                <a href="#125">125</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        MeasuredText { info }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="126">
-                <a href="#126">126</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                2
-            </div>
-            <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="127">
-                <a href="#127">127</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">pub struct CheckboxTransmogrifier;</pre>
             </div>
         </div></div>
         <footer class="footer">

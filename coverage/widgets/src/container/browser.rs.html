@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="0 / 47">0 %</abbr></p>
+                <abbr title="0 / 44">0 %</abbr></p>
         </div>
     </div>
 
@@ -60,7 +60,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    utils::{window_document, CssBlockBuilder, CssManager, CssRules},</pre>
+                <pre class="has-background-white py-0 px-2">    utils::{create_element, CssBlockBuilder, CssManager, CssRules},</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -125,7 +125,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">use web_sys::HtmlDivElement;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -138,7 +138,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use crate::container::{Container, ContainerTransmogrifier};</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -151,7 +151,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">use crate::container::{Container, ContainerTransmogrifier};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -164,7 +164,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl Transmogrifier&lt;WebSys&gt; for ContainerTransmogrifier {</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -177,7 +177,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    type State = Vec&lt;CssRules&gt;;</pre>
+                <pre class="has-background-white py-0 px-2">impl Transmogrifier&lt;WebSys&gt; for ContainerTransmogrifier {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -190,7 +190,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    type Widget = Container;</pre>
+                <pre class="has-background-white py-0 px-2">    type State = Vec&lt;CssRules&gt;;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -203,7 +203,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">    type Widget = Container;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -216,7 +216,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -229,7 +229,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl WebSysTransmogrifier for ContainerTransmogrifier {</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -238,11 +238,11 @@
                 <a href="#16">16</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    fn transmogrify(</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">impl WebSysTransmogrifier for ContainerTransmogrifier {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -255,7 +255,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    fn transmogrify(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -268,7 +268,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        context: TransmogrifierContext&lt;&#x27;_, Self, WebSys&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        &amp;self,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -281,7 +281,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; Option&lt;web_sys::HtmlElement&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context: TransmogrifierContext&lt;&#x27;_, Self, WebSys&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -294,7 +294,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let container = window_document()</pre>
+                <pre class="has-background-danger-light py-0 px-2">    ) -&gt; Option&lt;web_sys::HtmlElement&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -307,7 +307,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .create_element(&quot;div&quot;)</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let container = create_element::&lt;HtmlDivElement&gt;(&quot;div&quot;);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -320,7 +320,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .expect(&quot;error creating div&quot;)</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let mut css_rules = Vec::new();</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -333,7 +333,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .unchecked_into::&lt;web_sys::HtmlDivElement&gt;();</pre>
+                <pre class="has-background-danger-light py-0 px-2">        if let Some(rule) = self.initialize_widget_element(&amp;container, &amp;context) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -346,7 +346,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut css_rules = Vec::new();</pre>
+                <pre class="has-background-danger-light py-0 px-2">            css_rules.push(rule);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -359,7 +359,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        if let Some(rule) = self.initialize_widget_element(&amp;container, &amp;context) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">        }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -368,11 +368,11 @@
                 <a href="#26">26</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            css_rules.push(rule);</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -385,7 +385,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        }</pre>
+                <pre class="has-background-danger-light py-0 px-2">        let mut container_css = CssBlockBuilder::for_id(context.registration.id().id)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -394,11 +394,11 @@
                 <a href="#28">28</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">            .with_css_statement(&quot;display: flex&quot;)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -411,7 +411,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        let mut container_css = CssBlockBuilder::for_id(context.registration.id().id)</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .with_css_statement(&quot;flex: 1&quot;)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -424,7 +424,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .with_css_statement(&quot;display: flex&quot;)</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .with_css_statement(&quot;align-items: center&quot;)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -437,7 +437,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .with_css_statement(&quot;flex: 1&quot;)</pre>
+                <pre class="has-background-danger-light py-0 px-2">            .with_css_statement(&quot;justify-content: center&quot;);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -450,7 +450,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .with_css_statement(&quot;align-items: center&quot;)</pre>
+                <pre class="has-background-danger-light py-0 px-2">        container_css =</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -463,7 +463,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            .with_css_statement(&quot;justify-content: center&quot;);</pre>
+                <pre class="has-background-danger-light py-0 px-2">            append_padding_rule(container_css, &quot;padding-left&quot;, context.widget.padding.left);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -489,7 +489,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            append_padding_rule(container_css, &quot;padding-left&quot;, context.widget.padding.left);</pre>
+                <pre class="has-background-danger-light py-0 px-2">            append_padding_rule(container_css, &quot;padding-right&quot;, context.widget.padding.right);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -515,7 +515,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            append_padding_rule(container_css, &quot;padding-right&quot;, context.widget.padding.right);</pre>
+                <pre class="has-background-danger-light py-0 px-2">            append_padding_rule(container_css, &quot;padding-top&quot;, context.widget.padding.top);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -528,7 +528,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        container_css =</pre>
+                <pre class="has-background-danger-light py-0 px-2">        container_css = append_padding_rule(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -541,7 +541,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            append_padding_rule(container_css, &quot;padding-top&quot;, context.widget.padding.top);</pre>
+                <pre class="has-background-danger-light py-0 px-2">            container_css,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -554,7 +554,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        container_css = append_padding_rule(</pre>
+                <pre class="has-background-danger-light py-0 px-2">            &quot;padding-bottom&quot;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -567,7 +567,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            container_css,</pre>
+                <pre class="has-background-danger-light py-0 px-2">            context.widget.padding.bottom,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -580,7 +580,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            &quot;padding-bottom&quot;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -593,7 +593,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            context.widget.padding.bottom,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        css_rules.push(CssManager::shared().register_rule(&amp;container_css.to_string()));</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -606,7 +606,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        );</pre>
+                <pre class="has-background-danger-light py-0 px-2">        *context.state = css_rules;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -619,7 +619,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        css_rules.push(CssManager::shared().register_rule(&amp;container_css.to_string()));</pre>
+                <pre class="has-background-danger-light py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -632,7 +632,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        *context.state = css_rules;</pre>
+                <pre class="has-background-danger-light py-0 px-2">        context.frontend.with_transmogrifier(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -645,7 +645,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2"></pre>
+                <pre class="has-background-danger-light py-0 px-2">            context.widget.child.id(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -658,7 +658,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        context.frontend.with_transmogrifier(</pre>
+                <pre class="has-background-danger-light py-0 px-2">            |child_transmogrifier, mut child_context| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -671,7 +671,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            context.widget.child.id(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">                if let Some(child) = child_transmogrifier.transmogrify(&amp;mut child_context) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -684,7 +684,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            |child_transmogrifier, mut child_context| {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                    container</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -697,7 +697,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                if let Some(child) = child_transmogrifier.transmogrify(&amp;mut child_context) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">                        .append_child(&amp;child)</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -710,7 +710,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                    container</pre>
+                <pre class="has-background-danger-light py-0 px-2">                        .expect(&quot;error appending child&quot;);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -723,7 +723,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                        .append_child(&amp;child)</pre>
+                <pre class="has-background-danger-light py-0 px-2">                }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -736,7 +736,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                        .expect(&quot;error appending child&quot;);</pre>
+                <pre class="has-background-danger-light py-0 px-2">                container.unchecked_into()</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -749,7 +749,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                }</pre>
+                <pre class="has-background-danger-light py-0 px-2">            },</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -762,7 +762,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                container.unchecked_into()</pre>
+                <pre class="has-background-danger-light py-0 px-2">        )</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -775,7 +775,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            },</pre>
+                <pre class="has-background-danger-light py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -784,11 +784,11 @@
                 <a href="#58">58</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        )</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -797,11 +797,11 @@
                 <a href="#59">59</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    }</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -814,7 +814,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">}</pre>
+                <pre class="has-background-white py-0 px-2">fn append_padding_rule(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -827,7 +827,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">    builder: CssBlockBuilder,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -840,7 +840,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">fn append_padding_rule(</pre>
+                <pre class="has-background-white py-0 px-2">    name: &amp;str,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -853,7 +853,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    builder: CssBlockBuilder,</pre>
+                <pre class="has-background-white py-0 px-2">    dimension: Option&lt;Length&lt;f32, Points&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -866,7 +866,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    name: &amp;str,</pre>
+                <pre class="has-background-white py-0 px-2">) -&gt; CssBlockBuilder {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -875,11 +875,11 @@
                 <a href="#65">65</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    dimension: Option&lt;Length&lt;f32, Points&gt;&gt;,</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">    if let Some(dimension) = dimension {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -888,11 +888,11 @@
                 <a href="#66">66</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">) -&gt; CssBlockBuilder {</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">        builder.with_css_statement(format!(&quot;{}: {}pt&quot;, name, dimension.get()))</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -901,11 +901,11 @@
                 <a href="#67">67</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    if let Some(dimension) = dimension {</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">    } else {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -918,7 +918,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        builder.with_css_statement(format!(&quot;{}: {}pt&quot;, name, dimension.get()))</pre>
+                <pre class="has-background-danger-light py-0 px-2">        builder</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -931,7 +931,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    } else {</pre>
+                <pre class="has-background-white py-0 px-2">    }</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -944,38 +944,12 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        builder</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="71">
-                <a href="#71">71</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    }</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="72">
-                <a href="#72">72</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
                 <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-07-23 15:25</p>
+                <p class="heading">Date: 2021-07-25 21:23</p>
             </div>
         </footer>
     </body>
