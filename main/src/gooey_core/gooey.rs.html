@@ -696,9 +696,21 @@
 <span id="693">693</span>
 <span id="694">694</span>
 <span id="695">695</span>
+<span id="696">696</span>
+<span id="697">697</span>
+<span id="698">698</span>
+<span id="699">699</span>
+<span id="700">700</span>
+<span id="701">701</span>
+<span id="702">702</span>
+<span id="703">703</span>
+<span id="704">704</span>
+<span id="705">705</span>
+<span id="706">706</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">any::TypeId</span>,
+    <span class="ident">borrow::Cow</span>,
     <span class="ident">collections</span>::{<span class="ident">HashMap</span>, <span class="ident">HashSet</span>},
     <span class="ident">marker::PhantomData</span>,
     <span class="ident">ops::Deref</span>,
@@ -743,7 +755,12 @@
         <span class="ident">initializer</span>: <span class="ident">C</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">storage</span> <span class="op">=</span> <span class="ident">WidgetStorage::default</span>();
-        <span class="kw">let</span> <span class="ident">root</span> <span class="op">=</span> <span class="ident">initializer</span>(<span class="kw-2">&amp;</span><span class="ident">storage</span>).<span class="ident">with</span>(<span class="ident">Classes::from</span>(<span class="ident">ROOT_CLASS</span>));
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">root</span> <span class="op">=</span> <span class="ident">initializer</span>(<span class="kw-2">&amp;</span><span class="ident">storage</span>);
+        <span class="comment">// Append the root class to the root widget.</span>
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">classes</span> <span class="op">=</span> <span class="ident">root</span>.<span class="ident">style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">Classes</span><span class="op">&gt;</span>().<span class="ident">cloned</span>().<span class="ident">unwrap_or_default</span>();
+        <span class="ident">classes</span>.<span class="ident">insert</span>(<span class="ident">Cow::from</span>(<span class="ident">ROOT_CLASS</span>));
+        <span class="ident">root</span>.<span class="ident">style</span>.<span class="ident">push</span>(<span class="ident">classes</span>);
+
         <span class="kw">let</span> <span class="ident">root</span> <span class="op">=</span> <span class="ident">storage</span>.<span class="ident">register</span>(<span class="ident">root</span>);
         <span class="self">Self</span> {
             <span class="ident">data</span>: <span class="ident">Arc::new</span>(<span class="ident">GooeyData</span> {
@@ -1083,6 +1100,7 @@
 
 <span class="doccomment">/// A widget and its initial style information.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The widget.</span>
     <span class="kw">pub</span> <span class="ident">widget</span>: <span class="ident">W</span>,
@@ -1090,15 +1108,19 @@
     <span class="kw">pub</span> <span class="ident">style</span>: <span class="ident">Style</span>,
 }
 
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">WidgetRegistration</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">WidgetRegistration</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">widget</span>: <span class="ident">WidgetRegistration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span><span class="ident">::default_for</span>(<span class="ident">W::from</span>(<span class="ident">widget</span>))
+    }
+}
+
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Returns a new instance.</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">widget</span>: <span class="ident">W</span>, <span class="ident">style</span>: <span class="ident">Style</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">widget</span>, <span class="ident">style</span> }
     }
 
     <span class="doccomment">/// Returns a new instance with a default [`Style`].</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_for</span>(<span class="ident">widget</span>: <span class="ident">W</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::new</span>(<span class="ident">widget</span>, <span class="ident">Style::default</span>())
     }

@@ -43,13 +43,9 @@
 <span id="40">40</span>
 <span id="41">41</span>
 <span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_browser</span>::{
-    <span class="ident">utils</span>::{<span class="ident">widget_css_id</span>, <span class="ident">window_document</span>, <span class="ident">CssRules</span>},
+    <span class="ident">utils</span>::{<span class="ident">create_element</span>, <span class="ident">widget_css_id</span>, <span class="ident">window_document</span>, <span class="ident">CssRules</span>},
     <span class="ident">WebSys</span>, <span class="ident">WebSysTransmogrifier</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_core::TransmogrifierContext</span>;
@@ -83,11 +79,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">WebSys</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">web_sys::HtmlElement</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">document</span> <span class="op">=</span> <span class="ident">window_document</span>();
-        <span class="kw">let</span> <span class="ident">element</span> <span class="op">=</span> <span class="ident">document</span>
-            .<span class="ident">create_element</span>(<span class="string">&quot;div&quot;</span>)
-            .<span class="ident">expect</span>(<span class="string">&quot;couldn&#39;t create div&quot;</span>)
-            .<span class="ident">unchecked_into</span>::<span class="op">&lt;</span><span class="ident">HtmlDivElement</span><span class="op">&gt;</span>();
+        <span class="kw">let</span> <span class="ident">element</span> <span class="op">=</span> <span class="ident">create_element</span>::<span class="op">&lt;</span><span class="ident">HtmlDivElement</span><span class="op">&gt;</span>(<span class="string">&quot;div&quot;</span>);
         <span class="kw-2">*</span><span class="ident">context</span>.<span class="ident">state</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">initialize_widget_element</span>(<span class="kw-2">&amp;</span><span class="ident">element</span>, <span class="kw-2">&amp;</span><span class="ident">context</span>);
         <span class="ident">element</span>.<span class="ident">set_inner_text</span>(<span class="kw-2">&amp;</span><span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">label</span>);
 

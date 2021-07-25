@@ -186,11 +186,48 @@
 <span id="183">183</span>
 <span id="184">184</span>
 <span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std::fmt::Write</span>;
 
 <span class="kw">use</span> <span class="ident">gooey_core::styles</span>::{
-    <span class="ident">style_sheet</span>::{<span class="ident">Classes</span>, <span class="ident">Rule</span>},
+    <span class="ident">style_sheet</span>::{<span class="ident">Classes</span>, <span class="ident">Rule</span>, <span class="ident">State</span>},
     <span class="ident">StyleComponent</span>, <span class="ident">SystemTheme</span>,
 };
 <span class="kw">use</span> <span class="ident">wasm_bindgen::JsCast</span>;
@@ -199,6 +236,14 @@
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window_document</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">web_sys::Document</span> {
     <span class="ident">web_sys::window</span>().<span class="ident">unwrap</span>().<span class="ident">document</span>().<span class="ident">unwrap</span>()
+}
+
+<span class="attribute">#[<span class="ident">must_use</span>]</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_element</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">JsCast</span><span class="op">&gt;</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
+    <span class="ident">window_document</span>()
+        .<span class="ident">create_element</span>(<span class="ident">name</span>)
+        .<span class="ident">unwrap</span>()
+        .<span class="ident">unchecked_into</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>()
 }
 
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
@@ -263,7 +308,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CssRules</span> {
     <span class="ident">index</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
@@ -284,6 +329,11 @@
         <span class="self">self</span>.<span class="ident">index</span>
             .<span class="ident">push</span>(<span class="ident">CssManager::shared</span>().<span class="ident">sheet</span>.<span class="ident">insert_rule</span>(<span class="ident">rule</span>).<span class="ident">unwrap</span>());
         <span class="self">self</span>
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">extend</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">other</span>: <span class="self">Self</span>) {
+        <span class="kw">let</span> <span class="ident">other</span> <span class="op">=</span> <span class="ident">std::mem::take</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">other</span>.<span class="ident">index</span>);
+        <span class="self">self</span>.<span class="ident">index</span>.<span class="ident">extend</span>(<span class="ident">other</span>.<span class="ident">into_iter</span>());
     }
 }
 
@@ -335,6 +385,30 @@
         }
 
         <span class="ident">builder</span>
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">and_state</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">state</span>: <span class="kw-2">&amp;</span><span class="ident">State</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">selector</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="ident">state</span>.<span class="ident">active</span> {
+            <span class="string">&quot;:active&quot;</span>
+        } <span class="kw">else</span> {
+            <span class="string">&quot;:not(:active)&quot;</span>
+        };
+        <span class="self">self</span>.<span class="ident">selector</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="ident">state</span>.<span class="ident">focused</span> {
+            <span class="string">&quot;:focus&quot;</span>
+        } <span class="kw">else</span> {
+            <span class="string">&quot;:not(:focus)&quot;</span>
+        };
+        <span class="self">self</span>.<span class="ident">selector</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="ident">state</span>.<span class="ident">hovered</span> {
+            <span class="string">&quot;:hover&quot;</span>
+        } <span class="kw">else</span> {
+            <span class="string">&quot;:not(:hover)&quot;</span>
+        };
+        <span class="self">self</span>
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">and_additional_selector</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">selector</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">selector</span>.<span class="ident">push_str</span>(<span class="ident">selector</span>);
+        <span class="self">self</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_css_statement</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">css</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {

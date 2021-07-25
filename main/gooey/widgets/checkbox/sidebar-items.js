@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["LABEL_PADDING",""]],"enum":[["CheckboxCommand",""],["InternalCheckboxEvent",""]],"struct":[["Builder",""],["Checkbox",""],["CheckboxTransmogrifier",""]]});

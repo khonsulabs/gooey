@@ -367,7 +367,7 @@
 <span id="364">364</span>
 <span id="365">365</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">approx::relative_eq</span>;
+<span class="kw">use</span> <span class="ident">approx::abs_diff_eq</span>;
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Size2D</span>},
     <span class="ident">Points</span>,
@@ -423,10 +423,10 @@
                 <span class="kw">let</span> <span class="ident">remaining_width</span> <span class="op">=</span> <span class="ident">width</span> <span class="op">-</span> <span class="ident">new_width</span>;
 
                 <span class="comment">// If the value is negative and isn&#39;t zero (-0. is a valid float)</span>
-                <span class="kw">if</span> <span class="op">!</span><span class="macro">relative_eq!</span>(<span class="ident">remaining_width</span>.<span class="ident">get</span>(), <span class="number">0.</span>, <span class="ident">epsilon</span> <span class="op">=</span> <span class="number">0.001</span>)
+                <span class="kw">if</span> <span class="op">!</span><span class="macro">abs_diff_eq!</span>(<span class="ident">remaining_width</span>.<span class="ident">get</span>(), <span class="number">0.</span>, <span class="ident">epsilon</span> <span class="op">=</span> <span class="number">0.1</span>)
                     <span class="op">&amp;&amp;</span> <span class="ident">remaining_width</span>.<span class="ident">get</span>().<span class="ident">is_sign_negative</span>()
                 {
-                    <span class="kw">if</span> <span class="macro">relative_eq!</span>(<span class="self">self</span>.<span class="ident">current_span_offset</span>.<span class="ident">get</span>(), <span class="number">0.</span>) {
+                    <span class="kw">if</span> <span class="macro">abs_diff_eq!</span>(<span class="self">self</span>.<span class="ident">current_span_offset</span>.<span class="ident">get</span>(), <span class="number">0.</span>) {
                         <span class="comment">// TODO Split the group if it can&#39;t fit on a single line</span>
                         <span class="comment">// For now, just render it anyways.</span>
                     } <span class="kw">else</span> {

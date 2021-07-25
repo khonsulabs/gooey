@@ -277,7 +277,6 @@
 <span id="274">274</span>
 <span id="275">275</span>
 <span id="276">276</span>
-<span id="277">277</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">collections::HashMap</span>,
@@ -313,7 +312,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="kw-2">mut</span> <span class="ident">behavior</span>: <span class="ident">B</span>, <span class="ident">storage</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">ComponentBuilder::new</span>(<span class="ident">storage</span>);
         <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">behavior</span>.<span class="ident">create_content</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">builder</span>);
-        <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">builder</span>.<span class="ident">register</span>(<span class="ident">content</span>);
+        <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> <span class="ident">storage</span>.<span class="ident">register</span>(<span class="ident">content</span>);
         <span class="ident">StyledWidget::default_for</span>(<span class="self">Self</span> {
             <span class="ident">content</span>,
             <span class="ident">behavior</span>,
@@ -323,7 +322,6 @@
         })
     }
 
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_for</span>(<span class="ident">storage</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">B</span>: <span class="ident">Default</span>,
@@ -346,7 +344,7 @@
             .<span class="ident">insert</span>(<span class="ident">id</span>, <span class="ident">WeakWidgetRegistration::from</span>(<span class="ident">registration</span>));
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_widget</span><span class="op">&lt;</span><span class="ident">OW</span>: <span class="ident">Widget</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">OW</span>, <span class="kw-2">&amp;</span><span class="ident">Context</span><span class="op">&lt;</span><span class="ident">OW</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_widget</span><span class="op">&lt;</span><span class="ident">OW</span>: <span class="ident">Widget</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">OW</span>, <span class="kw-2">&amp;</span><span class="ident">Context</span><span class="op">&lt;</span><span class="ident">OW</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span>, <span class="ident">R</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">B::Widgets</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
@@ -356,7 +354,7 @@
             .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">widget</span><span class="op">|</span> <span class="ident">context</span>.<span class="ident">with_widget</span>(<span class="ident">widget</span>.<span class="ident">id</span>(), <span class="ident">with_fn</span>))
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_widget_mut</span><span class="op">&lt;</span><span class="ident">OW</span>: <span class="ident">Widget</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">OW</span>, <span class="kw-2">&amp;</span><span class="ident">Context</span><span class="op">&lt;</span><span class="ident">OW</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_widget_mut</span><span class="op">&lt;</span><span class="ident">OW</span>: <span class="ident">Widget</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">OW</span>, <span class="kw-2">&amp;</span><span class="ident">Context</span><span class="op">&lt;</span><span class="ident">OW</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span>, <span class="ident">R</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">B::Widgets</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
@@ -452,7 +450,7 @@
     <span class="doccomment">/// Register a widget with storage.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::missing_panics_doc</span>)]</span> <span class="comment">// The unwrap is unreachable</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_widget</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">AnyWidget</span><span class="op">&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">AnyWidget</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">id</span>: <span class="ident">B::Widgets</span>,
         <span class="ident">widget</span>: <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>,

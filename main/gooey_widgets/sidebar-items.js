@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["browser",""],["button",""],["component",""],["container",""],["label",""],["layout",""],["rasterized",""]]});
+initSidebarItems({"mod":[["browser",""],["button",""],["checkbox",""],["component",""],["container",""],["label",""],["layout",""],["rasterized",""]]});

@@ -440,6 +440,12 @@
 <span id="437">437</span>
 <span id="438">438</span>
 <span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">any</span>::{<span class="ident">type_name</span>, <span class="ident">Any</span>, <span class="ident">TypeId</span>},
@@ -452,7 +458,7 @@
 <span class="kw">use</span> <span class="ident">stylecs::Style</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">styles</span>::{<span class="ident">BackgroundColor</span>, <span class="ident">ColorPair</span>, <span class="ident">TextColor</span>},
+    <span class="ident">styles</span>::{<span class="ident">style_sheet::Classes</span>, <span class="ident">BackgroundColor</span>, <span class="ident">ColorPair</span>, <span class="ident">TextColor</span>},
     <span class="ident">AnyFrontend</span>, <span class="ident">Frontend</span>, <span class="ident">WeakWidgetRegistration</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>, <span class="ident">WidgetStorage</span>,
 };
 
@@ -475,6 +481,12 @@
     <span class="doccomment">/// ensure no conflicts. For example, the `gooey-widgets` crate prefixes all</span>
     <span class="doccomment">/// of the `CLASS` constants with `gooey-`.</span>
     <span class="kw">const</span> <span class="ident">CLASS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>;
+
+    <span class="doccomment">/// Returns all classes that apply styles for this widget.</span>
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
+    <span class="kw">fn</span> <span class="ident">classes</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Classes</span> {
+        <span class="ident">Classes::from</span>(<span class="self">Self</span><span class="ident">::CLASS</span>)
+    }
 
     <span class="doccomment">/// Called when an `event` from the transmogrifier was received.</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
