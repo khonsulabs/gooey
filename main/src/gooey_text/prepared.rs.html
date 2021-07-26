@@ -207,7 +207,7 @@
 };
 <span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">TextMetrics</span>};
 
-<span class="doccomment">/// A [`Text`] that has been measured and is ready to render.</span>
+<span class="doccomment">/// A [`Text`](crate::Text) that has been measured and is ready to render.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PreparedText</span> {
     <span class="doccomment">/// The prepared lines of text.</span>
@@ -339,7 +339,7 @@
     }
 }
 
-<span class="doccomment">/// A prepared [`Span`].</span>
+<span class="doccomment">/// A prepared [`Span`](crate::Span).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PreparedSpan</span> {

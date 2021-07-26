@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["prepared","Measured and laid out text types ready to render."],["wrap","Text wrapping functionality."]],"struct":[["Span","A styled String."],["Text","A sequence of [`Span`s]."]]});
+initSidebarItems({"mod":[["prepared","Measured and laid out text types ready to render."],["wrap","Text wrapping functionality."]],"struct":[["Span","A styled String."],["Text","A sequence of [`Spans`][Span]."]]});

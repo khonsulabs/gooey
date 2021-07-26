@@ -70,16 +70,60 @@
 <span id="67">67</span>
 <span id="68">68</span>
 <span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">Frontend</span>, <span class="ident">StyledWidget</span>, <span class="ident">Transmogrifiers</span>, <span class="ident">Widget</span>, <span class="ident">WidgetStorage</span>};
 
 <span class="doccomment">/// A cross-platform application.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">App</span> {
+    <span class="ident">initializer</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="kw">crate</span><span class="ident">::ActiveFrontend</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span><span class="ident">::ActiveFrontend</span><span class="op">&gt;</span>,
     <span class="ident">transmogrifiers</span>: <span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="kw">crate</span><span class="ident">::ActiveFrontend</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">App</span> {
+    <span class="doccomment">/// Returns a new application using `initializer` to create a root widget and any custom `transmogrifiers`.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span>, <span class="ident">I</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="ident">initializer</span>: <span class="ident">I</span>,
+        <span class="ident">transmogrifiers</span>: <span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="kw">crate</span><span class="ident">::ActiveFrontend</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">initializer</span>: <span class="ident">Box::new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">transmogrifiers</span><span class="op">|</span> <span class="kw">crate</span><span class="ident">::app</span>(<span class="ident">transmogrifiers</span>, <span class="ident">initializer</span>)),
+            <span class="ident">transmogrifiers</span>,
+        }
+    }
+
+    <span class="doccomment">/// Returns a new application using `initializer` to create a root widget with no transmogrifiers.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_root</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span>, <span class="ident">I</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+        <span class="ident">initializer</span>: <span class="ident">I</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span><span class="ident">::new</span>(<span class="ident">initializer</span>, <span class="ident">Transmogrifiers::default</span>())
+    }
+
     <span class="doccomment">/// Registers a [`Transmogrifier`](gooey_core::Transmogrifier). This will</span>
     <span class="doccomment">/// allow `T::Widget` to be used in this application.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="kw">crate</span><span class="ident">::ActiveFrontend</span> <span class="kw">as</span> <span class="ident">Frontend</span><span class="op">&gt;</span><span class="ident">::AnyTransmogrifier</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -90,6 +134,22 @@
             .<span class="ident">register_transmogrifier</span>(<span class="ident">transmogrifier</span>)
             .<span class="ident">expect</span>(<span class="string">&quot;a transmogrifier is already registered for this widget&quot;</span>);
         <span class="self">self</span>
+    }
+
+    <span class="doccomment">/// Runs this application using the root widget provided by `initializer`.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span>(<span class="self">self</span>) {
+        <span class="kw">let</span> <span class="ident">initializer</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">initializer</span>;
+        <span class="kw">let</span> <span class="ident">frontend</span> <span class="op">=</span> <span class="ident">initializer</span>(<span class="self">self</span>.<span class="ident">transmogrifiers</span>);
+        <span class="kw">crate</span><span class="ident">::run</span>(<span class="ident">frontend</span>);
+    }
+
+    <span class="doccomment">/// Returns a headless renderer for this app. Only supported with feature</span>
+    <span class="doccomment">/// `frontend-kludgine` currently.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-kludgine&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)))]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">headless</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span><span class="ident">::Headless</span><span class="op">&lt;</span><span class="kw">crate</span><span class="ident">::ActiveFrontend</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">initializer</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">initializer</span>;
+        <span class="kw">let</span> <span class="ident">frontend</span> <span class="op">=</span> <span class="ident">initializer</span>(<span class="self">self</span>.<span class="ident">transmogrifiers</span>);
+        <span class="kw">crate</span><span class="ident">::Headless::new</span>(<span class="ident">frontend</span>)
     }
 
     <span class="doccomment">/// Spawns an asynchronous task using the runtime that the `App` uses.</span>
@@ -130,14 +190,6 @@
                 <span class="macro">compile_error!</span>(<span class="string">&quot;unsupported async configuration&quot;</span>)
             }
         }
-    }
-
-    <span class="doccomment">/// Runs this application using the root widget provided by `initializer`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>, <span class="ident">C</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="self">self</span>,
-        <span class="ident">initializer</span>: <span class="ident">C</span>,
-    ) {
-        <span class="kw">crate</span><span class="ident">::main_with</span>(<span class="self">self</span>.<span class="ident">transmogrifiers</span>, <span class="ident">initializer</span>);
     }
 }
 </pre></div>

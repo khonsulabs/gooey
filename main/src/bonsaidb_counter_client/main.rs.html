@@ -234,14 +234,14 @@
     <span class="comment">// Spawn an async task that processes commands sent by `command_sender`.</span>
     <span class="ident">App::spawn</span>(<span class="ident">process_database_commands</span>(<span class="ident">command_receiver</span>));
 
-    <span class="ident">App::default</span>()
-        <span class="comment">// Register our custom component&#39;s transmogrifier.</span>
-        .<span class="ident">with</span>(<span class="ident">ComponentTransmogrifier</span>::<span class="op">&lt;</span><span class="ident">Counter</span><span class="op">&gt;</span><span class="ident">::default</span>())
-        <span class="comment">// Run the app using the widget returned by the initializer.</span>
-        .<span class="ident">run</span>(<span class="op">|</span><span class="ident">storage</span><span class="op">|</span>
-            <span class="comment">// The root widget is a `Component` with our component behavior</span>
-            <span class="comment">// `Counter`.</span>
-            <span class="ident">Component::new</span>(<span class="ident">Counter::new</span>(<span class="ident">command_sender</span>), <span class="ident">storage</span>))
+    <span class="ident">App::from_root</span>(<span class="op">|</span><span class="ident">storage</span><span class="op">|</span>
+        <span class="comment">// The root widget is a `Component` with our component behavior</span>
+        <span class="comment">// `Counter`.</span>
+        <span class="ident">Component::new</span>(<span class="ident">Counter::new</span>(<span class="ident">command_sender</span>), <span class="ident">storage</span>))
+    <span class="comment">// Register our custom component&#39;s transmogrifier.</span>
+    .<span class="ident">with</span>(<span class="ident">ComponentTransmogrifier</span>::<span class="op">&lt;</span><span class="ident">Counter</span><span class="op">&gt;</span><span class="ident">::default</span>())
+    <span class="comment">// Run the app using the widget returned by the initializer.</span>
+    .<span class="ident">run</span>()
 }
 
 <span class="doccomment">/// The state of the `Counter` component.</span>

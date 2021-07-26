@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["gooey"] = [];
+implementors["gooey"] = [{"text":"impl&lt;'a&gt; <a class=\"trait\" href=\"gooey/frontends/renderers/kludgine/kludgine/core/lazy_static/trait.__Deref.html\" title=\"trait gooey::frontends::renderers::kludgine::kludgine::core::lazy_static::__Deref\">Deref</a> for <a class=\"struct\" href=\"gooey/struct.Recorder.html\" title=\"struct gooey::Recorder\">Recorder</a>&lt;'a&gt;","synthetic":false,"types":["gooey::headless::Recorder"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
