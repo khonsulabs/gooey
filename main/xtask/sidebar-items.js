@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Args",""]],"fn":[["build_browser_example",""],["build_regular_browser_example",""],["execute_wasm_bindgen",""],["main",""]],"struct":[["CodeCoverageConfig",""]]});
+initSidebarItems({"enum":[["Args",""]],"fn":[["build_browser_example",""],["build_regular_browser_example",""],["execute_wasm_bindgen",""],["generate_example_snapshots",""],["main",""]],"struct":[["CodeCoverageConfig",""]]});

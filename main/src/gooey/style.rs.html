@@ -145,6 +145,13 @@
 <span id="142">142</span>
 <span id="143">143</span>
 <span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">palette::Hsla</span>,
@@ -157,6 +164,7 @@
 <span class="kw">use</span> <span class="ident">gooey_widgets</span>::{
     <span class="ident">button</span>::{<span class="ident">Button</span>, <span class="ident">ButtonColor</span>},
     <span class="ident">checkbox::Checkbox</span>,
+    <span class="ident">label::Label</span>,
 };
 
 <span class="doccomment">/// The default [`StyleSheet`] for `Gooey`.</span>
@@ -289,6 +297,12 @@
                         }))
                 }),
         )
+        .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Label</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
+            <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {
+                <span class="ident">light_color</span>: <span class="ident">gray10</span>,
+                <span class="ident">dark_color</span>: <span class="ident">gray90</span>,
+            }))
+        }))
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gooey" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>

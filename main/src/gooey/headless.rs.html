@@ -406,6 +406,10 @@
 <span id="403">403</span>
 <span id="404">404</span>
 <span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">convert::TryInto</span>, <span class="ident">ops::Deref</span>, <span class="ident">path::Path</span>, <span class="ident">process::Command</span>, <span class="ident">time::Duration</span>};
 
@@ -502,16 +506,16 @@
             <span class="kw">let</span> <span class="ident">right_edge_lower</span> <span class="op">=</span>
                 <span class="ident">Rotation2D::new</span>(<span class="ident">Angle::degrees</span>(<span class="op">-</span><span class="number">45.</span>)).<span class="ident">transform_point</span>(<span class="ident">left_edge_lower</span>);
             <span class="kw">let</span> <span class="ident">left_inner</span> <span class="op">=</span>
-                <span class="ident">Rotation2D::new</span>(<span class="ident">Angle::degrees</span>(<span class="op">-</span><span class="number">15.</span>))
+                <span class="ident">Rotation2D::new</span>(<span class="ident">Angle::degrees</span>(<span class="op">-</span><span class="number">17.5</span>))
                     .<span class="ident">transform_point</span>(<span class="ident">Point2D</span>::<span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="number">0.</span>, <span class="ident">INNER_LENGTH</span>));
             <span class="kw">let</span> <span class="ident">right_inner</span> <span class="op">=</span>
-                <span class="ident">Rotation2D::new</span>(<span class="ident">Angle::degrees</span>(<span class="op">-</span><span class="number">30.</span>))
+                <span class="ident">Rotation2D::new</span>(<span class="ident">Angle::degrees</span>(<span class="op">-</span><span class="number">27.5</span>))
                     .<span class="ident">transform_point</span>(<span class="ident">Point2D</span>::<span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="number">0.</span>, <span class="ident">INNER_LENGTH</span>));
             <span class="kw">let</span> <span class="ident">left_tail</span> <span class="op">=</span>
-                <span class="ident">Rotation2D::new</span>(<span class="ident">Angle::degrees</span>(<span class="op">-</span><span class="number">15.</span>))
+                <span class="ident">Rotation2D::new</span>(<span class="ident">Angle::degrees</span>(<span class="op">-</span><span class="number">17.5</span>))
                     .<span class="ident">transform_point</span>(<span class="ident">Point2D</span>::<span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="number">0.</span>, <span class="ident">TAIL_LENGTH</span>));
             <span class="kw">let</span> <span class="ident">right_tail</span> <span class="op">=</span>
-                <span class="ident">Rotation2D::new</span>(<span class="ident">Angle::degrees</span>(<span class="op">-</span><span class="number">30.</span>))
+                <span class="ident">Rotation2D::new</span>(<span class="ident">Angle::degrees</span>(<span class="op">-</span><span class="number">27.5</span>))
                     .<span class="ident">transform_point</span>(<span class="ident">Point2D</span>::<span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="number">0.</span>, <span class="ident">TAIL_LENGTH</span>));
             <span class="ident">Shape::polygon</span>(<span class="macro">vec!</span>[
                 <span class="ident">Point2D::default</span>(),
@@ -754,7 +758,7 @@
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Panics if ffmpeg errors and the output cannot be interpreted as utf8.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">save_mp4</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">HeadlessError</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">save_webm</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">HeadlessError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> (<span class="ident">temp_file</span>, <span class="ident">temp_path</span>) <span class="op">=</span> <span class="ident">NamedTempFile::new</span>()<span class="question-mark">?</span>.<span class="ident">into_parts</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">encoder</span> <span class="op">=</span> <span class="ident">png::Encoder::new</span>(<span class="ident">temp_file</span>, <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">width</span>, <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">height</span>);
         <span class="ident">encoder</span>.<span class="ident">set_color</span>(<span class="ident">png::ColorType::Rgb</span>);
@@ -774,7 +778,11 @@
             .<span class="ident">arg</span>(<span class="string">&quot;-y&quot;</span>)
             <span class="comment">// x264</span>
             .<span class="ident">arg</span>(<span class="string">&quot;-c:v&quot;</span>)
-            .<span class="ident">arg</span>(<span class="string">&quot;libx264&quot;</span>)
+            .<span class="ident">arg</span>(<span class="string">&quot;libvpx-vp9&quot;</span>)
+            .<span class="ident">arg</span>(<span class="string">&quot;-crf&quot;</span>)
+            .<span class="ident">arg</span>(<span class="string">&quot;37&quot;</span>)
+            .<span class="ident">arg</span>(<span class="string">&quot;-b:v&quot;</span>)
+            .<span class="ident">arg</span>(<span class="string">&quot;0&quot;</span>)
             <span class="comment">// output</span>
             .<span class="ident">arg</span>(<span class="ident">path</span>.<span class="ident">as_ref</span>().<span class="ident">as_os_str</span>())
             .<span class="ident">output</span>()<span class="question-mark">?</span>;
