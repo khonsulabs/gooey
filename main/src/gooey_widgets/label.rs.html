@@ -88,7 +88,7 @@
 
 <span class="kw">impl</span> <span class="ident">Label</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="ident">label</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">StyledWidget::default_for</span>(<span class="self">Self</span> {
+        <span class="ident">StyledWidget::from</span>(<span class="self">Self</span> {
             <span class="ident">label</span>: <span class="ident">label</span>.<span class="ident">to_string</span>(),
         })
     }

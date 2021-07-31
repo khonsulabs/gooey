@@ -152,6 +152,14 @@
 <span id="149">149</span>
 <span id="150">150</span>
 <span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">palette::Hsla</span>,
@@ -208,6 +216,14 @@
                 <span class="ident">dark_color</span>: <span class="ident">black</span>,
             }))
         }))
+        .<span class="ident">with</span>(
+            <span class="ident">Rule::for_classes</span>(<span class="string">&quot;gooey-navigator-bar&quot;</span>).<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
+                <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">ColorPair</span> {
+                    <span class="ident">light_color</span>: <span class="ident">gray90</span>,
+                    <span class="ident">dark_color</span>: <span class="ident">gray10</span>,
+                }))
+            }),
+        )
         .<span class="ident">with</span>(<span class="ident">Rule::for_classes</span>(<span class="ident">SOLID_WIDGET_CLASS</span>).<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
             <span class="ident">style</span>
                 .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {

@@ -448,6 +448,10 @@
 <span id="445">445</span>
 <span id="446">446</span>
 <span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that targets web browsers</span>
 <span class="doccomment">//! by creating DOM elements using `web-sys` and `wasm-bindgen`.</span>
@@ -456,7 +460,6 @@
 <span class="attribute">#![<span class="ident">warn</span>(
     <span class="ident">clippy::cargo</span>,
     <span class="comment">// TODO missing_docs,</span>
-    <span class="ident">clippy::nursery</span>,
     <span class="ident">clippy::pedantic</span>,
     <span class="ident">future_incompatible</span>,
     <span class="ident">rust_2018_idioms</span>
@@ -799,6 +802,11 @@
                 <span class="ident">Alignment::Left</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;start&quot;</span>,
                 <span class="ident">Alignment::Center</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;center&quot;</span>,
                 <span class="ident">Alignment::Right</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;end&quot;</span>,
+            },));
+            <span class="ident">css</span> <span class="op">=</span> <span class="ident">css</span>.<span class="ident">with_css_statement</span>(<span class="macro">format!</span>(<span class="string">&quot;text-align: {}&quot;</span>, <span class="kw">match</span> <span class="ident">alignment</span> {
+                <span class="ident">Alignment::Left</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;left&quot;</span>,
+                <span class="ident">Alignment::Center</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;center&quot;</span>,
+                <span class="ident">Alignment::Right</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;right&quot;</span>,
             },));
         }
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">vertical_alignment</span>) <span class="op">=</span> <span class="ident">vertical_alignment</span> {

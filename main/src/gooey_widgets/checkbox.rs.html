@@ -135,7 +135,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">label</span>: <span class="ident">S</span>, <span class="ident">checked</span>: <span class="ident">bool</span>, <span class="ident">toggled</span>: <span class="ident">Callback</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">StyledWidget::default_for</span>(<span class="self">Self</span> {
+        <span class="ident">StyledWidget::from</span>(<span class="self">Self</span> {
             <span class="ident">label</span>: <span class="ident">label</span>.<span class="ident">into</span>(),
             <span class="ident">toggled</span>,
             <span class="ident">checked</span>,
@@ -163,6 +163,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Builder</span> {
     <span class="ident">checkbox</span>: <span class="ident">Checkbox</span>,
@@ -185,14 +186,13 @@
         <span class="self">self</span>
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::missing_const_for_fn</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">on_clicked</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">clicked</span>: <span class="ident">Callback</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">checkbox</span>.<span class="ident">toggled</span> <span class="op">=</span> <span class="ident">clicked</span>;
         <span class="self">self</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">Checkbox</span><span class="op">&gt;</span> {
-        <span class="ident">StyledWidget::default_for</span>(<span class="self">self</span>.<span class="ident">checkbox</span>)
+        <span class="ident">StyledWidget::from</span>(<span class="self">self</span>.<span class="ident">checkbox</span>)
     }
 }
 

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Container",""],["ContainerTransmogrifier",""]]});
+initSidebarItems({"struct":[["Builder",""],["Container",""],["ContainerTransmogrifier",""]]});
