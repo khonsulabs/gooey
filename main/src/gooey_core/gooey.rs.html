@@ -1222,7 +1222,7 @@
 }
 
 <span class="doccomment">/// A type that registers widgets with an associated key.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">KeyedStorage</span><span class="op">&lt;</span><span class="ident">K</span>: <span class="ident">Key</span><span class="op">&gt;</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">KeyedStorage</span><span class="op">&lt;</span><span class="ident">K</span>: <span class="ident">Key</span><span class="op">&gt;</span>: <span class="ident">Debug</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Register `styled_widget` with `key`.</span>
     <span class="kw">fn</span> <span class="ident">register</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">AnyWidget</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,

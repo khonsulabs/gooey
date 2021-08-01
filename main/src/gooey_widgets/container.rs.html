@@ -209,7 +209,7 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">K</span>: <span class="ident">Key</span>, <span class="ident">S</span>: <span class="ident">KeyedStorage</span><span class="op">&lt;</span><span class="ident">K</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">ContentBuilder</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="ident">S</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Builder</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="ident">S</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">K</span>: <span class="ident">Key</span>, <span class="ident">S</span>: <span class="ident">KeyedStorage</span><span class="op">&lt;</span><span class="ident">K</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">ContentBuilder</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="ident">S</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Builder</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="ident">S</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">storage</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span> {
         <span class="self">self</span>.<span class="ident">storage</span>.<span class="ident">storage</span>()
     }

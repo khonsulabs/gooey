@@ -143,13 +143,23 @@
 <span id="140">140</span>
 <span id="141">141</span>
 <span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any::TypeId</span>, <span class="ident">convert::TryFrom</span>, <span class="ident">fmt::Debug</span>};
 
 <span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">styles::style_sheet::State</span>, <span class="ident">AnySendSync</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Gooey</span>,
-    <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>,
-    <span class="ident">WidgetRegistration</span>, <span class="ident">WidgetStorage</span>,
+    <span class="ident">styles</span>::{<span class="ident">style_sheet::State</span>, <span class="ident">SystemTheme</span>},
+    <span class="ident">AnySendSync</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Gooey</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
+    <span class="ident">TransmogrifierState</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>, <span class="ident">WidgetStorage</span>,
 };
 
 <span class="doccomment">/// A frontend is an implementation of widgets and layouts.</span>
@@ -161,6 +171,9 @@
 
     <span class="doccomment">/// Returns the underlying [`Gooey`] instance.</span>
     <span class="kw">fn</span> <span class="ident">gooey</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">Gooey</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
+
+    <span class="doccomment">/// Returns the current system theme.</span>
+    <span class="kw">fn</span> <span class="ident">theme</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span>;
 
     <span class="doccomment">/// Returns the [`State`] for the widget. Not all frontends track UI state,</span>
     <span class="doccomment">/// and this function is primarily used when building frontends.</span>
@@ -187,6 +200,9 @@
     <span class="doccomment">/// Returns the widget storage.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">fn</span> <span class="ident">storage</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">WidgetStorage</span>;
+
+    <span class="doccomment">/// Returns the current system theme.</span>
+    <span class="kw">fn</span> <span class="ident">theme</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span>;
 
     <span class="doccomment">/// Notifies the frontend that a widget has messages. Frontends should</span>
     <span class="doccomment">/// ensure that `process_widget_messages` is called at some point after this</span>
@@ -238,6 +254,10 @@
     <span class="kw">fn</span> <span class="ident">_exit_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">allow_process_messages</span>: <span class="ident">bool</span>) {
         <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">exit_managed_code</span>(<span class="self">self</span>, <span class="ident">allow_process_messages</span>);
         <span class="self">self</span>.<span class="ident">exit_managed_code</span>();
+    }
+
+    <span class="kw">fn</span> <span class="ident">theme</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span> {
+        <span class="self">self</span>.<span class="ident">theme</span>()
     }
 }
 

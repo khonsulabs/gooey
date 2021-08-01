@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["InternalButtonEvent",""],["LabelCommand",""]],"struct":[["Label",""],["LabelColor","The label’s text color."],["LabelTransmogrifier",""]]});
+initSidebarItems({"enum":[["Command",""]],"struct":[["Label",""],["LabelColor","The label’s text color."],["LabelTransmogrifier",""]]});

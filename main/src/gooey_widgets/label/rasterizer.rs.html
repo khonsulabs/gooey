@@ -87,7 +87,7 @@
 <span class="kw">use</span> <span class="ident">gooey_text</span>::{<span class="ident">prepared::PreparedText</span>, <span class="ident">wrap::TextWrap</span>, <span class="ident">Text</span>};
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::LabelColor</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::label</span>::{<span class="ident">Label</span>, <span class="ident">LabelCommand</span>, <span class="ident">LabelTransmogrifier</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::label</span>::{<span class="ident">Command</span>, <span class="ident">Label</span>, <span class="ident">LabelTransmogrifier</span>};
 
 <span class="kw">const</span> <span class="ident">LABEL_PADDING</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Length::new</span>(<span class="number">5.</span>);
 
@@ -97,7 +97,7 @@
 
     <span class="kw">fn</span> <span class="ident">receive_command</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">_command</span>: <span class="ident">LabelCommand</span>,
+        <span class="ident">_command</span>: <span class="ident">Command</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) {
         <span class="ident">context</span>.<span class="ident">frontend</span>.<span class="ident">set_needs_redraw</span>();

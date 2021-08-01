@@ -888,7 +888,7 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">K</span>: <span class="ident">Key</span>, <span class="ident">S</span>: <span class="ident">KeyedStorage</span><span class="op">&lt;</span><span class="ident">K</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">ContentBuilder</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="ident">S</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Builder</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="ident">S</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">K</span>: <span class="ident">Key</span>, <span class="ident">S</span>: <span class="ident">KeyedStorage</span><span class="op">&lt;</span><span class="ident">K</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">ContentBuilder</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="ident">S</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Builder</span><span class="op">&lt;</span><span class="ident">K</span>, <span class="ident">S</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">storage</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">storage</span>,
