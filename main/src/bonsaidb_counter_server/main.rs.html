@@ -98,6 +98,8 @@
 <span id="95">95</span>
 <span id="96">96</span>
 <span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std::path::Path</span>;
 
@@ -115,12 +117,14 @@
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">anyhow::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="comment">// Open a `BonsaiDb` server at the given path, allowing all actions to be</span>
     <span class="comment">// done over the network connections.</span>
-    <span class="kw">let</span> <span class="ident">server</span> <span class="op">=</span>
-        <span class="ident">CustomServer</span>::<span class="op">&lt;</span><span class="ident">Example</span><span class="op">&gt;</span><span class="ident">::open</span>(<span class="ident">Path::new</span>(<span class="string">&quot;counter-example.bonsaidb&quot;</span>), <span class="ident">Configuration</span> {
+    <span class="kw">let</span> <span class="ident">server</span> <span class="op">=</span> <span class="ident">CustomServer</span>::<span class="op">&lt;</span><span class="ident">Example</span><span class="op">&gt;</span><span class="ident">::open</span>(
+        <span class="ident">Path::new</span>(<span class="string">&quot;counter-example.bonsaidb&quot;</span>),
+        <span class="ident">Configuration</span> {
             <span class="ident">default_permissions</span>: <span class="ident">Permissions::allow_all</span>(),
             ..<span class="ident">Configuration::default</span>()
-        })
-        .<span class="kw">await</span><span class="question-mark">?</span>;
+        },
+    )
+    .<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="ident">server</span>.<span class="ident">register_schema</span>::<span class="op">&lt;</span>()<span class="op">&gt;</span>().<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="comment">// Create the database if it doesn&#39;t exist.</span>
     <span class="kw">match</span> <span class="ident">server</span>.<span class="ident">create_database</span>::<span class="op">&lt;</span>()<span class="op">&gt;</span>(<span class="ident">DATABASE_NAME</span>).<span class="kw">await</span> {

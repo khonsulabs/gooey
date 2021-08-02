@@ -140,6 +140,9 @@
 <span id="137">137</span>
 <span id="138">138</span>
 <span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Size2D</span>, <span class="ident">Vector2D</span>},
@@ -276,9 +279,12 @@
     <span class="ident">width</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PreparedText</span> {
     <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">Text::span</span>(<span class="ident">label</span>, <span class="ident">style</span>.<span class="ident">clone</span>());
-    <span class="ident">text</span>.<span class="ident">wrap</span>(<span class="ident">renderer</span>, <span class="ident">TextWrap::SingleLine</span> {
-        <span class="ident">width</span>: <span class="ident">width</span> <span class="op">-</span> <span class="ident">BUTTON_PADDING</span> <span class="op">*</span> <span class="number">2.</span>,
-    })
+    <span class="ident">text</span>.<span class="ident">wrap</span>(
+        <span class="ident">renderer</span>,
+        <span class="ident">TextWrap::SingleLine</span> {
+            <span class="ident">width</span>: <span class="ident">width</span> <span class="op">-</span> <span class="ident">BUTTON_PADDING</span> <span class="op">*</span> <span class="number">2.</span>,
+        },
+    )
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gooey_widgets" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
