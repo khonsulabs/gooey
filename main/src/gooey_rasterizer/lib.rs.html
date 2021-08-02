@@ -591,20 +591,20 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">scene</span>: <span class="ident">R</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="ident">R</span>) {
         <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">enter_managed_code</span>(<span class="self">self</span>);
         <span class="comment">// Process messages after new_frame,</span>
         <span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">process_widget_messages</span>(<span class="self">self</span>);
 
         <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">new_frame</span>();
 
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">scene</span>.<span class="ident">size</span>();
+        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">renderer</span>.<span class="ident">size</span>();
 
         <span class="self">Self</span> {
             <span class="ident">ui</span>: <span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">clone</span>(),
             <span class="ident">state</span>: <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">clone</span>(),
             <span class="ident">refresh_callback</span>: <span class="self">self</span>.<span class="ident">refresh_callback</span>.<span class="ident">clone</span>(),
-            <span class="ident">renderer</span>: <span class="prelude-val">Some</span>(<span class="ident">scene</span>),
+            <span class="ident">renderer</span>: <span class="prelude-val">Some</span>(<span class="ident">renderer</span>),
         }
         .<span class="ident">with_transmogrifier</span>(<span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">root_widget</span>().<span class="ident">id</span>(), <span class="op">|</span><span class="ident">transmogrifier</span>, <span class="kw-2">mut</span> <span class="ident">context</span><span class="op">|</span> {
             <span class="ident">transmogrifier</span>.<span class="ident">render_within</span>(

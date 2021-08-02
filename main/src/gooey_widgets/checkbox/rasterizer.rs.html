@@ -173,6 +173,8 @@
 <span id="170">170</span>
 <span id="171">171</span>
 <span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Size2D</span>, <span class="ident">Vector2D</span>},
@@ -218,7 +220,9 @@
     <span class="ident">size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LayoutState</span> {
     <span class="comment">// Determine the checkbox size by figuring out the line height</span>
-    <span class="kw">let</span> <span class="ident">line_height</span> <span class="op">=</span> <span class="ident">renderer</span>.<span class="ident">measure_text</span>(<span class="string">&quot;m&quot;</span>, <span class="ident">context</span>.<span class="ident">style</span>).<span class="ident">height</span>();
+    <span class="kw">let</span> <span class="ident">line_height</span> <span class="op">=</span> <span class="ident">renderer</span>
+        .<span class="ident">measure_text_with_style</span>(<span class="string">&quot;m&quot;</span>, <span class="ident">context</span>.<span class="ident">style</span>)
+        .<span class="ident">height</span>();
     <span class="kw">let</span> <span class="ident">checkbox_size</span> <span class="op">=</span> <span class="ident">Size2D::from_lengths</span>(<span class="ident">line_height</span>, <span class="ident">line_height</span>);
 
     <span class="comment">// Measure the label, allowing the text to wrap within the remaining space.</span>
@@ -243,15 +247,15 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CheckboxTransmogrifier</span> {
     <span class="kw">fn</span> <span class="ident">render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">scene</span>) <span class="op">=</span> <span class="ident">context</span>.<span class="ident">frontend</span>.<span class="ident">renderer</span>() {
-            <span class="kw">let</span> <span class="ident">layout</span> <span class="op">=</span> <span class="ident">calculate_layout</span>(<span class="kw-2">&amp;</span><span class="ident">context</span>, <span class="ident">scene</span>, <span class="ident">scene</span>.<span class="ident">size</span>());
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">renderer</span>) <span class="op">=</span> <span class="ident">context</span>.<span class="ident">frontend</span>.<span class="ident">renderer</span>() {
+            <span class="kw">let</span> <span class="ident">layout</span> <span class="op">=</span> <span class="ident">calculate_layout</span>(<span class="kw-2">&amp;</span><span class="ident">context</span>, <span class="ident">renderer</span>, <span class="ident">renderer</span>.<span class="ident">size</span>());
             <span class="kw">let</span> <span class="ident">checkbox_rect</span> <span class="op">=</span> <span class="ident">Rect::from_size</span>(<span class="ident">layout</span>.<span class="ident">checkbox_size</span>);
             <span class="kw">let</span> <span class="ident">label_rect</span> <span class="op">=</span> <span class="ident">Rect::new</span>(
                 <span class="ident">Point2D::new</span>(<span class="ident">layout</span>.<span class="ident">checkbox_size</span>.<span class="ident">width</span> <span class="op">+</span> <span class="ident">LABEL_PADDING</span>.<span class="ident">get</span>(), <span class="number">0.</span>),
                 <span class="ident">layout</span>.<span class="ident">label_size</span>,
             );
 
-            <span class="ident">scene</span>.<span class="ident">fill_rect</span>::<span class="op">&lt;</span><span class="ident">ButtonColor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">checkbox_rect</span>, <span class="ident">context</span>.<span class="ident">style</span>);
+            <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ButtonColor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">checkbox_rect</span>, <span class="ident">context</span>.<span class="ident">style</span>);
 
             <span class="kw">if</span> <span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">checked</span> {
                 <span class="comment">// Fill a square in the middle with the mark.</span>
@@ -259,12 +263,12 @@
                     <span class="op">-</span><span class="ident">checkbox_rect</span>.<span class="ident">size</span>.<span class="ident">width</span> <span class="op">/</span> <span class="number">3.</span>,
                     <span class="op">-</span><span class="ident">checkbox_rect</span>.<span class="ident">size</span>.<span class="ident">width</span> <span class="op">/</span> <span class="number">3.</span>,
                 );
-                <span class="ident">scene</span>.<span class="ident">fill_rect</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">check_box</span>, <span class="ident">context</span>.<span class="ident">style</span>);
+                <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">check_box</span>, <span class="ident">context</span>.<span class="ident">style</span>);
             }
 
             <span class="ident">layout</span>
                 .<span class="ident">label</span>
-                .<span class="ident">render_within</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="ident">scene</span>, <span class="ident">label_rect</span>, <span class="ident">context</span>.<span class="ident">style</span>);
+                .<span class="ident">render_within</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="ident">renderer</span>, <span class="ident">label_rect</span>, <span class="ident">context</span>.<span class="ident">style</span>);
         }
     }
 

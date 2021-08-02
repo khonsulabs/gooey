@@ -357,15 +357,6 @@
 <span id="354">354</span>
 <span id="355">355</span>
 <span id="356">356</span>
-<span id="357">357</span>
-<span id="358">358</span>
-<span id="359">359</span>
-<span id="360">360</span>
-<span id="361">361</span>
-<span id="362">362</span>
-<span id="363">363</span>
-<span id="364">364</span>
-<span id="365">365</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">approx::abs_diff_eq</span>;
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
@@ -384,7 +375,7 @@
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">TextWrapper</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span> {
     <span class="ident">options</span>: <span class="ident">TextWrap</span>,
-    <span class="ident">scene</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">R</span>,
+    <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">R</span>,
     <span class="ident">prepared_text</span>: <span class="ident">PreparedText</span>,
 }
 
@@ -502,10 +493,10 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span> <span class="ident">TextWrapper</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wrap</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">Text</span>, <span class="ident">scene</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">R</span>, <span class="ident">options</span>: <span class="ident">TextWrap</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PreparedText</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wrap</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">Text</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">R</span>, <span class="ident">options</span>: <span class="ident">TextWrap</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PreparedText</span> {
         <span class="ident">TextWrapper</span> {
             <span class="ident">options</span>,
-            <span class="ident">scene</span>,
+            <span class="ident">renderer</span>,
             <span class="ident">prepared_text</span>: <span class="ident">PreparedText::default</span>(),
         }
         .<span class="ident">wrap_text</span>(<span class="ident">text</span>)
@@ -514,7 +505,7 @@
     <span class="kw">fn</span> <span class="ident">wrap_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PreparedText</span> {
         <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">options</span>.<span class="ident">width</span>();
 
-        <span class="kw">let</span> <span class="ident">measured</span> <span class="op">=</span> <span class="ident">MeasuredText::new</span>(<span class="ident">text</span>, <span class="self">self</span>.<span class="ident">scene</span>);
+        <span class="kw">let</span> <span class="ident">measured</span> <span class="op">=</span> <span class="ident">MeasuredText::new</span>(<span class="ident">text</span>, <span class="self">self</span>.<span class="ident">renderer</span>);
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">TextWrapState</span> {
             <span class="ident">width</span>,
@@ -604,9 +595,10 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-        <span class="ident">styles</span>::{<span class="ident">FontSize</span>, <span class="ident">Style</span>},
+        <span class="ident">styles</span>::{<span class="ident">FontSize</span>, <span class="ident">Style</span>, <span class="ident">SystemTheme</span>},
         <span class="ident">Pixels</span>,
     };
+    <span class="kw">use</span> <span class="ident">gooey_renderer::StrokeOptions</span>;
 
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Span</span>;
@@ -615,6 +607,10 @@
     <span class="kw">struct</span> <span class="ident">MockTextRenderer</span>;
 
     <span class="kw">impl</span> <span class="ident">Renderer</span> <span class="kw">for</span> <span class="ident">MockTextRenderer</span> {
+        <span class="kw">fn</span> <span class="ident">theme</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span> {
+            <span class="ident">SystemTheme::default</span>()
+        }
+
         <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gooey_core::euclid::Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
             <span class="macro">unimplemented!</span>()
         }
@@ -631,49 +627,18 @@
             <span class="macro">unimplemented!</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">render_text</span><span class="op">&lt;</span>
-            <span class="ident">F</span>: <span class="ident">gooey_core::styles::FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">gooey_core::styles::ColorPair</span><span class="op">&gt;</span>,
-        <span class="op">&gt;</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="ident">_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-            <span class="ident">_baseline_origin</span>: <span class="ident">gooey_core::euclid::Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-            <span class="ident">_style</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::styles::Style</span>,
-        ) {
-            <span class="macro">unimplemented!</span>()
-        }
-
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::cast_precision_loss</span>)]</span>
-        <span class="kw">fn</span> <span class="ident">measure_text</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-            <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::styles::Style</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span> {
-            <span class="comment">// Return a fixed width per character, based on the font size.</span>
-            <span class="kw">let</span> <span class="ident">font_size</span> <span class="op">=</span> <span class="ident">style</span>
-                .<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">FontSize</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>()
-                .<span class="ident">map_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Length::new</span>(<span class="number">14.</span>), <span class="op">|</span><span class="ident">size</span><span class="op">|</span> <span class="ident">size</span>.<span class="number">0</span>);
-            <span class="ident">TextMetrics</span> {
-                <span class="ident">width</span>: <span class="ident">font_size</span> <span class="op">*</span> <span class="ident">text</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f32</span> <span class="op">*</span> <span class="number">0.6</span>,
-                <span class="ident">ascent</span>: <span class="ident">font_size</span> <span class="op">*</span> <span class="number">0.8</span>,
-                <span class="ident">descent</span>: <span class="op">-</span><span class="ident">font_size</span> <span class="op">*</span> <span class="number">0.2</span>,
-                <span class="ident">line_gap</span>: <span class="ident">font_size</span> <span class="op">*</span> <span class="number">0.1</span>,
-            }
-        }
-
         <span class="kw">fn</span> <span class="ident">stroke_rect</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
             <span class="ident">_rect</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::euclid::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-            <span class="ident">_style</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::styles::Style</span>,
+            <span class="ident">_style</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>,
         ) {
             <span class="macro">unimplemented!</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">fill_rect</span><span class="op">&lt;</span>
-            <span class="ident">F</span>: <span class="ident">gooey_core::styles::FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">gooey_core::styles::ColorPair</span><span class="op">&gt;</span>,
-        <span class="op">&gt;</span>(
+        <span class="kw">fn</span> <span class="ident">fill_rect</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
             <span class="ident">_rect</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::euclid::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-            <span class="ident">_style</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::styles::Style</span>,
+            <span class="ident">_color</span>: <span class="ident">gooey_core::styles::Color</span>,
         ) {
             <span class="macro">unimplemented!</span>()
         }
@@ -682,8 +647,25 @@
             <span class="kw-2">&amp;</span><span class="self">self</span>,
             <span class="ident">_point_a</span>: <span class="ident">gooey_core::euclid::Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
             <span class="ident">_point_b</span>: <span class="ident">gooey_core::euclid::Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-            <span class="ident">_style</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::styles::Style</span>,
+            <span class="ident">_style</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>,
         ) {
+            <span class="macro">unimplemented!</span>()
+        }
+
+        <span class="kw">fn</span> <span class="ident">render_text</span>(
+            <span class="kw-2">&amp;</span><span class="self">self</span>,
+            <span class="ident">_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+            <span class="ident">_baseline_origin</span>: <span class="ident">gooey_core::euclid::Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+            <span class="ident">_options</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_renderer::TextOptions</span>,
+        ) {
+            <span class="macro">unimplemented!</span>()
+        }
+
+        <span class="kw">fn</span> <span class="ident">measure_text</span>(
+            <span class="kw-2">&amp;</span><span class="self">self</span>,
+            <span class="ident">_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+            <span class="ident">_options</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_renderer::TextOptions</span>,
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span> {
             <span class="macro">unimplemented!</span>()
         }
     }
@@ -691,12 +673,12 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="doccomment">/// This test should have &quot;This line should &quot; be on the first line and &quot;wrap&quot; on the second</span>
     <span class="kw">fn</span> <span class="ident">wrap_one_word</span>() {
-        <span class="kw">let</span> <span class="ident">scene</span> <span class="op">=</span> <span class="ident">MockTextRenderer</span>;
+        <span class="kw">let</span> <span class="ident">renderer</span> <span class="op">=</span> <span class="ident">MockTextRenderer</span>;
         <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">Text::from</span>(<span class="macro">vec!</span>[<span class="ident">Span::new</span>(
             <span class="string">&quot;This line should wrap&quot;</span>,
             <span class="ident">Style::new</span>().<span class="ident">with</span>(<span class="ident">FontSize</span>::<span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="number">12.</span>)),
         )])
-        .<span class="ident">wrap</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>, <span class="ident">TextWrap::MultiLine</span> {
+        .<span class="ident">wrap</span>(<span class="kw-2">&amp;</span><span class="ident">renderer</span>, <span class="ident">TextWrap::MultiLine</span> {
             <span class="ident">size</span>: <span class="ident">Size2D::new</span>(<span class="number">80.0</span>, <span class="ident">f32::MAX</span>),
         });
         <span class="macro">println!</span>(<span class="string">&quot;Wrapped text: {:#?}&quot;</span>, <span class="ident">wrap</span>);
@@ -709,7 +691,7 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="doccomment">/// This test should have &quot;This line should &quot; be on the first line and &quot;wrap&quot; on the second</span>
     <span class="kw">fn</span> <span class="ident">wrap_one_word_different_span</span>() {
-        <span class="kw">let</span> <span class="ident">scene</span> <span class="op">=</span> <span class="ident">MockTextRenderer</span>;
+        <span class="kw">let</span> <span class="ident">renderer</span> <span class="op">=</span> <span class="ident">MockTextRenderer</span>;
 
         <span class="kw">let</span> <span class="ident">first_style</span> <span class="op">=</span> <span class="ident">Style::new</span>().<span class="ident">with</span>(<span class="ident">FontSize</span>::<span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="number">12.</span>));
 
@@ -719,7 +701,7 @@
             <span class="ident">Span::new</span>(<span class="string">&quot;This line should &quot;</span>, <span class="ident">first_style</span>),
             <span class="ident">Span::new</span>(<span class="string">&quot;wrap&quot;</span>, <span class="ident">second_style</span>),
         ])
-        .<span class="ident">wrap</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>, <span class="ident">TextWrap::MultiLine</span> {
+        .<span class="ident">wrap</span>(<span class="kw-2">&amp;</span><span class="ident">renderer</span>, <span class="ident">TextWrap::MultiLine</span> {
             <span class="ident">size</span>: <span class="ident">Size2D::new</span>(<span class="number">130.0</span>, <span class="ident">f32::MAX</span>),
         });
         <span class="macro">assert_eq!</span>(<span class="ident">wrap</span>.<span class="ident">lines</span>.<span class="ident">len</span>(), <span class="number">2</span>);

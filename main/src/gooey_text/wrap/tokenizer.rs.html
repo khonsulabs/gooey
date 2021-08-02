@@ -203,13 +203,13 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">emit_token_if_needed</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">scene</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Token</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">emit_token_if_needed</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Token</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">is_empty</span>() {
             <span class="prelude-val">None</span>
         } <span class="kw">else</span> {
             <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">clone</span>();
             <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">clear</span>();
-            <span class="kw">let</span> <span class="ident">metrics</span> <span class="op">=</span> <span class="ident">scene</span>.<span class="ident">measure_text</span>(<span class="kw-2">&amp;</span><span class="ident">text</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">style</span>);
+            <span class="kw">let</span> <span class="ident">metrics</span> <span class="op">=</span> <span class="ident">renderer</span>.<span class="ident">measure_text_with_style</span>(<span class="kw-2">&amp;</span><span class="ident">text</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">style</span>);
             <span class="kw">let</span> <span class="ident">span</span> <span class="op">=</span> <span class="ident">PreparedSpan::new</span>(<span class="self">self</span>.<span class="ident">style</span>.<span class="ident">clone</span>(), <span class="ident">text</span>, <span class="ident">metrics</span>);
 
             <span class="kw">let</span> <span class="ident">token</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">lexer_state</span> {
@@ -225,10 +225,10 @@
 
 <span class="kw">impl</span> <span class="ident">Tokenizer</span> {
     <span class="comment">// Text (Vec&lt;Span&gt;) -&gt; Vec&lt;Token{ PreparedSpan, TokenKind }&gt;</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">prepare_spans</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">Text</span>, <span class="ident">scene</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Token</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">prepare_spans</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">Text</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Token</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_span_metrics</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">for</span> <span class="ident">span</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">text</span>.<span class="ident">spans</span> {
-            <span class="kw">let</span> <span class="ident">vmetrics</span> <span class="op">=</span> <span class="ident">scene</span>.<span class="ident">measure_text</span>(<span class="string">&quot;m&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">span</span>.<span class="ident">style</span>);
+            <span class="kw">let</span> <span class="ident">vmetrics</span> <span class="op">=</span> <span class="ident">renderer</span>.<span class="ident">measure_text_with_style</span>(<span class="string">&quot;m&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">span</span>.<span class="ident">style</span>);
             <span class="ident">last_span_metrics</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vmetrics</span>);
 
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">TokenizerState::new</span>(<span class="ident">span</span>.<span class="ident">style</span>.<span class="ident">clone</span>());
@@ -237,7 +237,7 @@
                 <span class="kw">if</span> <span class="ident">c</span>.<span class="ident">is_control</span>() {
                     <span class="kw">if</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\n&#39;</span> {
                         <span class="comment">// Emit any pending token</span>
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">emit_token_if_needed</span>(<span class="ident">scene</span>) {
+                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">emit_token_if_needed</span>(<span class="ident">renderer</span>) {
                             <span class="self">self</span>.<span class="ident">tokens</span>.<span class="ident">push</span>(<span class="ident">token</span>);
                         }
 
@@ -253,7 +253,7 @@
                     };
 
                     <span class="kw">if</span> <span class="ident">new_lexer_state</span> <span class="op">!</span><span class="op">=</span> <span class="ident">state</span>.<span class="ident">lexer_state</span> {
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">emit_token_if_needed</span>(<span class="ident">scene</span>) {
+                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">emit_token_if_needed</span>(<span class="ident">renderer</span>) {
                             <span class="self">self</span>.<span class="ident">tokens</span>.<span class="ident">push</span>(<span class="ident">token</span>);
                         }
                     }
@@ -264,7 +264,7 @@
                 }
             }
 
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">emit_token_if_needed</span>(<span class="ident">scene</span>) {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">emit_token_if_needed</span>(<span class="ident">renderer</span>) {
                 <span class="self">self</span>.<span class="ident">tokens</span>.<span class="ident">push</span>(<span class="ident">token</span>);
             }
         }

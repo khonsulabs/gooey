@@ -179,57 +179,6 @@
 <span id="176">176</span>
 <span id="177">177</span>
 <span id="178">178</span>
-<span id="179">179</span>
-<span id="180">180</span>
-<span id="181">181</span>
-<span id="182">182</span>
-<span id="183">183</span>
-<span id="184">184</span>
-<span id="185">185</span>
-<span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
-<span id="193">193</span>
-<span id="194">194</span>
-<span id="195">195</span>
-<span id="196">196</span>
-<span id="197">197</span>
-<span id="198">198</span>
-<span id="199">199</span>
-<span id="200">200</span>
-<span id="201">201</span>
-<span id="202">202</span>
-<span id="203">203</span>
-<span id="204">204</span>
-<span id="205">205</span>
-<span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
-<span id="210">210</span>
-<span id="211">211</span>
-<span id="212">212</span>
-<span id="213">213</span>
-<span id="214">214</span>
-<span id="215">215</span>
-<span id="216">216</span>
-<span id="217">217</span>
-<span id="218">218</span>
-<span id="219">219</span>
-<span id="220">220</span>
-<span id="221">221</span>
-<span id="222">222</span>
-<span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! A [`Renderer`](gooey_renderer::Renderer) for `Gooey` that uses</span>
 <span class="doccomment">//! [`Kludgine`](https://github.com/kludgine/kludgine/) to draw. Under the hood,</span>
@@ -256,14 +205,10 @@
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Point2D</span>, <span class="ident">Rect</span>},
-    <span class="ident">palette::Srgba</span>,
-    <span class="ident">styles</span>::{
-        <span class="ident">ColorPair</span>, <span class="ident">FallbackComponent</span>, <span class="ident">FontSize</span>, <span class="ident">ForegroundColor</span>, <span class="ident">LineWidth</span>, <span class="ident">Style</span>, <span class="ident">SystemTheme</span>,
-        <span class="ident">TextColor</span>,
-    },
+    <span class="ident">styles::SystemTheme</span>,
     <span class="ident">Pixels</span>, <span class="ident">Points</span>,
 };
-<span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">TextMetrics</span>};
+<span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">StrokeOptions</span>, <span class="ident">TextMetrics</span>, <span class="ident">TextOptions</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">kludgine</span>;
 <span class="kw">use</span> <span class="ident">kludgine</span>::{<span class="ident">core::winit::window::Theme</span>, <span class="ident">prelude</span>::<span class="kw-2">*</span>};
 
@@ -287,67 +232,35 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Kludgine</span> {
-    <span class="kw">fn</span> <span class="ident">prepare_text</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PreparedSpan</span> {
-        <span class="kw">let</span> <span class="ident">system_theme</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">target</span>.<span class="ident">system_theme</span>() {
-            <span class="ident">Theme::Light</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Light</span>,
-            <span class="ident">Theme::Dark</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Dark</span>,
-        };
+    <span class="kw">fn</span> <span class="ident">prepare_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TextOptions</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PreparedSpan</span> {
         <span class="ident">Text::prepare</span>(
             <span class="ident">text</span>,
             <span class="kw-2">&amp;</span><span class="ident">bundled_fonts::ROBOTO</span>,
-            <span class="ident">options</span>
-                .<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">FontSize</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>()
-                .<span class="ident">copied</span>()
-                .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">FontSize::new</span>(<span class="number">13.</span>))
-                .<span class="ident">length</span>()
-                .<span class="ident">cast_unit</span>(),
-            <span class="ident">Color::from</span>(
-                <span class="ident">options</span>
-                    .<span class="ident">get_with_fallback</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>()
-                    .<span class="ident">copied</span>()
-                    .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Srgba::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>).<span class="ident">into</span>())
-                    .<span class="ident">themed_color</span>(<span class="ident">system_theme</span>)
-                    .<span class="number">0</span>,
-            ),
+            <span class="ident">options</span>.<span class="ident">text_size</span>.<span class="ident">cast_unit</span>(),
+            <span class="ident">Color::from</span>(<span class="ident">options</span>.<span class="ident">color</span>.<span class="number">0</span>),
             <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">target</span>,
         )
     }
 
-    <span class="kw">fn</span> <span class="ident">stroke_shape</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">shape</span>: <span class="ident">Shape</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) {
-        <span class="kw">let</span> <span class="ident">system_theme</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">target</span>.<span class="ident">system_theme</span>() {
-            <span class="ident">Theme::Light</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Light</span>,
-            <span class="ident">Theme::Dark</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Dark</span>,
-        };
+    <span class="kw">fn</span> <span class="ident">stroke_shape</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">shape</span>: <span class="ident">Shape</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>) {
         <span class="ident">shape</span>
             .<span class="ident">cast_unit</span>()
             .<span class="ident">stroke</span>(
-                <span class="ident">Stroke::new</span>(<span class="ident">Color::from</span>(
-                    <span class="ident">style</span>
-                        .<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span><span class="op">&gt;</span>()
-                        .<span class="ident">cloned</span>()
-                        .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ForegroundColor</span>(<span class="ident">Srgba::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>).<span class="ident">into</span>()))
-                        .<span class="number">0</span>
-                        .<span class="ident">themed_color</span>(<span class="ident">system_theme</span>)
-                        .<span class="number">0</span>,
-                ))
-                .<span class="ident">line_width</span>(
-                    <span class="ident">style</span>
-                        .<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">LineWidth</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>()
-                        .<span class="ident">copied</span>()
-                        .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">LineWidth::new</span>(<span class="number">1.</span>))
-                        .<span class="ident">length</span>()
-                        .<span class="ident">cast_unit</span>(),
-                ),
+                <span class="ident">Stroke::new</span>(<span class="ident">Color::from</span>(<span class="ident">options</span>.<span class="ident">color</span>.<span class="number">0</span>))
+                    .<span class="ident">line_width</span>(<span class="ident">options</span>.<span class="ident">line_width</span>.<span class="ident">cast_unit</span>()),
             )
             .<span class="ident">render_at</span>(<span class="ident">Point2D::default</span>(), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">target</span>);
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Renderer</span> <span class="kw">for</span> <span class="ident">Kludgine</span> {
+    <span class="kw">fn</span> <span class="ident">theme</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span> {
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">target</span>.<span class="ident">system_theme</span>() {
+            <span class="ident">Theme::Light</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Light</span>,
+            <span class="ident">Theme::Dark</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Dark</span>,
+        }
+    }
+
     <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gooey_core::euclid::Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">target</span>.<span class="ident">clip</span>.<span class="ident">map_or_else</span>(
             <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">target</span>.<span class="ident">size</span>().<span class="ident">cast_unit</span>::<span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>(),
@@ -405,19 +318,19 @@
         <span class="ident">Scale::new</span>(<span class="self">self</span>.<span class="ident">target</span>.<span class="ident">scale_factor</span>().<span class="ident">get</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">render_text</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">render_text</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">baseline_origin</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
+        <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TextOptions</span>,
     ) {
-        <span class="self">self</span>.<span class="ident">prepare_text</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">text</span>, <span class="ident">options</span>)
+        <span class="self">self</span>.<span class="ident">prepare_text</span>(<span class="ident">text</span>, <span class="ident">options</span>)
             .<span class="ident">render_baseline_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">target</span>, <span class="ident">baseline_origin</span>.<span class="ident">cast_unit</span>())
             .<span class="ident">unwrap</span>();
     }
 
-    <span class="kw">fn</span> <span class="ident">measure_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">prepare_text</span>::<span class="op">&lt;</span><span class="ident">TextColor</span><span class="op">&gt;</span>(<span class="ident">text</span>, <span class="ident">options</span>);
+    <span class="kw">fn</span> <span class="ident">measure_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TextOptions</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">prepare_text</span>(<span class="ident">text</span>, <span class="ident">options</span>);
         <span class="ident">TextMetrics</span> {
             <span class="ident">width</span>: <span class="ident">text</span>.<span class="ident">width</span>.<span class="ident">cast_unit</span>::<span class="op">&lt;</span><span class="ident">Pixels</span><span class="op">&gt;</span>(),
             <span class="ident">ascent</span>: <span class="ident">Length::new</span>(<span class="ident">text</span>.<span class="ident">metrics</span>.<span class="ident">ascent</span>),
@@ -426,28 +339,13 @@
         } <span class="op">/</span> <span class="self">self</span>.<span class="ident">scale</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">stroke_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) {
-        <span class="self">self</span>.<span class="ident">stroke_shape</span>(<span class="ident">Shape::rect</span>(<span class="kw-2">*</span><span class="ident">rect</span>), <span class="ident">style</span>);
+    <span class="kw">fn</span> <span class="ident">stroke_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>) {
+        <span class="self">self</span>.<span class="ident">stroke_shape</span>(<span class="ident">Shape::rect</span>(<span class="kw-2">*</span><span class="ident">rect</span>), <span class="ident">options</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">fill_rect</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
-    ) {
-        <span class="kw">let</span> <span class="ident">system_theme</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">target</span>.<span class="ident">system_theme</span>() {
-            <span class="ident">Theme::Light</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Light</span>,
-            <span class="ident">Theme::Dark</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">SystemTheme::Dark</span>,
-        };
+    <span class="kw">fn</span> <span class="ident">fill_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>, <span class="ident">color</span>: <span class="ident">gooey_core::styles::Color</span>) {
         <span class="ident">Shape::rect</span>(<span class="ident">rect</span>.<span class="ident">cast_unit</span>())
-            .<span class="ident">fill</span>(<span class="ident">Fill::new</span>(<span class="ident">Color::from</span>(
-                <span class="ident">style</span>
-                    .<span class="ident">get_with_fallback</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>()
-                    .<span class="ident">copied</span>()
-                    .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Srgba::new</span>(<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>).<span class="ident">into</span>())
-                    .<span class="ident">themed_color</span>(<span class="ident">system_theme</span>)
-                    .<span class="number">0</span>,
-            )))
+            .<span class="ident">fill</span>(<span class="ident">Fill::new</span>(<span class="ident">Color::from</span>(<span class="ident">color</span>.<span class="number">0</span>)))
             .<span class="ident">render_at</span>(<span class="ident">Point2D::default</span>(), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">target</span>);
     }
 
@@ -455,9 +353,9 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">point_a</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">point_b</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
+        <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>,
     ) {
-        <span class="self">self</span>.<span class="ident">stroke_shape</span>(<span class="ident">Shape::polygon</span>(<span class="macro">vec!</span>[<span class="ident">point_a</span>, <span class="ident">point_b</span>]), <span class="ident">style</span>);
+        <span class="self">self</span>.<span class="ident">stroke_shape</span>(<span class="ident">Shape::polygon</span>(<span class="macro">vec!</span>[<span class="ident">point_a</span>, <span class="ident">point_b</span>]), <span class="ident">options</span>);
     }
 }
 </pre></div>

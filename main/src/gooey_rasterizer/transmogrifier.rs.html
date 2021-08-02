@@ -392,7 +392,7 @@
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">color</span>) <span class="op">=</span> <span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Widget</span> <span class="kw">as</span> <span class="ident">Widget</span><span class="op">&gt;</span><span class="ident">::background_color</span>(<span class="kw-2">&amp;</span><span class="ident">effective_style</span>) {
                 <span class="kw">let</span> <span class="ident">renderer</span> <span class="op">=</span> <span class="ident">rasterizer</span>.<span class="ident">renderer</span>().<span class="ident">unwrap</span>();
-                <span class="ident">renderer</span>.<span class="ident">fill_rect</span>::<span class="op">&lt;</span><span class="ident">BackgroundColor</span><span class="op">&gt;</span>(
+                <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">BackgroundColor</span><span class="op">&gt;</span>(
                     <span class="kw-2">&amp;</span><span class="ident">renderer</span>.<span class="ident">bounds</span>(),
                     <span class="kw-2">&amp;</span><span class="ident">Style::default</span>().<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">color</span>)),
                 );

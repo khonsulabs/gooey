@@ -391,22 +391,22 @@
     <span class="doccomment">/// Renders this text at `location` in `renderer`. The baseline of the first line will start at `location`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_baseline_at</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">scene</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
+        <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">wrapping</span>: <span class="ident">TextWrap</span>,
     ) {
-        <span class="self">self</span>.<span class="ident">render_core</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">scene</span>, <span class="ident">location</span>, <span class="bool-val">false</span>, <span class="ident">wrapping</span>);
+        <span class="self">self</span>.<span class="ident">render_core</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">renderer</span>, <span class="ident">location</span>, <span class="bool-val">false</span>, <span class="ident">wrapping</span>);
     }
 
     <span class="kw">fn</span> <span class="ident">render_core</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">scene</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
+        <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
         <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">offset_baseline</span>: <span class="ident">bool</span>,
         <span class="ident">wrapping</span>: <span class="ident">TextWrap</span>,
     ) {
-        <span class="kw">let</span> <span class="ident">prepared_text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wrap</span>(<span class="ident">scene</span>, <span class="ident">wrapping</span>);
-        <span class="ident">prepared_text</span>.<span class="ident">render</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">scene</span>, <span class="ident">location</span>, <span class="ident">offset_baseline</span>);
+        <span class="kw">let</span> <span class="ident">prepared_text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wrap</span>(<span class="ident">renderer</span>, <span class="ident">wrapping</span>);
+        <span class="ident">prepared_text</span>.<span class="ident">render</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">renderer</span>, <span class="ident">location</span>, <span class="ident">offset_baseline</span>);
     }
 
     <span class="doccomment">/// Removes text in `range`. Empty spans will be removed.</span>
