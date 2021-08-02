@@ -175,6 +175,9 @@
 <span id="172">172</span>
 <span id="173">173</span>
 <span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Size2D</span>, <span class="ident">Vector2D</span>},
@@ -230,8 +233,11 @@
         (<span class="ident">size</span>.<span class="ident">width</span> <span class="op">-</span> <span class="ident">checkbox_size</span>.<span class="ident">width</span> <span class="op">-</span> <span class="ident">LABEL_PADDING</span>.<span class="ident">get</span>()).<span class="ident">max</span>(<span class="number">0.</span>),
         <span class="ident">size</span>.<span class="ident">height</span>,
     );
-    <span class="kw">let</span> <span class="ident">label</span> <span class="op">=</span> <span class="ident">Text::span</span>(<span class="kw-2">&amp;</span><span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">label</span>, <span class="ident">context</span>.<span class="ident">style</span>.<span class="ident">clone</span>())
-        .<span class="ident">wrap</span>(<span class="ident">renderer</span>, <span class="ident">TextWrap::MultiLine</span> { <span class="ident">size</span>: <span class="ident">label_size</span> });
+    <span class="kw">let</span> <span class="ident">label</span> <span class="op">=</span> <span class="ident">Text::span</span>(<span class="kw-2">&amp;</span><span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">label</span>, <span class="ident">context</span>.<span class="ident">style</span>.<span class="ident">clone</span>()).<span class="ident">wrap</span>(
+        <span class="ident">renderer</span>,
+        <span class="ident">TextWrap::MultiLine</span> { <span class="ident">size</span>: <span class="ident">label_size</span> },
+        <span class="prelude-val">Some</span>(<span class="ident">context</span>.<span class="ident">style</span>),
+    );
 
     <span class="kw">let</span> <span class="ident">label_size</span> <span class="op">=</span> <span class="ident">label</span>.<span class="ident">size</span>();
 
