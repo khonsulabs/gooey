@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-success">
-                <abbr title="52 / 52">100 %</abbr></p>
+                <abbr title="55 / 55">100 %</abbr></p>
         </div>
     </div>
 
@@ -411,7 +411,7 @@
                 186
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        if let Some(scene) = context.frontend.renderer() {</pre>
+                <pre class="has-background-success-light py-0 px-2">        if let Some(renderer) = context.frontend.renderer() {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -476,7 +476,7 @@
                 186
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                scene,</pre>
+                <pre class="has-background-success-light py-0 px-2">                renderer,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -489,7 +489,7 @@
                 186
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                Length::new(scene.size().width),</pre>
+                <pre class="has-background-success-light py-0 px-2">                Length::new(renderer.size().width),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -515,7 +515,7 @@
                 186
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            wrapped.render_within::&lt;LabelColor, _&gt;(scene, scene.bounds(), context.style);</pre>
+                <pre class="has-background-success-light py-0 px-2">            wrapped.render_within::&lt;LabelColor, _&gt;(renderer, renderer.bounds(), context.style);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -671,7 +671,7 @@
                 318
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            .map_or_else(Size2D::default, |scene| {</pre>
+                <pre class="has-background-success-light py-0 px-2">            .map_or_else(Size2D::default, |renderer| {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -723,7 +723,7 @@
                 318
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                    scene,</pre>
+                <pre class="has-background-success-light py-0 px-2">                    renderer,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -736,7 +736,7 @@
                 318
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                    Length::new(constraints.width.unwrap_or_else(|| scene.size().width)),</pre>
+                <pre class="has-background-success-light py-0 px-2">                    Length::new(constraints.width.unwrap_or_else(|| renderer.size().width)),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -944,7 +944,7 @@
                 504
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    text.wrap(renderer, TextWrap::MultiLine {</pre>
+                <pre class="has-background-success-light py-0 px-2">    text.wrap(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -957,7 +957,7 @@
                 504
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        size: Size2D::from_lengths(</pre>
+                <pre class="has-background-success-light py-0 px-2">        renderer,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -970,7 +970,7 @@
                 504
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            width - LABEL_PADDING * 2.,</pre>
+                <pre class="has-background-success-light py-0 px-2">        TextWrap::MultiLine {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -983,7 +983,7 @@
                 504
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            Length::new(renderer.size().height),</pre>
+                <pre class="has-background-success-light py-0 px-2">            size: Size2D::from_lengths(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -996,7 +996,7 @@
                 504
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        ),</pre>
+                <pre class="has-background-success-light py-0 px-2">                width - LABEL_PADDING * 2.,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1009,7 +1009,7 @@
                 504
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    })</pre>
+                <pre class="has-background-success-light py-0 px-2">                Length::new(renderer.size().height),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1022,12 +1022,51 @@
                 504
             </div>
             <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">            ),</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="77">
+                <a href="#77">77</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                504
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">        },</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="78">
+                <a href="#78">78</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                504
+            </div>
+            <div class="column has-background-success-light p-0">
+                <pre class="has-background-success-light py-0 px-2">    )</pre>
+            </div>
+        </div><div class="columns p-0 m-0">
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered"
+                id="79">
+                <a href="#79">79</a>
+            </div>
+            <div
+                class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
+                504
+            </div>
+            <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">}</pre>
             </div>
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-08-01 22:41</p>
+                <p class="heading">Date: 2021-08-02 15:06</p>
             </div>
         </footer>
     </body>

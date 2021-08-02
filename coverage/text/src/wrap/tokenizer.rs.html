@@ -879,7 +879,7 @@
                 59327
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    fn emit_token_if_needed&lt;R: Renderer&gt;(&amp;mut self, scene: &amp;R) -&gt; Option&lt;Token&gt; {</pre>
+                <pre class="has-background-success-light py-0 px-2">    fn emit_token_if_needed&lt;R: Renderer&gt;(&amp;mut self, renderer: &amp;R) -&gt; Option&lt;Token&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -957,7 +957,7 @@
                 57024
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            let metrics = scene.measure_text(&amp;text, &amp;self.style);</pre>
+                <pre class="has-background-success-light py-0 px-2">            let metrics = renderer.measure_text_with_style(&amp;text, &amp;self.style);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1165,7 +1165,7 @@
                 1402
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    pub(crate) fn prepare_spans&lt;R: Renderer&gt;(mut self, text: &amp;Text, scene: &amp;R) -&gt; Vec&lt;Token&gt; {</pre>
+                <pre class="has-background-success-light py-0 px-2">    pub(crate) fn prepare_spans&lt;R: Renderer&gt;(mut self, text: &amp;Text, renderer: &amp;R) -&gt; Vec&lt;Token&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1204,7 +1204,7 @@
                 1403
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            let vmetrics = scene.measure_text(&quot;m&quot;, &amp;span.style);</pre>
+                <pre class="has-background-success-light py-0 px-2">            let vmetrics = renderer.measure_text_with_style(&quot;m&quot;, &amp;span.style);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1321,7 +1321,7 @@
                 900
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                        if let Some(token) = state.emit_token_if_needed(scene) {</pre>
+                <pre class="has-background-success-light py-0 px-2">                        if let Some(token) = state.emit_token_if_needed(renderer) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1529,7 +1529,7 @@
                 57024
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">                        if let Some(token) = state.emit_token_if_needed(scene) {</pre>
+                <pre class="has-background-success-light py-0 px-2">                        if let Some(token) = state.emit_token_if_needed(renderer) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1672,7 +1672,7 @@
                 1403
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            if let Some(token) = state.emit_token_if_needed(scene) {</pre>
+                <pre class="has-background-success-light py-0 px-2">            if let Some(token) = state.emit_token_if_needed(renderer) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1820,7 +1820,7 @@
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-08-01 22:41</p>
+                <p class="heading">Date: 2021-08-02 15:06</p>
             </div>
         </footer>
     </body>
