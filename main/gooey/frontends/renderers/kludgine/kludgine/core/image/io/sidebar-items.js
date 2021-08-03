@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Reader","A multi-format image reader."]]});

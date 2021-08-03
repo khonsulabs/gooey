@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Encoding and decoding for various image file formats."><meta name="keywords" content="rust, rustlang, rust-lang, codecs"><title>gooey::frontends::renderers::kludgine::kludgine::core::image::codecs - Rust</title><link rel="stylesheet" type="text/css" href="../../../../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../../../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../../../../../../storage.js"></script><script src="../../../../../../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../../../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../../../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../../../../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../../../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../../../../../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../../../../../gooey/index.html'><div class='logo-container rust-logo'><img src='../../../../../../../../rust-logo.png' alt='logo'></div></a><p class="location">Module codecs</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#modules">Modules</a></li></ul></div><p class="location"><a href="../../../../../../../index.html">gooey</a>::<wbr><a href="../../../../../../index.html">frontends</a>::<wbr><a href="../../../../../index.html">renderers</a>::<wbr><a href="../../../../index.html">kludgine</a>::<wbr><a href="../../../index.html">kludgine</a>::<wbr><a href="../../index.html">core</a>::<wbr><a href="../index.html">image</a></p><div id="sidebar-vars" data-name="codecs" data-ty="mod" data-relpath="../"></div><script defer src="../sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../../../../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
+                <a id="settings-menu" href="../../../../../../../../settings.html"><img src="../../../../../../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Module <a href="../../../../../../../index.html">gooey</a>::<wbr><a href="../../../../../../index.html">frontends</a>::<wbr><a href="../../../../../index.html">renderers</a>::<wbr><a href="../../../../index.html">kludgine</a>::<wbr><a href="../../../index.html">kludgine</a>::<wbr><a href="../../index.html">core</a>::<wbr><a href="../index.html">image</a>::<wbr><a class="mod" href="">codecs</a><button id="copy-path" onclick="copy_path(this)">⎘</button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></span></h1><div class="docblock"><p>Encoding and decoding for various image file formats.</p>
+<h1 id="supported-formats" class="section-header"><a href="#supported-formats">Supported formats</a></h1><table><thead><tr><th>Format</th><th>Decoding</th><th>Encoding</th></tr></thead><tbody>
+<tr><td>PNG</td><td>All supported color types</td><td>Same as decoding</td></tr>
+<tr><td>JPEG</td><td>Baseline and progressive</td><td>Baseline JPEG</td></tr>
+<tr><td>GIF</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>BMP</td><td>Yes</td><td>RGB8, RGBA8, Gray8, GrayA8</td></tr>
+<tr><td>ICO</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>TIFF</td><td>Baseline(no fax support) + LZW + PackBits</td><td>RGB8, RGBA8, Gray8</td></tr>
+<tr><td>WebP</td><td>Lossy(Luma channel only)</td><td>No</td></tr>
+<tr><td>AVIF</td><td>Only 8-bit</td><td>Lossy</td></tr>
+<tr><td>PNM</td><td>PBM, PGM, PPM, standard PAM</td><td>Yes</td></tr>
+<tr><td>DDS</td><td>DXT1, DXT3, DXT5</td><td>No</td></tr>
+<tr><td>TGA</td><td>Yes</td><td>RGB8, RGBA8, BGR8, BGRA8, Gray8, GrayA8</td></tr>
+<tr><td>farbfeld</td><td>Yes</td><td>Yes</td></tr>
+</tbody></table>
+<h2 id="a-note-on-format-specific-features" class="section-header"><a href="#a-note-on-format-specific-features">A note on format specific features</a></h2>
+<p>One of the main goals of <code>image</code> is stability, in runtime but also for programmers. This
+ensures that performance as well as safety fixes reach a majority of its user base with little
+effort. Re-exporting all details of its dependencies would run counter to this goal as it
+linked <em>all</em> major version bumps between them and <code>image</code>. As such, we are wary of exposing too
+many details, or configuration options, that are not shared between different image formats.</p>
+<p>Nevertheless, the advantage of precise control is hard to ignore. We will thus consider
+<em>wrappers</em>, not direct re-exports, in either of the following cases:</p>
+<ol>
+<li>A standard specifies that configuration <em>x</em> is required for decoders/encoders and there
+exists an essentially canonical way to control it.</li>
+<li>At least two different implementations agree on some (sub-)set of features in practice.</li>
+<li>A technical argument including measurements of the performance, space benefits, or otherwise
+objectively quantified benefits can be made, and the added interface is unlikely to require
+breaking changes.</li>
+</ol>
+<p>Features that fulfill two or more criteria are preferred.</p>
+<p>Re-exports of dependencies that reach version <code>1</code> will be discussed when it happens.</p>
+</div><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<table><tr class="module-item"><td><a class="mod" href="bmp/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::bmp mod">bmp</a></td><td class="docblock-short"><p>Decoding and Encoding of BMP Images</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="dds/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::dds mod">dds</a></td><td class="docblock-short"><p>Decoding of DDS images</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="dxt/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::dxt mod">dxt</a></td><td class="docblock-short"><p>Decoding of DXT (S3TC) compression</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="farbfeld/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::farbfeld mod">farbfeld</a></td><td class="docblock-short"><p>Decoding of farbfeld images</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="gif/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::gif mod">gif</a></td><td class="docblock-short"><p>Decoding of GIF Images</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="hdr/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::hdr mod">hdr</a></td><td class="docblock-short"><p>Decoding of Radiance HDR Images</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="ico/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::ico mod">ico</a></td><td class="docblock-short"><p>Decoding and Encoding of ICO files</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="jpeg/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::jpeg mod">jpeg</a></td><td class="docblock-short"><p>Decoding and Encoding of JPEG Images</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="png/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::png mod">png</a></td><td class="docblock-short"><p>Decoding and Encoding of PNG Images</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="pnm/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::pnm mod">pnm</a></td><td class="docblock-short"><p>Decoding of netpbm image formats (pbm, pgm, ppm and pam).</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="tga/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::tga mod">tga</a></td><td class="docblock-short"><p>Decoding of TGA Images</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="tiff/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::tiff mod">tiff</a></td><td class="docblock-short"><p>Decoding and Encoding of TIFF Images</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="webp/index.html" title="gooey::frontends::renderers::kludgine::kludgine::core::image::codecs::webp mod">webp</a></td><td class="docblock-short"><p>Decoding of WebP Images</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../../../../../" data-current-crate="gooey" data-search-index-js="../../../../../../../../search-index.js" data-search-js="../../../../../../../../search.js"></div>
+    <script src="../../../../../../../../main.js"></script></body></html>

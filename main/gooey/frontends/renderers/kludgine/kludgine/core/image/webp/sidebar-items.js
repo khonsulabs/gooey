@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["WebPDecoder","WebP Image format decoder. Currently only supportes the luma channel (meaning that decoded images will be grayscale)."]]});
