@@ -450,7 +450,6 @@
 <span id="448">448</span>
 <span id="449">449</span>
 <span id="450">450</span>
-<span id="451">451</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">borrow::Cow</span>,
@@ -896,10 +895,9 @@
                     .<span class="ident">unwrap</span>()
                     .<span class="ident">post_command</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">command</span>);
             }
-            <span class="ident">ComponentCommand::Behavior</span>(<span class="ident">event</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">receive_event</span>(
-                <span class="ident">InternalEvent::Content</span>(<span class="ident">event</span>),
-                <span class="kw-2">&amp;</span><span class="ident">Context::new</span>(<span class="ident">context</span>.<span class="ident">channels</span>, <span class="ident">context</span>.<span class="ident">frontend</span>),
-            ),
+            <span class="ident">ComponentCommand::Behavior</span>(<span class="ident">event</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">context</span>
+                .<span class="ident">widget</span>
+                .<span class="ident">receive_event</span>(<span class="ident">InternalEvent::Content</span>(<span class="ident">event</span>), <span class="kw-2">&amp;</span><span class="ident">Context::from</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">context</span>)),
         }
     }
 }
