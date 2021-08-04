@@ -186,9 +186,47 @@
 <span id="184">184</span>
 <span id="185">185</span>
 <span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">collections</span>::{<span class="ident">HashMap</span>, <span class="ident">HashSet</span>},
+    <span class="ident">path::PathBuf</span>,
     <span class="ident">sync</span>::{<span class="ident">Arc</span>, <span class="ident">Mutex</span>},
 };
 
@@ -199,13 +237,16 @@
 };
 <span class="kw">use</span> <span class="ident">winit::event::MouseButton</span>;
 
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Configuration</span>;
+
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">State</span> {
-    <span class="ident">data</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">StateData</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">data</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Data</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">configuration</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Configuration</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">struct</span> <span class="ident">StateData</span> {
+<span class="kw">struct</span> <span class="ident">Data</span> {
     <span class="ident">order</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">WidgetId</span><span class="op">&gt;</span>,
     <span class="ident">bounds</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">system_theme</span>: <span class="ident">SystemTheme</span>,
@@ -220,6 +261,17 @@
 }
 
 <span class="kw">impl</span> <span class="ident">State</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">configuration</span>: <span class="ident">Configuration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">data</span>: <span class="ident">Arc::default</span>(),
+            <span class="ident">configuration</span>: <span class="ident">Arc::new</span>(<span class="ident">configuration</span>),
+        }
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">configuration</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">Configuration</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">configuration</span>
+    }
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
         <span class="ident">data</span>.<span class="ident">new_frame</span>();
@@ -349,9 +401,31 @@
             <span class="ident">focused</span>: <span class="ident">data</span>.<span class="ident">focus</span>.<span class="ident">as_ref</span>() <span class="op">=</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">widget_id</span>),
         }
     }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">assets_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PathBuf</span> {
+        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="self">self</span>
+            .<span class="ident">configuration</span>
+            .<span class="ident">assets_path</span>
+            .<span class="ident">clone</span>()
+            .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">PathBuf::from</span>(<span class="string">&quot;assets&quot;</span>));
+        <span class="kw">if</span> <span class="ident">path</span>.<span class="ident">is_absolute</span>() {
+            <span class="ident">path</span>
+        } <span class="kw">else</span> {
+            <span class="kw">let</span> <span class="ident">base_path</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">manifest_dir</span>) <span class="op">=</span> <span class="ident">std::env::var</span>(<span class="string">&quot;CARGO_MANIFEST_DIR&quot;</span>) {
+                <span class="ident">PathBuf::from</span>(<span class="ident">manifest_dir</span>)
+            } <span class="kw">else</span> {
+                <span class="ident">std::env::current_exe</span>()
+                    .<span class="ident">unwrap</span>()
+                    .<span class="ident">parent</span>()
+                    .<span class="ident">unwrap</span>()
+                    .<span class="ident">to_owned</span>()
+            };
+            <span class="ident">base_path</span>.<span class="ident">join</span>(<span class="ident">path</span>)
+        }
+    }
 }
 
-<span class="kw">impl</span> <span class="ident">StateData</span> {
+<span class="kw">impl</span> <span class="ident">Data</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_frame</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="self">self</span>.<span class="ident">order</span>.<span class="ident">clear</span>();
         <span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">clear</span>();

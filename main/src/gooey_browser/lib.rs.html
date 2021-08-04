@@ -471,6 +471,87 @@
 <span id="469">469</span>
 <span id="470">470</span>
 <span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that targets web browsers</span>
 <span class="doccomment">//! by creating DOM elements using `web-sys` and `wasm-bindgen`.</span>
@@ -498,33 +579,46 @@
     <span class="ident">convert::TryFrom</span>,
     <span class="ident">ops::Deref</span>,
     <span class="ident">sync</span>::{
-        <span class="ident">atomic</span>::{<span class="ident">AtomicBool</span>, <span class="ident">Ordering</span>},
+        <span class="ident">atomic</span>::{<span class="ident">AtomicBool</span>, <span class="ident">AtomicU64</span>, <span class="ident">Ordering</span>},
         <span class="ident">Arc</span>, <span class="ident">Mutex</span>,
     },
 };
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
+    <span class="ident">assets</span>::{<span class="self">self</span>, <span class="ident">Configuration</span>, <span class="ident">Image</span>},
     <span class="ident">styles</span>::{
         <span class="ident">style_sheet</span>::{<span class="ident">Classes</span>, <span class="ident">State</span>},
-        <span class="ident">Alignment</span>, <span class="ident">Style</span>, <span class="ident">StyleComponent</span>, <span class="ident">SystemTheme</span>, <span class="ident">VerticalAlignment</span>,
+        <span class="ident">Alignment</span>, <span class="ident">FontFamily</span>, <span class="ident">FontSize</span>, <span class="ident">Style</span>, <span class="ident">StyleComponent</span>, <span class="ident">SystemTheme</span>, <span class="ident">VerticalAlignment</span>,
     },
-    <span class="ident">AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Frontend</span>, <span class="ident">Gooey</span>, <span class="ident">Transmogrifier</span>,
-    <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">Widget</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>,
+    <span class="ident">AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Callback</span>, <span class="ident">Frontend</span>, <span class="ident">Gooey</span>,
+    <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">Widget</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>,
+    <span class="ident">WidgetRegistration</span>,
 };
 <span class="kw">use</span> <span class="ident">wasm_bindgen</span>::{<span class="ident">prelude</span>::<span class="kw-2">*</span>, <span class="ident">JsCast</span>};
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">utils</span>;
 
-<span class="kw">use</span> <span class="ident">utils</span>::{<span class="ident">set_widget_classes</span>, <span class="ident">set_widget_id</span>, <span class="ident">CssBlockBuilder</span>, <span class="ident">CssManager</span>, <span class="ident">CssRules</span>};
-<span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">HtmlElement</span>, <span class="ident">MediaQueryListEvent</span>};
+<span class="kw">use</span> <span class="ident">utils</span>::{
+    <span class="ident">create_element</span>, <span class="ident">set_widget_classes</span>, <span class="ident">set_widget_id</span>, <span class="ident">CssBlockBuilder</span>, <span class="ident">CssManager</span>, <span class="ident">CssRules</span>,
+};
+<span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">ErrorEvent</span>, <span class="ident">HtmlElement</span>, <span class="ident">HtmlImageElement</span>, <span class="ident">MediaQueryListEvent</span>};
+
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::utils::window_document</span>;
 
 <span class="kw">static</span> <span class="ident">INITIALIZED</span>: <span class="ident">AtomicBool</span> <span class="op">=</span> <span class="ident">AtomicBool::new</span>(<span class="bool-val">false</span>);
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WebSys</span> {
     <span class="kw">pub</span> <span class="ident">ui</span>: <span class="ident">Gooey</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
-    <span class="ident">styles</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CssRules</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">theme</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">SystemTheme</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">data</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Data</span><span class="op">&gt;</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">struct</span> <span class="ident">Data</span> {
+    <span class="ident">styles</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CssRules</span><span class="op">&gt;</span>,
+    <span class="ident">theme</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">SystemTheme</span><span class="op">&gt;</span>,
+    <span class="ident">configuration</span>: <span class="ident">Configuration</span>,
+    <span class="ident">last_image_id</span>: <span class="ident">AtomicU64</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">WebSys</span> {
@@ -538,7 +632,7 @@
     }
 
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">ui</span>: <span class="ident">Gooey</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">ui</span>: <span class="ident">Gooey</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>, <span class="ident">configuration</span>: <span class="ident">Configuration</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::initialize</span>();
 
         <span class="kw">let</span> <span class="ident">manager</span> <span class="op">=</span> <span class="ident">CssManager::shared</span>();
@@ -594,8 +688,12 @@
 
         <span class="self">Self</span> {
             <span class="ident">ui</span>,
-            <span class="ident">styles</span>: <span class="ident">Arc::new</span>(<span class="ident">styles</span>),
-            <span class="ident">theme</span>: <span class="ident">Arc::default</span>(),
+            <span class="ident">data</span>: <span class="ident">Arc::new</span>(<span class="ident">Data</span> {
+                <span class="ident">styles</span>,
+                <span class="ident">configuration</span>,
+                <span class="ident">theme</span>: <span class="ident">Mutex::default</span>(),
+                <span class="ident">last_image_id</span>: <span class="ident">AtomicU64::new</span>(<span class="number">0</span>),
+            }),
         }
     }
 
@@ -607,23 +705,23 @@
 
         <span class="kw">let</span> <span class="ident">root_id</span> <span class="op">=</span> <span class="ident">id</span>.<span class="ident">to_owned</span>();
         <span class="comment">// Initialize with light theme</span>
-        <span class="ident">update_system_theme</span>(<span class="kw-2">&amp;</span><span class="ident">root_id</span>, <span class="bool-val">false</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">theme</span>);
+        <span class="ident">update_system_theme</span>(<span class="kw-2">&amp;</span><span class="ident">root_id</span>, <span class="bool-val">false</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>.<span class="ident">theme</span>);
 
         <span class="comment">// TODO This shouldn&#39;t leak, it should be stored somewhere, but since</span>
         <span class="comment">// wasm-bindgen isn&#39;t Send+Sync, we can&#39;t store it in `self`. Also,</span>
         <span class="comment">// todo: I don&#39;t know that the callback is being invoked. My testing has</span>
         <span class="comment">// been done limited so far.</span>
-        <span class="kw">let</span> <span class="ident">theme</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">theme</span>.<span class="ident">clone</span>();
+        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">clone</span>();
         <span class="ident">std::mem::forget</span>(
             <span class="ident">window</span>
                 .<span class="ident">match_media</span>(<span class="string">&quot;(prefers-color-scheme: dark)&quot;</span>)
                 .<span class="ident">ok</span>()
                 .<span class="ident">flatten</span>()
                 .<span class="ident">and_then</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">mql</span><span class="op">|</span> {
-                    <span class="ident">update_system_theme</span>(<span class="kw-2">&amp;</span><span class="ident">root_id</span>, <span class="ident">mql</span>.<span class="ident">matches</span>(), <span class="kw-2">&amp;</span><span class="ident">theme</span>);
+                    <span class="ident">update_system_theme</span>(<span class="kw-2">&amp;</span><span class="ident">root_id</span>, <span class="ident">mql</span>.<span class="ident">matches</span>(), <span class="kw-2">&amp;</span><span class="ident">data</span>.<span class="ident">theme</span>);
                     <span class="ident">mql</span>.<span class="ident">add_listener_with_opt_callback</span>(<span class="prelude-val">Some</span>(
                         <span class="ident">Closure::wrap</span>(<span class="ident">Box::new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">event</span>: <span class="ident">MediaQueryListEvent</span><span class="op">|</span> {
-                            <span class="ident">update_system_theme</span>(<span class="kw-2">&amp;</span><span class="ident">root_id</span>, <span class="ident">event</span>.<span class="ident">matches</span>(), <span class="kw-2">&amp;</span><span class="ident">theme</span>);
+                            <span class="ident">update_system_theme</span>(<span class="kw-2">&amp;</span><span class="ident">root_id</span>, <span class="ident">event</span>.<span class="ident">matches</span>(), <span class="kw-2">&amp;</span><span class="ident">data</span>.<span class="ident">theme</span>);
                         }) <span class="kw">as</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnMut</span>(<span class="kw">_</span>)<span class="op">&gt;</span>)
                         .<span class="ident">as_ref</span>()
                         .<span class="ident">unchecked_ref</span>(),
@@ -721,8 +819,43 @@
     }
 
     <span class="kw">fn</span> <span class="ident">theme</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span> {
-        <span class="kw">let</span> <span class="ident">theme</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">theme</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">theme</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">theme</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
         <span class="kw-2">*</span><span class="ident">theme</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">load_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">image</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>, <span class="ident">completed</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Image</span><span class="op">&gt;</span>, <span class="ident">error</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">url</span>) <span class="op">=</span> <span class="ident">Frontend::asset_url</span>(<span class="self">self</span>, <span class="kw-2">&amp;</span><span class="ident">image</span>.<span class="ident">asset</span>) {
+            <span class="kw">let</span> <span class="ident">element</span> <span class="op">=</span> <span class="ident">create_element</span>::<span class="op">&lt;</span><span class="ident">HtmlImageElement</span><span class="op">&gt;</span>(<span class="string">&quot;img&quot;</span>);
+            <span class="kw">let</span> <span class="ident">image_id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">last_image_id</span>.<span class="ident">fetch_add</span>(<span class="number">1</span>, <span class="ident">Ordering::SeqCst</span>);
+            <span class="ident">image</span>.<span class="ident">set_data</span>(<span class="ident">image_id</span>);
+            <span class="ident">element</span>.<span class="ident">set_id</span>(<span class="kw-2">&amp;</span><span class="ident">image</span>.<span class="ident">css_id</span>().<span class="ident">unwrap</span>());
+            <span class="ident">element</span>.<span class="ident">set_onerror</span>(<span class="prelude-val">Some</span>(
+                <span class="kw-2">&amp;</span><span class="ident">Closure::once_into_js</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">e</span>: <span class="ident">ErrorEvent</span><span class="op">|</span> {
+                    <span class="ident">error</span>.<span class="ident">invoke</span>(<span class="ident">e</span>.<span class="ident">message</span>());
+                })
+                .<span class="ident">unchecked_into</span>(),
+            ));
+            <span class="kw">let</span> <span class="ident">completed_image</span> <span class="op">=</span> <span class="ident">image</span>.<span class="ident">clone</span>();
+            <span class="ident">element</span>.<span class="ident">set_onload</span>(<span class="prelude-val">Some</span>(
+                <span class="kw-2">&amp;</span><span class="ident">Closure::once_into_js</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
+                    <span class="ident">completed</span>.<span class="ident">invoke</span>(<span class="ident">completed_image</span>);
+                })
+                .<span class="ident">unchecked_into</span>(),
+            ));
+            <span class="ident">element</span>.<span class="ident">set_src</span>(<span class="kw-2">&amp;</span><span class="ident">url</span>.<span class="ident">to_string</span>());
+
+            <span class="comment">// Store it in the &lt;head&gt;</span>
+            <span class="comment">// TODO need to clean this up if the image is dropped</span>
+            <span class="ident">window_document</span>()
+                .<span class="ident">head</span>()
+                .<span class="ident">unwrap</span>()
+                .<span class="ident">append_child</span>(<span class="kw-2">&amp;</span><span class="ident">element</span>)
+                .<span class="ident">unwrap</span>();
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">asset_configuration</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">assets::Configuration</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>.<span class="ident">configuration</span>
     }
 }
 
@@ -788,7 +921,6 @@
         <span class="prelude-val">None</span>
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_style_to_css</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>, <span class="ident">css</span>: <span class="ident">CssBlockBuilder</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CssBlockBuilder</span> {
         <span class="self">self</span>.<span class="ident">convert_standard_components_to_css</span>(<span class="ident">style</span>, <span class="ident">css</span>)
     }
@@ -798,7 +930,10 @@
         <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
         <span class="ident">css</span>: <span class="ident">CssBlockBuilder</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CssBlockBuilder</span> {
-        <span class="self">self</span>.<span class="ident">convert_alignment_to_css</span>(<span class="ident">style</span>, <span class="self">self</span>.<span class="ident">convert_colors_to_css</span>(<span class="ident">style</span>, <span class="ident">css</span>))
+        <span class="self">self</span>.<span class="ident">convert_font_to_css</span>(
+            <span class="ident">style</span>,
+            <span class="self">self</span>.<span class="ident">convert_alignment_to_css</span>(<span class="ident">style</span>, <span class="self">self</span>.<span class="ident">convert_colors_to_css</span>(<span class="ident">style</span>, <span class="ident">css</span>)),
+        )
     }
 
     <span class="kw">fn</span> <span class="ident">convert_colors_to_css</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>, <span class="kw-2">mut</span> <span class="ident">css</span>: <span class="ident">CssBlockBuilder</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CssBlockBuilder</span> {
@@ -854,6 +989,18 @@
                     <span class="ident">VerticalAlignment::Bottom</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;end&quot;</span>,
                 },
             ));
+        }
+        <span class="ident">css</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">convert_font_to_css</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>, <span class="kw-2">mut</span> <span class="ident">css</span>: <span class="ident">CssBlockBuilder</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CssBlockBuilder</span> {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">size</span>) <span class="op">=</span> <span class="ident">style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">FontSize</span><span class="op">&gt;</span>() {
+            <span class="comment">// Accommodate for</span>
+            <span class="ident">css</span> <span class="op">=</span> <span class="ident">css</span>.<span class="ident">with_css_statement</span>(<span class="macro">format!</span>(<span class="string">&quot;font-size: {:.03}pt;&quot;</span>, <span class="ident">size</span>.<span class="ident">get</span>()));
+        }
+
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">family</span>) <span class="op">=</span> <span class="ident">style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">FontFamily</span><span class="op">&gt;</span>() {
+            <span class="ident">css</span> <span class="op">=</span> <span class="ident">css</span>.<span class="ident">with_css_statement</span>(<span class="macro">format!</span>(<span class="string">&quot;font-family: {};&quot;</span>, <span class="ident">family</span>.<span class="number">0</span>));
         }
         <span class="ident">css</span>
     }
@@ -941,6 +1088,21 @@
             <span class="kw">let</span> <span class="ident">event</span> <span class="op">=</span> <span class="ident">event_generator</span>();
             <span class="ident">widget</span>.<span class="ident">post_event</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">event</span>);
         }) <span class="kw">as</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnMut</span>()<span class="op">&gt;</span>)
+    }
+}
+
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ImageExt</span> {
+    <span class="kw">fn</span> <span class="ident">css_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">ImageExt</span> <span class="kw">for</span> <span class="ident">Image</span> {
+    <span class="kw">fn</span> <span class="ident">css_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">map_data</span>(<span class="op">|</span><span class="ident">opt_id</span><span class="op">|</span> {
+            <span class="ident">opt_id</span>
+                .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">id</span><span class="op">|</span> <span class="ident">id</span>.<span class="ident">as_any</span>().<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>())
+                .<span class="ident">copied</span>()
+        })
+        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">id</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;gooey-img-{}&quot;</span>, <span class="ident">id</span>))
     }
 }
 </pre></div>

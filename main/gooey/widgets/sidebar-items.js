@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["browser",""],["button",""],["checkbox",""],["component",""],["container",""],["label",""],["layout",""],["navigator",""],["rasterized",""],["url","rust-url is an implementation of the URL Standard for the Rust programming language."]]});
+initSidebarItems({"mod":[["browser",""],["button",""],["checkbox",""],["component",""],["container",""],["label",""],["layout",""],["navigator",""],["rasterized",""]]});

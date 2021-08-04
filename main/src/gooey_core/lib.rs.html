@@ -44,6 +44,8 @@
 <span id="42">42</span>
 <span id="43">43</span>
 <span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Core traits and types used to create Graphical User Interfaces (GUIs -</span>
 <span class="doccomment">//! `gooey`s).</span>
@@ -59,6 +61,7 @@
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::if_not_else</span>, <span class="ident">clippy::module_name_repetitions</span>)]</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc</span>, <span class="ident">warn</span>(<span class="ident">rustdoc::all</span>))]</span>
 
+<span class="doccomment">/// Types used for handling assets.</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">assets</span>;
 <span class="kw">mod</span> <span class="ident">frontend</span>;
 <span class="kw">mod</span> <span class="ident">gooey</span>;
@@ -68,6 +71,7 @@
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">euclid</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">palette</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">url</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::{<span class="ident">frontend</span>::<span class="kw-2">*</span>, <span class="ident">gooey</span>::<span class="kw-2">*</span>, <span class="ident">widget</span>::<span class="kw-2">*</span>};
 

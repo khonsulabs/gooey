@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["FarbfeldDecoder","farbfeld decoder"],["FarbfeldEncoder","farbfeld encoder"],["FarbfeldReader","farbfeld Reader"]]});

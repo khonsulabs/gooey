@@ -1,1 +1,1 @@
-initSidebarItems({"macro":[["make_browser",""]],"mod":[["utils",""]],"struct":[["RegisteredTransmogrifier",""],["WebSys",""],["WidgetClosure",""]],"trait":[["AnyWebSysTransmogrifier",""],["WebSysTransmogrifier",""]]});
+initSidebarItems({"macro":[["make_browser",""]],"mod":[["utils",""]],"struct":[["RegisteredTransmogrifier",""],["WebSys",""],["WidgetClosure",""]],"trait":[["AnyWebSysTransmogrifier",""],["ImageExt",""],["WebSysTransmogrifier",""]]});

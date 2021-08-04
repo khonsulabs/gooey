@@ -197,6 +197,19 @@
 <span id="195">195</span>
 <span id="196">196</span>
 <span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Renderer`](gooey_renderer::Renderer) for `Gooey` that uses</span>
 <span class="doccomment">//! [`Kludgine`](https://github.com/kludgine/kludgine/) to draw. Under the hood,</span>
@@ -230,6 +243,7 @@
     <span class="ident">styles::SystemTheme</span>,
     <span class="ident">Pixels</span>, <span class="ident">Points</span>,
 };
+<span class="kw">use</span> <span class="ident">gooey_rasterizer::ImageExt</span>;
 <span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">StrokeOptions</span>, <span class="ident">TextMetrics</span>, <span class="ident">TextOptions</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">kludgine</span>;
 <span class="kw">use</span> <span class="ident">kludgine</span>::{<span class="ident">core::winit::window::Theme</span>, <span class="ident">prelude</span>::<span class="kw-2">*</span>};
@@ -393,6 +407,18 @@
         <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>,
     ) {
         <span class="self">self</span>.<span class="ident">stroke_shape</span>(<span class="ident">Shape::polygon</span>(<span class="macro">vec!</span>[<span class="ident">point_a</span>, <span class="ident">point_b</span>]), <span class="ident">options</span>);
+    }
+
+    <span class="kw">fn</span> <span class="ident">draw_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">image</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::assets::Image</span>, <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">image</span>) <span class="op">=</span> <span class="ident">image</span>.<span class="ident">as_rgba_image</span>() {
+            <span class="kw">let</span> <span class="ident">texture</span> <span class="op">=</span> <span class="ident">Texture::new</span>(<span class="ident">image</span>);
+            <span class="kw">let</span> <span class="ident">sprite</span> <span class="op">=</span> <span class="ident">SpriteSource::entire_texture</span>(<span class="ident">texture</span>);
+            <span class="ident">sprite</span>.<span class="ident">render_at</span>(
+                <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">target</span>,
+                <span class="ident">location</span>.<span class="ident">cast_unit</span>(),
+                <span class="ident">SpriteRotation::default</span>(),
+            );
+        }
     }
 }
 </pre></div>
