@@ -17,23 +17,47 @@
 <span id="15">15</span>
 <span id="16">16</span>
 <span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
 </pre><pre class="rust">
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">stylecs</span>::{<span class="ident">AnyStyleComponent</span>, <span class="ident">FallbackComponent</span>, <span class="ident">Style</span>, <span class="ident">StyleComponent</span>};
 
 <span class="kw">mod</span> <span class="ident">alignment</span>;
+<span class="doccomment">/// Types for adding a border to a widget.</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">border</span>;
 <span class="kw">mod</span> <span class="ident">colors</span>;
 <span class="kw">mod</span> <span class="ident">font_family</span>;
 <span class="kw">mod</span> <span class="ident">font_size</span>;
 <span class="kw">mod</span> <span class="ident">font_style</span>;
 <span class="kw">mod</span> <span class="ident">lines</span>;
+<span class="doccomment">/// Types for adding padding to a widget.</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">padding</span>;
 <span class="doccomment">/// Types for defining sets of rules.</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">style_sheet</span>;
 <span class="kw">mod</span> <span class="ident">surround</span>;
 <span class="kw">mod</span> <span class="ident">weight</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::{
-    <span class="ident">alignment</span>::<span class="kw-2">*</span>, <span class="ident">colors</span>::<span class="kw-2">*</span>, <span class="ident">font_family</span>::<span class="kw-2">*</span>, <span class="ident">font_size</span>::<span class="kw-2">*</span>, <span class="ident">font_style</span>::<span class="kw-2">*</span>, <span class="ident">lines</span>::<span class="kw-2">*</span>, <span class="ident">surround</span>::<span class="kw-2">*</span>,
-    <span class="ident">weight</span>::<span class="kw-2">*</span>,
+    <span class="ident">alignment</span>::{<span class="ident">Alignment</span>, <span class="ident">VerticalAlignment</span>},
+    <span class="ident">border</span>::{<span class="ident">Border</span>, <span class="ident">BorderOptions</span>},
+    <span class="ident">colors</span>::{<span class="ident">BackgroundColor</span>, <span class="ident">Color</span>, <span class="ident">ColorPair</span>, <span class="ident">ForegroundColor</span>, <span class="ident">SystemTheme</span>, <span class="ident">TextColor</span>},
+    <span class="ident">font_family::FontFamily</span>,
+    <span class="ident">font_size::FontSize</span>,
+    <span class="ident">font_style::FontStyle</span>,
+    <span class="ident">lines::LineWidth</span>,
+    <span class="ident">padding::Padding</span>,
+    <span class="ident">surround::Surround</span>,
+    <span class="ident">weight::Weight</span>,
 };
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gooey_core" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>

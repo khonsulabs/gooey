@@ -128,11 +128,16 @@
 <span id="126">126</span>
 <span id="127">127</span>
 <span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
+    <span class="ident">euclid::Length</span>,
     <span class="ident">styles</span>::{
         <span class="ident">style_sheet</span>::{<span class="ident">Rule</span>, <span class="ident">StyleSheet</span>},
-        <span class="ident">Alignment</span>, <span class="ident">BackgroundColor</span>, <span class="ident">Color</span>, <span class="ident">ColorPair</span>, <span class="ident">ForegroundColor</span>, <span class="ident">VerticalAlignment</span>,
+        <span class="ident">Alignment</span>, <span class="ident">BackgroundColor</span>, <span class="ident">Color</span>, <span class="ident">ColorPair</span>, <span class="ident">ForegroundColor</span>, <span class="ident">Padding</span>, <span class="ident">Surround</span>,
+        <span class="ident">VerticalAlignment</span>,
     },
     <span class="ident">ROOT_CLASS</span>, <span class="ident">SOLID_WIDGET_CLASS</span>,
 };
@@ -207,6 +212,7 @@
             <span class="ident">style</span>
                 .<span class="ident">with</span>(<span class="ident">Alignment::Center</span>)
                 .<span class="ident">with</span>(<span class="ident">VerticalAlignment::Center</span>)
+                .<span class="ident">with</span>(<span class="ident">Padding</span>(<span class="ident">Surround::from</span>(<span class="prelude-val">Some</span>(<span class="ident">Length::new</span>(<span class="number">5.</span>)))))
         }))
         .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Checkbox</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
             <span class="ident">style</span>

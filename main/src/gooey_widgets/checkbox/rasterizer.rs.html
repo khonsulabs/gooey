@@ -177,6 +177,12 @@
 <span id="175">175</span>
 <span id="176">176</span>
 <span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Size2D</span>, <span class="ident">Vector2D</span>},
@@ -184,7 +190,7 @@
     <span class="ident">Points</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{
-    <span class="ident">winit::event::MouseButton</span>, <span class="ident">EventStatus</span>, <span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>, <span class="ident">WidgetRasterizer</span>,
+    <span class="ident">winit::event::MouseButton</span>, <span class="ident">ContentArea</span>, <span class="ident">EventStatus</span>, <span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>, <span class="ident">WidgetRasterizer</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_text</span>::{<span class="ident">prepared::PreparedText</span>, <span class="ident">wrap::TextWrap</span>, <span class="ident">Text</span>};
 
@@ -251,17 +257,17 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CheckboxTransmogrifier</span> {
-    <span class="kw">fn</span> <span class="ident">render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">render</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">content_area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
+    ) {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">renderer</span>) <span class="op">=</span> <span class="ident">context</span>.<span class="ident">frontend</span>.<span class="ident">renderer</span>() {
-            <span class="kw">let</span> <span class="ident">layout</span> <span class="op">=</span> <span class="ident">calculate_layout</span>(<span class="kw-2">&amp;</span><span class="ident">context</span>, <span class="ident">renderer</span>, <span class="ident">renderer</span>.<span class="ident">size</span>());
-            <span class="kw">let</span> <span class="ident">checkbox_rect</span> <span class="op">=</span> <span class="ident">Rect::from_size</span>(<span class="ident">layout</span>.<span class="ident">checkbox_size</span>);
-            <span class="kw">let</span> <span class="ident">label_rect</span> <span class="op">=</span> <span class="ident">Rect::new</span>(
-                <span class="ident">Point2D::new</span>(<span class="ident">layout</span>.<span class="ident">checkbox_size</span>.<span class="ident">width</span> <span class="op">+</span> <span class="ident">LABEL_PADDING</span>.<span class="ident">get</span>(), <span class="number">0.</span>),
-                <span class="ident">layout</span>.<span class="ident">label_size</span>,
-            );
+            <span class="kw">let</span> <span class="ident">layout</span> <span class="op">=</span> <span class="ident">calculate_layout</span>(<span class="ident">context</span>, <span class="ident">renderer</span>, <span class="ident">content_area</span>.<span class="ident">size</span>.<span class="ident">content</span>);
 
+            <span class="comment">// Render the checkbox</span>
+            <span class="kw">let</span> <span class="ident">checkbox_rect</span> <span class="op">=</span> <span class="ident">Rect::new</span>(<span class="ident">content_area</span>.<span class="ident">location</span>, <span class="ident">layout</span>.<span class="ident">checkbox_size</span>);
             <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ButtonColor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">checkbox_rect</span>, <span class="ident">context</span>.<span class="ident">style</span>);
-
             <span class="kw">if</span> <span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">checked</span> {
                 <span class="comment">// Fill a square in the middle with the mark.</span>
                 <span class="kw">let</span> <span class="ident">check_box</span> <span class="op">=</span> <span class="ident">checkbox_rect</span>.<span class="ident">inflate</span>(
@@ -271,15 +277,21 @@
                 <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">check_box</span>, <span class="ident">context</span>.<span class="ident">style</span>);
             }
 
+            <span class="comment">// Render the label</span>
+            <span class="kw">let</span> <span class="ident">label_rect</span> <span class="op">=</span> <span class="ident">Rect::new</span>(
+                <span class="ident">Point2D::new</span>(<span class="ident">layout</span>.<span class="ident">checkbox_size</span>.<span class="ident">width</span> <span class="op">+</span> <span class="ident">LABEL_PADDING</span>.<span class="ident">get</span>(), <span class="number">0.</span>)
+                    <span class="op">+</span> <span class="ident">content_area</span>.<span class="ident">location</span>.<span class="ident">to_vector</span>(),
+                <span class="ident">layout</span>.<span class="ident">label_size</span>,
+            );
             <span class="ident">layout</span>
                 .<span class="ident">label</span>
                 .<span class="ident">render_within</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="ident">renderer</span>, <span class="ident">label_rect</span>, <span class="ident">context</span>.<span class="ident">style</span>);
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">content_size</span>(
+    <span class="kw">fn</span> <span class="ident">measure_content</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">context</span>: <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">constraints</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
         <span class="comment">// Always render a rect</span>
@@ -289,7 +301,7 @@
             .<span class="ident">map_or_else</span>(<span class="ident">Size2D::default</span>, <span class="op">|</span><span class="ident">renderer</span><span class="op">|</span> {
                 <span class="kw">let</span> <span class="ident">renderer_size</span> <span class="op">=</span> <span class="ident">renderer</span>.<span class="ident">size</span>();
                 <span class="kw">let</span> <span class="ident">layout</span> <span class="op">=</span> <span class="ident">calculate_layout</span>(
-                    <span class="kw-2">&amp;</span><span class="ident">context</span>,
+                    <span class="ident">context</span>,
                     <span class="ident">renderer</span>,
                     <span class="ident">Size2D::new</span>(
                         <span class="ident">constraints</span>.<span class="ident">width</span>.<span class="ident">unwrap_or</span>(<span class="ident">renderer_size</span>.<span class="ident">width</span>),
@@ -303,7 +315,7 @@
 
     <span class="kw">fn</span> <span class="ident">mouse_down</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">context</span>: <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">button</span>: <span class="ident">MouseButton</span>,
         <span class="ident">_location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">_rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
@@ -318,7 +330,7 @@
 
     <span class="kw">fn</span> <span class="ident">mouse_drag</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">context</span>: <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">_button</span>: <span class="ident">MouseButton</span>,
         <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
         <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
@@ -332,7 +344,7 @@
 
     <span class="kw">fn</span> <span class="ident">mouse_up</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">context</span>: <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">_button</span>: <span class="ident">MouseButton</span>,
         <span class="ident">location</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,

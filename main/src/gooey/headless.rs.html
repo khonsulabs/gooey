@@ -412,8 +412,39 @@
 <span id="410">410</span>
 <span id="411">411</span>
 <span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
 </pre><pre class="rust">
-<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">convert::TryInto</span>, <span class="ident">ops::Deref</span>, <span class="ident">path::Path</span>, <span class="ident">process::Command</span>, <span class="ident">time::Duration</span>};
+<span class="kw">use</span> <span class="ident">std</span>::{
+    <span class="ident">convert::TryInto</span>,
+    <span class="ident">ops</span>::{<span class="ident">Deref</span>, <span class="ident">DerefMut</span>},
+    <span class="ident">path::Path</span>,
+    <span class="ident">process::Command</span>,
+    <span class="ident">time::Duration</span>,
+};
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">euclid</span>::{<span class="ident">Angle</span>, <span class="ident">Point2D</span>, <span class="ident">Rotation2D</span>, <span class="ident">Size2D</span>},
@@ -454,7 +485,56 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span> <span class="ident">Headless</span><span class="op">&lt;</span><span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Process an event. Only supported with a rasterizer frontend.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">simulate_event</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">event</span>: <span class="ident">WindowEvent</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventResult</span> {
-        <span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">handle_event</span>(<span class="ident">event</span>)
+        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">handle_event</span>(<span class="ident">event</span>);
+        <span class="self">self</span>.<span class="ident">frontend</span>
+            .<span class="ident">gooey</span>()
+            .<span class="ident">process_widget_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">frontend</span>);
+        <span class="ident">result</span>
+    }
+
+    <span class="doccomment">/// Sets the location of the cursor to `position`. Does not render any frames.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_cursor</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">position</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) {
+        <span class="self">self</span>.<span class="ident">simulate_event</span>(<span class="ident">WindowEvent::Input</span>(<span class="ident">InputEvent::MouseMoved</span> {
+            <span class="ident">position</span>: <span class="prelude-val">Some</span>(<span class="ident">position</span>),
+        }));
+    }
+
+    <span class="doccomment">/// Simulates a left click at the current cursor location.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left_click</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+        <span class="self">self</span>.<span class="ident">simulate_event</span>(<span class="ident">WindowEvent::Input</span>(<span class="ident">InputEvent::MouseButton</span> {
+            <span class="ident">button</span>: <span class="ident">MouseButton::Left</span>,
+            <span class="ident">state</span>: <span class="ident">ElementState::Pressed</span>,
+        }));
+        <span class="self">self</span>.<span class="ident">simulate_event</span>(<span class="ident">WindowEvent::Input</span>(<span class="ident">InputEvent::MouseButton</span> {
+            <span class="ident">button</span>: <span class="ident">MouseButton::Left</span>,
+            <span class="ident">state</span>: <span class="ident">ElementState::Released</span>,
+        }));
+    }
+
+    <span class="doccomment">/// Looks up the root widget of the frontend and invokes `callback` with the widget and a context that can be used to interact with it. The result will be returned.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_root_widget</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span>, <span class="ident">Output</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">W</span>, <span class="ident">Context</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Output</span><span class="op">&gt;</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">callback</span>: <span class="ident">F</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Output</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">root</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">gooey</span>().<span class="ident">root_widget</span>();
+        <span class="self">self</span>.<span class="ident">frontend</span>
+            .<span class="ident">with_transmogrifier</span>(<span class="ident">root</span>.<span class="ident">id</span>(), <span class="op">|</span><span class="ident">_transmogrifier</span>, <span class="ident">context</span><span class="op">|</span> {
+                <span class="ident">callback</span>(
+                    <span class="ident">context</span>
+                        .<span class="ident">widget</span>
+                        .<span class="ident">as_mut_any</span>()
+                        .<span class="ident">downcast_mut</span>::<span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>()
+                        .<span class="ident">expect</span>(<span class="string">&quot;widget type mismatch&quot;</span>),
+                    <span class="ident">Context::new</span>(
+                        <span class="ident">context</span>
+                            .<span class="ident">channels</span>
+                            .<span class="ident">as_any</span>()
+                            .<span class="ident">downcast_ref</span>()
+                            .<span class="ident">expect</span>(<span class="string">&quot;widget type mismatch&quot;</span>),
+                        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">frontend</span>,
+                    ),
+                )
+            })
     }
 }
 
@@ -493,10 +573,7 @@
                 <span class="ident">SystemTheme::Dark</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Theme::Dark</span>,
             },
         ));
-        <span class="ident">target</span>
-            .<span class="ident">scene_mut</span>()
-            .<span class="ident">unwrap</span>()
-            .<span class="ident">set_size</span>(<span class="ident">size</span>.<span class="ident">to_f32</span>().<span class="ident">cast_unit</span>());
+        <span class="ident">target</span>.<span class="ident">scene_mut</span>().<span class="ident">unwrap</span>().<span class="ident">set_size</span>(<span class="ident">size</span>.<span class="ident">cast_unit</span>());
         <span class="ident">target</span>.<span class="ident">scene_mut</span>().<span class="ident">unwrap</span>().<span class="ident">start_frame</span>();
         <span class="self">self</span>.<span class="ident">frontend</span>
             .<span class="ident">gooey</span>()
@@ -557,32 +634,6 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Recorder</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
         <span class="ident">Recorder::new</span>(<span class="ident">size</span>, <span class="ident">theme</span>, <span class="ident">render_cursor</span>, <span class="ident">fps</span>, <span class="self">self</span>)
     }
-
-    <span class="doccomment">/// Looks up the root widget of the frontend and invokes `callback` with the widget and a context that can be used to interact with it. The result will be returned.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_root_widget</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span>, <span class="ident">Output</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">W</span>, <span class="ident">Context</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Output</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">callback</span>: <span class="ident">F</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Output</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">root</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">gooey</span>().<span class="ident">root_widget</span>();
-        <span class="self">self</span>.<span class="ident">frontend</span>
-            .<span class="ident">with_transmogrifier</span>(<span class="ident">root</span>.<span class="ident">id</span>(), <span class="op">|</span><span class="ident">_transmogrifier</span>, <span class="ident">context</span><span class="op">|</span> {
-                <span class="ident">callback</span>(
-                    <span class="ident">context</span>
-                        .<span class="ident">widget</span>
-                        .<span class="ident">as_mut_any</span>()
-                        .<span class="ident">downcast_mut</span>::<span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>()
-                        .<span class="ident">expect</span>(<span class="string">&quot;widget type mismatch&quot;</span>),
-                    <span class="ident">Context::new</span>(
-                        <span class="ident">context</span>
-                            .<span class="ident">channels</span>
-                            .<span class="ident">as_any</span>()
-                            .<span class="ident">downcast_ref</span>()
-                            .<span class="ident">expect</span>(<span class="string">&quot;widget type mismatch&quot;</span>),
-                        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">frontend</span>,
-                    ),
-                )
-            })
-    }
 }
 
 <span class="doccomment">/// An easy-to-use,offscreen animation recorder.</span>
@@ -605,6 +656,12 @@
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">Headless</span><span class="op">&lt;</span><span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">Kludgine</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 
     <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Target</span> {
+        <span class="self">self</span>.<span class="ident">headless</span>
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">DerefMut</span> <span class="kw">for</span> <span class="ident">Recorder</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span><span class="ident">::Target</span> {
         <span class="self">self</span>.<span class="ident">headless</span>
     }
 }
@@ -665,13 +722,6 @@
             <span class="op">|</span> <span class="ident">WindowEvent::SystemThemeChanged</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {}
         }
         <span class="self">self</span>.<span class="ident">headless</span>.<span class="ident">simulate_event</span>(<span class="ident">event</span>);
-    }
-
-    <span class="doccomment">/// Sets the location of the cursor to `position`. Does not render any frames.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_cursor</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">position</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">simulate_event</span>(<span class="ident">WindowEvent::Input</span>(<span class="ident">InputEvent::MouseMoved</span> {
-            <span class="ident">position</span>: <span class="prelude-val">Some</span>(<span class="ident">position</span>),
-        }));
     }
 
     <span class="doccomment">/// Extends the last frame to display for an additional `duration`.</span>

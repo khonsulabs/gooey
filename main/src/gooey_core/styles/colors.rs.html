@@ -592,6 +592,12 @@
 <span id="590">590</span>
 <span id="591">591</span>
 <span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
+<span id="597">597</span>
+<span id="598">598</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Debug</span>, <span class="ident">Display</span>};
 
@@ -599,7 +605,7 @@
 <span class="kw">use</span> <span class="ident">stylecs</span>::{<span class="ident">FallbackComponent</span>, <span class="ident">StyleComponent</span>};
 
 <span class="doccomment">/// An Srgba color.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Color</span> {
     <span class="doccomment">/// The red channel. Valid values are from 0.0 to 1.0 inclusive.</span>
@@ -610,6 +616,12 @@
     <span class="kw">pub</span> <span class="ident">blue</span>: <span class="ident">f32</span>,
     <span class="doccomment">/// The alpha channel. Valid values are from 0.0 to 1.0 inclusive, where 1.0 is fully opaque.</span>
     <span class="kw">pub</span> <span class="ident">alpha</span>: <span class="ident">f32</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Color</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">Color::BLACK</span>
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">Color</span> {
