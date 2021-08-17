@@ -683,6 +683,13 @@
 <span id="681">681</span>
 <span id="682">682</span>
 <span id="683">683</span>
+<span id="684">684</span>
+<span id="685">685</span>
+<span id="686">686</span>
+<span id="687">687</span>
+<span id="688">688</span>
+<span id="689">689</span>
+<span id="690">690</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">fmt::Debug</span>,
@@ -694,7 +701,7 @@
 <span class="kw">use</span> <span class="ident">arboard::Clipboard</span>;
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">figures</span>::{<span class="ident">Displayable</span>, <span class="ident">Figure</span>, <span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Rectlike</span>, <span class="ident">Size</span>, <span class="ident">SizedRect</span>},
-    <span class="ident">styles</span>::{<span class="ident">Color</span>, <span class="ident">Style</span>, <span class="ident">TextColor</span>},
+    <span class="ident">styles</span>::{<span class="ident">Color</span>, <span class="ident">SelectionColor</span>, <span class="ident">Style</span>, <span class="ident">TextColor</span>},
     <span class="ident">Pixels</span>, <span class="ident">Scaled</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{
@@ -783,6 +790,12 @@
             }
             <span class="ident">context</span>.<span class="ident">state</span>.<span class="ident">prepared</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">prepared</span>);
 
+            <span class="kw">let</span> <span class="ident">selection_color</span> <span class="op">=</span> <span class="ident">context</span>
+                .<span class="ident">style</span>
+                .<span class="ident">get_with_fallback</span>::<span class="op">&lt;</span><span class="ident">SelectionColor</span><span class="op">&gt;</span>()
+                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">w</span><span class="op">|</span> <span class="ident">w</span>.<span class="ident">themed_color</span>(<span class="ident">renderer</span>.<span class="ident">theme</span>()))
+                .<span class="ident">unwrap_or_default</span>();
+
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">end</span>) <span class="op">=</span> <span class="ident">context</span>.<span class="ident">state</span>.<span class="ident">cursor</span>.<span class="ident">end</span> {
                 <span class="kw">let</span> <span class="ident">selection_start</span> <span class="op">=</span> <span class="ident">context</span>.<span class="ident">state</span>.<span class="ident">cursor</span>.<span class="ident">start</span>.<span class="ident">min</span>(<span class="ident">end</span>);
                 <span class="kw">let</span> <span class="ident">selection_end</span> <span class="op">=</span> <span class="ident">context</span>.<span class="ident">state</span>.<span class="ident">cursor</span>.<span class="ident">start</span>.<span class="ident">max</span>(<span class="ident">end</span>);
@@ -796,6 +809,7 @@
                         .<span class="ident">character_rect_for_position</span>(<span class="ident">renderer</span>, <span class="ident">selection_end</span>)
                         .<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">as_extents</span>())
                     {
+                        <span class="kw">let</span> <span class="ident">transparent_selection</span> <span class="op">=</span> <span class="ident">selection_color</span>.<span class="ident">with_alpha</span>(<span class="number">0.3</span>);
                         <span class="kw">if</span> <span class="ident">start_position</span>.<span class="ident">extent</span>.<span class="ident">y</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">end_position</span>.<span class="ident">origin</span>.<span class="ident">y</span> {
                             <span class="comment">// Multi-line</span>
                             <span class="comment">// First line is start_position -&gt; end of bounds</span>
@@ -814,7 +828,7 @@
                                         ),
                                     )
                                     .<span class="ident">translate</span>(<span class="ident">bounds</span>.<span class="ident">origin</span>),
-                                    <span class="ident">Color::new</span>(<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.3</span>),
+                                    <span class="ident">transparent_selection</span>,
                                 );
                             }
                             <span class="comment">// Last line is start of line -&gt; start of end position</span>
@@ -827,7 +841,7 @@
                                     ),
                                 )
                                 .<span class="ident">translate</span>(<span class="ident">bounds</span>.<span class="ident">origin</span>),
-                                <span class="ident">Color::new</span>(<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.3</span>),
+                                <span class="ident">transparent_selection</span>,
                             );
                         } <span class="kw">else</span> {
                             <span class="comment">// Single-line</span>
@@ -835,7 +849,7 @@
                             <span class="ident">area</span>.<span class="ident">size</span>.<span class="ident">width</span> <span class="op">=</span> <span class="ident">end_position</span>.<span class="ident">origin</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">start_position</span>.<span class="ident">origin</span>.<span class="ident">x</span>;
                             <span class="ident">renderer</span>.<span class="ident">fill_rect</span>(
                                 <span class="kw-2">&amp;</span><span class="ident">area</span>.<span class="ident">translate</span>(<span class="ident">bounds</span>.<span class="ident">origin</span>).<span class="ident">as_rect</span>(),
-                                <span class="ident">Color::new</span>(<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.3</span>),
+                                <span class="ident">transparent_selection</span>,
                             );
                         }
                     }
@@ -854,7 +868,7 @@
                                 <span class="ident">Figure::new</span>(<span class="ident">cursor_location</span>.<span class="ident">size</span>.<span class="ident">height</span>),
                             ),
                         ),
-                        <span class="ident">Color::RED</span>,
+                        <span class="ident">selection_color</span>,
                     );
                 }
             }

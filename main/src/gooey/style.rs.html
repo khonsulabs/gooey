@@ -164,13 +164,25 @@
 <span id="162">162</span>
 <span id="163">163</span>
 <span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">figures::Figure</span>,
     <span class="ident">styles</span>::{
         <span class="ident">style_sheet</span>::{<span class="ident">Rule</span>, <span class="ident">StyleSheet</span>},
         <span class="ident">Alignment</span>, <span class="ident">BackgroundColor</span>, <span class="ident">Border</span>, <span class="ident">BorderOptions</span>, <span class="ident">Color</span>, <span class="ident">ColorPair</span>, <span class="ident">ForegroundColor</span>,
-        <span class="ident">Padding</span>, <span class="ident">Surround</span>, <span class="ident">VerticalAlignment</span>,
+        <span class="ident">Padding</span>, <span class="ident">SelectionColor</span>, <span class="ident">Surround</span>, <span class="ident">VerticalAlignment</span>,
     },
     <span class="ident">ROOT_CLASS</span>, <span class="ident">SOLID_WIDGET_CLASS</span>,
 };
@@ -183,33 +195,42 @@
 
 <span class="doccomment">/// The default [`StyleSheet`] for `Gooey`.</span>
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::too_many_lines</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_stylesheet</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyleSheet</span> {
+    <span class="ident">stylesheet_for_palette</span>::<span class="op">&lt;</span>()<span class="op">&gt;</span>()
+}
+
+<span class="doccomment">/// Creates a stylesheet using the [`Palette`] provided.</span>
+<span class="attribute">#[<span class="ident">must_use</span>]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::too_many_lines</span>)]</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stylesheet_for_palette</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Palette</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyleSheet</span> {
     <span class="ident">StyleSheet::default</span>()
-        .<span class="ident">with</span>(<span class="ident">Rule::for_classes</span>(<span class="ident">ROOT_CLASS</span>).<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
-            <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">ColorPair</span> {
-                <span class="ident">light_color</span>: <span class="ident">Color::WHITE</span>,
-                <span class="ident">dark_color</span>: <span class="ident">Color::BLACK</span>,
-            }))
-        }))
         .<span class="ident">with</span>(
-            <span class="ident">Rule::for_classes</span>(<span class="string">&quot;gooey-navigator-bar&quot;</span>).<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
-                <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">ColorPair</span> {
-                    <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.9</span>),
-                    <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.1</span>),
-                }))
-            }),
+            <span class="ident">Rule::for_classes</span>(<span class="ident">ROOT_CLASS</span>)
+                .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::background</span>()))),
+        )
+        .<span class="ident">with</span>(
+            <span class="ident">Rule::for_classes</span>(<span class="string">&quot;gooey-navigator-bar&quot;</span>)
+                .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::navigator_background</span>()))),
+        )
+        .<span class="ident">with</span>(
+            <span class="ident">Rule::for_classes</span>(<span class="string">&quot;gooey-navigator-button&quot;</span>)
+                .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">ButtonColor</span>(<span class="ident">P::navigator_button</span>()))),
+        )
+        .<span class="ident">with</span>(
+            <span class="ident">Rule::for_classes</span>(<span class="string">&quot;gooey-navigator-button&quot;</span>)
+                .<span class="ident">when_hovered</span>()
+                .<span class="ident">when_not_active</span>()
+                .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">ButtonColor</span>(<span class="ident">P::navigator_button</span>().<span class="ident">lighten</span>(<span class="number">0.1</span>)))),
+        )
+        .<span class="ident">with</span>(
+            <span class="ident">Rule::for_classes</span>(<span class="string">&quot;gooey-navigator-button&quot;</span>)
+                .<span class="ident">when_active</span>()
+                .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">ButtonColor</span>(<span class="ident">P::navigator_button</span>().<span class="ident">darken</span>(<span class="number">0.1</span>)))),
         )
         .<span class="ident">with</span>(<span class="ident">Rule::for_classes</span>(<span class="ident">SOLID_WIDGET_CLASS</span>).<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
             <span class="ident">style</span>
-                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {
-                    <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.1</span>),
-                    <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.9</span>),
-                }))
-                .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">ColorPair</span> {
-                    <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.6</span>),
-                    <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.2</span>),
-                }))
+                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>()))
+                .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::control_background</span>()))
         }))
         .<span class="ident">with</span>(
             <span class="ident">Rule::for_classes</span>(<span class="ident">SOLID_WIDGET_CLASS</span>)
@@ -217,14 +238,8 @@
                 .<span class="ident">when_not_active</span>()
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
                     <span class="ident">style</span>
-                        .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {
-                            <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.2</span>),
-                            <span class="ident">dark_color</span>: <span class="ident">Color::WHITE</span>,
-                        }))
-                        .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">ColorPair</span> {
-                            <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.7</span>),
-                            <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.3</span>),
-                        }))
+                        .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>().<span class="ident">lighten</span>(<span class="number">0.2</span>)))
+                        .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::control_background</span>().<span class="ident">lighten</span>(<span class="number">0.2</span>)))
                 }),
         )
         .<span class="ident">with</span>(
@@ -232,14 +247,8 @@
                 .<span class="ident">when_active</span>()
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
                     <span class="ident">style</span>
-                        .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {
-                            <span class="ident">light_color</span>: <span class="ident">Color::BLACK</span>,
-                            <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.8</span>),
-                        }))
-                        .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">ColorPair</span> {
-                            <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.5</span>),
-                            <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.1</span>),
-                        }))
+                        .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>().<span class="ident">darken</span>(<span class="number">0.1</span>)))
+                        .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::control_background</span>().<span class="ident">darken</span>(<span class="number">0.1</span>)))
                 }),
         )
         .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Button</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
@@ -250,14 +259,8 @@
         }))
         .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Checkbox</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
             <span class="ident">style</span>
-                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {
-                    <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.1</span>),
-                    <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.9</span>),
-                }))
-                .<span class="ident">with</span>(<span class="ident">ButtonColor</span>(<span class="ident">ColorPair</span> {
-                    <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.6</span>),
-                    <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.2</span>),
-                }))
+                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>()))
+                .<span class="ident">with</span>(<span class="ident">ButtonColor</span>(<span class="ident">P::control_background</span>()))
         }))
         .<span class="ident">with</span>(
             <span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Checkbox</span><span class="op">&gt;</span>()
@@ -265,14 +268,8 @@
                 .<span class="ident">when_not_active</span>()
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
                     <span class="ident">style</span>
-                        .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {
-                            <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.2</span>),
-                            <span class="ident">dark_color</span>: <span class="ident">Color::WHITE</span>,
-                        }))
-                        .<span class="ident">with</span>(<span class="ident">ButtonColor</span>(<span class="ident">ColorPair</span> {
-                            <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.7</span>),
-                            <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.3</span>),
-                        }))
+                        .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>().<span class="ident">lighten</span>(<span class="number">0.1</span>)))
+                        .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::background</span>().<span class="ident">lighten</span>(<span class="number">0.1</span>)))
                 }),
         )
         .<span class="ident">with</span>(
@@ -280,38 +277,21 @@
                 .<span class="ident">when_active</span>()
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
                     <span class="ident">style</span>
-                        .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {
-                            <span class="ident">light_color</span>: <span class="ident">Color::BLACK</span>,
-                            <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.8</span>),
-                        }))
-                        .<span class="ident">with</span>(<span class="ident">ButtonColor</span>(<span class="ident">ColorPair</span> {
-                            <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.5</span>),
-                            <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.1</span>),
-                        }))
+                        .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>().<span class="ident">darken</span>(<span class="number">0.1</span>)))
+                        .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::background</span>().<span class="ident">darken</span>(<span class="number">0.1</span>)))
                 }),
         )
-        .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Label</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
-            <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {
-                <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.1</span>),
-                <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.9</span>),
-            }))
-        }))
+        .<span class="ident">with</span>(
+            <span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Label</span><span class="op">&gt;</span>()
+                .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>()))),
+        )
         .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
             <span class="ident">style</span>
-                .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">ColorPair</span> {
-                    <span class="ident">light_color</span>: <span class="ident">Color::WHITE</span>,
-                    <span class="ident">dark_color</span>: <span class="ident">Color::BLACK</span>,
-                }))
-                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {
-                    <span class="ident">light_color</span>: <span class="ident">Color::BLACK</span>,
-                    <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.8</span>),
-                }))
+                .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::background</span>()))
+                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>()))
                 .<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(
                     <span class="number">1.</span>,
-                    <span class="ident">ColorPair</span> {
-                        <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.5</span>),
-                        <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.1</span>),
-                    },
+                    <span class="ident">P::control_background</span>(),
                 )))
                 .<span class="ident">with</span>(<span class="ident">Padding</span>(<span class="ident">Surround::from</span>(<span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="number">5.</span>)))))
         }))
@@ -319,15 +299,59 @@
             <span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span>()
                 .<span class="ident">when_focused</span>()
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
-                    <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(
-                        <span class="number">1.</span>,
-                        <span class="ident">ColorPair</span> {
-                            <span class="ident">light_color</span>: <span class="ident">Color::RED</span>,
-                            <span class="ident">dark_color</span>: <span class="ident">Color::RED</span>,
-                        },
-                    )))
+                    <span class="ident">style</span>
+                        .<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(<span class="number">1.</span>, <span class="ident">P::primary</span>())))
+                        .<span class="ident">with</span>(<span class="ident">SelectionColor</span>(<span class="ident">P::primary</span>()))
                 }),
         )
+}
+
+<span class="doccomment">/// Returns a set of colors that form a palette.</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Palette</span> {
+    <span class="doccomment">/// The background color. Used as the window background color, but also used</span>
+    <span class="doccomment">/// to derive other neutral background colors.</span>
+    <span class="kw">fn</span> <span class="ident">background</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span>;
+    <span class="doccomment">/// The foreground color. Used as the default text/stroke color, but also</span>
+    <span class="doccomment">/// used to derive other neutral foreground colors.</span>
+    <span class="kw">fn</span> <span class="ident">foreground</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span>;
+    <span class="doccomment">/// The primary color of the palette. Used to signify default actions, and</span>
+    <span class="doccomment">/// is considered the primary accent color of the interface.</span>
+    <span class="kw">fn</span> <span class="ident">primary</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span>;
+
+    <span class="doccomment">/// The color to use for the background of solid widgets.</span>
+    <span class="kw">fn</span> <span class="ident">control_background</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span> {
+        <span class="self">Self</span><span class="ident">::background</span>().<span class="ident">lighten</span>(<span class="number">0.1</span>)
+    }
+
+    <span class="doccomment">/// The color for the [`Navigator`](gooey_widgets::navigator::Navigator) bar&#39;s background.</span>
+    <span class="kw">fn</span> <span class="ident">navigator_background</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span> {
+        <span class="self">Self</span><span class="ident">::primary</span>()
+    }
+
+    <span class="doccomment">/// The color for buttons within the [`Navigator`](gooey_widgets::navigator::Navigator) bar.</span>
+    <span class="kw">fn</span> <span class="ident">navigator_button</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span> {
+        <span class="self">Self</span><span class="ident">::primary</span>().<span class="ident">darken</span>(<span class="number">0.2</span>)
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">Palette</span> <span class="kw">for</span> () {
+    <span class="kw">fn</span> <span class="ident">background</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span> {
+        <span class="ident">ColorPair</span> {
+            <span class="ident">light_color</span>: <span class="ident">Color::WHITE</span>,
+            <span class="ident">dark_color</span>: <span class="ident">Color::BLACK</span>,
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">foreground</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span> {
+        <span class="ident">ColorPair</span> {
+            <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.1</span>),
+            <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.9</span>),
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">primary</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span> {
+        <span class="ident">ColorPair::from</span>(<span class="ident">Color::new_u8</span>(<span class="number">9</span>, <span class="number">132</span>, <span class="number">227</span>, <span class="number">255</span>))
+    }
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gooey" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>

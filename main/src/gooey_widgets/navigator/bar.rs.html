@@ -135,6 +135,9 @@
 <span id="133">133</span>
 <span id="134">134</span>
 <span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::marker::PhantomData</span>;
 
@@ -190,7 +193,10 @@
                 .<span class="ident">is_none</span>()
             {
                 <span class="comment">// Back button doesn&#39;t exist</span>
-                <span class="kw">let</span> <span class="ident">button</span> <span class="op">=</span> <span class="ident">context</span>.<span class="ident">register</span>(<span class="ident">Button::new</span>(<span class="ident">label</span>, <span class="self">self</span>.<span class="ident">map_event</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Event::Back</span>)));
+                <span class="kw">let</span> <span class="ident">button</span> <span class="op">=</span> <span class="ident">context</span>.<span class="ident">register</span>(
+                    <span class="ident">Button::new</span>(<span class="ident">label</span>, <span class="self">self</span>.<span class="ident">map_event</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Event::Back</span>))
+                        .<span class="ident">with</span>(<span class="ident">Classes::from</span>(<span class="string">&quot;gooey-navigator-button&quot;</span>)),
+                );
 
                 <span class="self">self</span>.<span class="ident">map_content_mut</span>(<span class="ident">context</span>, <span class="op">|</span><span class="ident">layout</span>, <span class="ident">context</span><span class="op">|</span> {
                     <span class="ident">layout</span>.<span class="ident">insert_registration</span>(

@@ -598,10 +598,86 @@
 <span id="596">596</span>
 <span id="597">597</span>
 <span id="598">598</span>
+<span id="599">599</span>
+<span id="600">600</span>
+<span id="601">601</span>
+<span id="602">602</span>
+<span id="603">603</span>
+<span id="604">604</span>
+<span id="605">605</span>
+<span id="606">606</span>
+<span id="607">607</span>
+<span id="608">608</span>
+<span id="609">609</span>
+<span id="610">610</span>
+<span id="611">611</span>
+<span id="612">612</span>
+<span id="613">613</span>
+<span id="614">614</span>
+<span id="615">615</span>
+<span id="616">616</span>
+<span id="617">617</span>
+<span id="618">618</span>
+<span id="619">619</span>
+<span id="620">620</span>
+<span id="621">621</span>
+<span id="622">622</span>
+<span id="623">623</span>
+<span id="624">624</span>
+<span id="625">625</span>
+<span id="626">626</span>
+<span id="627">627</span>
+<span id="628">628</span>
+<span id="629">629</span>
+<span id="630">630</span>
+<span id="631">631</span>
+<span id="632">632</span>
+<span id="633">633</span>
+<span id="634">634</span>
+<span id="635">635</span>
+<span id="636">636</span>
+<span id="637">637</span>
+<span id="638">638</span>
+<span id="639">639</span>
+<span id="640">640</span>
+<span id="641">641</span>
+<span id="642">642</span>
+<span id="643">643</span>
+<span id="644">644</span>
+<span id="645">645</span>
+<span id="646">646</span>
+<span id="647">647</span>
+<span id="648">648</span>
+<span id="649">649</span>
+<span id="650">650</span>
+<span id="651">651</span>
+<span id="652">652</span>
+<span id="653">653</span>
+<span id="654">654</span>
+<span id="655">655</span>
+<span id="656">656</span>
+<span id="657">657</span>
+<span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
+<span id="671">671</span>
+<span id="672">672</span>
+<span id="673">673</span>
+<span id="674">674</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Debug</span>, <span class="ident">Display</span>};
 
-<span class="kw">use</span> <span class="ident">palette</span>::{<span class="ident">FromColor</span>, <span class="ident">Hsl</span>, <span class="ident">Hsla</span>, <span class="ident">Hsv</span>, <span class="ident">Hsva</span>, <span class="ident">Srgb</span>, <span class="ident">Srgba</span>};
+<span class="kw">use</span> <span class="ident">palette</span>::{<span class="ident">FromColor</span>, <span class="ident">Hsl</span>, <span class="ident">Hsla</span>, <span class="ident">Hsv</span>, <span class="ident">Hsva</span>, <span class="ident">Lab</span>, <span class="ident">Laba</span>, <span class="ident">Shade</span>, <span class="ident">Srgb</span>, <span class="ident">Srgba</span>};
 <span class="kw">use</span> <span class="ident">stylecs</span>::{<span class="ident">FallbackComponent</span>, <span class="ident">StyleComponent</span>};
 
 <span class="doccomment">/// An Srgba color.</span>
@@ -670,6 +746,20 @@
     <span class="doccomment">/// replacing the current alpha with the parameter.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">with_alpha</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">alpha</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::new</span>(<span class="self">self</span>.<span class="ident">red</span>, <span class="self">self</span>.<span class="ident">green</span>, <span class="self">self</span>.<span class="ident">blue</span>, <span class="ident">alpha</span>)
+    }
+
+    <span class="doccomment">/// Returns this color after lightening it by `factor`. Uses the [`Laba`]</span>
+    <span class="doccomment">/// colorspace for luminance calcluations.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lighten</span>(<span class="self">self</span>, <span class="ident">factor</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">let</span> <span class="ident">lab</span> <span class="op">=</span> <span class="ident">Laba::from</span>(<span class="self">self</span>);
+        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">lab</span>.<span class="ident">lighten</span>(<span class="ident">factor</span>))
+    }
+
+    <span class="doccomment">/// Returns this color after darkening it by `factor`. Uses the [`Laba`]</span>
+    <span class="doccomment">/// colorspace for luminance calcluations.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">darken</span>(<span class="self">self</span>, <span class="ident">factor</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">let</span> <span class="ident">lab</span> <span class="op">=</span> <span class="ident">Laba::from</span>(<span class="self">self</span>);
+        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">lab</span>.<span class="ident">darken</span>(<span class="ident">factor</span>))
     }
 }
 
@@ -742,6 +832,30 @@
     }
 }
 
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Lab</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Color</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">color</span>: <span class="ident">Lab</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">Srgba::from_color</span>(<span class="ident">color</span>))
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Laba</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Color</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">color</span>: <span class="ident">Laba</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">Srgba::from_color</span>(<span class="ident">color</span>))
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Color</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Laba</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">color</span>: <span class="ident">Color</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span><span class="ident">::from_color</span>(<span class="ident">Srgba::from</span>(<span class="ident">color</span>))
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Color</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Lab</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">color</span>: <span class="ident">Color</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span><span class="ident">::from_color</span>(<span class="ident">Srgb::from</span>(<span class="ident">color</span>))
+    }
+}
+
 <span class="doccomment">/// The theme variant for the system.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SystemTheme</span> {
@@ -766,6 +880,7 @@
 
 <span class="doccomment">/// A pair of colors, one for each [`SystemTheme`] variant.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">Copy</span>)]</span>
+<span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ColorPair</span> {
     <span class="doccomment">/// The color used when the current system theme is [`SystemTheme::Light`].</span>
     <span class="kw">pub</span> <span class="ident">light_color</span>: <span class="ident">Color</span>,
@@ -776,11 +891,28 @@
 <span class="kw">impl</span> <span class="ident">ColorPair</span> {
     <span class="doccomment">/// Returns a copy of the color pair, replacing each colors alpha channel</span>
     <span class="doccomment">/// with the value provided (0.0-1.0 range).</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">with_alpha</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">alpha</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">light_color</span>.<span class="ident">alpha</span> <span class="op">=</span> <span class="ident">alpha</span>;
         <span class="self">self</span>.<span class="ident">dark_color</span>.<span class="ident">alpha</span> <span class="op">=</span> <span class="ident">alpha</span>;
         <span class="self">self</span>
+    }
+
+    <span class="doccomment">/// Returns this pair of colors after lightening the colors by `factor`.</span>
+    <span class="doccomment">/// Uses the [`Laba`] colorspace for luminance calcluations.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lighten</span>(<span class="self">self</span>, <span class="ident">factor</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">light_color</span>: <span class="self">self</span>.<span class="ident">light_color</span>.<span class="ident">lighten</span>(<span class="ident">factor</span>),
+            <span class="ident">dark_color</span>: <span class="self">self</span>.<span class="ident">dark_color</span>.<span class="ident">lighten</span>(<span class="ident">factor</span>),
+        }
+    }
+
+    <span class="doccomment">/// Returns this pair of colors after darkening the colors by `factor`. Uses</span>
+    <span class="doccomment">/// the [`Laba`] colorspace for luminance calcluations.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">darken</span>(<span class="self">self</span>, <span class="ident">factor</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">light_color</span>: <span class="self">self</span>.<span class="ident">light_color</span>.<span class="ident">darken</span>(<span class="ident">factor</span>),
+            <span class="ident">dark_color</span>: <span class="self">self</span>.<span class="ident">dark_color</span>.<span class="ident">darken</span>(<span class="ident">factor</span>),
+        }
     }
 }
 
@@ -1196,6 +1328,26 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">YELLOW</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::new</span>(<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">0.</span>, <span class="number">1.</span>);
     <span class="doccomment">/// Equivalent to the [CSS color keywords](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) of the same name.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">YELLOWGREEN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::new</span>(<span class="number">154.</span> <span class="op">/</span> <span class="number">255.</span>, <span class="number">205.</span> <span class="op">/</span> <span class="number">255.</span>, <span class="number">50.</span> <span class="op">/</span> <span class="number">255.</span>, <span class="number">1.</span>);
+}
+
+<span class="doccomment">/// The color to highlight selections.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectionColor</span>(<span class="kw">pub</span> <span class="ident">ColorPair</span>);
+<span class="kw">impl</span> <span class="ident">StyleComponent</span> <span class="kw">for</span> <span class="ident">SelectionColor</span> {}
+
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">SelectionColor</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ColorPair</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">color</span>: <span class="ident">SelectionColor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">color</span>.<span class="number">0</span>
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">FallbackComponent</span> <span class="kw">for</span> <span class="ident">SelectionColor</span> {
+    <span class="kw">type</span> <span class="ident">Fallback</span> <span class="op">=</span> <span class="ident">ForegroundColor</span>;
+    <span class="kw">type</span> <span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span>;
+
+    <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ColorPair</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>)
+    }
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gooey_core" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
