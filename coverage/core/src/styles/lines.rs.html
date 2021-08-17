@@ -47,7 +47,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use euclid::Length;</pre>
+                <pre class="has-background-white py-0 px-2">use figures::Figure;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -86,7 +86,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use crate::Points;</pre>
+                <pre class="has-background-white py-0 px-2">use crate::Scaled;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -112,7 +112,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; The width of lines stroked&#x2F;drawn. Default is `1.` [`Points`].</pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; The width of lines stroked&#x2F;drawn. Default is `1.` [`Scaled`].</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -138,7 +138,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct LineWidth&lt;Unit&gt;(pub Length&lt;f32, Unit&gt;);</pre>
+                <pre class="has-background-white py-0 px-2">pub struct LineWidth&lt;Unit&gt;(pub Figure&lt;f32, Unit&gt;);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -242,7 +242,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl Default for LineWidth&lt;Points&gt; {</pre>
+                <pre class="has-background-white py-0 px-2">impl Default for LineWidth&lt;Scaled&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -372,7 +372,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Self(Length::new(value))</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Self(Figure::new(value))</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -515,7 +515,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    pub const fn length(&amp;self) -&gt; Length&lt;f32, Unit&gt; {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    pub const fn length(&amp;self) -&gt; Figure&lt;f32, Unit&gt; {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -580,12 +580,12 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl StyleComponent for LineWidth&lt;Points&gt; {}</pre>
+                <pre class="has-background-white py-0 px-2">impl StyleComponent for LineWidth&lt;Scaled&gt; {}</pre>
             </div>
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-08-07 00:01</p>
+                <p class="heading">Date: 2021-08-17 20:01</p>
             </div>
         </footer>
     </body>

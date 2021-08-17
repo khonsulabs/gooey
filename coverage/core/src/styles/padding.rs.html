@@ -23,7 +23,7 @@
         <div>
             <p class="heading">Functions</p>
             <p class="title has-text-danger">
-                <abbr title="12 / 26">46.15 %</abbr></p>
+                <abbr title="13 / 27">48.15 %</abbr></p>
         </div>
     </div>
 
@@ -73,7 +73,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use euclid::Length;</pre>
+                <pre class="has-background-white py-0 px-2">use figures::Figure;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -125,7 +125,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">use crate::Points;</pre>
+                <pre class="has-background-white py-0 px-2">use crate::Scaled;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -161,7 +161,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                10002
+                20409
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">#[derive(Debug, Clone, Default)]</pre>
@@ -190,7 +190,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">pub struct Padding(pub Surround&lt;Length&lt;f32, Points&gt;&gt;);</pre>
+                <pre class="has-background-white py-0 px-2">pub struct Padding(pub Surround&lt;Figure&lt;f32, Scaled&gt;&gt;);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -278,7 +278,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                1908
+                7620
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">    fn merge(&amp;self, other: &amp;Self) -&gt; Self {</pre>
@@ -291,7 +291,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                1908
+                7620
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">        Self(Surround {</pre>
@@ -304,7 +304,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                1908
+                7620
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">            left: self.left.or(other.left),</pre>
@@ -317,7 +317,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                1908
+                7620
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">            top: self.top.or(other.top),</pre>
@@ -330,7 +330,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                1908
+                7620
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">            right: self.right.or(other.right),</pre>
@@ -343,7 +343,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                1908
+                7620
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">            bottom: self.bottom.or(other.bottom),</pre>
@@ -356,7 +356,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                1908
+                7620
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">        })</pre>
@@ -369,7 +369,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                1908
+                7620
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">    }</pre>
@@ -515,7 +515,7 @@
                 12
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        Self::from(Length::new(points))</pre>
+                <pre class="has-background-success-light py-0 px-2">        Self::from(Figure::new(points))</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -567,7 +567,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">impl From&lt;Length&lt;f32, Points&gt;&gt; for Padding {</pre>
+                <pre class="has-background-white py-0 px-2">impl From&lt;Figure&lt;f32, Scaled&gt;&gt; for Padding {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -580,7 +580,7 @@
                 12
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    fn from(length: Length&lt;f32, Points&gt;) -&gt; Self {</pre>
+                <pre class="has-background-success-light py-0 px-2">    fn from(length: Figure&lt;f32, Scaled&gt;) -&gt; Self {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -658,7 +658,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    type Target = Surround&lt;Length&lt;f32, Points&gt;&gt;;</pre>
+                <pre class="has-background-white py-0 px-2">    type Target = Surround&lt;Figure&lt;f32, Scaled&gt;&gt;;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -681,7 +681,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                45444
+                112896
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">    fn deref(&amp;self) -&gt; &amp;Self::Target {</pre>
@@ -694,7 +694,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                45444
+                112896
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">        &amp;self.0</pre>
@@ -707,7 +707,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                45444
+                112896
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">    }</pre>
@@ -957,7 +957,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.padding.left = Some(Length::new(points));</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self.padding.left = Some(Figure::new(points));</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1035,7 +1035,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.padding.right = Some(Length::new(points));</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self.padding.right = Some(Figure::new(points));</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1113,7 +1113,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.padding.top = Some(Length::new(points));</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self.padding.top = Some(Figure::new(points));</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1191,7 +1191,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        self.padding.bottom = Some(Length::new(points));</pre>
+                <pre class="has-background-danger-light py-0 px-2">        self.padding.bottom = Some(Figure::new(points));</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1300,7 +1300,7 @@
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-08-07 00:01</p>
+                <p class="heading">Date: 2021-08-17 20:01</p>
             </div>
         </footer>
     </body>

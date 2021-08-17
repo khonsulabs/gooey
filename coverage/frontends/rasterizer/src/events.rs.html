@@ -60,7 +60,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    euclid::{Point2D, Scale},</pre>
+                <pre class="has-background-white py-0 px-2">    figures::{Point, Scale},</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -86,7 +86,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    Pixels, Points,</pre>
+                <pre class="has-background-white py-0 px-2">    Pixels, Scaled,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -385,7 +385,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">        position: Option&lt;Point2D&lt;f32, Points&gt;&gt;,</pre>
+                <pre class="has-background-white py-0 px-2">        position: Option&lt;Point&lt;f32, Scaled&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -671,7 +671,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        scale: Scale&lt;f32, Points, Pixels&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">        scale: Scale&lt;f32, Scaled, Pixels&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -879,7 +879,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">                        Point2D::&lt;f64, Pixels&gt;::new(position.x, position.y).to_f32() &#x2F; scale,</pre>
+                <pre class="has-background-danger-light py-0 px-2">                        Point::&lt;f64, Pixels&gt;::new(position.x, position.y).cast::&lt;f32&gt;() &#x2F; scale,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1209,7 +1209,7 @@
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-08-07 00:01</p>
+                <p class="heading">Date: 2021-08-17 20:01</p>
             </div>
         </footer>
     </body>
