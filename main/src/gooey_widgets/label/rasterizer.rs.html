@@ -76,11 +76,15 @@
 <span id="74">74</span>
 <span id="75">75</span>
 <span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Size2D</span>},
+    <span class="ident">figures</span>::{<span class="ident">Figure</span>, <span class="ident">Size</span>},
     <span class="ident">styles::Style</span>,
-    <span class="ident">Points</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
+    <span class="ident">Scaled</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{<span class="ident">ContentArea</span>, <span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>, <span class="ident">WidgetRasterizer</span>};
 <span class="kw">use</span> <span class="ident">gooey_text</span>::{<span class="ident">prepared::PreparedText</span>, <span class="ident">wrap::TextWrap</span>, <span class="ident">Text</span>};
@@ -113,26 +117,30 @@
                 <span class="kw-2">&amp;</span><span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">label</span>,
                 <span class="ident">context</span>.<span class="ident">style</span>,
                 <span class="ident">renderer</span>,
-                <span class="ident">Length::new</span>(<span class="ident">content_area</span>.<span class="ident">size</span>.<span class="ident">content</span>.<span class="ident">width</span>),
+                <span class="ident">Figure::new</span>(<span class="ident">content_area</span>.<span class="ident">size</span>.<span class="ident">content</span>.<span class="ident">width</span>),
             );
-            <span class="ident">wrapped</span>.<span class="ident">render_within</span>::<span class="op">&lt;</span><span class="ident">LabelColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="ident">renderer</span>, <span class="ident">content_area</span>.<span class="ident">bounds</span>(), <span class="ident">context</span>.<span class="ident">style</span>);
+            <span class="ident">wrapped</span>.<span class="ident">render_within</span>::<span class="op">&lt;</span><span class="ident">LabelColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(
+                <span class="ident">renderer</span>,
+                <span class="ident">content_area</span>.<span class="ident">content_bounds</span>(),
+                <span class="ident">context</span>.<span class="ident">style</span>,
+            );
         }
     }
 
     <span class="kw">fn</span> <span class="ident">measure_content</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">constraints</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+        <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
         <span class="ident">context</span>
             .<span class="ident">frontend</span>
             .<span class="ident">renderer</span>()
-            .<span class="ident">map_or_else</span>(<span class="ident">Size2D::default</span>, <span class="op">|</span><span class="ident">renderer</span><span class="op">|</span> {
+            .<span class="ident">map_or_else</span>(<span class="ident">Size::default</span>, <span class="op">|</span><span class="ident">renderer</span><span class="op">|</span> {
                 <span class="kw">let</span> <span class="ident">wrapped</span> <span class="op">=</span> <span class="ident">wrap_text</span>(
                     <span class="kw-2">&amp;</span><span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">label</span>,
                     <span class="ident">context</span>.<span class="ident">style</span>,
                     <span class="ident">renderer</span>,
-                    <span class="ident">Length::new</span>(<span class="ident">constraints</span>.<span class="ident">width</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">renderer</span>.<span class="ident">size</span>().<span class="ident">width</span>)),
+                    <span class="ident">Figure::new</span>(<span class="ident">constraints</span>.<span class="ident">width</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">renderer</span>.<span class="ident">size</span>().<span class="ident">width</span>)),
                 );
                 <span class="ident">wrapped</span>.<span class="ident">size</span>()
             })
@@ -143,12 +151,12 @@
     <span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="ident">Text</span>,
     <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
     <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>,
-    <span class="ident">width</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+    <span class="ident">width</span>: <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PreparedText</span> {
     <span class="ident">label</span>.<span class="ident">wrap</span>(
         <span class="ident">renderer</span>,
         <span class="ident">TextWrap::MultiLine</span> {
-            <span class="ident">size</span>: <span class="ident">Size2D::from_lengths</span>(<span class="ident">width</span>, <span class="ident">Length::new</span>(<span class="ident">renderer</span>.<span class="ident">size</span>().<span class="ident">height</span>)),
+            <span class="ident">size</span>: <span class="ident">Size::from_figures</span>(<span class="ident">width</span>, <span class="ident">Figure::new</span>(<span class="ident">renderer</span>.<span class="ident">size</span>().<span class="ident">height</span>)),
         },
         <span class="prelude-val">Some</span>(<span class="ident">style</span>),
     )

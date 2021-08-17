@@ -111,7 +111,7 @@
 <span id="109">109</span>
 <span id="110">110</span>
 </pre><pre class="rust">
-<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">euclid::Length</span>, <span class="ident">Callback</span>, <span class="ident">Context</span>, <span class="ident">Points</span>, <span class="ident">StyledWidget</span>, <span class="ident">Widget</span>};
+<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">figures::Figure</span>, <span class="ident">Callback</span>, <span class="ident">Context</span>, <span class="ident">Scaled</span>, <span class="ident">StyledWidget</span>, <span class="ident">Widget</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gooey-rasterizer&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">rasterizer</span>;
@@ -119,7 +119,7 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-browser&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">browser</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LABEL_PADDING</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Length::new</span>(<span class="number">5.</span>);
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LABEL_PADDING</span>: <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Figure::new</span>(<span class="number">5.</span>);
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Checkbox</span> {

@@ -1,1 +1,0 @@
-initSidebarItems({"trait":[["ApproxEq","Trait for testing approximate equality"]]});

@@ -100,16 +100,16 @@
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::ops</span>::{<span class="ident">Deref</span>, <span class="ident">DerefMut</span>};
 
-<span class="kw">use</span> <span class="ident">euclid::Length</span>;
+<span class="kw">use</span> <span class="ident">figures::Figure</span>;
 <span class="kw">use</span> <span class="ident">stylecs::StyleComponent</span>;
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::Surround</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Points</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Scaled</span>;
 
 <span class="doccomment">/// Adds padding (spacing) around a widget.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Padding</span>(<span class="kw">pub</span> <span class="ident">Surround</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Padding</span>(<span class="kw">pub</span> <span class="ident">Surround</span><span class="op">&lt;</span><span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
 <span class="kw">impl</span> <span class="ident">StyleComponent</span> <span class="kw">for</span> <span class="ident">Padding</span> {
     <span class="kw">fn</span> <span class="ident">should_be_inherited</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -134,18 +134,18 @@
 
     <span class="doccomment">/// Returns an instance with uniform padding of `points` on all sides.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uniform</span>(<span class="ident">points</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">Length::new</span>(<span class="ident">points</span>))
+        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">Figure::new</span>(<span class="ident">points</span>))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Padding</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">length</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Padding</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">length</span>: <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>(<span class="ident">Surround::from</span>(<span class="prelude-val">Some</span>(<span class="ident">length</span>)))
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">Padding</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">Surround</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">Surround</span><span class="op">&lt;</span><span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 
     <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Target</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>
@@ -168,25 +168,25 @@
 <span class="kw">impl</span> <span class="ident">Builder</span> {
     <span class="doccomment">/// Sets the left padding to `points`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">points</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">left</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Length::new</span>(<span class="ident">points</span>));
+        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">left</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="ident">points</span>));
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Sets the right padding to `points`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">points</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">right</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Length::new</span>(<span class="ident">points</span>));
+        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">right</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="ident">points</span>));
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Sets the top padding to `points`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">points</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Length::new</span>(<span class="ident">points</span>));
+        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="ident">points</span>));
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Sets the bottom padding to `points`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">points</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Length::new</span>(<span class="ident">points</span>));
+        <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="ident">points</span>));
         <span class="self">self</span>
     }
 

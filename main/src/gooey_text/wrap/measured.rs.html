@@ -128,7 +128,7 @@
 <span id="126">126</span>
 <span id="127">127</span>
 </pre><pre class="rust">
-<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">styles::Style</span>, <span class="ident">Points</span>};
+<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">styles::Style</span>, <span class="ident">Scaled</span>};
 <span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">TextMetrics</span>};
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">ParserStatus</span>, <span class="ident">SpanGroup</span>, <span class="ident">Token</span>, <span class="ident">Tokenizer</span>};
@@ -142,14 +142,14 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">MeasuredTextInfo</span> {
     <span class="ident">Groups</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SpanGroup</span><span class="op">&gt;</span>),
-    <span class="ident">NoText</span>(<span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>),
+    <span class="ident">NoText</span>(<span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span>),
 }
 
 <span class="kw">struct</span> <span class="ident">TextMeasureState</span> {
     <span class="ident">current_group</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">SpanGroup</span><span class="op">&gt;</span>,
     <span class="ident">status</span>: <span class="ident">ParserStatus</span>,
     <span class="ident">groups</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SpanGroup</span><span class="op">&gt;</span>,
-    <span class="ident">no_text_metrics</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">no_text_metrics</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">TextMeasureState</span> {

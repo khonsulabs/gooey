@@ -569,17 +569,129 @@
 <span id="567">567</span>
 <span id="568">568</span>
 <span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
+<span id="597">597</span>
+<span id="598">598</span>
+<span id="599">599</span>
+<span id="600">600</span>
+<span id="601">601</span>
+<span id="602">602</span>
+<span id="603">603</span>
+<span id="604">604</span>
+<span id="605">605</span>
+<span id="606">606</span>
+<span id="607">607</span>
+<span id="608">608</span>
+<span id="609">609</span>
+<span id="610">610</span>
+<span id="611">611</span>
+<span id="612">612</span>
+<span id="613">613</span>
+<span id="614">614</span>
+<span id="615">615</span>
+<span id="616">616</span>
+<span id="617">617</span>
+<span id="618">618</span>
+<span id="619">619</span>
+<span id="620">620</span>
+<span id="621">621</span>
+<span id="622">622</span>
+<span id="623">623</span>
+<span id="624">624</span>
+<span id="625">625</span>
+<span id="626">626</span>
+<span id="627">627</span>
+<span id="628">628</span>
+<span id="629">629</span>
+<span id="630">630</span>
+<span id="631">631</span>
+<span id="632">632</span>
+<span id="633">633</span>
+<span id="634">634</span>
+<span id="635">635</span>
+<span id="636">636</span>
+<span id="637">637</span>
+<span id="638">638</span>
+<span id="639">639</span>
+<span id="640">640</span>
+<span id="641">641</span>
+<span id="642">642</span>
+<span id="643">643</span>
+<span id="644">644</span>
+<span id="645">645</span>
+<span id="646">646</span>
+<span id="647">647</span>
+<span id="648">648</span>
+<span id="649">649</span>
+<span id="650">650</span>
+<span id="651">651</span>
+<span id="652">652</span>
+<span id="653">653</span>
+<span id="654">654</span>
+<span id="655">655</span>
+<span id="656">656</span>
+<span id="657">657</span>
+<span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
+<span id="671">671</span>
+<span id="672">672</span>
+<span id="673">673</span>
+<span id="674">674</span>
+<span id="675">675</span>
+<span id="676">676</span>
+<span id="677">677</span>
+<span id="678">678</span>
+<span id="679">679</span>
+<span id="680">680</span>
+<span id="681">681</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any::TypeId</span>, <span class="ident">convert::TryFrom</span>, <span class="ident">ops::Deref</span>};
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">euclid</span>::{<span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Size2D</span>},
+    <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Rectlike</span>, <span class="ident">Size</span>, <span class="ident">Vector</span>, <span class="ident">Vectorlike</span>},
     <span class="ident">styles</span>::{<span class="ident">border::Border</span>, <span class="ident">BackgroundColor</span>, <span class="ident">Padding</span>, <span class="ident">Style</span>},
-    <span class="ident">AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Points</span>, <span class="ident">Transmogrifier</span>,
+    <span class="ident">AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Scaled</span>, <span class="ident">Transmogrifier</span>,
     <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">Widget</span>, <span class="ident">WidgetRegistration</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_renderer::Renderer</span>;
-<span class="kw">use</span> <span class="ident">winit::event::MouseButton</span>;
+<span class="kw">use</span> <span class="ident">winit::event</span>::{<span class="ident">ElementState</span>, <span class="ident">MouseButton</span>, <span class="ident">ScanCode</span>, <span class="ident">VirtualKeyCode</span>};
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Rasterizer</span>;
 
@@ -591,10 +703,11 @@
     <span class="kw">fn</span> <span class="ident">render_within</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">bounds</span>: <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">bounds</span>: <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
         <span class="ident">parent_style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
     ) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">rasterizer</span>) <span class="op">=</span> <span class="ident">context</span>.<span class="ident">frontend</span>.<span class="ident">clipped_to</span>(<span class="ident">bounds</span>) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">clipped</span>) <span class="op">=</span> <span class="ident">context</span>.<span class="ident">frontend</span>.<span class="ident">clipped_to</span>(<span class="ident">bounds</span>) {
+            <span class="kw">let</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">bounds</span>.<span class="ident">as_sized</span>();
             <span class="kw">let</span> <span class="ident">effective_style</span> <span class="op">=</span> <span class="ident">context</span>
                 .<span class="ident">frontend</span>
                 .<span class="ident">ui</span>
@@ -607,10 +720,10 @@
             <span class="kw">let</span> <span class="ident">padding</span> <span class="op">=</span> <span class="ident">effective_style</span>.<span class="ident">get_or_default</span>::<span class="op">&lt;</span><span class="ident">Padding</span><span class="op">&gt;</span>();
 
             <span class="kw">let</span> <span class="ident">content</span> <span class="op">=</span> (<span class="ident">bounds</span>.<span class="ident">size</span> <span class="op">-</span> <span class="ident">border</span>.<span class="ident">minimum_size</span>() <span class="op">-</span> <span class="ident">padding</span>.<span class="ident">minimum_size</span>())
-                .<span class="ident">max</span>(<span class="ident">Size2D::default</span>());
+                .<span class="ident">max</span>(<span class="kw-2">&amp;</span><span class="ident">Size::default</span>());
             <span class="kw">let</span> <span class="ident">remaining_width</span> <span class="op">=</span> <span class="ident">bounds</span>.<span class="ident">size</span> <span class="op">-</span> <span class="ident">content</span>;
             <span class="comment">// TODO support Alignment and VerticalAlignment</span>
-            <span class="kw">let</span> <span class="ident">location</span> <span class="op">=</span> (<span class="ident">remaining_width</span>.<span class="ident">to_vector</span>() <span class="op">/</span> <span class="number">2.</span>).<span class="ident">to_point</span>();
+            <span class="kw">let</span> <span class="ident">location</span> <span class="op">=</span> (<span class="ident">remaining_width</span> <span class="op">/</span> <span class="number">2.</span>).<span class="ident">to_point</span>();
 
             <span class="kw">let</span> <span class="ident">area</span> <span class="op">=</span> <span class="ident">ContentArea</span> {
                 <span class="ident">location</span>,
@@ -620,7 +733,19 @@
                     <span class="ident">border</span>,
                 },
             };
-            <span class="self">self</span>.<span class="ident">render_within_content_area</span>(<span class="ident">context</span>, <span class="kw-2">&amp;</span><span class="ident">rasterizer</span>, <span class="kw-2">&amp;</span><span class="ident">area</span>, <span class="kw-2">&amp;</span><span class="ident">effective_style</span>);
+
+            <span class="self">self</span>.<span class="ident">render_within_content_area</span>(<span class="ident">context</span>, <span class="kw-2">&amp;</span><span class="ident">clipped</span>, <span class="kw-2">&amp;</span><span class="ident">area</span>, <span class="kw-2">&amp;</span><span class="ident">effective_style</span>);
+            <span class="ident">clipped</span>.<span class="ident">rasterized_widget</span>(
+                <span class="ident">context</span>.<span class="ident">registration</span>.<span class="ident">id</span>().<span class="ident">clone</span>(),
+                <span class="ident">area</span>.<span class="ident">translate</span>(
+                    <span class="ident">clipped</span>
+                        .<span class="ident">renderer</span>()
+                        .<span class="ident">unwrap</span>()
+                        .<span class="ident">clip_bounds</span>()
+                        .<span class="ident">origin</span>()
+                        .<span class="ident">to_vector</span>(),
+                ),
+            );
         }
     }
 
@@ -631,11 +756,6 @@
         <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
         <span class="ident">effective_style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
     ) {
-        <span class="ident">rasterizer</span>.<span class="ident">rasterized_widget</span>(
-            <span class="ident">context</span>.<span class="ident">registration</span>.<span class="ident">id</span>().<span class="ident">clone</span>(),
-            <span class="ident">rasterizer</span>.<span class="ident">renderer</span>().<span class="ident">unwrap</span>().<span class="ident">clip_bounds</span>(),
-        );
-
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">color</span>) <span class="op">=</span> <span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Widget</span> <span class="kw">as</span> <span class="ident">Widget</span><span class="op">&gt;</span><span class="ident">::background_color</span>(<span class="ident">effective_style</span>) {
             <span class="kw">let</span> <span class="ident">renderer</span> <span class="op">=</span> <span class="ident">rasterizer</span>.<span class="ident">renderer</span>().<span class="ident">unwrap</span>();
             <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">BackgroundColor</span><span class="op">&gt;</span>(
@@ -681,21 +801,31 @@
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">o</span><span class="op">|</span> <span class="ident">o</span>.<span class="ident">width</span>)
             .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">w</span><span class="op">|</span> <span class="ident">w</span>.<span class="ident">get</span>() <span class="op">&gt;</span> <span class="number">0.</span>);
 
-        <span class="kw">let</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">renderer</span>.<span class="ident">bounds</span>();
+        <span class="kw">let</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">renderer</span>.<span class="ident">bounds</span>().<span class="ident">as_sized</span>();
         <span class="comment">// The top and bottom borders will draw full width always</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">width</span>) <span class="op">=</span> <span class="ident">top_width</span> {
             <span class="ident">renderer</span>.<span class="ident">fill_rect</span>(
-                <span class="kw-2">&amp;</span><span class="ident">Rect::new</span>(<span class="ident">bounds</span>.<span class="ident">origin</span>, <span class="ident">Size2D::new</span>(<span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">width</span>, <span class="ident">width</span>.<span class="ident">get</span>())),
-                <span class="ident">border</span>.<span class="ident">top</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>().<span class="ident">color</span>,
+                <span class="kw-2">&amp;</span><span class="ident">Rect::sized</span>(<span class="ident">bounds</span>.<span class="ident">origin</span>, <span class="ident">Size::new</span>(<span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">width</span>, <span class="ident">width</span>.<span class="ident">get</span>())),
+                <span class="ident">border</span>
+                    .<span class="ident">top</span>
+                    .<span class="ident">as_ref</span>()
+                    .<span class="ident">unwrap</span>()
+                    .<span class="ident">color</span>
+                    .<span class="ident">themed_color</span>(<span class="ident">renderer</span>.<span class="ident">theme</span>()),
             );
         }
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">width</span>) <span class="op">=</span> <span class="ident">bottom_width</span> {
             <span class="ident">renderer</span>.<span class="ident">fill_rect</span>(
-                <span class="kw-2">&amp;</span><span class="ident">Rect::new</span>(
-                    <span class="ident">Point2D::new</span>(<span class="number">0.</span>, <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span> <span class="op">-</span> <span class="ident">width</span>.<span class="ident">get</span>()),
-                    <span class="ident">Size2D::new</span>(<span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">width</span>, <span class="ident">width</span>.<span class="ident">get</span>()),
+                <span class="kw-2">&amp;</span><span class="ident">Rect::sized</span>(
+                    <span class="ident">Point::new</span>(<span class="number">0.</span>, <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span> <span class="op">-</span> <span class="ident">width</span>.<span class="ident">get</span>()),
+                    <span class="ident">Size::new</span>(<span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">width</span>, <span class="ident">width</span>.<span class="ident">get</span>()),
                 ),
-                <span class="ident">border</span>.<span class="ident">bottom</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>().<span class="ident">color</span>,
+                <span class="ident">border</span>
+                    .<span class="ident">bottom</span>
+                    .<span class="ident">as_ref</span>()
+                    .<span class="ident">unwrap</span>()
+                    .<span class="ident">color</span>
+                    .<span class="ident">themed_color</span>(<span class="ident">renderer</span>.<span class="ident">theme</span>()),
             );
         }
 
@@ -703,30 +833,40 @@
         <span class="comment">// ensure no overlaps. This allows alpha borders to render properly.</span>
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">width</span>) <span class="op">=</span> <span class="ident">left_width</span> {
             <span class="ident">renderer</span>.<span class="ident">fill_rect</span>(
-                <span class="kw-2">&amp;</span><span class="ident">Rect::new</span>(
-                    <span class="ident">Point2D::new</span>(<span class="number">0.</span>, <span class="ident">top_width</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>()),
-                    <span class="ident">Size2D::new</span>(
+                <span class="kw-2">&amp;</span><span class="ident">Rect::sized</span>(
+                    <span class="ident">Point::new</span>(<span class="number">0.</span>, <span class="ident">top_width</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>()),
+                    <span class="ident">Size::new</span>(
                         <span class="ident">width</span>.<span class="ident">get</span>(),
                         <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span> <span class="op">-</span> <span class="ident">bottom_width</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>(),
                     ),
                 ),
-                <span class="ident">border</span>.<span class="ident">left</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>().<span class="ident">color</span>,
+                <span class="ident">border</span>
+                    .<span class="ident">left</span>
+                    .<span class="ident">as_ref</span>()
+                    .<span class="ident">unwrap</span>()
+                    .<span class="ident">color</span>
+                    .<span class="ident">themed_color</span>(<span class="ident">renderer</span>.<span class="ident">theme</span>()),
             );
         }
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">width</span>) <span class="op">=</span> <span class="ident">right_width</span> {
             <span class="ident">renderer</span>.<span class="ident">fill_rect</span>(
-                <span class="kw-2">&amp;</span><span class="ident">Rect::new</span>(
-                    <span class="ident">Point2D::new</span>(
+                <span class="kw-2">&amp;</span><span class="ident">Rect::sized</span>(
+                    <span class="ident">Point::new</span>(
                         <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">width</span> <span class="op">-</span> <span class="ident">width</span>.<span class="ident">get</span>(),
                         <span class="ident">top_width</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>(),
                     ),
-                    <span class="ident">Size2D::new</span>(
+                    <span class="ident">Size::new</span>(
                         <span class="ident">width</span>.<span class="ident">get</span>(),
                         <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span> <span class="op">-</span> <span class="ident">bottom_width</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>(),
                     ),
                 ),
-                <span class="ident">border</span>.<span class="ident">left</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>().<span class="ident">color</span>,
+                <span class="ident">border</span>
+                    .<span class="ident">left</span>
+                    .<span class="ident">as_ref</span>()
+                    .<span class="ident">unwrap</span>()
+                    .<span class="ident">color</span>
+                    .<span class="ident">themed_color</span>(<span class="ident">renderer</span>.<span class="ident">theme</span>()),
             );
         }
     }
@@ -742,13 +882,13 @@
     <span class="kw">fn</span> <span class="ident">measure_content</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">constraints</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>;
+        <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>;
 
     <span class="kw">fn</span> <span class="ident">content_size</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">constraints</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentSize</span> {
         <span class="kw">let</span> <span class="ident">effective_style</span> <span class="op">=</span> <span class="ident">context</span>
             .<span class="ident">frontend</span>
@@ -760,7 +900,7 @@
             );
         <span class="kw">let</span> <span class="ident">padding</span> <span class="op">=</span> <span class="ident">effective_style</span>.<span class="ident">get_or_default</span>::<span class="op">&lt;</span><span class="ident">Padding</span><span class="op">&gt;</span>();
         <span class="kw">let</span> <span class="ident">border</span> <span class="op">=</span> <span class="ident">effective_style</span>.<span class="ident">get_or_default</span>::<span class="op">&lt;</span><span class="ident">Border</span><span class="op">&gt;</span>();
-        <span class="kw">let</span> <span class="ident">constraints</span> <span class="op">=</span> <span class="ident">Size2D::new</span>(
+        <span class="kw">let</span> <span class="ident">constraints</span> <span class="op">=</span> <span class="ident">Size::new</span>(
             <span class="ident">constraints</span>
                 .<span class="ident">width</span>
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">width</span><span class="op">|</span> <span class="ident">width</span> <span class="op">-</span> <span class="ident">border</span>.<span class="ident">minimum_width</span>().<span class="ident">get</span>() <span class="op">-</span> <span class="ident">padding</span>.<span class="ident">minimum_width</span>().<span class="ident">get</span>()),
@@ -779,8 +919,8 @@
     <span class="kw">fn</span> <span class="ident">hit_test</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="bool-val">true</span>
     }
@@ -795,10 +935,10 @@
     <span class="kw">fn</span> <span class="ident">mouse_move</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">hit_test</span>(<span class="ident">context</span>, <span class="ident">location</span>, <span class="ident">rastered_size</span>)
+        <span class="self">self</span>.<span class="ident">hit_test</span>(<span class="ident">context</span>, <span class="ident">location</span>, <span class="ident">area</span>)
     }
 
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
@@ -806,8 +946,8 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">button</span>: <span class="ident">MouseButton</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventStatus</span> {
         <span class="ident">EventStatus::Ignored</span>
     }
@@ -817,8 +957,8 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">button</span>: <span class="ident">MouseButton</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) {
     }
 
@@ -827,9 +967,29 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">button</span>: <span class="ident">MouseButton</span>,
-        <span class="ident">location</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) {
+    }
+
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">keyboard</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">scancode</span>: <span class="ident">ScanCode</span>,
+        <span class="ident">keycode</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VirtualKeyCode</span><span class="op">&gt;</span>,
+        <span class="ident">state</span>: <span class="ident">ElementState</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventStatus</span> {
+        <span class="ident">EventStatus::Ignored</span>
+    }
+
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">receive_character</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">character</span>: <span class="ident">char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventStatus</span> {
+        <span class="ident">EventStatus::Ignored</span>
     }
 }
 
@@ -837,7 +997,7 @@
     <span class="kw">fn</span> <span class="ident">render_within</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">bounds</span>: <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">bounds</span>: <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
         <span class="ident">parent_style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
     );
 
@@ -852,20 +1012,20 @@
     <span class="kw">fn</span> <span class="ident">measure_content</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">constraints</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>;
+        <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>;
 
     <span class="kw">fn</span> <span class="ident">content_size</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">constraints</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentSize</span>;
 
     <span class="kw">fn</span> <span class="ident">hit_test</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="kw">fn</span> <span class="ident">hovered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>);
@@ -875,33 +1035,46 @@
     <span class="kw">fn</span> <span class="ident">mouse_move</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="kw">fn</span> <span class="ident">mouse_down</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">button</span>: <span class="ident">MouseButton</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventStatus</span>;
 
     <span class="kw">fn</span> <span class="ident">mouse_drag</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">button</span>: <span class="ident">MouseButton</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     );
 
     <span class="kw">fn</span> <span class="ident">mouse_up</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">button</span>: <span class="ident">MouseButton</span>,
-        <span class="ident">location</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     );
+    <span class="kw">fn</span> <span class="ident">keyboard</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">scancode</span>: <span class="ident">ScanCode</span>,
+        <span class="ident">keycode</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VirtualKeyCode</span><span class="op">&gt;</span>,
+        <span class="ident">state</span>: <span class="ident">ElementState</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventStatus</span>;
+
+    <span class="kw">fn</span> <span class="ident">receive_character</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">character</span>: <span class="ident">char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventStatus</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">R</span><span class="op">&gt;</span> <span class="ident">AnyWidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">T</span>
@@ -912,7 +1085,7 @@
     <span class="kw">fn</span> <span class="ident">render_within</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">bounds</span>: <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">bounds</span>: <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
         <span class="ident">parent_style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
     ) {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::render_within</span>(
@@ -942,8 +1115,8 @@
     <span class="kw">fn</span> <span class="ident">measure_content</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">constraints</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+        <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::measure_content</span>(
             <span class="self">self</span>,
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
@@ -954,7 +1127,7 @@
     <span class="kw">fn</span> <span class="ident">content_size</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">constraints</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentSize</span> {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::content_size</span>(
             <span class="self">self</span>,
@@ -966,14 +1139,14 @@
     <span class="kw">fn</span> <span class="ident">hit_test</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::hit_test</span>(
             <span class="self">self</span>,
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
             <span class="ident">location</span>,
-            <span class="ident">rastered_size</span>,
+            <span class="ident">area</span>,
         )
     }
 
@@ -994,14 +1167,14 @@
     <span class="kw">fn</span> <span class="ident">mouse_move</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::mouse_move</span>(
             <span class="self">self</span>,
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
             <span class="ident">location</span>,
-            <span class="ident">rastered_size</span>,
+            <span class="ident">area</span>,
         )
     }
 
@@ -1009,15 +1182,15 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">button</span>: <span class="ident">MouseButton</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventStatus</span> {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::mouse_down</span>(
             <span class="self">self</span>,
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
             <span class="ident">button</span>,
             <span class="ident">location</span>,
-            <span class="ident">rastered_size</span>,
+            <span class="ident">area</span>,
         )
     }
 
@@ -1025,15 +1198,15 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">button</span>: <span class="ident">MouseButton</span>,
-        <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::mouse_drag</span>(
             <span class="self">self</span>,
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
             <span class="ident">button</span>,
             <span class="ident">location</span>,
-            <span class="ident">rastered_size</span>,
+            <span class="ident">area</span>,
         );
     }
 
@@ -1041,16 +1214,44 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">button</span>: <span class="ident">MouseButton</span>,
-        <span class="ident">location</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">rastered_size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">area</span>: <span class="kw-2">&amp;</span><span class="ident">ContentArea</span>,
     ) {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::mouse_up</span>(
             <span class="self">self</span>,
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
             <span class="ident">button</span>,
             <span class="ident">location</span>,
-            <span class="ident">rastered_size</span>,
+            <span class="ident">area</span>,
         );
+    }
+
+    <span class="kw">fn</span> <span class="ident">keyboard</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">scancode</span>: <span class="ident">ScanCode</span>,
+        <span class="ident">keycode</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VirtualKeyCode</span><span class="op">&gt;</span>,
+        <span class="ident">state</span>: <span class="ident">ElementState</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventStatus</span> {
+        <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::keyboard</span>(
+            <span class="self">self</span>,
+            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
+            <span class="ident">scancode</span>,
+            <span class="ident">keycode</span>,
+            <span class="ident">state</span>,
+        )
+    }
+
+    <span class="kw">fn</span> <span class="ident">receive_character</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">character</span>: <span class="ident">char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventStatus</span> {
+        <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::receive_character</span>(
+            <span class="self">self</span>,
+            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
+            <span class="ident">character</span>,
+        )
     }
 }
 
@@ -1101,31 +1302,31 @@
     <span class="ident">Processed</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContentSize</span> {
-    <span class="kw">pub</span> <span class="ident">content</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">content</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">padding</span>: <span class="ident">Padding</span>,
     <span class="kw">pub</span> <span class="ident">border</span>: <span class="ident">Border</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ContentSize</span> {
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">total_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">total_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">content</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">padding</span>.<span class="ident">minimum_size</span>() <span class="op">+</span> <span class="self">self</span>.<span class="ident">border</span>.<span class="ident">minimum_size</span>()
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContentArea</span> {
-    <span class="kw">pub</span> <span class="ident">location</span>: <span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">ContentSize</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ContentArea</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sized</span>(<span class="ident">size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sized</span>(<span class="ident">size</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
-            <span class="ident">location</span>: <span class="ident">Point2D::default</span>(),
+            <span class="ident">location</span>: <span class="ident">Point::default</span>(),
             <span class="ident">size</span>: <span class="ident">ContentSize</span> {
                 <span class="ident">content</span>: <span class="ident">size</span>,
                 <span class="ident">padding</span>: <span class="ident">Padding::default</span>(),
@@ -1134,9 +1335,32 @@
         }
     }
 
+    <span class="doccomment">/// Returns the bounds of the content area.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
-        <span class="ident">Rect::new</span>(<span class="self">self</span>.<span class="ident">location</span>, <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">content</span>)
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
+        <span class="ident">Rect::sized</span>(<span class="self">self</span>.<span class="ident">location</span>, <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">content</span>)
+    }
+
+    <span class="doccomment">/// Returns the entire area including padding and border.</span>
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
+        <span class="ident">Rect::sized</span>(
+            <span class="self">self</span>.<span class="ident">location</span>
+                <span class="op">-</span> <span class="ident">Vector::new</span>(
+                    <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">border</span>.<span class="ident">left</span>.<span class="ident">map_or</span>(<span class="number">0.</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">width</span>.<span class="ident">get</span>())
+                        <span class="op">+</span> <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">padding</span>.<span class="ident">left</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>(),
+                    <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">border</span>.<span class="ident">top</span>.<span class="ident">map_or</span>(<span class="number">0.</span>, <span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">width</span>.<span class="ident">get</span>())
+                        <span class="op">+</span> <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">padding</span>.<span class="ident">top</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>(),
+                ),
+            <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">content</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">border</span>.<span class="ident">minimum_size</span>() <span class="op">+</span> <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">padding</span>.<span class="ident">minimum_size</span>(),
+        )
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">by</span>: <span class="ident">Vector</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">location</span>: <span class="self">self</span>.<span class="ident">location</span> <span class="op">+</span> <span class="ident">by</span>,
+            <span class="ident">size</span>: <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">clone</span>(),
+        }
     }
 }
 </pre></div>

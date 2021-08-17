@@ -63,8 +63,8 @@
 <span id="61">61</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">euclid</span>::{<span class="ident">Point2D</span>, <span class="ident">Rect</span>, <span class="ident">Size2D</span>},
-    <span class="ident">Points</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
+    <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Size</span>},
+    <span class="ident">Scaled</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{<span class="ident">ContentArea</span>, <span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>, <span class="ident">WidgetRasterizer</span>};
 
@@ -87,7 +87,7 @@
                 <span class="kw">let</span> <span class="ident">child_content_area</span> <span class="op">=</span> <span class="ident">child_transmogrifier</span>
                     .<span class="ident">content_size</span>(
                         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">child_context</span>,
-                        <span class="ident">Size2D::new</span>(
+                        <span class="ident">Size::new</span>(
                             <span class="prelude-val">Some</span>(<span class="ident">content_area</span>.<span class="ident">size</span>.<span class="ident">content</span>.<span class="ident">width</span>),
                             <span class="prelude-val">Some</span>(<span class="ident">content_area</span>.<span class="ident">size</span>.<span class="ident">content</span>.<span class="ident">height</span>),
                         ),
@@ -96,8 +96,8 @@
                 <span class="kw">let</span> <span class="ident">remaining_size</span> <span class="op">=</span> <span class="ident">content_area</span>.<span class="ident">size</span>.<span class="ident">content</span> <span class="op">-</span> <span class="ident">child_content_area</span>;
 
                 <span class="comment">// TODO respect Alignment + Vertical alignment</span>
-                <span class="kw">let</span> <span class="ident">child_rect</span> <span class="op">=</span> <span class="ident">Rect::new</span>(
-                    <span class="ident">Point2D::new</span>(<span class="ident">remaining_size</span>.<span class="ident">width</span> <span class="op">/</span> <span class="number">2.</span>, <span class="ident">remaining_size</span>.<span class="ident">height</span> <span class="op">/</span> <span class="number">2.</span>),
+                <span class="kw">let</span> <span class="ident">child_rect</span> <span class="op">=</span> <span class="ident">Rect::sized</span>(
+                    <span class="ident">Point::new</span>(<span class="ident">remaining_size</span>.<span class="ident">width</span> <span class="op">/</span> <span class="number">2.</span>, <span class="ident">remaining_size</span>.<span class="ident">height</span> <span class="op">/</span> <span class="number">2.</span>),
                     <span class="ident">child_content_area</span>,
                 );
                 <span class="ident">child_transmogrifier</span>.<span class="ident">render_within</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">child_context</span>, <span class="ident">child_rect</span>, <span class="ident">context</span>.<span class="ident">style</span>);
@@ -108,8 +108,8 @@
     <span class="kw">fn</span> <span class="ident">measure_content</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">constraints</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+        <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
         <span class="ident">context</span>
             .<span class="ident">frontend</span>
             .<span class="ident">with_transmogrifier</span>(

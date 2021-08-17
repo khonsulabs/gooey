@@ -50,9 +50,9 @@
 <span id="48">48</span>
 <span id="49">49</span>
 </pre><pre class="rust">
-<span class="kw">use</span> <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Size2D</span>};
+<span class="kw">use</span> <span class="ident">figures</span>::{<span class="ident">Figure</span>, <span class="ident">Size</span>};
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Points</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Scaled</span>;
 
 <span class="doccomment">/// Measurements that surrouned a box/rect.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
@@ -67,25 +67,25 @@
     <span class="kw">pub</span> <span class="ident">bottom</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Clone</span><span class="op">&gt;</span> <span class="ident">Surround</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Clone</span><span class="op">&gt;</span> <span class="ident">Surround</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Returns the minimum width that this surround will occupy.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minimum_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minimum_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">left</span>.<span class="ident">clone</span>().<span class="ident">map</span>(<span class="ident">T::into</span>).<span class="ident">unwrap_or_default</span>()
             <span class="op">+</span> <span class="self">self</span>.<span class="ident">right</span>.<span class="ident">clone</span>().<span class="ident">map</span>(<span class="ident">T::into</span>).<span class="ident">unwrap_or_default</span>()
     }
 
     <span class="doccomment">/// Returns the minimum height that this surround will occupy.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minimum_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minimum_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">top</span>.<span class="ident">clone</span>().<span class="ident">map</span>(<span class="ident">T::into</span>).<span class="ident">unwrap_or_default</span>()
             <span class="op">+</span> <span class="self">self</span>.<span class="ident">bottom</span>.<span class="ident">clone</span>().<span class="ident">map</span>(<span class="ident">T::into</span>).<span class="ident">unwrap_or_default</span>()
     }
 
-    <span class="doccomment">/// Returns the minimum [`Size2D`] that this surround will occupy.</span>
+    <span class="doccomment">/// Returns the minimum [`Size`] that this surround will occupy.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minimum_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
-        <span class="ident">Size2D::from_lengths</span>(<span class="self">self</span>.<span class="ident">minimum_width</span>(), <span class="self">self</span>.<span class="ident">minimum_height</span>())
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minimum_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
+        <span class="ident">Size::from_figures</span>(<span class="self">self</span>.<span class="ident">minimum_width</span>(), <span class="self">self</span>.<span class="ident">minimum_height</span>())
     }
 }
 

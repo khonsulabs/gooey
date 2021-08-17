@@ -146,28 +146,40 @@
 <span id="144">144</span>
 <span id="145">145</span>
 <span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
-<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">styles::Style</span>, <span class="ident">Points</span>};
+<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">styles::Style</span>, <span class="ident">Scaled</span>};
 <span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">TextMetrics</span>};
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">prepared::PreparedSpan</span>, <span class="ident">Text</span>};
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">Token</span> {
-    <span class="ident">EndOfLine</span>(<span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>),
+    <span class="ident">EndOfLine</span>(<span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span>),
     <span class="ident">Characters</span>(<span class="ident">PreparedSpan</span>),
     <span class="ident">Punctuation</span>(<span class="ident">PreparedSpan</span>),
     <span class="ident">Whitespace</span>(<span class="ident">PreparedSpan</span>),
-    <span class="ident">NoText</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>),
+    <span class="ident">NoText</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>),
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">SpanGroup</span> {
     <span class="ident">Spans</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PreparedSpan</span><span class="op">&gt;</span>),
     <span class="ident">Whitespace</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PreparedSpan</span><span class="op">&gt;</span>),
-    <span class="ident">EndOfLine</span>(<span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>),
+    <span class="ident">EndOfLine</span>(<span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span>),
 }
 
 <span class="kw">impl</span> <span class="ident">SpanGroup</span> {
@@ -198,7 +210,9 @@
 
 <span class="kw">struct</span> <span class="ident">TokenizerState</span> {
     <span class="ident">style</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Style</span><span class="op">&gt;</span>,
+    <span class="ident">character_position</span>: <span class="ident">usize</span>,
     <span class="ident">text</span>: <span class="ident">String</span>,
+    <span class="ident">text_start</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
     <span class="ident">lexer_state</span>: <span class="ident">TokenizerStatus</span>,
 }
 
@@ -206,8 +220,10 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">style</span>: <span class="ident">Style</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">style</span>: <span class="ident">Arc::new</span>(<span class="ident">style</span>),
+            <span class="ident">character_position</span>: <span class="number">0</span>,
             <span class="ident">lexer_state</span>: <span class="ident">TokenizerStatus::AtSpanStart</span>,
             <span class="ident">text</span>: <span class="ident">String::default</span>(),
+            <span class="ident">text_start</span>: <span class="prelude-val">None</span>,
         }
     }
 
@@ -216,9 +232,12 @@
             <span class="prelude-val">None</span>
         } <span class="kw">else</span> {
             <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">clone</span>();
-            <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">clear</span>();
             <span class="kw">let</span> <span class="ident">metrics</span> <span class="op">=</span> <span class="ident">renderer</span>.<span class="ident">measure_text_with_style</span>(<span class="kw-2">&amp;</span><span class="ident">text</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">style</span>);
-            <span class="kw">let</span> <span class="ident">span</span> <span class="op">=</span> <span class="ident">PreparedSpan::new</span>(<span class="self">self</span>.<span class="ident">style</span>.<span class="ident">clone</span>(), <span class="ident">text</span>, <span class="ident">metrics</span>);
+            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text_start</span>.<span class="ident">unwrap_or</span>(<span class="self">self</span>.<span class="ident">character_position</span>);
+            <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">character_position</span> <span class="op">-</span> <span class="ident">offset</span>;
+            <span class="kw">let</span> <span class="ident">span</span> <span class="op">=</span> <span class="ident">PreparedSpan::new</span>(<span class="self">self</span>.<span class="ident">style</span>.<span class="ident">clone</span>(), <span class="ident">text</span>, <span class="ident">offset</span>, <span class="ident">length</span>, <span class="ident">metrics</span>);
+            <span class="self">self</span>.<span class="ident">text_start</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+            <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">clear</span>();
 
             <span class="kw">let</span> <span class="ident">token</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">lexer_state</span> {
                 <span class="ident">TokenizerStatus::AtSpanStart</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
@@ -278,7 +297,12 @@
                     <span class="ident">state</span>.<span class="ident">lexer_state</span> <span class="op">=</span> <span class="ident">new_lexer_state</span>;
 
                     <span class="ident">state</span>.<span class="ident">text</span>.<span class="ident">push</span>(<span class="ident">c</span>);
+                    <span class="kw">if</span> <span class="ident">state</span>.<span class="ident">text_start</span>.<span class="ident">is_none</span>() {
+                        <span class="ident">state</span>.<span class="ident">text_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>.<span class="ident">character_position</span>);
+                    }
                 }
+
+                <span class="ident">state</span>.<span class="ident">character_position</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
             }
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">token</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">emit_token_if_needed</span>(<span class="ident">renderer</span>) {

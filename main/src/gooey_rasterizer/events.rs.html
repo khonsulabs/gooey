@@ -92,9 +92,9 @@
 <span id="90">90</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">euclid</span>::{<span class="ident">Point2D</span>, <span class="ident">Scale</span>},
+    <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Scale</span>},
     <span class="ident">styles::SystemTheme</span>,
-    <span class="ident">Pixels</span>, <span class="ident">Points</span>,
+    <span class="ident">Pixels</span>, <span class="ident">Scaled</span>,
 };
 <span class="kw">use</span> <span class="ident">winit::event</span>::{
     <span class="ident">ElementState</span>, <span class="ident">ModifiersState</span>, <span class="ident">MouseButton</span>, <span class="ident">MouseScrollDelta</span>, <span class="ident">ScanCode</span>, <span class="ident">TouchPhase</span>,
@@ -117,7 +117,7 @@
     },
     <span class="doccomment">/// Mouse cursor event</span>
     <span class="ident">MouseMoved</span> {
-        <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     },
     <span class="doccomment">/// Mouse wheel event</span>
     <span class="ident">MouseWheel</span> {
@@ -139,7 +139,7 @@
 <span class="kw">impl</span> <span class="ident">WindowEvent</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_winit_event</span>(
         <span class="ident">value</span>: <span class="ident">WinitWindowEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
-        <span class="ident">scale</span>: <span class="ident">Scale</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span>, <span class="ident">Pixels</span><span class="op">&gt;</span>,
+        <span class="ident">scale</span>: <span class="ident">Scale</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span>, <span class="ident">Pixels</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">WinitWindowEvent</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="ident">value</span> {
             <span class="ident">WinitWindowEvent::ReceivedCharacter</span>(<span class="ident">c</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::ReceiveCharacter</span>(<span class="ident">c</span>)),
@@ -155,7 +155,7 @@
             <span class="ident">WinitWindowEvent::CursorMoved</span> { <span class="ident">position</span>, .. } <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::Input</span>(<span class="ident">InputEvent::MouseMoved</span> {
                     <span class="ident">position</span>: <span class="prelude-val">Some</span>(
-                        <span class="ident">Point2D</span>::<span class="op">&lt;</span><span class="ident">f64</span>, <span class="ident">Pixels</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">position</span>.<span class="ident">x</span>, <span class="ident">position</span>.<span class="ident">y</span>).<span class="ident">to_f32</span>() <span class="op">/</span> <span class="ident">scale</span>,
+                        <span class="ident">Point</span>::<span class="op">&lt;</span><span class="ident">f64</span>, <span class="ident">Pixels</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">position</span>.<span class="ident">x</span>, <span class="ident">position</span>.<span class="ident">y</span>).<span class="ident">cast</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>() <span class="op">/</span> <span class="ident">scale</span>,
                     ),
                 }))
             }

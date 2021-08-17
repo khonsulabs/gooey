@@ -175,7 +175,7 @@
 
 <span class="kw">fn</span> <span class="ident">span_to_html</span>(<span class="ident">span</span>: <span class="kw-2">&amp;</span><span class="ident">Span</span>, <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="ident">HtmlElement</span>, <span class="ident">element_style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>, <span class="ident">theme</span>: <span class="ident">SystemTheme</span>) {
     <span class="kw">let</span> <span class="ident">element</span> <span class="op">=</span> <span class="ident">create_element</span>::<span class="op">&lt;</span><span class="ident">HtmlSpanElement</span><span class="op">&gt;</span>(<span class="string">&quot;span&quot;</span>);
-    <span class="ident">element</span>.<span class="ident">set_inner_text</span>(<span class="kw-2">&amp;</span><span class="ident">span</span>.<span class="ident">text</span>);
+    <span class="ident">element</span>.<span class="ident">set_inner_text</span>(<span class="ident">span</span>.<span class="ident">text</span>());
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">style</span> <span class="op">=</span> <span class="ident">String::new</span>();
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">color</span>) <span class="op">=</span> <span class="ident">span</span>
         .<span class="ident">style</span>

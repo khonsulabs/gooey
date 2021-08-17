@@ -191,7 +191,6 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
-<span id="192">192</span>
 </pre><pre class="rust">
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::zero_sized_map_values</span>)]</span>
 
@@ -360,8 +359,7 @@
                 <span class="ident">WidgetLayout::build</span>()
                     .<span class="ident">top</span>(<span class="ident">Dimension::zero</span>())
                     .<span class="ident">height</span>(<span class="ident">Dimension::exact</span>(<span class="number">44.</span>))
-                    .<span class="ident">left</span>(<span class="ident">Dimension::zero</span>())
-                    .<span class="ident">right</span>(<span class="ident">Dimension::zero</span>())
+                    .<span class="ident">fill_width</span>()
                     .<span class="ident">finish</span>(),
             )
             .<span class="ident">with_registration</span>(<span class="ident">Widgets::Content</span>, <span class="ident">initial_widget</span>, <span class="ident">content_layout</span>())

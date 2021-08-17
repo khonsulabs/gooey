@@ -93,7 +93,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">fmt::Debug</span>, <span class="ident">marker::PhantomData</span>};
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">styles::Surround</span>, <span class="ident">Frontend</span>, <span class="ident">Key</span>, <span class="ident">KeyedStorage</span>, <span class="ident">Points</span>, <span class="ident">RelatedStorage</span>, <span class="ident">StyledWidget</span>, <span class="ident">Widget</span>,
+    <span class="ident">styles::Surround</span>, <span class="ident">Frontend</span>, <span class="ident">Key</span>, <span class="ident">KeyedStorage</span>, <span class="ident">RelatedStorage</span>, <span class="ident">Scaled</span>, <span class="ident">StyledWidget</span>, <span class="ident">Widget</span>,
     <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>, <span class="ident">WidgetStorage</span>,
 };
 
@@ -141,7 +141,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Builder</span><span class="op">&lt;</span><span class="ident">K</span>: <span class="ident">Key</span>, <span class="ident">S</span>: <span class="ident">KeyedStorage</span><span class="op">&lt;</span><span class="ident">K</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="ident">storage</span>: <span class="ident">S</span>,
     <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WidgetRegistration</span><span class="op">&gt;</span>,
-    <span class="ident">padding</span>: <span class="ident">Surround</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>,
+    <span class="ident">padding</span>: <span class="ident">Surround</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span>,
     <span class="ident">_phantom</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">K</span><span class="op">&gt;</span>,
 }
 

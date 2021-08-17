@@ -94,6 +94,11 @@
 <span id="92">92</span>
 <span id="93">93</span>
 <span id="94">94</span>
+<span id="95">95</span>
+<span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Built-in widgets for user interfaces.</span>
 
@@ -118,6 +123,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">checkbox</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">component</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">container</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">input</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">label</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">layout</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">navigator</span>;
@@ -129,7 +135,7 @@
 
     <span class="kw">use</span> <span class="kw">crate</span>::{
         <span class="ident">button::ButtonTransmogrifier</span>, <span class="ident">checkbox::CheckboxTransmogrifier</span>,
-        <span class="ident">container::ContainerTransmogrifier</span>, <span class="ident">label::LabelTransmogrifier</span>,
+        <span class="ident">container::ContainerTransmogrifier</span>, <span class="ident">input::InputTransmogrifier</span>, <span class="ident">label::LabelTransmogrifier</span>,
         <span class="ident">layout::LayoutTransmogrifier</span>,
     };
 
@@ -141,6 +147,7 @@
         <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">LabelTransmogrifier</span>));
         <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">LayoutTransmogrifier</span>));
         <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">CheckboxTransmogrifier</span>));
+        <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">InputTransmogrifier</span>));
     }
 
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
@@ -155,6 +162,7 @@
     <span class="macro">make_rasterized!</span>(<span class="ident">LabelTransmogrifier</span>);
     <span class="macro">make_rasterized!</span>(<span class="ident">LayoutTransmogrifier</span>);
     <span class="macro">make_rasterized!</span>(<span class="ident">CheckboxTransmogrifier</span>);
+    <span class="macro">make_rasterized!</span>(<span class="ident">InputTransmogrifier</span>);
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;frontend-browser&quot;</span>)]</span>
@@ -164,7 +172,7 @@
 
     <span class="kw">use</span> <span class="kw">crate</span>::{
         <span class="ident">button::ButtonTransmogrifier</span>, <span class="ident">checkbox::CheckboxTransmogrifier</span>,
-        <span class="ident">container::ContainerTransmogrifier</span>, <span class="ident">label::LabelTransmogrifier</span>,
+        <span class="ident">container::ContainerTransmogrifier</span>, <span class="ident">input::InputTransmogrifier</span>, <span class="ident">label::LabelTransmogrifier</span>,
         <span class="ident">layout::LayoutTransmogrifier</span>,
     };
 
@@ -174,6 +182,7 @@
         <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">LabelTransmogrifier</span>));
         <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">LayoutTransmogrifier</span>));
         <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">CheckboxTransmogrifier</span>));
+        <span class="ident">drop</span>(<span class="ident">transmogrifiers</span>.<span class="ident">register_transmogrifier</span>(<span class="ident">InputTransmogrifier</span>));
     }
 
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
@@ -188,6 +197,7 @@
     <span class="macro">make_browser!</span>(<span class="ident">LabelTransmogrifier</span>);
     <span class="macro">make_browser!</span>(<span class="ident">LayoutTransmogrifier</span>);
     <span class="macro">make_browser!</span>(<span class="ident">CheckboxTransmogrifier</span>);
+    <span class="macro">make_browser!</span>(<span class="ident">InputTransmogrifier</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gooey_widgets" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>

@@ -809,6 +809,11 @@
 <span id="807">807</span>
 <span id="808">808</span>
 <span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
+<span id="813">813</span>
+<span id="814">814</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">any::TypeId</span>,
@@ -820,10 +825,11 @@
     <span class="ident">ops::Deref</span>,
     <span class="ident">sync</span>::{
         <span class="ident">atomic</span>::{<span class="ident">AtomicU32</span>, <span class="ident">Ordering</span>},
-        <span class="ident">Arc</span>, <span class="ident">Mutex</span>, <span class="ident">RwLock</span>, <span class="ident">Weak</span>,
+        <span class="ident">Arc</span>, <span class="ident">RwLock</span>, <span class="ident">Weak</span>,
     },
 };
 
+<span class="kw">use</span> <span class="ident">parking_lot::Mutex</span>;
 <span class="kw">use</span> <span class="ident">stylecs</span>::{<span class="ident">Style</span>, <span class="ident">StyleComponent</span>};
 
 <span class="kw">use</span> <span class="kw">crate</span>::{
@@ -894,7 +900,7 @@
 
     <span class="doccomment">/// Executes `callback` with the transmogrifier and transmogrifier state as</span>
     <span class="doccomment">/// parameters.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::missing_panics_doc</span>)]</span> <span class="comment">// unwrap is guranteed due to get_or_initialize</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::missing_panics_doc</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_transmogrifier</span><span class="op">&lt;</span>
         <span class="ident">R</span>,
         <span class="ident">C</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="op">&lt;</span><span class="ident">F</span> <span class="kw">as</span> <span class="ident">Frontend</span><span class="op">&gt;</span><span class="ident">::AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">F</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span>,
@@ -911,11 +917,14 @@
             .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">transmogrifier</span><span class="op">|</span> {
                 <span class="kw">let</span> <span class="ident">widget_state</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget_id</span>.<span class="ident">id</span>)<span class="question-mark">?</span>;
                 <span class="ident">widget_state</span>.<span class="ident">with_state</span>(<span class="ident">transmogrifier</span>, <span class="ident">frontend</span>, <span class="op">|</span><span class="ident">state</span>, <span class="ident">widget</span><span class="op">|</span> {
-                    <span class="kw">let</span> <span class="ident">style</span> <span class="op">=</span> <span class="ident">widget_state</span>.<span class="ident">style</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+                    <span class="kw">let</span> <span class="ident">style</span> <span class="op">=</span> <span class="ident">widget_state</span>.<span class="ident">style</span>.<span class="ident">lock</span>();
                     <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="ident">widget_state</span>.<span class="ident">channels</span>.<span class="ident">as_ref</span>();
                     <span class="ident">callback</span>(
                         <span class="ident">transmogrifier</span>,
                         <span class="ident">AnyTransmogrifierContext::new</span>(
+                            <span class="comment">// unwrap is guranteed because this block can&#39;t</span>
+                            <span class="comment">// execute unless the widget registration is still</span>
+                            <span class="comment">// alive.</span>
                             <span class="ident">widget_state</span>.<span class="ident">id</span>.<span class="ident">upgrade</span>().<span class="ident">unwrap</span>(),
                             <span class="ident">state</span>,
                             <span class="ident">frontend</span>,
@@ -931,7 +940,7 @@
 
     <span class="doccomment">/// Executes `callback` with the transmogrifier and transmogrifier state as</span>
     <span class="doccomment">/// parameters.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::missing_panics_doc</span>)]</span> <span class="comment">// unwrap is guranteed due to get_or_initialize</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::missing_panics_doc</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_each_widget</span><span class="op">&lt;</span>
         <span class="ident">C</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="op">&lt;</span><span class="ident">F</span> <span class="kw">as</span> <span class="ident">Frontend</span><span class="op">&gt;</span><span class="ident">::AnyTransmogrifier</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> <span class="ident">AnySendSync</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">AnyWidget</span>),
     <span class="op">&gt;</span>(
@@ -940,6 +949,8 @@
         <span class="kw-2">mut</span> <span class="ident">callback</span>: <span class="ident">C</span>,
     ) {
         <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">storage</span>.<span class="ident">for_each_widget</span>(<span class="op">|</span><span class="ident">widget_state</span><span class="op">|</span> {
+            <span class="comment">// unwrap is guaranteed here because each widget that has been</span>
+            <span class="comment">// inserted already has interacted with the transmogrifier.</span>
             <span class="kw">let</span> <span class="ident">transmogrifier</span> <span class="op">=</span> <span class="self">self</span>
                 .<span class="ident">data</span>
                 .<span class="ident">transmogrifiers</span>
@@ -962,8 +973,8 @@
         <span class="comment">// code to re-enter. Instead, the first process_widget_message will loop</span>
         <span class="comment">// to catch new widgets that have messages.</span>
         <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">processing_messages_lock</span>.<span class="ident">try_lock</span>() {
-            <span class="prelude-val">Ok</span>(<span class="ident">guard</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">guard</span>,
-            <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">guard</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">guard</span>,
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span>,
         };
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">managed_code_guard</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">enter_managed_code</span>(<span class="ident">frontend</span>);
@@ -978,8 +989,7 @@
         <span class="kw">while</span> <span class="ident">chatter_limit</span> <span class="op">&gt;</span> <span class="number">0</span> {
             <span class="ident">chatter_limit</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
             <span class="kw">let</span> <span class="ident">widgets_with_messages</span> <span class="op">=</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widgets_with_messages</span> <span class="op">=</span>
-                    <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">storage</span>.<span class="ident">data</span>.<span class="ident">widgets_with_messages</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widgets_with_messages</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">storage</span>.<span class="ident">data</span>.<span class="ident">widgets_with_messages</span>.<span class="ident">lock</span>();
                 <span class="kw">if</span> <span class="ident">widgets_with_messages</span>.<span class="ident">is_empty</span>() {
                     <span class="kw">break</span>;
                 }
@@ -1215,7 +1225,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Panics if internal lock handling results in an error.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_widget_has_messages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">statuses</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">widgets_with_messages</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">statuses</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">widgets_with_messages</span>.<span class="ident">lock</span>();
         <span class="ident">statuses</span>.<span class="ident">insert</span>(<span class="ident">widget</span>);
     }
 }
@@ -1381,8 +1391,8 @@
         <span class="ident">frontend</span>: <span class="kw-2">&amp;</span><span class="ident">F</span>,
         <span class="ident">callback</span>: <span class="ident">C</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">state</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widget</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">state</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">lock</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widget</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget</span>.<span class="ident">lock</span>();
         <span class="self">self</span>.<span class="ident">id</span>.<span class="ident">upgrade</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">id</span><span class="op">|</span> {
             <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">get_or_insert_with</span>(<span class="op">|</span><span class="op">|</span> {
                 <span class="ident">transmogrifier</span>.<span class="ident">default_state_for</span>(<span class="ident">widget</span>.<span class="ident">as_mut</span>(), <span class="kw-2">&amp;</span><span class="ident">id</span>, <span class="ident">frontend</span>)
@@ -1414,7 +1424,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="ident">frontend</span>.<span class="ident">enter_managed_code</span>();
         <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> {
-            <span class="kw">let</span> <span class="ident">widget</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget</span>.<span class="ident">lock</span>().<span class="ident">ok</span>()<span class="question-mark">?</span>;
+            <span class="kw">let</span> <span class="ident">widget</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget</span>.<span class="ident">lock</span>();
             <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">channels</span>::<span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Context::new</span>(<span class="ident">channels</span>, <span class="ident">frontend</span>);
             <span class="prelude-val">Some</span>(<span class="ident">with_fn</span>(<span class="ident">widget</span>.<span class="ident">as_ref</span>().<span class="ident">as_any</span>().<span class="ident">downcast_ref</span>()<span class="question-mark">?</span>, <span class="kw-2">&amp;</span><span class="ident">context</span>))
@@ -1433,7 +1443,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="ident">frontend</span>.<span class="ident">enter_managed_code</span>();
         <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widget</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget</span>.<span class="ident">lock</span>().<span class="ident">ok</span>()<span class="question-mark">?</span>;
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widget</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget</span>.<span class="ident">lock</span>();
             <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">channels</span>::<span class="op">&lt;</span><span class="ident">OW</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Context::new</span>(<span class="ident">channels</span>, <span class="ident">frontend</span>);
             <span class="prelude-val">Some</span>(<span class="ident">with_fn</span>(

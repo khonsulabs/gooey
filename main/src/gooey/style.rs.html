@@ -131,19 +131,53 @@
 <span id="129">129</span>
 <span id="130">130</span>
 <span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">euclid::Length</span>,
+    <span class="ident">figures::Figure</span>,
     <span class="ident">styles</span>::{
         <span class="ident">style_sheet</span>::{<span class="ident">Rule</span>, <span class="ident">StyleSheet</span>},
-        <span class="ident">Alignment</span>, <span class="ident">BackgroundColor</span>, <span class="ident">Color</span>, <span class="ident">ColorPair</span>, <span class="ident">ForegroundColor</span>, <span class="ident">Padding</span>, <span class="ident">Surround</span>,
-        <span class="ident">VerticalAlignment</span>,
+        <span class="ident">Alignment</span>, <span class="ident">BackgroundColor</span>, <span class="ident">Border</span>, <span class="ident">BorderOptions</span>, <span class="ident">Color</span>, <span class="ident">ColorPair</span>, <span class="ident">ForegroundColor</span>,
+        <span class="ident">Padding</span>, <span class="ident">Surround</span>, <span class="ident">VerticalAlignment</span>,
     },
     <span class="ident">ROOT_CLASS</span>, <span class="ident">SOLID_WIDGET_CLASS</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_widgets</span>::{
     <span class="ident">button</span>::{<span class="ident">Button</span>, <span class="ident">ButtonColor</span>},
     <span class="ident">checkbox::Checkbox</span>,
+    <span class="ident">input::Input</span>,
     <span class="ident">label::Label</span>,
 };
 
@@ -212,7 +246,7 @@
             <span class="ident">style</span>
                 .<span class="ident">with</span>(<span class="ident">Alignment::Center</span>)
                 .<span class="ident">with</span>(<span class="ident">VerticalAlignment::Center</span>)
-                .<span class="ident">with</span>(<span class="ident">Padding</span>(<span class="ident">Surround::from</span>(<span class="prelude-val">Some</span>(<span class="ident">Length::new</span>(<span class="number">5.</span>)))))
+                .<span class="ident">with</span>(<span class="ident">Padding</span>(<span class="ident">Surround::from</span>(<span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="number">5.</span>)))))
         }))
         .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Checkbox</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
             <span class="ident">style</span>
@@ -262,6 +296,38 @@
                 <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.9</span>),
             }))
         }))
+        .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
+            <span class="ident">style</span>
+                .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">ColorPair</span> {
+                    <span class="ident">light_color</span>: <span class="ident">Color::WHITE</span>,
+                    <span class="ident">dark_color</span>: <span class="ident">Color::BLACK</span>,
+                }))
+                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">ColorPair</span> {
+                    <span class="ident">light_color</span>: <span class="ident">Color::BLACK</span>,
+                    <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.8</span>),
+                }))
+                .<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(
+                    <span class="number">1.</span>,
+                    <span class="ident">ColorPair</span> {
+                        <span class="ident">light_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.5</span>),
+                        <span class="ident">dark_color</span>: <span class="ident">Color::gray</span>(<span class="number">0.1</span>),
+                    },
+                )))
+                .<span class="ident">with</span>(<span class="ident">Padding</span>(<span class="ident">Surround::from</span>(<span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="number">5.</span>)))))
+        }))
+        .<span class="ident">with</span>(
+            <span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span>()
+                .<span class="ident">when_focused</span>()
+                .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
+                    <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(
+                        <span class="number">1.</span>,
+                        <span class="ident">ColorPair</span> {
+                            <span class="ident">light_color</span>: <span class="ident">Color::RED</span>,
+                            <span class="ident">dark_color</span>: <span class="ident">Color::RED</span>,
+                        },
+                    )))
+                }),
+        )
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gooey" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>

@@ -127,19 +127,10 @@
 <span id="125">125</span>
 <span id="126">126</span>
 <span id="127">127</span>
-<span id="128">128</span>
-<span id="129">129</span>
-<span id="130">130</span>
-<span id="131">131</span>
-<span id="132">132</span>
-<span id="133">133</span>
 </pre><pre class="rust">
-<span class="kw">use</span> <span class="ident">std</span>::{
-    <span class="ident">borrow::Cow</span>,
-    <span class="ident">path::PathBuf</span>,
-    <span class="ident">sync</span>::{<span class="ident">Arc</span>, <span class="ident">Mutex</span>},
-};
+<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">borrow::Cow</span>, <span class="ident">path::PathBuf</span>, <span class="ident">sync::Arc</span>};
 
+<span class="kw">use</span> <span class="ident">parking_lot::Mutex</span>;
 <span class="kw">use</span> <span class="ident">url::Url</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">AnyFrontend</span>, <span class="ident">AnySendSync</span>, <span class="ident">Callback</span>};
@@ -219,7 +210,6 @@
 <span class="kw">impl</span> <span class="ident">Image</span> {
     <span class="doccomment">/// Loads the image. When loaded successfully, `on_loaded` will be invoked.</span>
     <span class="doccomment">/// If an error occurs while loading, `on_error` will be invoked.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::missing_panics_doc</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">on_loaded</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Image</span><span class="op">&gt;</span>,
@@ -230,17 +220,15 @@
     }
 
     <span class="doccomment">/// Sets the internal frontend data for this image. Should not be used outside of developing a frontend.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::missing_panics_doc</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_data</span><span class="op">&lt;</span><span class="ident">D</span>: <span class="ident">AnySendSync</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">new_data</span>: <span class="ident">D</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>();
         <span class="kw-2">*</span><span class="ident">data</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Box::new</span>(<span class="ident">new_data</span>) <span class="kw">as</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">AnySendSync</span><span class="op">&gt;</span>);
     }
 
     <span class="doccomment">/// Maps the frontend data into `callback` returning the result of the</span>
     <span class="doccomment">/// function. This is generally only useful when developing a frontend.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::missing_panics_doc</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_data</span><span class="op">&lt;</span><span class="ident">R</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> <span class="ident">AnySendSync</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>();
         <span class="ident">callback</span>(<span class="ident">data</span>.<span class="ident">as_deref_mut</span>())
     }
 }

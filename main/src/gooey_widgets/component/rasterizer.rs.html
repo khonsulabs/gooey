@@ -72,12 +72,8 @@
 <span id="70">70</span>
 <span id="71">71</span>
 <span id="72">72</span>
-<span id="73">73</span>
-<span id="74">74</span>
 </pre><pre class="rust">
-<span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">euclid::Size2D</span>, <span class="ident">Points</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">Widget</span>, <span class="ident">WidgetRef</span>,
-};
+<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">figures::Size</span>, <span class="ident">Scaled</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">Widget</span>, <span class="ident">WidgetRef</span>};
 <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{<span class="ident">ContentArea</span>, <span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>, <span class="ident">WidgetRasterizer</span>};
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::Component</span>;
@@ -94,7 +90,7 @@
             <span class="op">|</span><span class="ident">child_transmogrifier</span>, <span class="kw-2">mut</span> <span class="ident">child_context</span><span class="op">|</span> {
                 <span class="ident">child_transmogrifier</span>.<span class="ident">render_within</span>(
                     <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">child_context</span>,
-                    <span class="ident">content_area</span>.<span class="ident">bounds</span>(),
+                    <span class="ident">content_area</span>.<span class="ident">content_bounds</span>(),
                     <span class="ident">context</span>.<span class="ident">style</span>,
                 );
             },
@@ -104,8 +100,8 @@
     <span class="kw">fn</span> <span class="ident">measure_content</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">constraints</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+        <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
         <span class="ident">context</span>
             .<span class="ident">frontend</span>
             .<span class="ident">with_transmogrifier</span>(

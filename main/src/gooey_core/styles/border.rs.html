@@ -120,11 +120,11 @@
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::ops</span>::{<span class="ident">Deref</span>, <span class="ident">DerefMut</span>};
 
-<span class="kw">use</span> <span class="ident">euclid::Length</span>;
+<span class="kw">use</span> <span class="ident">figures::Figure</span>;
 <span class="kw">use</span> <span class="ident">stylecs::StyleComponent</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Color</span>, <span class="ident">Surround</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Points</span>;
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">ColorPair</span>, <span class="ident">Surround</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Scaled</span>;
 
 <span class="doccomment">/// A border around a widget.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
@@ -144,35 +144,35 @@
 }
 
 <span class="doccomment">/// Options for a single side of a [`Border`].</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BorderOptions</span> {
     <span class="doccomment">/// The width of the border.</span>
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The color of the border.</span>
-    <span class="kw">pub</span> <span class="ident">color</span>: <span class="ident">Color</span>,
+    <span class="kw">pub</span> <span class="ident">color</span>: <span class="ident">ColorPair</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">BorderOptions</span> {
     <span class="doccomment">/// Returns a new border with `width` and `color`.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">width</span>: <span class="ident">f32</span>, <span class="ident">color</span>: <span class="ident">Color</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">width</span>: <span class="ident">f32</span>, <span class="ident">color</span>: <span class="ident">ColorPair</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
-            <span class="ident">width</span>: <span class="ident">Length::new</span>(<span class="ident">width</span>),
+            <span class="ident">width</span>: <span class="ident">Figure::new</span>(<span class="ident">width</span>),
             <span class="ident">color</span>,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">BorderOptions</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">width</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">BorderOptions</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">width</span>: <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">width</span>,
-            <span class="ident">color</span>: <span class="ident">Color::default</span>(),
+            <span class="ident">color</span>: <span class="ident">ColorPair::default</span>(),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">BorderOptions</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">BorderOptions</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">opts</span>: <span class="ident">BorderOptions</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">opts</span>.<span class="ident">width</span>
     }

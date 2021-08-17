@@ -390,9 +390,9 @@
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">approx::abs_diff_eq</span>;
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">euclid</span>::{<span class="ident">Length</span>, <span class="ident">Size2D</span>},
+    <span class="ident">figures</span>::{<span class="ident">Figure</span>, <span class="ident">Size</span>},
     <span class="ident">styles::Style</span>,
-    <span class="ident">Points</span>,
+    <span class="ident">Scaled</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_renderer</span>::{<span class="ident">Renderer</span>, <span class="ident">TextMetrics</span>};
 
@@ -419,9 +419,9 @@
 }
 
 <span class="kw">struct</span> <span class="ident">TextWrapState</span> {
-    <span class="ident">width</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">current_vmetrics</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">current_span_offset</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+    <span class="ident">width</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">current_vmetrics</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">current_span_offset</span>: <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     <span class="ident">current_groups</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SpanGroup</span><span class="op">&gt;</span>,
     <span class="ident">lines</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PreparedLine</span><span class="op">&gt;</span>,
 }
@@ -439,11 +439,11 @@
             <span class="kw">let</span> <span class="ident">total_width</span> <span class="op">=</span> <span class="ident">spans</span>
                 .<span class="ident">iter</span>()
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">metrics</span>().<span class="ident">width</span>)
-                .<span class="ident">fold</span>(<span class="ident">Length::default</span>(), <span class="op">|</span><span class="ident">sum</span>, <span class="ident">width</span><span class="op">|</span> <span class="ident">sum</span> <span class="op">+</span> <span class="ident">width</span>);
+                .<span class="ident">fold</span>(<span class="ident">Figure::default</span>(), <span class="op">|</span><span class="ident">sum</span>, <span class="ident">width</span><span class="op">|</span> <span class="ident">sum</span> <span class="op">+</span> <span class="ident">width</span>);
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">width</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">width</span> {
                 <span class="kw">let</span> <span class="ident">new_width</span> <span class="op">=</span> <span class="ident">total_width</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">current_span_offset</span>;
-                <span class="kw">let</span> <span class="ident">remaining_width</span> <span class="op">=</span> <span class="ident">width</span> <span class="op">-</span> <span class="ident">new_width</span>;
+                <span class="kw">let</span> <span class="ident">remaining_width</span>: <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">width</span> <span class="op">-</span> <span class="ident">new_width</span>;
 
                 <span class="comment">// If the value is negative and isn&#39;t zero (-0. is a valid float)</span>
                 <span class="kw">if</span> <span class="op">!</span><span class="macro">abs_diff_eq!</span>(<span class="ident">remaining_width</span>.<span class="ident">get</span>(), <span class="number">0.</span>, <span class="ident">epsilon</span> <span class="op">=</span> <span class="number">0.1</span>)
@@ -467,13 +467,13 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">update_vmetrics</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">new_metrics</span>: <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">update_vmetrics</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">new_metrics</span>: <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span>) {
         <span class="self">self</span>.<span class="ident">current_vmetrics</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">current_vmetrics</span> {
             <span class="prelude-val">Some</span>(<span class="ident">metrics</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">TextMetrics</span> {
                 <span class="ident">ascent</span>: <span class="ident">metrics</span>.<span class="ident">ascent</span>.<span class="ident">max</span>(<span class="ident">new_metrics</span>.<span class="ident">ascent</span>),
                 <span class="ident">descent</span>: <span class="ident">metrics</span>.<span class="ident">descent</span>.<span class="ident">min</span>(<span class="ident">new_metrics</span>.<span class="ident">descent</span>),
                 <span class="ident">line_gap</span>: <span class="ident">metrics</span>.<span class="ident">line_gap</span>.<span class="ident">max</span>(<span class="ident">new_metrics</span>.<span class="ident">line_gap</span>),
-                <span class="ident">width</span>: <span class="ident">Length::default</span>(),
+                <span class="ident">width</span>: <span class="ident">Figure::default</span>(),
             }),
             <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">new_metrics</span>),
         }
@@ -498,7 +498,7 @@
             }
         }
 
-        <span class="self">self</span>.<span class="ident">current_span_offset</span> <span class="op">=</span> <span class="ident">Length::default</span>();
+        <span class="self">self</span>.<span class="ident">current_span_offset</span> <span class="op">=</span> <span class="ident">Figure::default</span>();
         <span class="kw">for</span> <span class="ident">span</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">spans</span> {
             <span class="self">self</span>.<span class="ident">update_vmetrics</span>(<span class="kw-2">*</span><span class="ident">span</span>.<span class="ident">metrics</span>());
             <span class="self">self</span>.<span class="ident">position_span</span>(<span class="ident">span</span>);
@@ -508,10 +508,10 @@
             <span class="self">self</span>.<span class="ident">lines</span>.<span class="ident">push</span>(<span class="ident">PreparedLine</span> {
                 <span class="ident">spans</span>,
                 <span class="ident">metrics</span>,
-                <span class="ident">alignment_offset</span>: <span class="ident">Length::default</span>(),
+                <span class="ident">alignment_offset</span>: <span class="ident">Figure::default</span>(),
             });
         }
-        <span class="self">self</span>.<span class="ident">current_span_offset</span> <span class="op">=</span> <span class="ident">Length::default</span>();
+        <span class="self">self</span>.<span class="ident">current_span_offset</span> <span class="op">=</span> <span class="ident">Figure::default</span>();
         <span class="self">self</span>.<span class="ident">current_groups</span>.<span class="ident">clear</span>();
     }
 
@@ -547,7 +547,7 @@
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">TextWrapState</span> {
             <span class="ident">width</span>,
-            <span class="ident">current_span_offset</span>: <span class="ident">Length::default</span>(),
+            <span class="ident">current_span_offset</span>: <span class="ident">Figure::default</span>(),
             <span class="ident">current_vmetrics</span>: <span class="prelude-val">None</span>,
             <span class="ident">current_groups</span>: <span class="ident">Vec::new</span>(),
             <span class="ident">lines</span>: <span class="ident">Vec::new</span>(),
@@ -570,7 +570,7 @@
             <span class="ident">MeasuredTextInfo::NoText</span>(<span class="ident">metrics</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="self">self</span>.<span class="ident">prepared_text</span>.<span class="ident">lines</span>.<span class="ident">push</span>(<span class="ident">PreparedLine</span> {
                     <span class="ident">metrics</span>,
-                    <span class="ident">alignment_offset</span>: <span class="ident">Length::default</span>(),
+                    <span class="ident">alignment_offset</span>: <span class="ident">Figure::default</span>(),
                     <span class="ident">spans</span>: <span class="ident">Vec::default</span>(),
                 });
             }
@@ -581,19 +581,19 @@
 }
 
 <span class="doccomment">/// Text wrapping options.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TextWrap</span> {
     <span class="doccomment">/// Do not wrap the text.</span>
     <span class="ident">NoWrap</span>,
     <span class="doccomment">/// Render the text in a single line. Do not render past `max_width`.</span>
     <span class="ident">SingleLine</span> {
         <span class="doccomment">/// The width of the line to render within.</span>
-        <span class="ident">width</span>: <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">width</span>: <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     },
     <span class="doccomment">/// Render a multi-line text block.</span>
     <span class="ident">MultiLine</span> {
         <span class="doccomment">/// The size of the text area.</span>
-        <span class="ident">size</span>: <span class="ident">Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+        <span class="ident">size</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     },
 }
 
@@ -612,9 +612,9 @@
 
     <span class="doccomment">/// Returns the width of the rendered area, if one was provided.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span><span class="ident">::MultiLine</span> { <span class="ident">size</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">Length::new</span>(<span class="ident">size</span>.<span class="ident">width</span>)),
+            <span class="self">Self</span><span class="ident">::MultiLine</span> { <span class="ident">size</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="ident">size</span>.<span class="ident">width</span>)),
             <span class="self">Self</span><span class="ident">::SingleLine</span> { <span class="ident">width</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="kw-2">*</span><span class="ident">width</span>),
             <span class="self">Self</span><span class="ident">::NoWrap</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
         }
@@ -622,9 +622,9 @@
 
     <span class="doccomment">/// Returns the height of the rendendered area, if one was provided.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span><span class="ident">::MultiLine</span> { <span class="ident">size</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">Length::new</span>(<span class="ident">size</span>.<span class="ident">height</span>)),
+            <span class="self">Self</span><span class="ident">::MultiLine</span> { <span class="ident">size</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="ident">size</span>.<span class="ident">height</span>)),
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
         }
     }
@@ -633,8 +633,8 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="ident">gooey_core</span>::{
+        <span class="ident">figures::DisplayScale</span>,
         <span class="ident">styles</span>::{<span class="ident">FontSize</span>, <span class="ident">Style</span>, <span class="ident">SystemTheme</span>},
-        <span class="ident">Pixels</span>,
     };
     <span class="kw">use</span> <span class="ident">gooey_renderer::StrokeOptions</span>;
 
@@ -649,25 +649,25 @@
             <span class="ident">SystemTheme::default</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gooey_core::euclid::Size2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gooey_core::figures::Size</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
             <span class="macro">unimplemented!</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">clip_to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_bounds</span>: <span class="ident">gooey_core::euclid::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">fn</span> <span class="ident">clip_to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_bounds</span>: <span class="ident">gooey_core::figures::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
             <span class="macro">unimplemented!</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">clip_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gooey_core::euclid::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">clip_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gooey_core::figures::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span> {
             <span class="macro">unimplemented!</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gooey_core::euclid::Scale</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span>, <span class="ident">Pixels</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DisplayScale</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
             <span class="macro">unimplemented!</span>()
         }
 
         <span class="kw">fn</span> <span class="ident">stroke_rect</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="ident">_rect</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::euclid::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+            <span class="ident">_rect</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::figures::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
             <span class="ident">_style</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>,
         ) {
             <span class="macro">unimplemented!</span>()
@@ -675,7 +675,7 @@
 
         <span class="kw">fn</span> <span class="ident">fill_rect</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="ident">_rect</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::euclid::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+            <span class="ident">_rect</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::figures::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
             <span class="ident">_color</span>: <span class="ident">gooey_core::styles::Color</span>,
         ) {
             <span class="macro">unimplemented!</span>()
@@ -683,8 +683,8 @@
 
         <span class="kw">fn</span> <span class="ident">stroke_line</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="ident">_point_a</span>: <span class="ident">gooey_core::euclid::Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
-            <span class="ident">_point_b</span>: <span class="ident">gooey_core::euclid::Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+            <span class="ident">_point_a</span>: <span class="ident">gooey_core::figures::Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+            <span class="ident">_point_b</span>: <span class="ident">gooey_core::figures::Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
             <span class="ident">_style</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>,
         ) {
             <span class="macro">unimplemented!</span>()
@@ -693,7 +693,7 @@
         <span class="kw">fn</span> <span class="ident">render_text</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
             <span class="ident">_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-            <span class="ident">_baseline_origin</span>: <span class="ident">gooey_core::euclid::Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+            <span class="ident">_baseline_origin</span>: <span class="ident">gooey_core::figures::Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
             <span class="ident">_options</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_renderer::TextOptions</span>,
         ) {
             <span class="macro">unimplemented!</span>()
@@ -704,7 +704,7 @@
             <span class="kw-2">&amp;</span><span class="self">self</span>,
             <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
             <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_renderer::TextOptions</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span> {
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMetrics</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span> {
             <span class="comment">// Return a fixed width per character, based on the font size.;</span>
             <span class="ident">TextMetrics</span> {
                 <span class="ident">width</span>: <span class="ident">options</span>.<span class="ident">text_size</span> <span class="op">*</span> <span class="ident">text</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f32</span> <span class="op">*</span> <span class="number">0.6</span>,
@@ -717,7 +717,7 @@
         <span class="kw">fn</span> <span class="ident">draw_image</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
             <span class="ident">_image</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::assets::Image</span>,
-            <span class="ident">_location</span>: <span class="ident">gooey_core::euclid::Point2D</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Points</span><span class="op">&gt;</span>,
+            <span class="ident">_location</span>: <span class="ident">gooey_core::figures::Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
         ) {
             <span class="macro">unimplemented!</span>()
         }
@@ -734,7 +734,7 @@
         .<span class="ident">wrap</span>(
             <span class="kw-2">&amp;</span><span class="ident">renderer</span>,
             <span class="ident">TextWrap::MultiLine</span> {
-                <span class="ident">size</span>: <span class="ident">Size2D::new</span>(<span class="number">80.0</span>, <span class="ident">f32::MAX</span>),
+                <span class="ident">size</span>: <span class="ident">Size::new</span>(<span class="number">80.0</span>, <span class="ident">f32::MAX</span>),
             },
             <span class="prelude-val">None</span>,
         );
@@ -761,7 +761,7 @@
         .<span class="ident">wrap</span>(
             <span class="kw-2">&amp;</span><span class="ident">renderer</span>,
             <span class="ident">TextWrap::MultiLine</span> {
-                <span class="ident">size</span>: <span class="ident">Size2D::new</span>(<span class="number">130.0</span>, <span class="ident">f32::MAX</span>),
+                <span class="ident">size</span>: <span class="ident">Size::new</span>(<span class="number">130.0</span>, <span class="ident">f32::MAX</span>),
             },
             <span class="prelude-val">None</span>,
         );

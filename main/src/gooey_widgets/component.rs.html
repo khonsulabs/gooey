@@ -450,6 +450,7 @@
 <span id="448">448</span>
 <span id="449">449</span>
 <span id="450">450</span>
+<span id="451">451</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">borrow::Cow</span>,
@@ -457,7 +458,7 @@
     <span class="ident">fmt::Debug</span>,
     <span class="ident">marker::PhantomData</span>,
     <span class="ident">ops</span>::{<span class="ident">Deref</span>, <span class="ident">DerefMut</span>},
-    <span class="ident">sync</span>::{<span class="ident">Arc</span>, <span class="ident">Mutex</span>, <span class="ident">RwLock</span>},
+    <span class="ident">sync::Arc</span>,
 };
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
@@ -466,6 +467,7 @@
     <span class="ident">RelatedStorage</span>, <span class="ident">StyledWidget</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">WeakWidgetRegistration</span>,
     <span class="ident">Widget</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>, <span class="ident">WidgetStorage</span>,
 };
+<span class="kw">use</span> <span class="ident">parking_lot</span>::{<span class="ident">Mutex</span>, <span class="ident">RwLock</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gooey-rasterizer&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">rasterizer</span>;
@@ -517,19 +519,19 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">registered_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">B::Widgets</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WidgetRegistration</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>();
         <span class="ident">registered_widgets</span>
             .<span class="ident">get</span>(<span class="ident">id</span>)
             .<span class="ident">and_then</span>(<span class="ident">WeakWidgetRegistration::upgrade</span>)
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_widget</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">B::Widgets</span>, <span class="ident">registration</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetRegistration</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>();
         <span class="ident">registered_widgets</span>.<span class="ident">insert</span>(<span class="ident">id</span>, <span class="ident">WeakWidgetRegistration::from</span>(<span class="ident">registration</span>));
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">B::Widgets</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>();
         <span class="ident">registered_widgets</span>.<span class="ident">remove</span>(<span class="ident">id</span>);
     }
 
@@ -711,12 +713,12 @@
     }
 
     <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">B::Widgets</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>();
         <span class="ident">registered_widgets</span>.<span class="ident">remove</span>(<span class="ident">key</span>);
     }
 
     <span class="kw">fn</span> <span class="ident">register</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">B::Widgets</span>, <span class="ident">registration</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetRegistration</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>();
         <span class="ident">registered_widgets</span>.<span class="ident">insert</span>(<span class="ident">key</span>, <span class="ident">WeakWidgetRegistration::from</span>(<span class="ident">registration</span>));
     }
 }
@@ -765,7 +767,7 @@
         <span class="ident">widget</span>: <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WidgetRegistration</span> {
         <span class="kw">let</span> <span class="ident">registration</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">storage</span>.<span class="ident">register</span>(<span class="ident">widget</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">registered_widgets</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registered_widgets</span>.<span class="ident">lock</span>();
         <span class="ident">registered_widgets</span>.<span class="ident">insert</span>(<span class="ident">id</span>, <span class="ident">WeakWidgetRegistration::from</span>(<span class="kw-2">&amp;</span><span class="ident">registration</span>));
         <span class="ident">registration</span>
     }
@@ -850,7 +852,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">Behavior</span>, <span class="ident">I</span><span class="op">&gt;</span> <span class="ident">CallbackFn</span><span class="op">&lt;</span><span class="ident">I</span>, ()<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MappedCallback</span><span class="op">&lt;</span><span class="ident">B</span>, <span class="ident">I</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">invoke</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">info</span>: <span class="ident">I</span>) {
-        <span class="kw">let</span> <span class="ident">poster</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget</span>.<span class="ident">read</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">poster</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget</span>.<span class="ident">read</span>();
         <span class="kw">let</span> <span class="ident">poster</span> <span class="op">=</span> <span class="ident">poster</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>();
         <span class="ident">poster</span>.<span class="ident">post_event</span>(<span class="self">self</span>.<span class="ident">mapper</span>.<span class="ident">invoke</span>(<span class="ident">info</span>));
     }
@@ -867,7 +869,7 @@
         <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="ident">widget_state</span>.<span class="ident">channels</span>::<span class="op">&lt;</span><span class="ident">Component</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
         <span class="ident">B::initialize</span>(<span class="ident">component</span>, <span class="kw-2">&amp;</span><span class="ident">Context::new</span>(<span class="ident">channels</span>, <span class="ident">frontend</span>));
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">callback_widget</span> <span class="op">=</span> <span class="ident">component</span>.<span class="ident">callback_widget</span>.<span class="ident">write</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">callback_widget</span> <span class="op">=</span> <span class="ident">component</span>.<span class="ident">callback_widget</span>.<span class="ident">write</span>();
         <span class="kw-2">*</span><span class="ident">callback_widget</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Box::new</span>(<span class="ident">EventPoster</span> {
             <span class="ident">widget</span>,
             <span class="ident">channels</span>: <span class="ident">channels</span>.<span class="ident">clone</span>(),

@@ -43,14 +43,14 @@
 <span id="41">41</span>
 <span id="42">42</span>
 </pre><pre class="rust">
-<span class="kw">use</span> <span class="ident">euclid::Length</span>;
+<span class="kw">use</span> <span class="ident">figures::Figure</span>;
 <span class="kw">use</span> <span class="ident">stylecs::StyleComponent</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Points</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Scaled</span>;
 
-<span class="doccomment">/// The width of lines stroked/drawn. Default is `1.` [`Points`].</span>
+<span class="doccomment">/// The width of lines stroked/drawn. Default is `1.` [`Scaled`].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LineWidth</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span>(<span class="kw">pub</span> <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LineWidth</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span>(<span class="kw">pub</span> <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span>);
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">LineWidth</span><span class="op">&lt;</span><span class="ident">Unit</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -58,7 +58,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">LineWidth</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span> {
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">LineWidth</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::new</span>(<span class="number">1.</span>)
     }
@@ -68,7 +68,7 @@
     <span class="doccomment">/// Creates a new `LineWidth` using `value` in `Unit`.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">value</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">Length::new</span>(<span class="ident">value</span>))
+        <span class="self">Self</span>(<span class="ident">Figure::new</span>(<span class="ident">value</span>))
     }
 
     <span class="doccomment">/// Returns the line width&#39;s raw value.</span>
@@ -79,11 +79,11 @@
 
     <span class="doccomment">/// Returns the line width as a type-safe measurement.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Length</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Unit</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="number">0</span>
     }
 }
 
-<span class="kw">impl</span> <span class="ident">StyleComponent</span> <span class="kw">for</span> <span class="ident">LineWidth</span><span class="op">&lt;</span><span class="ident">Points</span><span class="op">&gt;</span> {}
+<span class="kw">impl</span> <span class="ident">StyleComponent</span> <span class="kw">for</span> <span class="ident">LineWidth</span><span class="op">&lt;</span><span class="ident">Scaled</span><span class="op">&gt;</span> {}
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gooey_core" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
