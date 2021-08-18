@@ -701,7 +701,7 @@
 <span class="kw">use</span> <span class="ident">arboard::Clipboard</span>;
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">figures</span>::{<span class="ident">Displayable</span>, <span class="ident">Figure</span>, <span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Rectlike</span>, <span class="ident">Size</span>, <span class="ident">SizedRect</span>},
-    <span class="ident">styles</span>::{<span class="ident">Color</span>, <span class="ident">SelectionColor</span>, <span class="ident">Style</span>, <span class="ident">TextColor</span>},
+    <span class="ident">styles</span>::{<span class="ident">Color</span>, <span class="ident">HighlightColor</span>, <span class="ident">Style</span>, <span class="ident">TextColor</span>},
     <span class="ident">Pixels</span>, <span class="ident">Scaled</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{
@@ -792,7 +792,7 @@
 
             <span class="kw">let</span> <span class="ident">selection_color</span> <span class="op">=</span> <span class="ident">context</span>
                 .<span class="ident">style</span>
-                .<span class="ident">get_with_fallback</span>::<span class="op">&lt;</span><span class="ident">SelectionColor</span><span class="op">&gt;</span>()
+                .<span class="ident">get_with_fallback</span>::<span class="op">&lt;</span><span class="ident">HighlightColor</span><span class="op">&gt;</span>()
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">w</span><span class="op">|</span> <span class="ident">w</span>.<span class="ident">themed_color</span>(<span class="ident">renderer</span>.<span class="ident">theme</span>()))
                 .<span class="ident">unwrap_or_default</span>();
 

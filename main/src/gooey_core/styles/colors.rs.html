@@ -1332,16 +1332,16 @@
 
 <span class="doccomment">/// The color to highlight selections.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectionColor</span>(<span class="kw">pub</span> <span class="ident">ColorPair</span>);
-<span class="kw">impl</span> <span class="ident">StyleComponent</span> <span class="kw">for</span> <span class="ident">SelectionColor</span> {}
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">HighlightColor</span>(<span class="kw">pub</span> <span class="ident">ColorPair</span>);
+<span class="kw">impl</span> <span class="ident">StyleComponent</span> <span class="kw">for</span> <span class="ident">HighlightColor</span> {}
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">SelectionColor</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ColorPair</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">color</span>: <span class="ident">SelectionColor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">HighlightColor</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ColorPair</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">color</span>: <span class="ident">HighlightColor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">color</span>.<span class="number">0</span>
     }
 }
 
-<span class="kw">impl</span> <span class="ident">FallbackComponent</span> <span class="kw">for</span> <span class="ident">SelectionColor</span> {
+<span class="kw">impl</span> <span class="ident">FallbackComponent</span> <span class="kw">for</span> <span class="ident">HighlightColor</span> {
     <span class="kw">type</span> <span class="ident">Fallback</span> <span class="op">=</span> <span class="ident">ForegroundColor</span>;
     <span class="kw">type</span> <span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span>;
 

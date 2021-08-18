@@ -290,6 +290,43 @@
 <span id="288">288</span>
 <span id="289">289</span>
 <span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">collections</span>::{<span class="ident">HashMap</span>, <span class="ident">HashSet</span>},
@@ -322,6 +359,7 @@
 
     <span class="ident">hover</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">WidgetId</span><span class="op">&gt;</span>,
     <span class="ident">focus</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WidgetId</span><span class="op">&gt;</span>,
+    <span class="ident">focus_events</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">FocusEvent</span><span class="op">&gt;</span>,
     <span class="ident">active</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WidgetId</span><span class="op">&gt;</span>,
 
     <span class="ident">last_mouse_position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -329,6 +367,20 @@
     <span class="ident">redraw_status</span>: <span class="ident">RedrawStatus</span>,
 
     <span class="ident">modifiers</span>: <span class="ident">ModifiersState</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FocusEvent</span> {
+    <span class="ident">Focused</span>(<span class="ident">WidgetId</span>),
+    <span class="ident">Blurred</span>(<span class="ident">WidgetId</span>),
+}
+
+<span class="kw">impl</span> <span class="ident">FocusEvent</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">WidgetId</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident">FocusEvent::Focused</span>(<span class="ident">widget</span>) <span class="op">|</span> <span class="ident">FocusEvent::Blurred</span>(<span class="ident">widget</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">widget</span>,
+        }
+    }
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
@@ -476,17 +528,39 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>();
         <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">focus</span> <span class="op">!</span><span class="op">=</span> <span class="ident">focus</span> {
             <span class="ident">data</span>.<span class="ident">redraw_status</span> <span class="op">=</span> <span class="ident">RedrawStatus::Dirty</span>;
-            <span class="ident">data</span>.<span class="ident">focus</span> <span class="op">=</span> <span class="ident">focus</span>;
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">focused</span>) <span class="op">=</span> <span class="ident">focus</span>.<span class="ident">clone</span>() {
+                <span class="ident">data</span>.<span class="ident">focus_events</span>.<span class="ident">push</span>(<span class="ident">FocusEvent::Focused</span>(<span class="ident">focused</span>));
+            }
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">blurring</span>) <span class="op">=</span> <span class="ident">std::mem::replace</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">data</span>.<span class="ident">focus</span>, <span class="ident">focus</span>) {
+                <span class="ident">data</span>.<span class="ident">focus_events</span>.<span class="ident">push</span>(<span class="ident">FocusEvent::Blurred</span>(<span class="ident">blurring</span>));
+            }
         }
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">blur</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>();
+        <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">focus</span>.<span class="ident">is_some</span>() {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">blurring</span>) <span class="op">=</span> <span class="ident">data</span>.<span class="ident">focus</span>.<span class="ident">take</span>() {
+                <span class="ident">data</span>.<span class="ident">focus_events</span>.<span class="ident">push</span>(<span class="ident">FocusEvent::Blurred</span>(<span class="ident">blurring</span>));
+            }
+            <span class="ident">data</span>.<span class="ident">redraw_status</span> <span class="op">=</span> <span class="ident">RedrawStatus::Dirty</span>;
+        }
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">blur_and_deactivate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>();
         <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">focus</span>.<span class="ident">is_some</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">data</span>.<span class="ident">active</span>.<span class="ident">is_some</span>() {
-            <span class="ident">data</span>.<span class="ident">focus</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">blurring</span>) <span class="op">=</span> <span class="ident">data</span>.<span class="ident">focus</span>.<span class="ident">take</span>() {
+                <span class="ident">data</span>.<span class="ident">focus_events</span>.<span class="ident">push</span>(<span class="ident">FocusEvent::Blurred</span>(<span class="ident">blurring</span>));
+            }
             <span class="ident">data</span>.<span class="ident">active</span> <span class="op">=</span> <span class="prelude-val">None</span>;
             <span class="ident">data</span>.<span class="ident">redraw_status</span> <span class="op">=</span> <span class="ident">RedrawStatus::Dirty</span>;
         }
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">focus_events</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">FocusEvent</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>();
+        <span class="ident">std::mem::take</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">data</span>.<span class="ident">focus_events</span>)
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">system_theme</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span> {

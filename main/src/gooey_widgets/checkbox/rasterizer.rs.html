@@ -183,15 +183,43 @@
 <span id="181">181</span>
 <span id="182">182</span>
 <span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Rectlike</span>, <span class="ident">Size</span>, <span class="ident">SizedRect</span>, <span class="ident">Vector</span>},
-    <span class="ident">styles::ForegroundColor</span>,
+    <span class="ident">figures</span>::{<span class="ident">Displayable</span>, <span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Rectlike</span>, <span class="ident">Size</span>, <span class="ident">SizedRect</span>, <span class="ident">Vector</span>},
+    <span class="ident">styles</span>::{<span class="ident">ForegroundColor</span>, <span class="ident">HighlightColor</span>},
     <span class="ident">Scaled</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{
-    <span class="ident">winit::event::MouseButton</span>, <span class="ident">ContentArea</span>, <span class="ident">EventStatus</span>, <span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>,
-    <span class="ident">TransmogrifierContextExt</span>, <span class="ident">WidgetRasterizer</span>,
+    <span class="ident">winit::event</span>::{<span class="ident">ElementState</span>, <span class="ident">MouseButton</span>, <span class="ident">ScanCode</span>, <span class="ident">VirtualKeyCode</span>},
+    <span class="ident">ContentArea</span>, <span class="ident">EventStatus</span>, <span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>, <span class="ident">TransmogrifierContextExt</span>, <span class="ident">WidgetRasterizer</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_text</span>::{<span class="ident">prepared::PreparedText</span>, <span class="ident">wrap::TextWrap</span>, <span class="ident">Text</span>};
 
@@ -263,18 +291,33 @@
     ) {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">renderer</span>) <span class="op">=</span> <span class="ident">context</span>.<span class="ident">frontend</span>.<span class="ident">renderer</span>() {
             <span class="kw">let</span> <span class="ident">layout</span> <span class="op">=</span> <span class="ident">calculate_layout</span>(<span class="ident">context</span>, <span class="ident">renderer</span>, <span class="ident">content_area</span>.<span class="ident">size</span>.<span class="ident">content</span>);
+            <span class="kw">let</span> <span class="ident">scale</span> <span class="op">=</span> <span class="ident">renderer</span>.<span class="ident">scale</span>();
 
             <span class="comment">// Render the checkbox</span>
-            <span class="kw">let</span> <span class="ident">checkbox_rect</span> <span class="op">=</span> <span class="ident">SizedRect::new</span>(<span class="ident">content_area</span>.<span class="ident">location</span>, <span class="ident">layout</span>.<span class="ident">checkbox_size</span>);
-            <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ButtonColor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">checkbox_rect</span>.<span class="ident">as_rect</span>(), <span class="ident">context</span>.<span class="ident">style</span>);
+            <span class="kw">let</span> <span class="ident">checkbox_rect</span> <span class="op">=</span> <span class="ident">SizedRect::new</span>(<span class="ident">content_area</span>.<span class="ident">location</span>, <span class="ident">layout</span>.<span class="ident">checkbox_size</span>)
+                .<span class="ident">to_pixels</span>(<span class="kw-2">&amp;</span><span class="ident">scale</span>)
+                .<span class="ident">round_out</span>();
+            <span class="ident">renderer</span>
+                .<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ButtonColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">checkbox_rect</span>.<span class="ident">as_rect</span>(), <span class="ident">context</span>.<span class="ident">style</span>);
+            <span class="kw">if</span> <span class="ident">context</span>.<span class="ident">ui_state</span>.<span class="ident">focused</span> {
+                <span class="ident">renderer</span>.<span class="ident">stroke_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">HighlightColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(
+                    <span class="kw-2">&amp;</span><span class="ident">checkbox_rect</span>.<span class="ident">as_rect</span>(),
+                    <span class="ident">context</span>.<span class="ident">style</span>,
+                );
+            }
             <span class="kw">if</span> <span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">checked</span> {
                 <span class="comment">// Fill a square in the middle with the mark.</span>
-                <span class="kw">let</span> <span class="ident">check_box</span> <span class="op">=</span> <span class="ident">checkbox_rect</span>.<span class="ident">inflate</span>(<span class="ident">Vector::new</span>(
-                    <span class="op">-</span><span class="ident">checkbox_rect</span>.<span class="ident">size</span>.<span class="ident">width</span> <span class="op">/</span> <span class="number">3.</span>,
-                    <span class="op">-</span><span class="ident">checkbox_rect</span>.<span class="ident">size</span>.<span class="ident">width</span> <span class="op">/</span> <span class="number">3.</span>,
-                ));
-                <span class="ident">renderer</span>
-                    .<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">check_box</span>.<span class="ident">as_rect</span>(), <span class="ident">context</span>.<span class="ident">style</span>);
+                <span class="kw">let</span> <span class="ident">check_box</span> <span class="op">=</span> <span class="ident">checkbox_rect</span>.<span class="ident">inflate</span>(
+                    <span class="ident">Vector::from_figures</span>(
+                        <span class="op">-</span><span class="ident">checkbox_rect</span>.<span class="ident">size</span>.<span class="ident">width</span>() <span class="op">/</span> <span class="number">3.</span>,
+                        <span class="op">-</span><span class="ident">checkbox_rect</span>.<span class="ident">size</span>.<span class="ident">width</span>() <span class="op">/</span> <span class="number">3.</span>,
+                    )
+                    .<span class="ident">to_pixels</span>(<span class="kw-2">&amp;</span><span class="ident">scale</span>),
+                );
+                <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(
+                    <span class="kw-2">&amp;</span><span class="ident">check_box</span>.<span class="ident">as_rect</span>(),
+                    <span class="ident">context</span>.<span class="ident">style</span>,
+                );
             }
 
             <span class="comment">// Render the label</span>
@@ -338,7 +381,7 @@
         <span class="kw">if</span> <span class="ident">area</span>.<span class="ident">bounds</span>().<span class="ident">contains</span>(<span class="ident">location</span>) {
             <span class="ident">context</span>.<span class="ident">activate</span>();
         } <span class="kw">else</span> {
-            <span class="ident">context</span>.<span class="ident">frontend</span>.<span class="ident">blur</span>();
+            <span class="ident">context</span>.<span class="ident">frontend</span>.<span class="ident">deactivate</span>();
         }
     }
 
@@ -353,18 +396,31 @@
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">location</span><span class="op">|</span> <span class="ident">area</span>.<span class="ident">bounds</span>().<span class="ident">contains</span>(<span class="ident">location</span>))
             .<span class="ident">unwrap_or_default</span>()
         {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">widget</span>) <span class="op">=</span> <span class="ident">context</span>
-                .<span class="ident">frontend</span>
-                .<span class="ident">ui</span>
-                .<span class="ident">widget_state</span>(<span class="ident">context</span>.<span class="ident">registration</span>.<span class="ident">id</span>().<span class="ident">id</span>)
-            {
-                <span class="ident">widget</span>
-                    .<span class="ident">channels</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Widget</span><span class="op">&gt;</span>()
-                    .<span class="ident">unwrap</span>()
-                    .<span class="ident">post_event</span>(<span class="ident">InternalCheckboxEvent::Clicked</span>);
-            }
+            <span class="ident">context</span>.<span class="ident">channels</span>.<span class="ident">post_event</span>(<span class="ident">InternalCheckboxEvent::Clicked</span>);
+            <span class="ident">context</span>.<span class="ident">focus</span>();
         }
         <span class="ident">context</span>.<span class="ident">deactivate</span>();
+    }
+
+    <span class="kw">fn</span> <span class="ident">keyboard</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">_scancode</span>: <span class="ident">ScanCode</span>,
+        <span class="ident">keycode</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VirtualKeyCode</span><span class="op">&gt;</span>,
+        <span class="ident">state</span>: <span class="ident">ElementState</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventStatus</span> {
+        <span class="kw">match</span> <span class="ident">keycode</span> {
+            <span class="prelude-val">Some</span>(<span class="ident">VirtualKeyCode::NumpadEnter</span> <span class="op">|</span> <span class="ident">VirtualKeyCode::Return</span> <span class="op">|</span> <span class="ident">VirtualKeyCode::Space</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="kw">if</span> <span class="macro">matches!</span>(<span class="ident">state</span>, <span class="ident">ElementState::Pressed</span>) {
+                    <span class="ident">context</span>.<span class="ident">activate</span>();
+                } <span class="kw">else</span> {
+                    <span class="ident">context</span>.<span class="ident">deactivate</span>();
+                    <span class="ident">context</span>.<span class="ident">channels</span>.<span class="ident">post_event</span>(<span class="ident">InternalCheckboxEvent::Clicked</span>);
+                }
+                <span class="ident">EventStatus::Processed</span>
+            }
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">EventStatus::Ignored</span>,
+        }
     }
 }
 </pre></div>

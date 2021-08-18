@@ -681,6 +681,29 @@
 <span id="679">679</span>
 <span id="680">680</span>
 <span id="681">681</span>
+<span id="682">682</span>
+<span id="683">683</span>
+<span id="684">684</span>
+<span id="685">685</span>
+<span id="686">686</span>
+<span id="687">687</span>
+<span id="688">688</span>
+<span id="689">689</span>
+<span id="690">690</span>
+<span id="691">691</span>
+<span id="692">692</span>
+<span id="693">693</span>
+<span id="694">694</span>
+<span id="695">695</span>
+<span id="696">696</span>
+<span id="697">697</span>
+<span id="698">698</span>
+<span id="699">699</span>
+<span id="700">700</span>
+<span id="701">701</span>
+<span id="702">702</span>
+<span id="703">703</span>
+<span id="704">704</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any::TypeId</span>, <span class="ident">convert::TryFrom</span>, <span class="ident">ops::Deref</span>};
 
@@ -758,7 +781,7 @@
     ) {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">color</span>) <span class="op">=</span> <span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Widget</span> <span class="kw">as</span> <span class="ident">Widget</span><span class="op">&gt;</span><span class="ident">::background_color</span>(<span class="ident">effective_style</span>) {
             <span class="kw">let</span> <span class="ident">renderer</span> <span class="op">=</span> <span class="ident">rasterizer</span>.<span class="ident">renderer</span>().<span class="ident">unwrap</span>();
-            <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">BackgroundColor</span><span class="op">&gt;</span>(
+            <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">BackgroundColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(
                 <span class="kw-2">&amp;</span><span class="ident">renderer</span>.<span class="ident">bounds</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">Style::default</span>().<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">color</span>)),
             );
@@ -818,7 +841,7 @@
             <span class="ident">renderer</span>.<span class="ident">fill_rect</span>(
                 <span class="kw-2">&amp;</span><span class="ident">Rect::sized</span>(
                     <span class="ident">Point::new</span>(<span class="number">0.</span>, <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span> <span class="op">-</span> <span class="ident">width</span>.<span class="ident">get</span>()),
-                    <span class="ident">Size::new</span>(<span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">width</span>, <span class="ident">width</span>.<span class="ident">get</span>()),
+                    <span class="ident">Size::from_figures</span>(<span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">width</span>(), <span class="ident">width</span>),
                 ),
                 <span class="ident">border</span>
                     .<span class="ident">bottom</span>
@@ -835,9 +858,9 @@
             <span class="ident">renderer</span>.<span class="ident">fill_rect</span>(
                 <span class="kw-2">&amp;</span><span class="ident">Rect::sized</span>(
                     <span class="ident">Point::new</span>(<span class="number">0.</span>, <span class="ident">top_width</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>()),
-                    <span class="ident">Size::new</span>(
-                        <span class="ident">width</span>.<span class="ident">get</span>(),
-                        <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span> <span class="op">-</span> <span class="ident">bottom_width</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>(),
+                    <span class="ident">Size::from_figures</span>(
+                        <span class="ident">width</span>,
+                        <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span>() <span class="op">-</span> <span class="ident">bottom_width</span>.<span class="ident">unwrap_or_default</span>(),
                     ),
                 ),
                 <span class="ident">border</span>
@@ -852,13 +875,10 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">width</span>) <span class="op">=</span> <span class="ident">right_width</span> {
             <span class="ident">renderer</span>.<span class="ident">fill_rect</span>(
                 <span class="kw-2">&amp;</span><span class="ident">Rect::sized</span>(
-                    <span class="ident">Point::new</span>(
-                        <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">width</span> <span class="op">-</span> <span class="ident">width</span>.<span class="ident">get</span>(),
-                        <span class="ident">top_width</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>(),
-                    ),
-                    <span class="ident">Size::new</span>(
-                        <span class="ident">width</span>.<span class="ident">get</span>(),
-                        <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span> <span class="op">-</span> <span class="ident">bottom_width</span>.<span class="ident">unwrap_or_default</span>().<span class="ident">get</span>(),
+                    <span class="ident">Point::from_figures</span>(<span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">width</span>() <span class="op">-</span> <span class="ident">width</span>, <span class="ident">top_width</span>.<span class="ident">unwrap_or_default</span>()),
+                    <span class="ident">Size::from_figures</span>(
+                        <span class="ident">width</span>,
+                        <span class="ident">bounds</span>.<span class="ident">size</span>.<span class="ident">height</span>() <span class="op">-</span> <span class="ident">bottom_width</span>.<span class="ident">unwrap_or_default</span>(),
                     ),
                 ),
                 <span class="ident">border</span>
@@ -915,6 +935,14 @@
         }
     }
 
+    <span class="doccomment">/// Executed when this widget receives input focus.</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">focused</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {}
+
+    <span class="doccomment">/// Executed when this widget loses input focus.</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">blurred</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {}
+
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="kw">fn</span> <span class="ident">hit_test</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -926,10 +954,10 @@
     }
 
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">hovered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {}
+    <span class="kw">fn</span> <span class="ident">hovered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {}
 
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">unhovered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {}
+    <span class="kw">fn</span> <span class="ident">unhovered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {}
 
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="kw">fn</span> <span class="ident">mouse_move</span>(
@@ -1020,6 +1048,10 @@
         <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentSize</span>;
+
+    <span class="kw">fn</span> <span class="ident">focused</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>);
+
+    <span class="kw">fn</span> <span class="ident">blurred</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>);
 
     <span class="kw">fn</span> <span class="ident">hit_test</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1153,14 +1185,14 @@
     <span class="kw">fn</span> <span class="ident">hovered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::hovered</span>(
             <span class="self">self</span>,
-            <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
+            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
         );
     }
 
     <span class="kw">fn</span> <span class="ident">unhovered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::unhovered</span>(
             <span class="self">self</span>,
-            <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
+            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
         );
     }
 
@@ -1252,6 +1284,20 @@
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
             <span class="ident">character</span>,
         )
+    }
+
+    <span class="kw">fn</span> <span class="ident">focused</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
+        <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::focused</span>(
+            <span class="self">self</span>,
+            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
+        );
+    }
+
+    <span class="kw">fn</span> <span class="ident">blurred</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">AnyTransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
+        <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::blurred</span>(
+            <span class="self">self</span>,
+            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
+        );
     }
 }
 

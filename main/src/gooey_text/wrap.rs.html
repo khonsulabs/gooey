@@ -387,6 +387,7 @@
 <span id="385">385</span>
 <span id="386">386</span>
 <span id="387">387</span>
+<span id="388">388</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">approx::abs_diff_eq</span>;
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
@@ -633,8 +634,9 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-        <span class="ident">figures::DisplayScale</span>,
+        <span class="ident">figures</span>::{<span class="ident">DisplayScale</span>, <span class="ident">Displayable</span>, <span class="ident">Point</span>, <span class="ident">Rect</span>},
         <span class="ident">styles</span>::{<span class="ident">FontSize</span>, <span class="ident">Style</span>, <span class="ident">SystemTheme</span>},
+        <span class="ident">Pixels</span>,
     };
     <span class="kw">use</span> <span class="ident">gooey_renderer::StrokeOptions</span>;
 
@@ -667,7 +669,7 @@
 
         <span class="kw">fn</span> <span class="ident">stroke_rect</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="ident">_rect</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::figures::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+            <span class="ident">_rect</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">Displayable</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Pixels</span> <span class="op">=</span> <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Pixels</span><span class="op">&gt;</span><span class="op">&gt;</span>,
             <span class="ident">_style</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>,
         ) {
             <span class="macro">unimplemented!</span>()
@@ -675,17 +677,17 @@
 
         <span class="kw">fn</span> <span class="ident">fill_rect</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="ident">_rect</span>: <span class="kw-2">&amp;</span><span class="ident">gooey_core::figures::Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+            <span class="ident">_rect</span>: <span class="kw-2">&amp;</span><span class="kw">impl</span> <span class="ident">Displayable</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Pixels</span> <span class="op">=</span> <span class="ident">Rect</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Pixels</span><span class="op">&gt;</span><span class="op">&gt;</span>,
             <span class="ident">_color</span>: <span class="ident">gooey_core::styles::Color</span>,
         ) {
             <span class="macro">unimplemented!</span>()
         }
 
-        <span class="kw">fn</span> <span class="ident">stroke_line</span>(
+        <span class="kw">fn</span> <span class="ident">stroke_line</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Displayable</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Pixels</span> <span class="op">=</span> <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Pixels</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="ident">_point_a</span>: <span class="ident">gooey_core::figures::Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
-            <span class="ident">_point_b</span>: <span class="ident">gooey_core::figures::Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
-            <span class="ident">_style</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>,
+            <span class="ident">_point_a</span>: <span class="ident">P</span>,
+            <span class="ident">_point_b</span>: <span class="ident">P</span>,
+            <span class="ident">_options</span>: <span class="kw-2">&amp;</span><span class="ident">StrokeOptions</span>,
         ) {
             <span class="macro">unimplemented!</span>()
         }
