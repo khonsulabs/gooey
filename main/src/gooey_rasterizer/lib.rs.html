@@ -643,6 +643,44 @@
 <span id="641">641</span>
 <span id="642">642</span>
 <span id="643">643</span>
+<span id="644">644</span>
+<span id="645">645</span>
+<span id="646">646</span>
+<span id="647">647</span>
+<span id="648">648</span>
+<span id="649">649</span>
+<span id="650">650</span>
+<span id="651">651</span>
+<span id="652">652</span>
+<span id="653">653</span>
+<span id="654">654</span>
+<span id="655">655</span>
+<span id="656">656</span>
+<span id="657">657</span>
+<span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
+<span id="671">671</span>
+<span id="672">672</span>
+<span id="673">673</span>
+<span id="674">674</span>
+<span id="675">675</span>
+<span id="676">676</span>
+<span id="677">677</span>
+<span id="678">678</span>
+<span id="679">679</span>
+<span id="680">680</span>
+<span id="681">681</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that rasterizes widgets</span>
 <span class="doccomment">//! using a [`Renderer`](gooey_renderer::Renderer).</span>
@@ -676,7 +714,7 @@
     <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>},
     <span class="ident">styles</span>::{
         <span class="ident">style_sheet</span>::{<span class="self">self</span>},
-        <span class="ident">Style</span>, <span class="ident">SystemTheme</span>,
+        <span class="ident">Autofocus</span>, <span class="ident">Style</span>, <span class="ident">SystemTheme</span>, <span class="ident">TabOrder</span>,
     },
     <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>, <span class="ident">Scaled</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">WidgetId</span>,
 };
@@ -795,6 +833,12 @@
     <span class="kw">fn</span> <span class="ident">asset_configuration</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">assets::Configuration</span> {
         <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">configuration</span>()
     }
+
+    <span class="kw">fn</span> <span class="ident">widget_initialized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetId</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) {
+        <span class="kw">if</span> <span class="ident">style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">Autofocus</span><span class="op">&gt;</span>().<span class="ident">is_some</span>() {
+            <span class="self">self</span>.<span class="ident">focus_on</span>(<span class="ident">widget</span>);
+        }
+    }
 }
 
 <span class="kw">fn</span> <span class="ident">load_image</span>(<span class="ident">image</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>, <span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span> {
@@ -836,6 +880,7 @@
             <span class="ident">transmogrifier</span>.<span class="ident">render_within</span>(
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">context</span>,
                 <span class="ident">Rect::sized</span>(<span class="ident">Point::default</span>(), <span class="ident">size</span>),
+                <span class="prelude-val">None</span>,
                 <span class="kw-2">&amp;</span><span class="ident">Style::default</span>(),
             );
         });
@@ -922,7 +967,6 @@
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::unused_self</span>)]</span> <span class="comment">// TODO needs implementing</span>
     <span class="kw">fn</span> <span class="ident">invoke_drag_events</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>) {}
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::option_if_let_else</span>)]</span>
     <span class="kw">fn</span> <span class="ident">handle_keyboard_input</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">scancode</span>: <span class="ident">ScanCode</span>,
@@ -932,15 +976,27 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">widget</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">focused_widget</span>() {
             <span class="comment">// give the widget an opportunity to process the input. If the</span>
             <span class="comment">// widget doesn&#39;t handle it, pass the event up the render tree.</span>
-            <span class="ident">EventResult::from</span>(
-                <span class="self">self</span>.<span class="ident">with_transmogrifier</span>(<span class="kw-2">&amp;</span><span class="ident">widget</span>, <span class="op">|</span><span class="ident">transmogrifier</span>, <span class="kw-2">mut</span> <span class="ident">context</span><span class="op">|</span> {
-                    <span class="ident">transmogrifier</span>.<span class="ident">keyboard</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">context</span>, <span class="ident">scancode</span>, <span class="ident">keycode</span>, <span class="ident">state</span>)
-                })
-                .<span class="ident">expect</span>(<span class="string">&quot;unknown transmogrifier&quot;</span>),
-            )
-        } <span class="kw">else</span> {
-            <span class="comment">// TODO handle tab key</span>
-            <span class="ident">EventResult::ignored</span>()
+            <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">with_transmogrifier</span>(<span class="kw-2">&amp;</span><span class="ident">widget</span>, <span class="op">|</span><span class="ident">transmogrifier</span>, <span class="kw-2">mut</span> <span class="ident">context</span><span class="op">|</span> {
+                <span class="ident">transmogrifier</span>.<span class="ident">keyboard</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">context</span>, <span class="ident">scancode</span>, <span class="ident">keycode</span>, <span class="ident">state</span>)
+            });
+            <span class="kw">if</span> <span class="macro">matches!</span>(<span class="ident">result</span>, <span class="prelude-val">Some</span>(<span class="ident">EventStatus::Processed</span>)) {
+                <span class="kw">return</span> <span class="ident">EventResult::processed</span>();
+            }
+        }
+
+        <span class="kw">match</span> (<span class="ident">keycode</span>, <span class="ident">state</span>) {
+            (<span class="prelude-val">Some</span>(<span class="ident">VirtualKeyCode::Tab</span>), <span class="ident">ElementState::Pressed</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="kw">if</span> <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">keyboard_modifiers</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">ModifiersState::SHIFT</span> {
+                    <span class="self">self</span>.<span class="ident">reverse_focus</span>();
+                    <span class="ident">EventResult::processed</span>()
+                } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">keyboard_modifiers</span>().<span class="ident">is_empty</span>() {
+                    <span class="self">self</span>.<span class="ident">advance_focus</span>();
+                    <span class="ident">EventResult::processed</span>()
+                } <span class="kw">else</span> {
+                    <span class="ident">EventResult::ignored</span>()
+                }
+            }
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">EventResult::ignored</span>(),
         }
     }
 
@@ -1076,8 +1132,16 @@
         <span class="self">self</span>.<span class="ident">renderer</span>.<span class="ident">as_ref</span>()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rasterized_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="ident">WidgetId</span>, <span class="ident">area</span>: <span class="ident">ContentArea</span>) {
-        <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">widget_rendered</span>(<span class="ident">widget</span>, <span class="ident">area</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rasterized_widget</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">widget</span>: <span class="ident">WidgetId</span>,
+        <span class="ident">area</span>: <span class="ident">ContentArea</span>,
+        <span class="ident">should_accept_focus</span>: <span class="ident">bool</span>,
+        <span class="ident">parent_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WidgetId</span><span class="op">&gt;</span>,
+        <span class="ident">tab_order</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TabOrder</span><span class="op">&gt;</span>,
+    ) {
+        <span class="self">self</span>.<span class="ident">state</span>
+            .<span class="ident">widget_rendered</span>(<span class="ident">widget</span>, <span class="ident">area</span>, <span class="ident">should_accept_focus</span>, <span class="ident">parent_id</span>, <span class="ident">tab_order</span>);
     }
 
     <span class="doccomment">/// Executes `callback` with the transmogrifier and transmogrifier state as</span>
@@ -1148,6 +1212,18 @@
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">blur_and_deactivate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">blur_and_deactivate</span>();
+    }
+
+    <span class="kw">fn</span> <span class="ident">advance_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">next</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">next_tab_entry</span>() {
+            <span class="self">self</span>.<span class="ident">focus_on</span>(<span class="kw-2">&amp;</span><span class="ident">next</span>);
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">reverse_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">previous</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">previous_tab_entry</span>() {
+            <span class="self">self</span>.<span class="ident">focus_on</span>(<span class="kw-2">&amp;</span><span class="ident">previous</span>);
+        }
     }
 }
 

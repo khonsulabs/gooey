@@ -61,6 +61,11 @@
 <span id="59">59</span>
 <span id="60">60</span>
 <span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Size</span>},
@@ -100,7 +105,12 @@
                     <span class="ident">Point::new</span>(<span class="ident">remaining_size</span>.<span class="ident">width</span> <span class="op">/</span> <span class="number">2.</span>, <span class="ident">remaining_size</span>.<span class="ident">height</span> <span class="op">/</span> <span class="number">2.</span>),
                     <span class="ident">child_content_area</span>,
                 );
-                <span class="ident">child_transmogrifier</span>.<span class="ident">render_within</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">child_context</span>, <span class="ident">child_rect</span>, <span class="ident">context</span>.<span class="ident">style</span>);
+                <span class="ident">child_transmogrifier</span>.<span class="ident">render_within</span>(
+                    <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">child_context</span>,
+                    <span class="ident">child_rect</span>,
+                    <span class="prelude-val">Some</span>(<span class="ident">context</span>.<span class="ident">registration</span>.<span class="ident">id</span>()),
+                    <span class="ident">context</span>.<span class="ident">style</span>,
+                );
             },
         );
     }

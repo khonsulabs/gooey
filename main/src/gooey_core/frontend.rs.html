@@ -189,9 +189,15 @@
 <span id="187">187</span>
 <span id="188">188</span>
 <span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any::TypeId</span>, <span class="ident">convert::TryFrom</span>, <span class="ident">fmt::Debug</span>};
 
+<span class="kw">use</span> <span class="ident">stylecs::Style</span>;
 <span class="kw">use</span> <span class="ident">url::Url</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span>::{
@@ -248,6 +254,10 @@
 
     <span class="doccomment">/// Executed when `Gooey` exits a managed code block.</span>
     <span class="kw">fn</span> <span class="ident">exit_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {}
+
+    <span class="doccomment">/// A widget is being initialized.</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">widget_initialized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetId</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) {}
 }
 
 <span class="doccomment">/// An interface for Frontend that doesn&#39;t requier knowledge of associated</span>

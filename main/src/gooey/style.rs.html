@@ -182,6 +182,12 @@
 <span id="180">180</span>
 <span id="181">181</span>
 <span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">figures::Figure</span>,
@@ -210,7 +216,7 @@
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::too_many_lines</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stylesheet_for_palette</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Palette</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyleSheet</span> {
     <span class="ident">StyleSheet::default</span>()
-        .<span class="ident">with</span>(<span class="ident">Rule::default</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">HighlightColor</span>(<span class="ident">P::primary</span>()))))
+        .<span class="ident">with</span>(<span class="ident">Rule::default</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">HighlightColor</span>(<span class="ident">P::secondary</span>()))))
         .<span class="ident">with</span>(
             <span class="ident">Rule::for_classes</span>(<span class="ident">ROOT_CLASS</span>)
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::background</span>()))),
@@ -262,7 +268,7 @@
             <span class="ident">Rule::for_classes</span>(<span class="ident">SOLID_WIDGET_CLASS</span>)
                 .<span class="ident">when_focused</span>()
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
-                    <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(<span class="number">1.</span>, <span class="ident">P::primary</span>())))
+                    <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(<span class="number">1.</span>, <span class="ident">P::secondary</span>())))
                 }),
         )
         .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Button</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
@@ -313,7 +319,7 @@
             <span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span>()
                 .<span class="ident">when_focused</span>()
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
-                    <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(<span class="number">1.</span>, <span class="ident">P::primary</span>())))
+                    <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(<span class="number">1.</span>, <span class="ident">P::secondary</span>())))
                 }),
         )
 }
@@ -329,6 +335,8 @@
     <span class="doccomment">/// The primary color of the palette. Used to signify default actions, and</span>
     <span class="doccomment">/// is considered the primary accent color of the interface.</span>
     <span class="kw">fn</span> <span class="ident">primary</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span>;
+    <span class="doccomment">/// The secondary color of the palette. Used for highlights and information.</span>
+    <span class="kw">fn</span> <span class="ident">secondary</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span>;
 
     <span class="doccomment">/// The color to use for the background of solid widgets.</span>
     <span class="kw">fn</span> <span class="ident">control_background</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span> {
@@ -363,6 +371,10 @@
 
     <span class="kw">fn</span> <span class="ident">primary</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span> {
         <span class="ident">ColorPair::from</span>(<span class="ident">Color::new_u8</span>(<span class="number">9</span>, <span class="number">132</span>, <span class="number">227</span>, <span class="number">255</span>))
+    }
+
+    <span class="kw">fn</span> <span class="ident">secondary</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorPair</span> {
+        <span class="ident">ColorPair::from</span>(<span class="ident">Color::new_u8</span>(<span class="number">0</span>, <span class="number">206</span>, <span class="number">201</span>, <span class="number">255</span>))
     }
 }
 </pre></div>

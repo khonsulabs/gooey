@@ -264,6 +264,7 @@
 <span id="262">262</span>
 <span id="263">263</span>
 <span id="264">264</span>
+<span id="265">265</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::ops::Deref</span>;
 
@@ -303,6 +304,7 @@
                     <span class="ident">transmogrifier</span>.<span class="ident">render_within</span>(
                         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">child_context</span>,
                         <span class="ident">child_bounds</span>.<span class="ident">translate</span>(<span class="ident">content_area</span>.<span class="ident">location</span>).<span class="ident">as_rect</span>(),
+                        <span class="prelude-val">Some</span>(<span class="ident">context</span>.<span class="ident">registration</span>.<span class="ident">id</span>()),
                         <span class="ident">context</span>.<span class="ident">style</span>,
                     );
                 },

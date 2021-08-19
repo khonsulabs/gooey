@@ -814,6 +814,11 @@
 <span id="812">812</span>
 <span id="813">813</span>
 <span id="814">814</span>
+<span id="815">815</span>
+<span id="816">816</span>
+<span id="817">817</span>
+<span id="818">818</span>
+<span id="819">819</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">any::TypeId</span>,
@@ -1395,6 +1400,11 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widget</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget</span>.<span class="ident">lock</span>();
         <span class="self">self</span>.<span class="ident">id</span>.<span class="ident">upgrade</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">id</span><span class="op">|</span> {
             <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">get_or_insert_with</span>(<span class="op">|</span><span class="op">|</span> {
+                {
+                    <span class="kw">let</span> <span class="ident">style</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">style</span>.<span class="ident">lock</span>();
+                    <span class="ident">frontend</span>.<span class="ident">widget_initialized</span>(<span class="ident">id</span>.<span class="ident">id</span>(), <span class="kw-2">&amp;</span><span class="ident">style</span>);
+                }
+
                 <span class="ident">transmogrifier</span>.<span class="ident">default_state_for</span>(<span class="ident">widget</span>.<span class="ident">as_mut</span>(), <span class="kw-2">&amp;</span><span class="ident">id</span>, <span class="ident">frontend</span>)
             });
 
