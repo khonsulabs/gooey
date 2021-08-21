@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["PresentMode",""]],"struct":[["SwapChain","A handle to a swap chain."],["SwapChainTexture",""]]});
