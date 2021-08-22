@@ -434,6 +434,39 @@
 <span id="432">432</span>
 <span id="433">433</span>
 <span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">convert::TryInto</span>,
@@ -455,13 +488,13 @@
             <span class="ident">easygpu</span>::{<span class="self">self</span>, <span class="ident">wgpu</span>},
             <span class="ident">flume</span>, <span class="ident">FrameRenderer</span>,
         },
-        <span class="ident">prelude</span>::{<span class="ident">ElementState</span>, <span class="ident">Fill</span>, <span class="ident">MouseButton</span>, <span class="ident">Scene</span>, <span class="ident">Shape</span>, <span class="ident">Stroke</span>, <span class="ident">Target</span>},
+        <span class="ident">prelude</span>::{<span class="ident">ElementState</span>, <span class="ident">Fill</span>, <span class="ident">MouseButton</span>, <span class="ident">Scene</span>, <span class="ident">Shape</span>, <span class="ident">Stroke</span>, <span class="ident">Target</span>, <span class="ident">VirtualKeyCode</span>},
     },
     <span class="ident">Kludgine</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_rasterizer</span>::{
     <span class="ident">events</span>::{<span class="ident">InputEvent</span>, <span class="ident">WindowEvent</span>},
-    <span class="ident">winit::window::Theme</span>,
+    <span class="ident">winit</span>::{<span class="ident">event::ModifiersState</span>, <span class="ident">window::Theme</span>},
     <span class="ident">EventResult</span>, <span class="ident">Rasterizer</span>, <span class="ident">Renderer</span>,
 };
 <span class="kw">use</span> <span class="ident">image</span>::{<span class="ident">DynamicImage</span>, <span class="ident">RgbImage</span>};
@@ -777,6 +810,39 @@
             <span class="ident">state</span>: <span class="ident">ElementState::Released</span>,
         }));
         <span class="self">self</span>.<span class="ident">render_frame</span>(<span class="ident">Duration::from_millis</span>(<span class="number">200</span>)).<span class="kw">await</span>
+    }
+
+    <span class="doccomment">/// Simulates a typing a key once.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Errors</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Returns any error that occurs while rendering.</span>
+    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">press_key</span>(
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+        <span class="ident">key</span>: <span class="ident">VirtualKeyCode</span>,
+        <span class="ident">modifiers</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ModifiersState</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">HeadlessError</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">modifiers</span> <span class="op">=</span> <span class="ident">modifiers</span>.<span class="ident">into</span>();
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">modifiers</span>) <span class="op">=</span> <span class="ident">modifiers</span> {
+            <span class="self">self</span>.<span class="ident">simulate_event</span>(<span class="ident">WindowEvent::ModifiersChanged</span>(<span class="ident">modifiers</span>));
+        }
+
+        <span class="self">self</span>.<span class="ident">simulate_event</span>(<span class="ident">WindowEvent::Input</span>(<span class="ident">InputEvent::Keyboard</span> {
+            <span class="ident">scancode</span>: <span class="number">0</span>,
+            <span class="ident">key</span>: <span class="prelude-val">Some</span>(<span class="ident">key</span>),
+            <span class="ident">state</span>: <span class="ident">ElementState::Pressed</span>,
+        }));
+        <span class="self">self</span>.<span class="ident">render_frame</span>(<span class="ident">Duration::from_millis</span>(<span class="number">75</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">simulate_event</span>(<span class="ident">WindowEvent::Input</span>(<span class="ident">InputEvent::Keyboard</span> {
+            <span class="ident">scancode</span>: <span class="number">0</span>,
+            <span class="ident">key</span>: <span class="prelude-val">Some</span>(<span class="ident">key</span>),
+            <span class="ident">state</span>: <span class="ident">ElementState::Released</span>,
+        }));
+        <span class="kw">if</span> <span class="ident">modifiers</span>.<span class="ident">is_some</span>() {
+            <span class="self">self</span>.<span class="ident">simulate_event</span>(<span class="ident">WindowEvent::ModifiersChanged</span>(<span class="ident">ModifiersState::default</span>()));
+        }
+
+        <span class="self">self</span>.<span class="ident">render_frame</span>(<span class="ident">Duration::from_millis</span>(<span class="number">75</span>)).<span class="kw">await</span>
     }
 
     <span class="doccomment">/// Saves the current frames to `path` as an animated png.</span>

@@ -510,6 +510,10 @@
 <span id="508">508</span>
 <span id="509">509</span>
 <span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">any</span>::{<span class="ident">type_name</span>, <span class="ident">Any</span>, <span class="ident">TypeId</span>},
@@ -553,6 +557,10 @@
     <span class="kw">fn</span> <span class="ident">classes</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Classes</span> {
         <span class="ident">Classes::from</span>(<span class="self">Self</span><span class="ident">::CLASS</span>)
     }
+
+    <span class="doccomment">/// When true, the control is able to receive focus through focus</span>
+    <span class="doccomment">/// advancement, most commonly done when using the tab key.</span>
+    <span class="kw">const</span> <span class="ident">FOCUSABLE</span>: <span class="ident">bool</span>;
 
     <span class="doccomment">/// Called when an `event` from the transmogrifier was received.</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>

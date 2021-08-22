@@ -239,7 +239,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">borrow::Cow</span>, <span class="ident">sync::Arc</span>};
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">figures</span>::{<span class="ident">Figure</span>, <span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Rectlike</span>, <span class="ident">Size</span>, <span class="ident">Vector</span>},
+    <span class="ident">figures</span>::{<span class="ident">Displayable</span>, <span class="ident">Figure</span>, <span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Rectlike</span>, <span class="ident">Round</span>, <span class="ident">Size</span>, <span class="ident">Vector</span>},
     <span class="ident">styles</span>::{<span class="ident">Alignment</span>, <span class="ident">ColorPair</span>, <span class="ident">FallbackComponent</span>, <span class="ident">Style</span>, <span class="ident">VerticalAlignment</span>},
     <span class="ident">Scaled</span>,
 };
@@ -314,11 +314,11 @@
                     <span class="op">|</span><span class="op">|</span> <span class="ident">Cow::Borrowed</span>(<span class="ident">span</span>.<span class="ident">data</span>.<span class="ident">style</span>.<span class="ident">as_ref</span>()),
                     <span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">Cow::Owned</span>(<span class="ident">span</span>.<span class="ident">data</span>.<span class="ident">style</span>.<span class="ident">merge_with</span>(<span class="ident">style</span>, <span class="bool-val">false</span>)),
                 );
-                <span class="ident">renderer</span>.<span class="ident">render_text_with_style</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(
-                    <span class="kw-2">&amp;</span><span class="ident">span</span>.<span class="ident">data</span>.<span class="ident">text</span>,
-                    <span class="ident">cursor_position</span> <span class="op">+</span> <span class="ident">Vector::from_figures</span>(<span class="ident">span</span>.<span class="ident">location</span>(), <span class="ident">Figure::default</span>()),
-                    <span class="kw-2">&amp;</span><span class="ident">style</span>,
-                );
+                <span class="kw">let</span> <span class="ident">span_location</span> <span class="op">=</span> (<span class="ident">cursor_position</span>
+                    <span class="op">+</span> <span class="ident">Vector::from_figures</span>(<span class="ident">span</span>.<span class="ident">location</span>(), <span class="ident">Figure::default</span>()))
+                .<span class="ident">to_pixels</span>(<span class="kw-2">&amp;</span><span class="ident">renderer</span>.<span class="ident">scale</span>())
+                .<span class="ident">round</span>();
+                <span class="ident">renderer</span>.<span class="ident">render_text_with_style</span>::<span class="op">&lt;</span><span class="ident">F</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">span</span>.<span class="ident">data</span>.<span class="ident">text</span>, <span class="ident">span_location</span>, <span class="kw-2">&amp;</span><span class="ident">style</span>);
             }
             <span class="ident">current_line_baseline</span> <span class="op">+</span><span class="op">=</span> <span class="ident">line</span>.<span class="ident">metrics</span>.<span class="ident">line_gap</span> <span class="op">-</span> <span class="ident">line</span>.<span class="ident">metrics</span>.<span class="ident">descent</span>;
         }

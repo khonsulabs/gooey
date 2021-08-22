@@ -123,6 +123,7 @@
 <span id="121">121</span>
 <span id="122">122</span>
 <span id="123">123</span>
+<span id="124">124</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">styles</span>::{
@@ -182,6 +183,7 @@
     <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">InternalButtonEvent</span>;
 
     <span class="kw">const</span> <span class="ident">CLASS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;gooey-button&quot;</span>;
+    <span class="kw">const</span> <span class="ident">FOCUSABLE</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">true</span>;
 
     <span class="kw">fn</span> <span class="ident">classes</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Classes</span> {
         <span class="ident">Classes::from</span>(<span class="macro">vec!</span>[<span class="self">Self</span><span class="ident">::CLASS</span>, <span class="ident">SOLID_WIDGET_CLASS</span>])
@@ -220,8 +222,8 @@
         <span class="self">self</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Button</span> {
-        <span class="self">self</span>.<span class="ident">button</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">Button</span><span class="op">&gt;</span> {
+        <span class="ident">StyledWidget::from</span>(<span class="self">self</span>.<span class="ident">button</span>)
     }
 }
 

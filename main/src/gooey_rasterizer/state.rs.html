@@ -480,7 +480,7 @@
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Rectlike</span>},
-    <span class="ident">styles</span>::{<span class="ident">style_sheet</span>, <span class="ident">SystemTheme</span>, <span class="ident">TabOrder</span>},
+    <span class="ident">styles</span>::{<span class="ident">style_sheet</span>, <span class="ident">SystemTheme</span>, <span class="ident">TabIndex</span>},
     <span class="ident">Scaled</span>, <span class="ident">WidgetId</span>,
 };
 <span class="kw">use</span> <span class="ident">parking_lot::Mutex</span>;
@@ -583,7 +583,7 @@
         <span class="ident">area</span>: <span class="ident">ContentArea</span>,
         <span class="ident">should_accept_focus</span>: <span class="ident">bool</span>,
         <span class="ident">parent_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WidgetId</span><span class="op">&gt;</span>,
-        <span class="ident">tab_order</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TabOrder</span><span class="op">&gt;</span>,
+        <span class="ident">tab_order</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TabIndex</span><span class="op">&gt;</span>,
     ) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">lock</span>();
         <span class="ident">data</span>.<span class="ident">widget_rendered</span>(<span class="ident">widget</span>, <span class="ident">area</span>, <span class="ident">should_accept_focus</span>, <span class="ident">parent_id</span>, <span class="ident">tab_order</span>);
@@ -812,7 +812,7 @@
         <span class="ident">area</span>: <span class="ident">ContentArea</span>,
         <span class="ident">should_accept_focus</span>: <span class="ident">bool</span>,
         <span class="ident">parent_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WidgetId</span><span class="op">&gt;</span>,
-        <span class="ident">tab_order</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TabOrder</span><span class="op">&gt;</span>,
+        <span class="ident">tab_order</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TabIndex</span><span class="op">&gt;</span>,
     ) {
         <span class="kw">if</span> <span class="ident">should_accept_focus</span> {
             <span class="kw">let</span> <span class="ident">tab_entry</span> <span class="op">=</span> <span class="ident">TabEntry</span> {
@@ -912,7 +912,7 @@
 <span class="kw">struct</span> <span class="ident">TabEntry</span> {
     <span class="ident">order_index</span>: <span class="ident">usize</span>,
     <span class="ident">render_origin</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
-    <span class="ident">tab_order</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TabOrder</span><span class="op">&gt;</span>,
+    <span class="ident">tab_order</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TabIndex</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">PartialOrd</span> <span class="kw">for</span> <span class="ident">TabEntry</span> {

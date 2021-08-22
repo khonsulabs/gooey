@@ -451,6 +451,7 @@
 <span id="449">449</span>
 <span id="450">450</span>
 <span id="451">451</span>
+<span id="452">452</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">borrow::Cow</span>,
@@ -646,6 +647,7 @@
     <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">InternalEvent</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span>;
 
     <span class="kw">const</span> <span class="ident">CLASS</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;gooey-component&quot;</span>;
+    <span class="kw">const</span> <span class="ident">FOCUSABLE</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>;
 
     <span class="kw">fn</span> <span class="ident">classes</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Classes</span> {
         <span class="ident">B::classes</span>().<span class="ident">map_or_else</span>(

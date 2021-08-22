@@ -22,6 +22,7 @@
 <span id="20">20</span>
 <span id="21">21</span>
 <span id="22">22</span>
+<span id="23">23</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">stylecs::StyleComponent</span>;
 
@@ -36,11 +37,12 @@
     }
 }
 
-<span class="doccomment">/// Indicates the order in which focus moves between Widgets on a screen.</span>
+<span class="doccomment">/// Indicates the index in the tab order for the window. The indicies must be</span>
+<span class="doccomment">/// consistent within the window.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TabOrder</span>(<span class="ident">usize</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TabIndex</span>(<span class="kw">pub</span> <span class="ident">usize</span>);
 
-<span class="kw">impl</span> <span class="ident">StyleComponent</span> <span class="kw">for</span> <span class="ident">TabOrder</span> {
+<span class="kw">impl</span> <span class="ident">StyleComponent</span> <span class="kw">for</span> <span class="ident">TabIndex</span> {
     <span class="kw">fn</span> <span class="ident">should_be_inherited</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="bool-val">false</span>
     }
