@@ -456,6 +456,13 @@
 <span id="454">454</span>
 <span id="455">455</span>
 <span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Cross-platform rendering types.</span>
 
@@ -594,10 +601,13 @@
     );
 
     <span class="doccomment">/// Draws a line between `point_a` and `point_b` using `style`.</span>
-    <span class="kw">fn</span> <span class="ident">stroke_line_with_style</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">stroke_line_with_style</span><span class="op">&lt;</span>
+        <span class="ident">F</span>: <span class="ident">FallbackComponent</span><span class="op">&lt;</span><span class="ident">Value</span> <span class="op">=</span> <span class="ident">ColorPair</span><span class="op">&gt;</span>,
+        <span class="ident">P</span>: <span class="ident">Displayable</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Pixels</span> <span class="op">=</span> <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Pixels</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">point_a</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
-        <span class="ident">point_b</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">point_a</span>: <span class="ident">P</span>,
+        <span class="ident">point_b</span>: <span class="ident">P</span>,
         <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
     ) {
         <span class="self">self</span>.<span class="ident">stroke_line</span>(
@@ -608,7 +618,11 @@
     }
 
     <span class="doccomment">/// Draws an `image` at `location`.</span>
-    <span class="kw">fn</span> <span class="ident">draw_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">image</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>, <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>);
+    <span class="kw">fn</span> <span class="ident">draw_image</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">image</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>,
+        <span class="ident">location</span>: <span class="kw">impl</span> <span class="ident">Displayable</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Pixels</span> <span class="op">=</span> <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Pixels</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    );
 }
 
 <span class="doccomment">/// Text rendering and measurement options.</span>
