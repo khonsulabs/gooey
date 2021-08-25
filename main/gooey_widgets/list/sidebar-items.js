@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Kind",""],["ListCommand",""],["OrderedListKind",""],["UnorderedListKind",""]],"fn":[["item_label",""]],"struct":[["Builder",""],["ItemLabelIterator",""],["List",""],["ListAdornmentSpacing",""],["ListTransmogrifier",""]]});

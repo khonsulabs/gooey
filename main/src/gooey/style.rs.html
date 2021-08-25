@@ -188,6 +188,12 @@
 <span id="186">186</span>
 <span id="187">187</span>
 <span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">figures::Figure</span>,
@@ -203,6 +209,7 @@
     <span class="ident">checkbox::Checkbox</span>,
     <span class="ident">input::Input</span>,
     <span class="ident">label::Label</span>,
+    <span class="ident">list</span>::{<span class="ident">List</span>, <span class="ident">ListAdornmentSpacing</span>},
 };
 
 <span class="doccomment">/// The default [`StyleSheet`] for `Gooey`.</span>
@@ -216,7 +223,11 @@
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::too_many_lines</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stylesheet_for_palette</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Palette</span><span class="op">&gt;</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyleSheet</span> {
     <span class="ident">StyleSheet::default</span>()
-        .<span class="ident">with</span>(<span class="ident">Rule::default</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">HighlightColor</span>(<span class="ident">P::secondary</span>()))))
+        .<span class="ident">with</span>(<span class="ident">Rule::default</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
+            <span class="ident">style</span>
+                .<span class="ident">with</span>(<span class="ident">HighlightColor</span>(<span class="ident">P::secondary</span>()))
+                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>()))
+        }))
         .<span class="ident">with</span>(
             <span class="ident">Rule::for_classes</span>(<span class="ident">ROOT_CLASS</span>)
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::background</span>()))),
@@ -240,11 +251,10 @@
                 .<span class="ident">when_active</span>()
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">ButtonColor</span>(<span class="ident">P::navigator_button</span>().<span class="ident">darken</span>(<span class="number">0.1</span>)))),
         )
-        .<span class="ident">with</span>(<span class="ident">Rule::for_classes</span>(<span class="ident">SOLID_WIDGET_CLASS</span>).<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
-            <span class="ident">style</span>
-                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>()))
-                .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::control_background</span>()))
-        }))
+        .<span class="ident">with</span>(
+            <span class="ident">Rule::for_classes</span>(<span class="ident">SOLID_WIDGET_CLASS</span>)
+                .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::control_background</span>()))),
+        )
         .<span class="ident">with</span>(
             <span class="ident">Rule::for_classes</span>(<span class="ident">SOLID_WIDGET_CLASS</span>)
                 .<span class="ident">when_hovered</span>()
@@ -277,11 +287,10 @@
                 .<span class="ident">with</span>(<span class="ident">VerticalAlignment::Center</span>)
                 .<span class="ident">with</span>(<span class="ident">Padding</span>(<span class="ident">Surround::from</span>(<span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="number">5.</span>)))))
         }))
-        .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Checkbox</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
-            <span class="ident">style</span>
-                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>()))
-                .<span class="ident">with</span>(<span class="ident">ButtonColor</span>(<span class="ident">P::control_background</span>()))
-        }))
+        .<span class="ident">with</span>(
+            <span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Checkbox</span><span class="op">&gt;</span>()
+                .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">ButtonColor</span>(<span class="ident">P::control_background</span>()))),
+        )
         .<span class="ident">with</span>(
             <span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Checkbox</span><span class="op">&gt;</span>()
                 .<span class="ident">when_hovered</span>()
@@ -308,7 +317,6 @@
         .<span class="ident">with</span>(<span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Input</span><span class="op">&gt;</span>().<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
             <span class="ident">style</span>
                 .<span class="ident">with</span>(<span class="ident">BackgroundColor</span>(<span class="ident">P::background</span>()))
-                .<span class="ident">with</span>(<span class="ident">ForegroundColor</span>(<span class="ident">P::foreground</span>()))
                 .<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(
                     <span class="number">1.</span>,
                     <span class="ident">P::control_background</span>(),
@@ -321,6 +329,10 @@
                 .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> {
                     <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">Border::uniform</span>(<span class="ident">BorderOptions::new</span>(<span class="number">1.</span>, <span class="ident">P::secondary</span>())))
                 }),
+        )
+        .<span class="ident">with</span>(
+            <span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">List</span><span class="op">&gt;</span>()
+                .<span class="ident">with_styles</span>(<span class="op">|</span><span class="ident">style</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">with</span>(<span class="ident">ListAdornmentSpacing</span>(<span class="ident">Figure::new</span>(<span class="number">5.</span>)))),
         )
 }
 
