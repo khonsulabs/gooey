@@ -26,6 +26,8 @@ across all functions.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.WeakTimer.html" title="gooey_core::WeakTimer struct">WeakTimer</a></td><td class="docblock-short"><p>A weak reference to a <a href="struct.Timer.html" title="Timer"><code>Timer</code></a>. Uses <a href="https://doc.rust-lang.org/1.54.0/alloc/sync/struct.Arc.html" title="Arc"><code>Arc</code></a> and <a href="https://doc.rust-lang.org/1.54.0/alloc/sync/struct.Weak.html" title="Weak"><code>Weak</code></a> under the hood.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.WeakWidgetRegistration.html" title="gooey_core::WeakWidgetRegistration struct">WeakWidgetRegistration</a></td><td class="docblock-short"><p>References an initialized widget. These references will not keep a widget
 from being removed.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.WidgetGuard.html" title="gooey_core::WidgetGuard struct">WidgetGuard</a></td><td class="docblock-short"><p>A locked widget reference. No other threads can operate on the widget while
+this value is alive.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.WidgetId.html" title="gooey_core::WidgetId struct">WidgetId</a></td><td class="docblock-short"><p>A unique ID of a widget, with information about the widget type.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.WidgetRef.html" title="gooey_core::WidgetRef struct">WidgetRef</a></td><td class="docblock-short"><p>A widget reference. Does not prevent a widget from being destroyed if
 removed from an interface.</p>

@@ -520,6 +520,12 @@
 <span id="518">518</span>
 <span id="519">519</span>
 <span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">any</span>::{<span class="ident">type_name</span>, <span class="ident">Any</span>, <span class="ident">TypeId</span>},
@@ -774,7 +780,7 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The frontend that created this context.</span>
-    <span class="kw">pub</span> <span class="ident">frontend</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">AnyFrontend</span><span class="op">&gt;</span>,
+    <span class="ident">frontend</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">AnyFrontend</span><span class="op">&gt;</span>,
     <span class="ident">widget</span>: <span class="ident">WeakWidgetRegistration</span>,
     <span class="ident">command_sender</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">W::Command</span><span class="op">&gt;</span>,
     <span class="ident">_widget</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>,
@@ -813,7 +819,7 @@
 
     <span class="doccomment">/// Send `command` to the widget.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_command_to</span><span class="op">&lt;</span><span class="ident">OW</span>: <span class="ident">Widget</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetId</span>, <span class="ident">command</span>: <span class="ident">OW::Command</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget</span>.<span class="ident">id</span>) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget</span>) {
             <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">channels</span>::<span class="op">&lt;</span><span class="ident">OW</span><span class="op">&gt;</span>().<span class="ident">expect</span>(<span class="string">&quot;incorrect widget type&quot;</span>);
             <span class="ident">channels</span>.<span class="ident">post_command</span>(<span class="ident">command</span>);
             <span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">set_widget_has_messages</span>(<span class="ident">widget</span>.<span class="ident">clone</span>());
@@ -855,7 +861,7 @@
         <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetId</span>,
         <span class="ident">with_fn</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget</span>.<span class="ident">id</span>)
+        <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget</span>)
             .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">state</span><span class="op">|</span> <span class="ident">state</span>.<span class="ident">with_widget</span>(<span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">as_ref</span>(), <span class="ident">with_fn</span>))
     }
 
@@ -868,13 +874,19 @@
         <span class="ident">widget_id</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetId</span>,
         <span class="ident">with_fn</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget_id</span>.<span class="ident">id</span>)
+        <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget_id</span>)
             .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">state</span><span class="op">|</span> <span class="ident">state</span>.<span class="ident">with_widget_mut</span>(<span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">as_ref</span>(), <span class="ident">with_fn</span>))
     }
 
     <span class="doccomment">/// Returns an unscheduled timer that will invoke `callback` once after `period` elapses.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">timer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">period</span>: <span class="ident">Duration</span>, <span class="ident">callback</span>: <span class="ident">Callback</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UnscheduledTimer</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
         <span class="ident">UnscheduledTimer::new</span>(<span class="ident">period</span>, <span class="ident">callback</span>, <span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">as_ref</span>())
+    }
+
+    <span class="doccomment">/// Returns the frontend that created this context.</span>
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frontend</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">AnyFrontend</span> {
+        <span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">as_ref</span>()
     }
 }
 

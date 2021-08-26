@@ -206,11 +206,6 @@
 <span id="204">204</span>
 <span id="205">205</span>
 <span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
-<span id="210">210</span>
-<span id="211">211</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
 
@@ -349,25 +344,20 @@
 
 <span class="doccomment">/// Processes each command from `receiver` as it becomes available.</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">process_database_commands</span>(<span class="ident">receiver</span>: <span class="ident">flume::Receiver</span><span class="op">&lt;</span><span class="ident">DatabaseCommand</span><span class="op">&gt;</span>) {
-    <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">receiver</span>.<span class="ident">recv_async</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>() {
+    <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">receiver</span>.<span class="ident">recv_async</span>().<span class="kw">await</span>.<span class="ident">unwrap</span>() {
         <span class="ident">DatabaseCommand::Initialize</span>(<span class="ident">context</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">context</span>,
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
     };
 
     <span class="comment">// Connect to the locally running server. `cargo run --package server`</span>
     <span class="comment">// launches the server.</span>
-    <span class="kw">let</span> <span class="ident">loop_context</span> <span class="op">=</span> <span class="ident">context</span>.<span class="ident">clone</span>();
+    <span class="kw">let</span> <span class="ident">loop_context</span> <span class="op">=</span> <span class="ident">database</span>.<span class="ident">clone</span>();
     <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="kw">loop</span> {
         <span class="kw">let</span> <span class="ident">client_context</span> <span class="op">=</span> <span class="ident">loop_context</span>.<span class="ident">clone</span>();
         <span class="kw">match</span> <span class="ident">Client::build</span>(<span class="string">&quot;ws://127.0.0.1:8081&quot;</span>.<span class="ident">parse</span>().<span class="ident">unwrap</span>())
             .<span class="ident">with_custom_api_callback</span>::<span class="op">&lt;</span><span class="ident">ExampleApi</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">response</span><span class="op">|</span> {
                 <span class="kw">let</span> <span class="ident">Response::CounterValue</span>(<span class="ident">count</span>) <span class="op">=</span> <span class="ident">response</span>;
-                <span class="ident">client_context</span>.<span class="ident">context</span>.<span class="ident">map_widget_mut</span>(
-                    <span class="kw-2">&amp;</span><span class="ident">client_context</span>.<span class="ident">button_id</span>,
-                    <span class="op">|</span><span class="ident">button</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Button</span>, <span class="ident">context</span><span class="op">|</span> {
-                        <span class="ident">button</span>.<span class="ident">set_label</span>(<span class="ident">count</span>.<span class="ident">to_string</span>(), <span class="ident">context</span>);
-                    },
-                );
+                <span class="ident">update_counter_label</span>(<span class="kw-2">&amp;</span><span class="ident">client_context</span>, <span class="ident">count</span>);
             })
             .<span class="ident">finish</span>()
             .<span class="kw">await</span>
@@ -382,11 +372,7 @@
 
     <span class="kw">match</span> <span class="ident">client</span>.<span class="ident">send_api_request</span>(<span class="ident">Request::GetCounter</span>).<span class="kw">await</span> {
         <span class="prelude-val">Ok</span>(<span class="ident">Response::CounterValue</span>(<span class="ident">count</span>)) <span class="op">=</span><span class="op">&gt;</span> {
-            <span class="ident">context</span>
-                .<span class="ident">context</span>
-                .<span class="ident">map_widget_mut</span>(<span class="kw-2">&amp;</span><span class="ident">context</span>.<span class="ident">button_id</span>, <span class="op">|</span><span class="ident">button</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Button</span>, <span class="ident">context</span><span class="op">|</span> {
-                    <span class="ident">button</span>.<span class="ident">set_label</span>(<span class="ident">count</span>.<span class="ident">to_string</span>(), <span class="ident">context</span>);
-                });
+            <span class="ident">update_counter_label</span>(<span class="kw-2">&amp;</span><span class="ident">database</span>, <span class="ident">count</span>);
         }
         <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="macro">log::error!</span>(<span class="string">&quot;Error retrieving current counter value: {:?}&quot;</span>, <span class="ident">err</span>);
@@ -398,7 +384,7 @@
     <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">command</span>) <span class="op">=</span> <span class="ident">receiver</span>.<span class="ident">recv_async</span>().<span class="kw">await</span> {
         <span class="kw">match</span> <span class="ident">command</span> {
             <span class="ident">DatabaseCommand::Increment</span> <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="ident">increment_counter</span>(<span class="kw-2">&amp;</span><span class="ident">client</span>, <span class="kw-2">&amp;</span><span class="ident">context</span>).<span class="kw">await</span>;
+                <span class="ident">increment_counter</span>(<span class="kw-2">&amp;</span><span class="ident">client</span>, <span class="kw-2">&amp;</span><span class="ident">database</span>).<span class="kw">await</span>;
             }
             <span class="ident">DatabaseCommand::Initialize</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
         }
@@ -411,17 +397,21 @@
     <span class="comment">// api using your own enums.</span>
     <span class="kw">match</span> <span class="ident">client</span>.<span class="ident">send_api_request</span>(<span class="ident">Request::IncrementCounter</span>).<span class="kw">await</span> {
         <span class="prelude-val">Ok</span>(<span class="ident">Response::CounterValue</span>(<span class="ident">count</span>)) <span class="op">=</span><span class="op">&gt;</span> {
-            <span class="ident">context</span>
-                .<span class="ident">context</span>
-                .<span class="ident">map_widget_mut</span>(<span class="kw-2">&amp;</span><span class="ident">context</span>.<span class="ident">button_id</span>, <span class="op">|</span><span class="ident">button</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Button</span>, <span class="ident">context</span><span class="op">|</span> {
-                    <span class="ident">button</span>.<span class="ident">set_label</span>(<span class="ident">count</span>.<span class="ident">to_string</span>(), <span class="ident">context</span>);
-                });
+            <span class="ident">update_counter_label</span>(<span class="ident">context</span>, <span class="ident">count</span>);
         }
         <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="macro">log::error!</span>(<span class="string">&quot;Error sending request: {:?}&quot;</span>, <span class="ident">err</span>);
             <span class="macro">eprintln!</span>(<span class="string">&quot;Error sending request: {:?}&quot;</span>, <span class="ident">err</span>);
         }
     }
+}
+
+<span class="kw">fn</span> <span class="ident">update_counter_label</span>(<span class="ident">database</span>: <span class="kw-2">&amp;</span><span class="ident">DatabaseContext</span>, <span class="ident">count</span>: <span class="ident">u64</span>) {
+    <span class="kw">let</span> <span class="ident">button_state</span> <span class="op">=</span> <span class="ident">database</span>.<span class="ident">context</span>.<span class="ident">widget_state</span>(<span class="kw-2">&amp;</span><span class="ident">database</span>.<span class="ident">button_id</span>).<span class="ident">unwrap</span>();
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">button</span> <span class="op">=</span> <span class="ident">button_state</span>
+        .<span class="ident">lock</span>::<span class="op">&lt;</span><span class="ident">Button</span><span class="op">&gt;</span>(<span class="ident">database</span>.<span class="ident">context</span>.<span class="ident">frontend</span>())
+        .<span class="ident">unwrap</span>();
+    <span class="ident">button</span>.<span class="ident">widget</span>.<span class="ident">set_label</span>(<span class="ident">count</span>.<span class="ident">to_string</span>(), <span class="kw-2">&amp;</span><span class="ident">button</span>.<span class="ident">context</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="bonsaidb_counter_client" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
