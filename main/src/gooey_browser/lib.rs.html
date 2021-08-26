@@ -616,6 +616,63 @@
 <span id="614">614</span>
 <span id="615">615</span>
 <span id="616">616</span>
+<span id="617">617</span>
+<span id="618">618</span>
+<span id="619">619</span>
+<span id="620">620</span>
+<span id="621">621</span>
+<span id="622">622</span>
+<span id="623">623</span>
+<span id="624">624</span>
+<span id="625">625</span>
+<span id="626">626</span>
+<span id="627">627</span>
+<span id="628">628</span>
+<span id="629">629</span>
+<span id="630">630</span>
+<span id="631">631</span>
+<span id="632">632</span>
+<span id="633">633</span>
+<span id="634">634</span>
+<span id="635">635</span>
+<span id="636">636</span>
+<span id="637">637</span>
+<span id="638">638</span>
+<span id="639">639</span>
+<span id="640">640</span>
+<span id="641">641</span>
+<span id="642">642</span>
+<span id="643">643</span>
+<span id="644">644</span>
+<span id="645">645</span>
+<span id="646">646</span>
+<span id="647">647</span>
+<span id="648">648</span>
+<span id="649">649</span>
+<span id="650">650</span>
+<span id="651">651</span>
+<span id="652">652</span>
+<span id="653">653</span>
+<span id="654">654</span>
+<span id="655">655</span>
+<span id="656">656</span>
+<span id="657">657</span>
+<span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
+<span id="671">671</span>
+<span id="672">672</span>
+<span id="673">673</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that targets web browsers</span>
 <span class="doccomment">//! by creating DOM elements using `web-sys` and `wasm-bindgen`.</span>
@@ -646,6 +703,7 @@
         <span class="ident">atomic</span>::{<span class="ident">AtomicBool</span>, <span class="ident">AtomicU64</span>, <span class="ident">Ordering</span>},
         <span class="ident">Arc</span>,
     },
+    <span class="ident">time::Duration</span>,
 };
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
@@ -656,8 +714,8 @@
         <span class="ident">Alignment</span>, <span class="ident">Autofocus</span>, <span class="ident">FontFamily</span>, <span class="ident">FontSize</span>, <span class="ident">Padding</span>, <span class="ident">Style</span>, <span class="ident">StyleComponent</span>, <span class="ident">SystemTheme</span>,
         <span class="ident">TabIndex</span>, <span class="ident">VerticalAlignment</span>,
     },
-    <span class="ident">AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Callback</span>, <span class="ident">Frontend</span>, <span class="ident">Gooey</span>,
-    <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">Widget</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>,
+    <span class="ident">AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Callback</span>, <span class="ident">Frontend</span>, <span class="ident">Gooey</span>, <span class="ident">NativeTimer</span>,
+    <span class="ident">Timer</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">Widget</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>,
     <span class="ident">WidgetRegistration</span>,
 };
 <span class="kw">use</span> <span class="ident">parking_lot::Mutex</span>;
@@ -924,7 +982,63 @@
     <span class="kw">fn</span> <span class="ident">asset_configuration</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">assets::Configuration</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>.<span class="ident">configuration</span>
     }
+
+    <span class="kw">fn</span> <span class="ident">schedule_timer</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">callback</span>: <span class="ident">Callback</span>,
+        <span class="ident">period</span>: <span class="ident">std::time::Duration</span>,
+        <span class="ident">repeating</span>: <span class="ident">bool</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Timer</span> {
+        <span class="kw">let</span> <span class="ident">browser</span> <span class="op">=</span> <span class="ident">BrowserTimer</span> {
+            <span class="ident">timeout_id</span>: <span class="number">0</span>,
+            <span class="ident">callback</span>,
+            <span class="ident">period</span>,
+            <span class="ident">repeating</span>,
+        };
+        <span class="kw">let</span> <span class="ident">timer</span> <span class="op">=</span> <span class="ident">Timer::from_native</span>(<span class="ident">browser</span>);
+        <span class="ident">schedule_timer</span>(<span class="kw-2">&amp;</span><span class="ident">timer</span>, <span class="ident">period</span>);
+        <span class="ident">timer</span>
+    }
 }
+
+<span class="kw">fn</span> <span class="ident">schedule_timer</span>(<span class="ident">timer</span>: <span class="kw-2">&amp;</span><span class="ident">Timer</span>, <span class="ident">period</span>: <span class="ident">Duration</span>) {
+    <span class="kw">let</span> <span class="ident">weak_timer</span> <span class="op">=</span> <span class="ident">timer</span>.<span class="ident">downgrade</span>();
+    <span class="comment">// TODO this should be refactored to reuse the same closure rather than rescheduling it.</span>
+    <span class="kw">let</span> <span class="ident">timeout_id</span> <span class="op">=</span> <span class="ident">web_sys::window</span>()
+        .<span class="ident">unwrap</span>()
+        .<span class="ident">set_timeout_with_callback_and_timeout_and_arguments_0</span>(
+            <span class="ident">Closure::once_into_js</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">timer</span>) <span class="op">=</span> <span class="ident">weak_timer</span>.<span class="ident">upgrade</span>() {
+                    <span class="kw">let</span> <span class="ident">reschedule</span> <span class="op">=</span> {
+                        <span class="kw">let</span> <span class="ident">native</span> <span class="op">=</span> <span class="ident">timer</span>.<span class="ident">native</span>::<span class="op">&lt;</span><span class="ident">BrowserTimer</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
+                        <span class="ident">native</span>.<span class="ident">callback</span>.<span class="ident">invoke</span>(());
+
+                        <span class="ident">native</span>.<span class="ident">repeating</span>
+                    };
+
+                    <span class="kw">if</span> <span class="ident">reschedule</span> {
+                        <span class="ident">schedule_timer</span>(<span class="kw-2">&amp;</span><span class="ident">timer</span>, <span class="ident">period</span>);
+                    }
+                }
+            })
+            .<span class="ident">as_ref</span>()
+            .<span class="ident">unchecked_ref</span>(),
+            <span class="ident">i32::try_from</span>(<span class="ident">period</span>.<span class="ident">as_millis</span>()).<span class="ident">unwrap_or</span>(<span class="ident">i32::MAX</span>),
+        )
+        .<span class="ident">unwrap</span>();
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">native</span> <span class="op">=</span> <span class="ident">timer</span>.<span class="ident">native</span>::<span class="op">&lt;</span><span class="ident">BrowserTimer</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
+    <span class="ident">native</span>.<span class="ident">timeout_id</span> <span class="op">=</span> <span class="ident">timeout_id</span>;
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">struct</span> <span class="ident">BrowserTimer</span> {
+    <span class="ident">timeout_id</span>: <span class="ident">i32</span>,
+    <span class="ident">callback</span>: <span class="ident">Callback</span>,
+    <span class="ident">period</span>: <span class="ident">Duration</span>,
+    <span class="ident">repeating</span>: <span class="ident">bool</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">NativeTimer</span> <span class="kw">for</span> <span class="ident">BrowserTimer</span> {}
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">struct</span> <span class="ident">LoadedImageId</span>(<span class="ident">u64</span>);

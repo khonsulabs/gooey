@@ -514,6 +514,12 @@
 <span id="512">512</span>
 <span id="513">513</span>
 <span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">any</span>::{<span class="ident">type_name</span>, <span class="ident">Any</span>, <span class="ident">TypeId</span>},
@@ -521,6 +527,7 @@
     <span class="ident">marker::PhantomData</span>,
     <span class="ident">ops::Deref</span>,
     <span class="ident">sync::Arc</span>,
+    <span class="ident">time::Duration</span>,
 };
 
 <span class="kw">use</span> <span class="ident">flume</span>::{<span class="ident">Receiver</span>, <span class="ident">Sender</span>};
@@ -528,8 +535,8 @@
 
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">styles</span>::{<span class="ident">style_sheet::Classes</span>, <span class="ident">BackgroundColor</span>, <span class="ident">ColorPair</span>, <span class="ident">TextColor</span>},
-    <span class="ident">AnyFrontend</span>, <span class="ident">Frontend</span>, <span class="ident">StyledWidget</span>, <span class="ident">WeakWidgetRegistration</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>,
-    <span class="ident">WidgetStorage</span>,
+    <span class="ident">AnyFrontend</span>, <span class="ident">Frontend</span>, <span class="ident">StyledWidget</span>, <span class="ident">UnscheduledTimer</span>, <span class="ident">WeakWidgetRegistration</span>, <span class="ident">WidgetRef</span>,
+    <span class="ident">WidgetRegistration</span>, <span class="ident">WidgetStorage</span>,
 };
 
 <span class="kw">mod</span> <span class="ident">transmogrifier_context</span>;
@@ -863,6 +870,11 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">widget_state</span>(<span class="ident">widget_id</span>.<span class="ident">id</span>)
             .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">state</span><span class="op">|</span> <span class="ident">state</span>.<span class="ident">with_widget_mut</span>(<span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">as_ref</span>(), <span class="ident">with_fn</span>))
+    }
+
+    <span class="doccomment">/// Returns an unscheduled timer that will invoke `callback` once after `period` elapses.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">timer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">period</span>: <span class="ident">Duration</span>, <span class="ident">callback</span>: <span class="ident">Callback</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">UnscheduledTimer</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
+        <span class="ident">UnscheduledTimer::new</span>(<span class="ident">period</span>, <span class="ident">callback</span>, <span class="self">self</span>.<span class="ident">frontend</span>.<span class="ident">as_ref</span>())
     }
 }
 

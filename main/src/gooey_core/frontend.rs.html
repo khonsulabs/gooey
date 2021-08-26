@@ -194,8 +194,18 @@
 <span id="192">192</span>
 <span id="193">193</span>
 <span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
 </pre><pre class="rust">
-<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any::TypeId</span>, <span class="ident">convert::TryFrom</span>, <span class="ident">fmt::Debug</span>};
+<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any::TypeId</span>, <span class="ident">convert::TryFrom</span>, <span class="ident">fmt::Debug</span>, <span class="ident">time::Duration</span>};
 
 <span class="kw">use</span> <span class="ident">stylecs::Style</span>;
 <span class="kw">use</span> <span class="ident">url::Url</span>;
@@ -203,7 +213,7 @@
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">assets</span>::{<span class="self">self</span>, <span class="ident">Asset</span>, <span class="ident">Image</span>},
     <span class="ident">styles</span>::{<span class="ident">style_sheet::State</span>, <span class="ident">SystemTheme</span>},
-    <span class="ident">AnySendSync</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>, <span class="ident">Transmogrifier</span>,
+    <span class="ident">AnySendSync</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>, <span class="ident">Timer</span>, <span class="ident">Transmogrifier</span>,
     <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>,
     <span class="ident">WidgetStorage</span>,
 };
@@ -255,6 +265,9 @@
     <span class="doccomment">/// Executed when `Gooey` exits a managed code block.</span>
     <span class="kw">fn</span> <span class="ident">exit_managed_code</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {}
 
+    <span class="doccomment">/// Schedules a timer that invokes `callback` after `duration`, and repeats if `repeating` is true.</span>
+    <span class="kw">fn</span> <span class="ident">schedule_timer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">Callback</span>, <span class="ident">duration</span>: <span class="ident">Duration</span>, <span class="ident">repeating</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Timer</span>;
+
     <span class="doccomment">/// A widget is being initialized.</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="kw">fn</span> <span class="ident">widget_initialized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetId</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) {}
@@ -287,6 +300,9 @@
 
     <span class="doccomment">/// Returns the full Url for the asset, if available.</span>
     <span class="kw">fn</span> <span class="ident">asset_url</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">asset</span>: <span class="kw-2">&amp;</span><span class="ident">Asset</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Url</span><span class="op">&gt;</span>;
+
+    <span class="doccomment">/// Schedules a timer that invokes `callback` after `duration`, and repeats if `repeating` is true.</span>
+    <span class="kw">fn</span> <span class="ident">schedule_timer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">Callback</span>, <span class="ident">duration</span>: <span class="ident">Duration</span>, <span class="ident">repeating</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Timer</span>;
 
     <span class="doccomment">/// Internal API used by `ManagedCodeGuard`. Do not call directly.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -341,6 +357,10 @@
 
     <span class="kw">fn</span> <span class="ident">asset_url</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">asset</span>: <span class="kw-2">&amp;</span><span class="ident">Asset</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Url</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">asset_url</span>(<span class="ident">asset</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">schedule_timer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">Callback</span>, <span class="ident">duration</span>: <span class="ident">Duration</span>, <span class="ident">repeating</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Timer</span> {
+        <span class="self">self</span>.<span class="ident">schedule_timer</span>(<span class="ident">callback</span>, <span class="ident">duration</span>, <span class="ident">repeating</span>)
     }
 }
 

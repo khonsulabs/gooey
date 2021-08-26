@@ -681,6 +681,12 @@
 <span id="679">679</span>
 <span id="680">680</span>
 <span id="681">681</span>
+<span id="682">682</span>
+<span id="683">683</span>
+<span id="684">684</span>
+<span id="685">685</span>
+<span id="686">686</span>
+<span id="687">687</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that rasterizes widgets</span>
 <span class="doccomment">//! using a [`Renderer`](gooey_renderer::Renderer).</span>
@@ -716,10 +722,11 @@
         <span class="ident">style_sheet</span>::{<span class="self">self</span>},
         <span class="ident">Autofocus</span>, <span class="ident">Style</span>, <span class="ident">SystemTheme</span>, <span class="ident">TabIndex</span>,
     },
-    <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>, <span class="ident">Scaled</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">WidgetId</span>,
+    <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>, <span class="ident">Scaled</span>, <span class="ident">Timer</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">WidgetId</span>,
 };
 <span class="kw">use</span> <span class="ident">image</span>::{<span class="ident">ImageFormat</span>, <span class="ident">RgbaImage</span>};
 <span class="kw">use</span> <span class="ident">platforms</span>::{<span class="ident">target::OS</span>, <span class="ident">TARGET_OS</span>};
+<span class="kw">use</span> <span class="ident">timer::ThreadTimer</span>;
 <span class="kw">use</span> <span class="ident">winit::event</span>::{
     <span class="ident">ElementState</span>, <span class="ident">ModifiersState</span>, <span class="ident">MouseButton</span>, <span class="ident">MouseScrollDelta</span>, <span class="ident">ScanCode</span>, <span class="ident">TouchPhase</span>,
     <span class="ident">VirtualKeyCode</span>,
@@ -727,6 +734,7 @@
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">events</span>;
 <span class="kw">mod</span> <span class="ident">state</span>;
+<span class="kw">mod</span> <span class="ident">timer</span>;
 <span class="kw">mod</span> <span class="ident">transmogrifier</span>;
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -838,6 +846,10 @@
         <span class="kw">if</span> <span class="ident">style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">Autofocus</span><span class="op">&gt;</span>().<span class="ident">is_some</span>() {
             <span class="self">self</span>.<span class="ident">focus_on</span>(<span class="ident">widget</span>);
         }
+    }
+
+    <span class="kw">fn</span> <span class="ident">schedule_timer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">Callback</span>, <span class="ident">duration</span>: <span class="ident">Duration</span>, <span class="ident">repeating</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Timer</span> {
+        <span class="ident">ThreadTimer::schedule</span>(<span class="ident">callback</span>, <span class="ident">duration</span>, <span class="ident">repeating</span>)
     }
 }
 
