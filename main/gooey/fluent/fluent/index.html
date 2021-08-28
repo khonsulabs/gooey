@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Fluent is a modern localization system designed to improve how software is translated."><meta name="keywords" content="rust, rustlang, rust-lang, fluent"><title>gooey::fluent::fluent - Rust</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../gooey/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a><h2 class="location">Crate fluent</h2><div class="block version"><p>Version 0.1.0-dev.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all fluent's items</p></a><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#macros">Macros</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#types">Type Definitions</a></li></ul></div><div id="sidebar-vars" data-name="fluent" data-ty="mod" data-relpath="./"></div><script defer src="./sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a href="../../index.html">gooey</a>::<wbr><a href="../index.html">fluent</a>::<wbr><a class="mod" href="#">fluent</a><button id="copy-path" onclick="copy_path(this)" title="copy path"><img src="../../../clipboard.svg" width="19" height="18" alt="Copy item import" title="Copy item import to clipboard"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></span></h1><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Fluent is a modern localization system designed to improve how software is translated.</p>
+<p>The Rust implementation provides the low level components for syntax operations, like parser
+and AST, and the core localization struct - <a href="./struct.FluentBundle.html"><code>FluentBundle</code></a>.</p>
+<p><a href="./struct.FluentBundle.html"><code>FluentBundle</code></a> is the low level container for storing and formatting localization messages
+in a single locale.</p>
+<p>This crate provides also a number of structures needed for a localization API such as <a href="./struct.FluentResource.html"><code>FluentResource</code></a>,
+<a href="./struct.FluentMessage.html"><code>FluentMessage</code></a>, <a href="./type.FluentArgs.html"><code>FluentArgs</code></a>, and <a href="./struct.FluentValue.html"><code>FluentValue</code></a>.</p>
+<p>Together, they allow implementations to build higher-level APIs that use <a href="./struct.FluentBundle.html"><code>FluentBundle</code></a>
+and add user friendly helpers, framework bindings, error fallbacking,
+language negotiation between user requested languages and available resources,
+and I/O for loading selected resources.</p>
+<h1 id="example" class="section-header"><a href="#example">Example</a></h1>
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">fluent</span>::{<span class="ident">FluentBundle</span>, <span class="ident">FluentValue</span>, <span class="ident">FluentResource</span>, <span class="ident">FluentArgs</span>};
+
+<span class="comment">// Used to provide a locale for the bundle.</span>
+<span class="kw">use</span> <span class="ident">unic_langid::LanguageIdentifier</span>;
+
+<span class="kw">let</span> <span class="ident">ftl_string</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="string">&quot;
+hello-world = Hello, world!
+intro = Welcome, { $name }.
+&quot;</span>);
+<span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">FluentResource::try_new</span>(<span class="ident">ftl_string</span>)
+    .<span class="ident">expect</span>(<span class="string">&quot;Failed to parse an FTL string.&quot;</span>);
+
+<span class="kw">let</span> <span class="ident">langid_en</span>: <span class="ident">LanguageIdentifier</span> <span class="op">=</span> <span class="string">&quot;en-US&quot;</span>.<span class="ident">parse</span>().<span class="ident">expect</span>(<span class="string">&quot;Parsing failed&quot;</span>);
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bundle</span> <span class="op">=</span> <span class="ident">FluentBundle::new</span>(<span class="macro">vec!</span>[<span class="ident">langid_en</span>]);
+
+<span class="ident">bundle</span>
+    .<span class="ident">add_resource</span>(<span class="ident">res</span>)
+    .<span class="ident">expect</span>(<span class="string">&quot;Failed to add FTL resources to the bundle.&quot;</span>);
+
+<span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">bundle</span>.<span class="ident">get_message</span>(<span class="string">&quot;hello-world&quot;</span>)
+    .<span class="ident">expect</span>(<span class="string">&quot;Message doesn&#39;t exist.&quot;</span>);
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">errors</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+<span class="kw">let</span> <span class="ident">pattern</span> <span class="op">=</span> <span class="ident">msg</span>.<span class="ident">value</span>()
+    .<span class="ident">expect</span>(<span class="string">&quot;Message has no value.&quot;</span>);
+<span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">bundle</span>.<span class="ident">format_pattern</span>(<span class="kw-2">&amp;</span><span class="ident">pattern</span>, <span class="prelude-val">None</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">errors</span>);
+
+<span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span><span class="ident">value</span>, <span class="string">&quot;Hello, world!&quot;</span>);
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">args</span> <span class="op">=</span> <span class="ident">FluentArgs::new</span>();
+<span class="ident">args</span>.<span class="ident">set</span>(<span class="string">&quot;name&quot;</span>, <span class="ident">FluentValue::from</span>(<span class="string">&quot;John&quot;</span>));
+
+<span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">bundle</span>.<span class="ident">get_message</span>(<span class="string">&quot;intro&quot;</span>)
+    .<span class="ident">expect</span>(<span class="string">&quot;Message doesn&#39;t exist.&quot;</span>);
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">errors</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+<span class="kw">let</span> <span class="ident">pattern</span> <span class="op">=</span> <span class="ident">msg</span>.<span class="ident">value</span>().<span class="ident">expect</span>(<span class="string">&quot;Message has no value.&quot;</span>);
+<span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">bundle</span>.<span class="ident">format_pattern</span>(<span class="kw-2">&amp;</span><span class="ident">pattern</span>, <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">args</span>), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">errors</span>);
+
+<span class="comment">// The FSI/PDI isolation marks ensure that the direction of</span>
+<span class="comment">// the text from the variable is not affected by the translation.</span>
+<span class="macro">assert_eq!</span>(<span class="ident">value</span>, <span class="string">&quot;Welcome, \u{2068}John\u{2069}.&quot;</span>);</pre></div>
+<h1 id="ergonomics--higher-level-apis" class="section-header"><a href="#ergonomics--higher-level-apis">Ergonomics &amp; Higher Level APIs</a></h1>
+<p>Reading the example, you may notice how verbose it feels.
+Many core methods are fallible, others accumulate errors, and there
+are intermediate structures used in operations.</p>
+<p>This is intentional as it serves as building blocks for variety of different
+scenarios allowing implementations to handle errors, cache and
+optimize results.</p>
+<p>At the moment it is expected that users will use
+the <code>fluent-bundle</code> crate directly, while the ecosystem
+matures and higher level APIs are being developed.</p>
+</div></details><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<table><tr class="module-item"><td><a class="mod" href="bundle/index.html" title="gooey::fluent::fluent::bundle mod">bundle</a></td><td class="docblock-short"><p><code>FluentBundle</code> is a collection of localization messages in Fluent.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="types/index.html" title="gooey::fluent::fluent::types mod">types</a></td><td class="docblock-short"><p><code>types</code> module contains types necessary for Fluent runtime
+value handling.
+The core struct is <a href="enum.FluentValue.html" title="FluentValue"><code>FluentValue</code></a> which is a type that can be passed
+to the <a href="bundle/struct.FluentBundle.html"><code>FluentBundle::format_pattern</code></a> as an argument, it can be passed
+to any Fluent Function, and any function may return it.</p>
+</td></tr></table><h2 id="macros" class="section-header"><a href="#macros">Macros</a></h2>
+<table><tr class="module-item"><td><a class="macro" href="macro.fluent_args.html" title="gooey::fluent::fluent::fluent_args macro">fluent_args</a></td><td class="docblock-short"><p>A helper macro to simplify creation of FluentArgs.</p>
+</td></tr></table><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+<table><tr class="module-item"><td><a class="struct" href="struct.FluentArgs.html" title="gooey::fluent::fluent::FluentArgs struct">FluentArgs</a></td><td class="docblock-short"><p>A map of arguments passed from the code to
+the localization to be used for message
+formatting.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.FluentAttribute.html" title="gooey::fluent::fluent::FluentAttribute struct">FluentAttribute</a></td><td class="docblock-short"><p><a href="struct.FluentAttribute.html" title="FluentAttribute"><code>FluentAttribute</code></a> is a component of a compound <a href="struct.FluentMessage.html" title="FluentMessage"><code>FluentMessage</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.FluentMessage.html" title="gooey::fluent::fluent::FluentMessage struct">FluentMessage</a></td><td class="docblock-short"><p><a href="struct.FluentMessage.html" title="FluentMessage"><code>FluentMessage</code></a> is a basic translation unit of the Fluent system.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.FluentResource.html" title="gooey::fluent::fluent::FluentResource struct">FluentResource</a></td><td class="docblock-short"><p>A resource containing a list of localization messages.</p>
+</td></tr></table><h2 id="enums" class="section-header"><a href="#enums">Enums</a></h2>
+<table><tr class="module-item"><td><a class="enum" href="enum.FluentError.html" title="gooey::fluent::fluent::FluentError enum">FluentError</a></td><td class="docblock-short"><p>Core error type for Fluent runtime system.</p>
+</td></tr><tr class="module-item"><td><a class="enum" href="enum.FluentValue.html" title="gooey::fluent::fluent::FluentValue enum">FluentValue</a></td><td class="docblock-short"><p>The <code>FluentValue</code> enum represents values which can be formatted to a String.</p>
+</td></tr></table><h2 id="types" class="section-header"><a href="#types">Type Definitions</a></h2>
+<table><tr class="module-item"><td><a class="type" href="type.FluentBundle.html" title="gooey::fluent::fluent::FluentBundle type">FluentBundle</a></td><td class="docblock-short"><p>Specialized <a href="bundle/struct.FluentBundle.html"><code>FluentBundle</code></a> over
+non-concurrent <a href="intl_memoizer::IntlLangMemoizer"><code>IntlLangMemoizer</code></a>.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gooey" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div><script src="../../../main.js"></script></body></html>

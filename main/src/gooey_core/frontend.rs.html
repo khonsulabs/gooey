@@ -204,6 +204,24 @@
 <span id="202">202</span>
 <span id="203">203</span>
 <span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any::TypeId</span>, <span class="ident">convert::TryFrom</span>, <span class="ident">fmt::Debug</span>, <span class="ident">time::Duration</span>};
 
@@ -213,9 +231,9 @@
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">assets</span>::{<span class="self">self</span>, <span class="ident">Asset</span>, <span class="ident">Image</span>},
     <span class="ident">styles</span>::{<span class="ident">style_sheet::State</span>, <span class="ident">SystemTheme</span>},
-    <span class="ident">AnySendSync</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>, <span class="ident">Timer</span>, <span class="ident">Transmogrifier</span>,
-    <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>,
-    <span class="ident">WidgetStorage</span>,
+    <span class="ident">AnySendSync</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>, <span class="ident">LocalizationParameters</span>,
+    <span class="ident">Timer</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>,
+    <span class="ident">WidgetRegistration</span>, <span class="ident">WidgetStorage</span>,
 };
 
 <span class="doccomment">/// A frontend is an implementation of widgets and layouts.</span>
@@ -271,6 +289,16 @@
     <span class="doccomment">/// A widget is being initialized.</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="kw">fn</span> <span class="ident">widget_initialized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetId</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) {}
+
+    <span class="doccomment">/// Localizes `key` with `parameters`.</span>
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
+    <span class="kw">fn</span> <span class="ident">localize</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+        <span class="ident">parameters</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LocalizationParameters</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+        <span class="self">self</span>.<span class="ident">gooey</span>().<span class="ident">localize</span>(<span class="ident">key</span>, <span class="ident">parameters</span>)
+    }
 }
 
 <span class="doccomment">/// An interface for Frontend that doesn&#39;t requier knowledge of associated</span>
@@ -303,6 +331,10 @@
 
     <span class="doccomment">/// Schedules a timer that invokes `callback` after `duration`, and repeats if `repeating` is true.</span>
     <span class="kw">fn</span> <span class="ident">schedule_timer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">Callback</span>, <span class="ident">duration</span>: <span class="ident">Duration</span>, <span class="ident">repeating</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Timer</span>;
+
+    <span class="doccomment">/// Localizes `key` with `parameters`.</span>
+    <span class="attribute">#[<span class="ident">must_use</span>]</span>
+    <span class="kw">fn</span> <span class="ident">localize</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">parameters</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LocalizationParameters</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span>;
 
     <span class="doccomment">/// Internal API used by `ManagedCodeGuard`. Do not call directly.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -361,6 +393,10 @@
 
     <span class="kw">fn</span> <span class="ident">schedule_timer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">Callback</span>, <span class="ident">duration</span>: <span class="ident">Duration</span>, <span class="ident">repeating</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Timer</span> {
         <span class="self">self</span>.<span class="ident">schedule_timer</span>(<span class="ident">callback</span>, <span class="ident">duration</span>, <span class="ident">repeating</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">localize</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">parameters</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LocalizationParameters</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+        <span class="self">self</span>.<span class="ident">localize</span>(<span class="ident">key</span>, <span class="ident">parameters</span>)
     }
 }
 

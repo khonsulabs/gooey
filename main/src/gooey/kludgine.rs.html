@@ -229,10 +229,15 @@
 <span id="227">227</span>
 <span id="228">228</span>
 <span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">path::PathBuf</span>, <span class="ident">process::Command</span>};
 
-<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">assets::Configuration</span>, <span class="ident">StyledWidget</span>};
+<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">assets::Configuration</span>, <span class="ident">AppContext</span>, <span class="ident">StyledWidget</span>};
 <span class="kw">use</span> <span class="ident">gooey_rasterizer::winit</span>::{<span class="ident">event::ModifiersState</span>, <span class="ident">window::Theme</span>};
 <span class="kw">use</span> <span class="ident">platforms::target</span>::{<span class="ident">OS</span>, <span class="ident">TARGET_OS</span>};
 
@@ -256,25 +261,30 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">kludgine_main_with</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>, <span class="ident">C</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">transmogrifiers</span>: <span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">Kludgine</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">initializer</span>: <span class="ident">C</span>,
+    <span class="ident">context</span>: <span class="ident">AppContext</span>,
 ) {
-    <span class="ident">kludgine_run</span>(<span class="ident">kludgine_app</span>(<span class="ident">transmogrifiers</span>, <span class="ident">initializer</span>));
+    <span class="ident">kludgine_run</span>(<span class="ident">kludgine_app</span>(<span class="ident">transmogrifiers</span>, <span class="ident">initializer</span>, <span class="ident">context</span>));
 }
 
 <span class="doccomment">/// Runs a `Kludgine`-based [`App`](crate::app::App) with the root widget from</span>
 <span class="doccomment">/// `initializer`. All widgets from [`gooey::widget`](crate::widgets) will be</span>
 <span class="doccomment">/// usable. If you wish to use other widgets, use `browser_main_with` and</span>
 <span class="doccomment">/// provide the transmogrifiers for the widgets you wish to use.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">kludgine_main</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span>, <span class="ident">C</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">initializer</span>: <span class="ident">C</span>) {
-    <span class="ident">kludgine_main_with</span>(<span class="ident">default_transmogrifiers</span>(), <span class="kw-2">&amp;</span><span class="ident">initializer</span>);
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">kludgine_main</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span>, <span class="ident">C</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="ident">initializer</span>: <span class="ident">C</span>,
+    <span class="ident">context</span>: <span class="ident">AppContext</span>,
+) {
+    <span class="ident">kludgine_main_with</span>(<span class="ident">default_transmogrifiers</span>(), <span class="kw-2">&amp;</span><span class="ident">initializer</span>, <span class="ident">context</span>);
 }
 
 <span class="doccomment">/// Returns an initialized frontend using the root widget returned from `initializer`.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">kludgine_app</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Widget</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>, <span class="ident">C</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">WidgetStorage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="kw-2">mut</span> <span class="ident">transmogrifiers</span>: <span class="ident">Transmogrifiers</span><span class="op">&lt;</span><span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">Kludgine</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">initializer</span>: <span class="ident">C</span>,
+    <span class="ident">context</span>: <span class="ident">AppContext</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">Kludgine</span><span class="op">&gt;</span> {
     <span class="ident">register_transmogrifiers</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">transmogrifiers</span>);
-    <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">Gooey::with</span>(<span class="ident">transmogrifiers</span>, <span class="ident">default_stylesheet</span>(), <span class="ident">initializer</span>);
+    <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">Gooey::with</span>(<span class="ident">transmogrifiers</span>, <span class="ident">default_stylesheet</span>(), <span class="ident">initializer</span>, <span class="ident">context</span>);
     <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">Rasterizer</span>::<span class="op">&lt;</span><span class="ident">Kludgine</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">ui</span>, <span class="ident">Configuration::default</span>());
     <span class="ident">ui</span>.<span class="ident">gooey</span>().<span class="ident">process_widget_messages</span>(<span class="kw-2">&amp;</span><span class="ident">ui</span>);
     <span class="ident">ui</span>

@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["fluent","Fluent is a modern localization system designed to improve how software is translated."]],"struct":[["FluentLocalizer","A [`Localizer`] for Gooey that utilizes [`fluent`]."]]});
