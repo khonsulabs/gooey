@@ -711,6 +711,7 @@
 <span id="709">709</span>
 <span id="710">710</span>
 <span id="711">711</span>
+<span id="712">712</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any::TypeId</span>, <span class="ident">convert::TryFrom</span>, <span class="ident">ops::Deref</span>};
 
@@ -918,7 +919,7 @@
 
     <span class="kw">fn</span> <span class="ident">content_size</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">context</span>: <span class="ident">TransmogrifierContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="self">Self</span>, <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">constraints</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentSize</span> {
         <span class="kw">let</span> <span class="ident">effective_style</span> <span class="op">=</span> <span class="ident">context</span>
@@ -926,7 +927,7 @@
             .<span class="ident">ui</span>
             .<span class="ident">stylesheet</span>()
             .<span class="ident">effective_style_for</span>::<span class="op">&lt;</span><span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">Transmogrifier</span><span class="op">&lt;</span><span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Widget</span><span class="op">&gt;</span>(
-                <span class="ident">context</span>.<span class="ident">style</span>.<span class="ident">clone</span>(),
+                <span class="ident">context</span>.<span class="ident">style</span>().<span class="ident">clone</span>(),
                 <span class="ident">context</span>.<span class="ident">ui_state</span>,
             );
         <span class="kw">let</span> <span class="ident">padding</span> <span class="op">=</span> <span class="ident">effective_style</span>.<span class="ident">get_or_default</span>::<span class="op">&lt;</span><span class="ident">Padding</span><span class="op">&gt;</span>();
@@ -939,8 +940,9 @@
                 <span class="ident">height</span> <span class="op">-</span> <span class="ident">border</span>.<span class="ident">minimum_height</span>().<span class="ident">get</span>() <span class="op">-</span> <span class="ident">padding</span>.<span class="ident">minimum_height</span>().<span class="ident">get</span>()
             }),
         );
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">temp_context</span> <span class="op">=</span> <span class="ident">context</span>.<span class="ident">with_style</span>(<span class="ident">effective_style</span>);
         <span class="ident">ContentSize</span> {
-            <span class="ident">content</span>: <span class="self">self</span>.<span class="ident">measure_content</span>(<span class="ident">context</span>, <span class="ident">constraints</span>),
+            <span class="ident">content</span>: <span class="self">self</span>.<span class="ident">measure_content</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">temp_context</span>, <span class="ident">constraints</span>),
             <span class="ident">padding</span>,
             <span class="ident">border</span>,
         }
@@ -1177,7 +1179,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentSize</span> {
         <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">WidgetRasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::content_size</span>(
             <span class="self">self</span>,
-            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
+            <span class="ident">TransmogrifierContext::try_from</span>(<span class="ident">context</span>).<span class="ident">unwrap</span>(),
             <span class="ident">constraints</span>,
         )
     }

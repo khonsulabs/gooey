@@ -205,7 +205,7 @@
             .<span class="ident">frontend</span>
             .<span class="ident">gooey</span>()
             .<span class="ident">stylesheet</span>()
-            .<span class="ident">effective_style_for</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Widget</span><span class="op">&gt;</span>(<span class="ident">context</span>.<span class="ident">style</span>.<span class="ident">clone</span>(), <span class="kw-2">&amp;</span><span class="ident">State::default</span>());
+            .<span class="ident">effective_style_for</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Widget</span><span class="op">&gt;</span>(<span class="ident">context</span>.<span class="ident">style</span>().<span class="ident">clone</span>(), <span class="kw-2">&amp;</span><span class="ident">State::default</span>());
         <span class="kw">let</span> <span class="ident">spacing</span> <span class="op">=</span> <span class="ident">effective_style</span>.<span class="ident">get_or_default</span>::<span class="op">&lt;</span><span class="ident">ListAdornmentSpacing</span><span class="op">&gt;</span>();
         <span class="kw">let</span> <span class="ident">css</span> <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">initialize_widget_element</span>(<span class="kw-2">&amp;</span><span class="ident">container</span>, <span class="kw-2">&amp;</span><span class="ident">context</span>)

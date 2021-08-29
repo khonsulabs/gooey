@@ -687,6 +687,16 @@
 <span id="685">685</span>
 <span id="686">686</span>
 <span id="687">687</span>
+<span id="688">688</span>
+<span id="689">689</span>
+<span id="690">690</span>
+<span id="691">691</span>
+<span id="692">692</span>
+<span id="693">693</span>
+<span id="694">694</span>
+<span id="695">695</span>
+<span id="696">696</span>
+<span id="697">697</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that rasterizes widgets</span>
 <span class="doccomment">//! using a [`Renderer`](gooey_renderer::Renderer).</span>
@@ -716,13 +726,14 @@
 
 <span class="kw">use</span> <span class="ident">events</span>::{<span class="ident">InputEvent</span>, <span class="ident">WindowEvent</span>};
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">assets</span>::{<span class="self">self</span>, <span class="ident">Configuration</span>, <span class="ident">Image</span>},
-    <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>},
+    <span class="ident">assets</span>::{<span class="self">self</span>, <span class="ident">Configuration</span>, <span class="ident">FrontendImage</span>, <span class="ident">Image</span>},
+    <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Size</span>},
     <span class="ident">styles</span>::{
         <span class="ident">style_sheet</span>::{<span class="self">self</span>},
         <span class="ident">Autofocus</span>, <span class="ident">Style</span>, <span class="ident">SystemTheme</span>, <span class="ident">TabIndex</span>,
     },
-    <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>, <span class="ident">Scaled</span>, <span class="ident">Timer</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">WidgetId</span>,
+    <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>, <span class="ident">Pixels</span>, <span class="ident">Scaled</span>, <span class="ident">Timer</span>, <span class="ident">TransmogrifierContext</span>,
+    <span class="ident">WidgetId</span>,
 };
 <span class="kw">use</span> <span class="ident">image</span>::{<span class="ident">ImageFormat</span>, <span class="ident">RgbaImage</span>};
 <span class="kw">use</span> <span class="ident">platforms</span>::{<span class="ident">target::OS</span>, <span class="ident">TARGET_OS</span>};
@@ -858,8 +869,17 @@
         .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;unknown image format: {:?}&quot;</span>, <span class="ident">err</span>))<span class="question-mark">?</span>;
     <span class="kw">let</span> <span class="ident">loaded_image</span> <span class="op">=</span> <span class="ident">image::load_from_memory_with_format</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>, <span class="ident">format</span>)
         .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;error parsing image: {:?}&quot;</span>, <span class="ident">err</span>))<span class="question-mark">?</span>;
-    <span class="ident">image</span>.<span class="ident">set_data</span>(<span class="ident">Arc::new</span>(<span class="ident">loaded_image</span>.<span class="ident">to_rgba8</span>()));
+    <span class="ident">image</span>.<span class="ident">set_data</span>(<span class="ident">RasterizerImage</span>(<span class="ident">Arc::new</span>(<span class="ident">loaded_image</span>.<span class="ident">to_rgba8</span>())));
     <span class="prelude-val">Ok</span>(())
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">struct</span> <span class="ident">RasterizerImage</span>(<span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RgbaImage</span><span class="op">&gt;</span>);
+
+<span class="kw">impl</span> <span class="ident">FrontendImage</span> <span class="kw">for</span> <span class="ident">RasterizerImage</span> {
+    <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Size</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">Pixels</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Some</span>(<span class="ident">Size::new</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">width</span>(), <span class="self">self</span>.<span class="number">0</span>.<span class="ident">height</span>()))
+    }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Renderer</span><span class="op">&gt;</span> <span class="ident">Rasterizer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
@@ -1322,8 +1342,8 @@
     <span class="kw">fn</span> <span class="ident">as_rgba_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RgbaImage</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">map_data</span>(<span class="op">|</span><span class="ident">opt_data</span><span class="op">|</span> {
             <span class="ident">opt_data</span>
-                .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">data</span><span class="op">|</span> <span class="ident">data</span>.<span class="ident">as_any</span>().<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RgbaImage</span><span class="op">&gt;</span><span class="op">&gt;</span>())
-                .<span class="ident">map</span>(<span class="ident">Arc::clone</span>)
+                .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">data</span><span class="op">|</span> <span class="ident">data</span>.<span class="ident">as_any</span>().<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">RasterizerImage</span><span class="op">&gt;</span>())
+                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">img</span><span class="op">|</span> <span class="ident">img</span>.<span class="number">0</span>.<span class="ident">clone</span>())
         })
     }
 }

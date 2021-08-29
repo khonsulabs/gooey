@@ -194,6 +194,7 @@
 <span id="192">192</span>
 <span id="193">193</span>
 <span id="194">194</span>
+<span id="195">195</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">figures::Figure</span>,
@@ -205,7 +206,7 @@
     <span class="ident">ROOT_CLASS</span>, <span class="ident">SOLID_WIDGET_CLASS</span>,
 };
 <span class="kw">use</span> <span class="ident">gooey_widgets</span>::{
-    <span class="ident">button</span>::{<span class="ident">Button</span>, <span class="ident">ButtonColor</span>},
+    <span class="ident">button</span>::{<span class="ident">Button</span>, <span class="ident">ButtonColor</span>, <span class="ident">ButtonImageSpacing</span>},
     <span class="ident">checkbox::Checkbox</span>,
     <span class="ident">input::Input</span>,
     <span class="ident">label::Label</span>,
@@ -286,6 +287,7 @@
                 .<span class="ident">with</span>(<span class="ident">Alignment::Center</span>)
                 .<span class="ident">with</span>(<span class="ident">VerticalAlignment::Center</span>)
                 .<span class="ident">with</span>(<span class="ident">Padding</span>(<span class="ident">Surround::from</span>(<span class="prelude-val">Some</span>(<span class="ident">Figure::new</span>(<span class="number">5.</span>)))))
+                .<span class="ident">with</span>(<span class="ident">ButtonImageSpacing</span>(<span class="ident">Figure::new</span>(<span class="number">5.</span>)))
         }))
         .<span class="ident">with</span>(
             <span class="ident">Rule::for_widget</span>::<span class="op">&lt;</span><span class="ident">Checkbox</span><span class="op">&gt;</span>()

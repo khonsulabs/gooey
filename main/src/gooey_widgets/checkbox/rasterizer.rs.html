@@ -258,7 +258,7 @@
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LayoutState</span> {
     <span class="comment">// Determine the checkbox size by figuring out the line height</span>
     <span class="kw">let</span> <span class="ident">line_height</span> <span class="op">=</span> <span class="ident">renderer</span>
-        .<span class="ident">measure_text_with_style</span>(<span class="string">&quot;m&quot;</span>, <span class="ident">context</span>.<span class="ident">style</span>)
+        .<span class="ident">measure_text_with_style</span>(<span class="string">&quot;m&quot;</span>, <span class="ident">context</span>.<span class="ident">style</span>())
         .<span class="ident">height</span>();
     <span class="kw">let</span> <span class="ident">checkbox_size</span> <span class="op">=</span> <span class="ident">Size::from_figures</span>(<span class="ident">line_height</span>, <span class="ident">line_height</span>);
 
@@ -267,10 +267,10 @@
         (<span class="ident">size</span>.<span class="ident">width</span> <span class="op">-</span> <span class="ident">checkbox_size</span>.<span class="ident">width</span> <span class="op">-</span> <span class="ident">LABEL_PADDING</span>.<span class="ident">get</span>()).<span class="ident">max</span>(<span class="number">0.</span>),
         <span class="ident">size</span>.<span class="ident">height</span>,
     );
-    <span class="kw">let</span> <span class="ident">label</span> <span class="op">=</span> <span class="ident">Text::span</span>(<span class="kw-2">&amp;</span><span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">label</span>, <span class="ident">context</span>.<span class="ident">style</span>.<span class="ident">clone</span>()).<span class="ident">wrap</span>(
+    <span class="kw">let</span> <span class="ident">label</span> <span class="op">=</span> <span class="ident">Text::span</span>(<span class="kw-2">&amp;</span><span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">label</span>, <span class="ident">context</span>.<span class="ident">style</span>().<span class="ident">clone</span>()).<span class="ident">wrap</span>(
         <span class="ident">renderer</span>,
         <span class="ident">TextWrap::MultiLine</span> { <span class="ident">size</span>: <span class="ident">label_size</span> },
-        <span class="prelude-val">Some</span>(<span class="ident">context</span>.<span class="ident">style</span>),
+        <span class="prelude-val">Some</span>(<span class="ident">context</span>.<span class="ident">style</span>()),
     );
 
     <span class="kw">let</span> <span class="ident">label_size</span> <span class="op">=</span> <span class="ident">label</span>.<span class="ident">size</span>();
@@ -298,11 +298,11 @@
                 .<span class="ident">to_pixels</span>(<span class="kw-2">&amp;</span><span class="ident">scale</span>)
                 .<span class="ident">round_out</span>();
             <span class="ident">renderer</span>
-                .<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ButtonColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">checkbox_rect</span>.<span class="ident">as_rect</span>(), <span class="ident">context</span>.<span class="ident">style</span>);
+                .<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ButtonColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">checkbox_rect</span>.<span class="ident">as_rect</span>(), <span class="ident">context</span>.<span class="ident">style</span>());
             <span class="kw">if</span> <span class="ident">context</span>.<span class="ident">ui_state</span>.<span class="ident">focused</span> {
                 <span class="ident">renderer</span>.<span class="ident">stroke_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">HighlightColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(
                     <span class="kw-2">&amp;</span><span class="ident">checkbox_rect</span>.<span class="ident">as_rect</span>(),
-                    <span class="ident">context</span>.<span class="ident">style</span>,
+                    <span class="ident">context</span>.<span class="ident">style</span>(),
                 );
             }
             <span class="kw">if</span> <span class="ident">context</span>.<span class="ident">widget</span>.<span class="ident">checked</span> {
@@ -316,7 +316,7 @@
                 );
                 <span class="ident">renderer</span>.<span class="ident">fill_rect_with_style</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(
                     <span class="kw-2">&amp;</span><span class="ident">check_box</span>.<span class="ident">as_rect</span>(),
-                    <span class="ident">context</span>.<span class="ident">style</span>,
+                    <span class="ident">context</span>.<span class="ident">style</span>(),
                 );
             }
 
@@ -328,7 +328,7 @@
             );
             <span class="ident">layout</span>
                 .<span class="ident">label</span>
-                .<span class="ident">render_within</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="ident">renderer</span>, <span class="ident">label_rect</span>, <span class="ident">context</span>.<span class="ident">style</span>);
+                .<span class="ident">render_within</span>::<span class="op">&lt;</span><span class="ident">ForegroundColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="ident">renderer</span>, <span class="ident">label_rect</span>, <span class="ident">context</span>.<span class="ident">style</span>());
         }
     }
 

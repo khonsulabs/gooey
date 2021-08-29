@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Asset","A loadable asset."],["Builder","Builds an [`Asset`]"],["Configuration","Configuration for loading assets."],["Image","A loadable image asset."]]});
+initSidebarItems({"struct":[["Asset","A loadable asset."],["Builder","Builds an [`Asset`]"],["Configuration","Configuration for loading assets."],["Image","A loadable image asset."]],"trait":[["FrontendImage","An implementation of an [`Image`] for a frontend."]]});
