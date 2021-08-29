@@ -692,11 +692,6 @@
 <span id="690">690</span>
 <span id="691">691</span>
 <span id="692">692</span>
-<span id="693">693</span>
-<span id="694">694</span>
-<span id="695">695</span>
-<span id="696">696</span>
-<span id="697">697</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that rasterizes widgets</span>
 <span class="doccomment">//! using a [`Renderer`](gooey_renderer::Renderer).</span>
@@ -909,12 +904,7 @@
             <span class="ident">renderer</span>: <span class="prelude-val">Some</span>(<span class="ident">renderer</span>),
         }
         .<span class="ident">with_transmogrifier</span>(<span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">root_widget</span>().<span class="ident">id</span>(), <span class="op">|</span><span class="ident">transmogrifier</span>, <span class="kw-2">mut</span> <span class="ident">context</span><span class="op">|</span> {
-            <span class="ident">transmogrifier</span>.<span class="ident">render_within</span>(
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">context</span>,
-                <span class="ident">Rect::sized</span>(<span class="ident">Point::default</span>(), <span class="ident">size</span>),
-                <span class="prelude-val">None</span>,
-                <span class="kw-2">&amp;</span><span class="ident">Style::default</span>(),
-            );
+            <span class="ident">transmogrifier</span>.<span class="ident">render_within</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">context</span>, <span class="ident">Rect::from</span>(<span class="ident">size</span>), <span class="prelude-val">None</span>, <span class="kw-2">&amp;</span><span class="ident">Style::default</span>());
         });
     }
 

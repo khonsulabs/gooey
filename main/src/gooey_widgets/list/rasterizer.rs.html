@@ -231,16 +231,11 @@
 <span id="229">229</span>
 <span id="230">230</span>
 <span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
-<span id="236">236</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">figures</span>::{<span class="ident">Figure</span>, <span class="ident">Point</span>, <span class="ident">Rectlike</span>, <span class="ident">Size</span>, <span class="ident">SizedRect</span>, <span class="ident">Vector</span>, <span class="ident">Zero</span>},
+    <span class="ident">figures</span>::{<span class="ident">Figure</span>, <span class="ident">Point</span>, <span class="ident">Rectlike</span>, <span class="ident">Size</span>, <span class="ident">SizedRect</span>, <span class="ident">Vector</span>},
     <span class="ident">styles</span>::{<span class="ident">Style</span>, <span class="ident">TextColor</span>},
     <span class="ident">Scaled</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">WidgetRegistration</span>,
 };
@@ -293,20 +288,15 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">indicators</span> <span class="op">=</span> <span class="ident">indicators</span>.<span class="ident">into_iter</span>();
         <span class="ident">for_each_measured_widget</span>(
             <span class="ident">context</span>,
-            <span class="ident">bounds</span>.<span class="ident">size</span>() <span class="op">-</span> <span class="ident">Vector::from_figures</span>(<span class="ident">offset_amount</span>, <span class="ident">Figure::default</span>()),
+            <span class="ident">bounds</span>.<span class="ident">size</span>() <span class="op">-</span> <span class="ident">Vector::from_x</span>(<span class="ident">offset_amount</span>),
             <span class="op">|</span><span class="ident">child</span>, <span class="kw-2">mut</span> <span class="ident">child_bounds</span><span class="op">|</span> {
-                <span class="ident">child_bounds</span> <span class="op">=</span> <span class="ident">child_bounds</span>.<span class="ident">translate</span>(
-                    <span class="ident">content_area</span>.<span class="ident">location</span> <span class="op">+</span> <span class="ident">Vector::from_figures</span>(<span class="ident">offset_amount</span>, <span class="ident">Figure::default</span>()),
-                );
+                <span class="ident">child_bounds</span> <span class="op">=</span>
+                    <span class="ident">child_bounds</span>.<span class="ident">translate</span>(<span class="ident">content_area</span>.<span class="ident">location</span> <span class="op">+</span> <span class="ident">Vector::from_x</span>(<span class="ident">offset_amount</span>));
 
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">indicator</span>) <span class="op">=</span> <span class="ident">indicators</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>() {
                     <span class="ident">indicator</span>.<span class="ident">render</span>::<span class="op">&lt;</span><span class="ident">TextColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(
                         <span class="ident">renderer</span>,
-                        <span class="ident">child_bounds</span>.<span class="ident">origin</span>
-                            <span class="op">-</span> <span class="ident">Vector::from_figures</span>(
-                                <span class="ident">spacing</span> <span class="op">+</span> <span class="ident">indicator</span>.<span class="ident">size</span>().<span class="ident">width</span>(),
-                                <span class="ident">Figure::default</span>(),
-                            ),
+                        <span class="ident">child_bounds</span>.<span class="ident">origin</span> <span class="op">-</span> <span class="ident">Vector::from_x</span>(<span class="ident">spacing</span> <span class="op">+</span> <span class="ident">indicator</span>.<span class="ident">size</span>().<span class="ident">width</span>()),
                         <span class="bool-val">true</span>,
                         <span class="prelude-val">Some</span>(<span class="ident">context</span>.<span class="ident">style</span>()),
                     );
@@ -377,7 +367,10 @@
                 .<span class="ident">frontend</span>
                 .<span class="ident">with_transmogrifier</span>(<span class="ident">child</span>.<span class="ident">id</span>(), <span class="op">|</span><span class="ident">transmogrifier</span>, <span class="kw-2">mut</span> <span class="ident">child_context</span><span class="op">|</span> {
                     <span class="kw">let</span> <span class="ident">child_size</span> <span class="op">=</span> <span class="ident">transmogrifier</span>
-                        .<span class="ident">content_size</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">child_context</span>, <span class="ident">Size::new</span>(<span class="prelude-val">Some</span>(<span class="ident">constraints</span>.<span class="ident">width</span>), <span class="prelude-val">None</span>))
+                        .<span class="ident">content_size</span>(
+                            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">child_context</span>,
+                            <span class="ident">Size::from_width</span>(<span class="prelude-val">Some</span>(<span class="ident">constraints</span>.<span class="ident">width</span>)),
+                        )
                         .<span class="ident">total_size</span>();
                     <span class="ident">Size::new</span>(<span class="ident">constraints</span>.<span class="ident">width</span>, <span class="ident">child_size</span>.<span class="ident">height</span>)
                 })
@@ -399,10 +392,7 @@
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">top</span> <span class="op">=</span> <span class="ident">Figure::default</span>();
     <span class="kw">for</span> <span class="ident">child</span> <span class="kw">in</span> <span class="ident">children</span> {
         <span class="kw">let</span> <span class="ident">child_size</span> <span class="op">=</span> <span class="ident">child_measurer</span>(<span class="ident">child</span>).<span class="ident">max</span>(<span class="kw-2">&amp;</span><span class="ident">Size::default</span>());
-        <span class="ident">callback</span>(
-            <span class="ident">child</span>,
-            <span class="ident">SizedRect::new</span>(<span class="ident">Point::from_figures</span>(<span class="ident">Figure::zero</span>(), <span class="ident">top</span>), <span class="ident">child_size</span>),
-        );
+        <span class="ident">callback</span>(<span class="ident">child</span>, <span class="ident">SizedRect::new</span>(<span class="ident">Point::from_y</span>(<span class="ident">top</span>), <span class="ident">child_size</span>));
         <span class="ident">top</span> <span class="op">+</span><span class="op">=</span> <span class="ident">child_size</span>.<span class="ident">height</span>();
     }
 }

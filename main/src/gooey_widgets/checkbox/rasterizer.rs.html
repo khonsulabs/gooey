@@ -276,7 +276,7 @@
     <span class="kw">let</span> <span class="ident">label_size</span> <span class="op">=</span> <span class="ident">label</span>.<span class="ident">size</span>();
 
     <span class="ident">LayoutState</span> {
-        <span class="ident">content_size</span>: <span class="ident">label_size</span> <span class="op">+</span> <span class="ident">Vector::new</span>(<span class="ident">checkbox_size</span>.<span class="ident">width</span> <span class="op">+</span> <span class="ident">LABEL_PADDING</span>.<span class="ident">get</span>(), <span class="number">0.</span>),
+        <span class="ident">content_size</span>: <span class="ident">label_size</span> <span class="op">+</span> <span class="ident">Vector::from_x</span>(<span class="ident">checkbox_size</span>.<span class="ident">width</span> <span class="op">+</span> <span class="ident">LABEL_PADDING</span>.<span class="ident">get</span>()),
         <span class="ident">checkbox_size</span>,
         <span class="ident">label_size</span>,
         <span class="ident">label</span>,
@@ -322,7 +322,7 @@
 
             <span class="comment">// Render the label</span>
             <span class="kw">let</span> <span class="ident">label_rect</span> <span class="op">=</span> <span class="ident">Rect::sized</span>(
-                <span class="ident">Point::new</span>(<span class="ident">layout</span>.<span class="ident">checkbox_size</span>.<span class="ident">width</span> <span class="op">+</span> <span class="ident">LABEL_PADDING</span>.<span class="ident">get</span>(), <span class="number">0.</span>)
+                <span class="ident">Point::from_x</span>(<span class="ident">layout</span>.<span class="ident">checkbox_size</span>.<span class="ident">width</span> <span class="op">+</span> <span class="ident">LABEL_PADDING</span>.<span class="ident">get</span>())
                     <span class="op">+</span> <span class="ident">content_area</span>.<span class="ident">location</span>,
                 <span class="ident">layout</span>.<span class="ident">label_size</span>,
             );

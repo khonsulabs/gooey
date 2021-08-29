@@ -616,7 +616,7 @@
             <span class="kw">const</span> <span class="ident">CURSOR_LENGTH</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">16.</span>;
             <span class="kw">const</span> <span class="ident">INNER_LENGTH</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">14.</span>;
             <span class="kw">const</span> <span class="ident">TAIL_LENGTH</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">20.</span>;
-            <span class="kw">let</span> <span class="ident">left_edge_lower</span> <span class="op">=</span> <span class="ident">Point::new</span>(<span class="number">0.</span>, <span class="ident">CURSOR_LENGTH</span>);
+            <span class="kw">let</span> <span class="ident">left_edge_lower</span> <span class="op">=</span> <span class="ident">Point::from_y</span>(<span class="ident">CURSOR_LENGTH</span>);
             <span class="kw">let</span> <span class="ident">right_edge_lower</span> <span class="op">=</span> <span class="ident">Angle::Degrees</span>(<span class="op">-</span><span class="number">45.</span>).<span class="ident">transform_point</span>(<span class="ident">left_edge_lower</span>);
             <span class="kw">let</span> <span class="ident">left_inner</span> <span class="op">=</span>
                 <span class="ident">Angle::Degrees</span>(<span class="op">-</span><span class="number">17.5</span>).<span class="ident">transform_point</span>(<span class="ident">Point</span>::<span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="number">0.</span>, <span class="ident">INNER_LENGTH</span>));
