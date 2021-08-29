@@ -132,14 +132,6 @@
 <span id="130">130</span>
 <span id="131">131</span>
 <span id="132">132</span>
-<span id="133">133</span>
-<span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">devx_cmd::run</span>;
 <span class="kw">use</span> <span class="ident">fs_extra::dir::CopyOptions</span>;
@@ -155,7 +147,6 @@
         <span class="attribute">#[<span class="ident">structopt</span>(<span class="ident">long</span> <span class="op">=</span> <span class="string">&quot;install-dependencies&quot;</span>)]</span>
         <span class="ident">install_dependencies</span>: <span class="ident">bool</span>,
     },
-    <span class="ident">GenerateExampleSnapshots</span>,
 }
 
 <span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">anyhow::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
@@ -167,7 +158,6 @@
         <span class="ident">Args::GenerateCodeCoverageReport</span> {
             <span class="ident">install_dependencies</span>,
         } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">CodeCoverage</span>::<span class="op">&lt;</span><span class="ident">CodeCoverageConfig</span><span class="op">&gt;</span><span class="ident">::execute</span>(<span class="ident">install_dependencies</span>)<span class="question-mark">?</span>,
-        <span class="ident">Args::GenerateExampleSnapshots</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">generate_example_snapshots</span>()<span class="question-mark">?</span>,
     };
     <span class="prelude-val">Ok</span>(())
 }
@@ -274,12 +264,6 @@
     <span class="kw">fn</span> <span class="ident">ignore_paths</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
         <span class="macro">vec!</span>[<span class="ident">String::from</span>(<span class="string">&quot;gooey/examples/*&quot;</span>)]
     }
-}
-
-<span class="kw">fn</span> <span class="ident">generate_example_snapshots</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">devx_cmd::Error</span><span class="op">&gt;</span> {
-    <span class="macro">println!</span>(<span class="string">&quot;Executing wasm-bindgen (cargo install wasm-bindgen if you don&#39;t have this)&quot;</span>);
-    <span class="macro">run!</span>(<span class="string">&quot;cargo&quot;</span>, <span class="string">&quot;test&quot;</span>, <span class="string">&quot;--examples&quot;</span>, <span class="string">&quot;--all-features&quot;</span>)<span class="question-mark">?</span>;
-    <span class="macro">run!</span>(<span class="string">&quot;cp&quot;</span>, <span class="string">&quot;-r&quot;</span>, <span class="string">&quot;target/snapshots&quot;</span>, <span class="string">&quot;gooey/examples/&quot;</span>)
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xtask" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
