@@ -747,9 +747,113 @@
 <span id="745">745</span>
 <span id="746">746</span>
 <span id="747">747</span>
+<span id="748">748</span>
+<span id="749">749</span>
+<span id="750">750</span>
+<span id="751">751</span>
+<span id="752">752</span>
+<span id="753">753</span>
+<span id="754">754</span>
+<span id="755">755</span>
+<span id="756">756</span>
+<span id="757">757</span>
+<span id="758">758</span>
+<span id="759">759</span>
+<span id="760">760</span>
+<span id="761">761</span>
+<span id="762">762</span>
+<span id="763">763</span>
+<span id="764">764</span>
+<span id="765">765</span>
+<span id="766">766</span>
+<span id="767">767</span>
+<span id="768">768</span>
+<span id="769">769</span>
+<span id="770">770</span>
+<span id="771">771</span>
+<span id="772">772</span>
+<span id="773">773</span>
+<span id="774">774</span>
+<span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
+<span id="778">778</span>
+<span id="779">779</span>
+<span id="780">780</span>
+<span id="781">781</span>
+<span id="782">782</span>
+<span id="783">783</span>
+<span id="784">784</span>
+<span id="785">785</span>
+<span id="786">786</span>
+<span id="787">787</span>
+<span id="788">788</span>
+<span id="789">789</span>
+<span id="790">790</span>
+<span id="791">791</span>
+<span id="792">792</span>
+<span id="793">793</span>
+<span id="794">794</span>
+<span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
+<span id="804">804</span>
+<span id="805">805</span>
+<span id="806">806</span>
+<span id="807">807</span>
+<span id="808">808</span>
+<span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
+<span id="813">813</span>
+<span id="814">814</span>
+<span id="815">815</span>
+<span id="816">816</span>
+<span id="817">817</span>
+<span id="818">818</span>
+<span id="819">819</span>
+<span id="820">820</span>
+<span id="821">821</span>
+<span id="822">822</span>
+<span id="823">823</span>
+<span id="824">824</span>
+<span id="825">825</span>
+<span id="826">826</span>
+<span id="827">827</span>
+<span id="828">828</span>
+<span id="829">829</span>
+<span id="830">830</span>
+<span id="831">831</span>
+<span id="832">832</span>
+<span id="833">833</span>
+<span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that targets web browsers</span>
 <span class="doccomment">//! by creating DOM elements using `web-sys` and `wasm-bindgen`.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## [`Window`] implementation</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The [`Window`] implementation in this frontend is limited by the browser&#39;s APIs. Of</span>
+<span class="doccomment">//! note:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! - [`maximized()`](Window::maximized) and [`set_maximized()`](Window::set_maximized) interact with the fullscreen APIs.</span>
+<span class="doccomment">//! - [`inner_position()`](Window::inner_position) and [`outer_position()`](Window::outer_position) are equivalent. This also means</span>
+<span class="doccomment">//!   that [`set_outer_position()`](Window::set_outer_position) actually sets the inner position.</span>
+<span class="doccomment">//! - Controlling the browser window (closing, resizing, moving) is dependent</span>
+<span class="doccomment">//!   upon the browser allowing the operation. This generally is only possible</span>
+<span class="doccomment">//!   if the window is opened via a javascript API and has no other tabs within</span>
+<span class="doccomment">//!   in.</span>
 
 <span class="attribute">#![<span class="ident">forbid</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="attribute">#![<span class="ident">warn</span>(
@@ -783,7 +887,7 @@
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">assets</span>::{<span class="self">self</span>, <span class="ident">Configuration</span>, <span class="ident">FrontendImage</span>, <span class="ident">Image</span>},
-    <span class="ident">figures::Size</span>,
+    <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Size</span>},
     <span class="ident">styles</span>::{
         <span class="ident">border::Border</span>,
         <span class="ident">style_sheet</span>::{<span class="ident">Classes</span>, <span class="ident">State</span>},
@@ -792,7 +896,7 @@
     },
     <span class="ident">AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Callback</span>, <span class="ident">Frontend</span>, <span class="ident">Gooey</span>, <span class="ident">NativeTimer</span>,
     <span class="ident">Timer</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">WeakWidgetRegistration</span>,
-    <span class="ident">Widget</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>,
+    <span class="ident">Widget</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>, <span class="ident">Window</span>,
 };
 <span class="kw">use</span> <span class="ident">parking_lot::Mutex</span>;
 <span class="kw">use</span> <span class="ident">wasm_bindgen</span>::{<span class="ident">prelude</span>::<span class="kw-2">*</span>, <span class="ident">JsCast</span>};
@@ -800,15 +904,19 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">utils</span>;
 
 <span class="kw">use</span> <span class="ident">utils</span>::{
-    <span class="ident">create_element</span>, <span class="ident">set_widget_classes</span>, <span class="ident">set_widget_id</span>, <span class="ident">window_element_by_widget_id</span>,
+    <span class="ident">create_element</span>, <span class="ident">set_widget_classes</span>, <span class="ident">set_widget_id</span>, <span class="ident">widget_css_id</span>, <span class="ident">window_element_by_widget_id</span>,
     <span class="ident">CssBlockBuilder</span>, <span class="ident">CssManager</span>, <span class="ident">CssRules</span>,
 };
-<span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">ErrorEvent</span>, <span class="ident">HtmlElement</span>, <span class="ident">HtmlImageElement</span>, <span class="ident">KeyboardEvent</span>, <span class="ident">MediaQueryListEvent</span>};
+<span class="kw">use</span> <span class="ident">web_sys</span>::{
+    <span class="ident">window</span>, <span class="ident">ErrorEvent</span>, <span class="ident">HtmlElement</span>, <span class="ident">HtmlImageElement</span>, <span class="ident">KeyboardEvent</span>, <span class="ident">MediaQueryListEvent</span>,
+};
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::utils::window_document</span>;
 
 <span class="kw">static</span> <span class="ident">INITIALIZED</span>: <span class="ident">AtomicBool</span> <span class="op">=</span> <span class="ident">AtomicBool::new</span>(<span class="bool-val">false</span>);
 
+<span class="doccomment">/// `WebSys` is a [`Frontend`] implementor that implements Gooey interfaces</span>
+<span class="doccomment">/// through `web-sys` in a web browser.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WebSys</span> {
     <span class="kw">pub</span> <span class="ident">ui</span>: <span class="ident">Gooey</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
@@ -1133,7 +1241,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">gooey_core::Window</span><span class="op">&gt;</span> {
-        <span class="macro">todo!</span>(<span class="string">&quot;implement a way to access basic window information&quot;</span>)
+        <span class="prelude-val">Some</span>(<span class="self">self</span>)
     }
 }
 
@@ -1494,6 +1602,80 @@
 
 <span class="kw">fn</span> <span class="ident">image_css_id</span>(<span class="ident">id</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="macro">format!</span>(<span class="string">&quot;gooey-img-{}&quot;</span>, <span class="ident">id</span>)
+}
+<span class="kw">impl</span> <span class="ident">Window</span> <span class="kw">for</span> <span class="ident">WebSys</span> {
+    <span class="kw">fn</span> <span class="ident">set_title</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">title</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+        <span class="kw">let</span> <span class="ident">document</span> <span class="op">=</span> <span class="ident">window_document</span>();
+        <span class="ident">document</span>.<span class="ident">set_title</span>(<span class="ident">title</span>);
+    }
+
+    <span class="kw">fn</span> <span class="ident">inner_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">gooey_core::Pixels</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">window</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="ident">window</span>
+            .<span class="ident">inner_width</span>()
+            .<span class="ident">ok</span>()
+            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">as_f64</span>())
+            .<span class="ident">unwrap_or_default</span>();
+        <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">window</span>
+            .<span class="ident">inner_height</span>()
+            .<span class="ident">ok</span>()
+            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">as_f64</span>())
+            .<span class="ident">unwrap_or_default</span>();
+
+        <span class="ident">Size::new</span>(<span class="ident">width</span>, <span class="ident">height</span>).<span class="ident">try_cast</span>().<span class="ident">unwrap_or_default</span>()
+    }
+
+    <span class="kw">fn</span> <span class="ident">set_inner_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">new_size</span>: <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">gooey_core::Pixels</span><span class="op">&gt;</span>) {
+        <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">window</span>().<span class="ident">unwrap</span>();
+        <span class="ident">drop</span>(<span class="ident">window</span>.<span class="ident">resize_to</span>(
+            <span class="ident">i32::try_from</span>(<span class="ident">new_size</span>.<span class="ident">width</span>).<span class="ident">unwrap</span>(),
+            <span class="ident">i32::try_from</span>(<span class="ident">new_size</span>.<span class="ident">height</span>).<span class="ident">unwrap</span>(),
+        ));
+    }
+
+    <span class="kw">fn</span> <span class="ident">set_outer_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">new_position</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">gooey_core::Pixels</span><span class="op">&gt;</span>) {
+        <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">window</span>().<span class="ident">unwrap</span>();
+        <span class="ident">drop</span>(<span class="ident">window</span>.<span class="ident">move_to</span>(<span class="ident">new_position</span>.<span class="ident">x</span>, <span class="ident">new_position</span>.<span class="ident">y</span>));
+    }
+
+    <span class="kw">fn</span> <span class="ident">inner_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">gooey_core::Pixels</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">window</span>().<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">window</span>
+            .<span class="ident">screen_x</span>()
+            .<span class="ident">ok</span>()
+            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">as_f64</span>())
+            .<span class="ident">unwrap_or_default</span>();
+        <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">window</span>
+            .<span class="ident">screen_y</span>()
+            .<span class="ident">ok</span>()
+            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">as_f64</span>())
+            .<span class="ident">unwrap_or_default</span>();
+
+        <span class="ident">Point::new</span>(<span class="ident">x</span>, <span class="ident">y</span>).<span class="ident">try_cast</span>().<span class="ident">unwrap_or_default</span>()
+    }
+
+    <span class="kw">fn</span> <span class="ident">set_always_on_top</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_always</span>: <span class="ident">bool</span>) {}
+
+    <span class="kw">fn</span> <span class="ident">maximized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="ident">window_document</span>().<span class="ident">fullscreen</span>()
+    }
+
+    <span class="kw">fn</span> <span class="ident">set_maximized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">maximized</span>: <span class="ident">bool</span>) {
+        <span class="kw">if</span> <span class="ident">maximized</span> {
+            <span class="kw">let</span> <span class="ident">body</span> <span class="op">=</span> <span class="ident">window_document</span>()
+                .<span class="ident">get_element_by_id</span>(<span class="kw-2">&amp;</span><span class="ident">widget_css_id</span>(<span class="self">self</span>.<span class="ident">ui</span>.<span class="ident">root_widget</span>().<span class="ident">id</span>().<span class="ident">id</span>))
+                .<span class="ident">unwrap</span>();
+            <span class="ident">drop</span>(<span class="ident">body</span>.<span class="ident">request_fullscreen</span>());
+        } <span class="kw">else</span> {
+            <span class="ident">window_document</span>().<span class="ident">exit_fullscreen</span>();
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">set_minimized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_minimized</span>: <span class="ident">bool</span>) {}
+
+    <span class="kw">fn</span> <span class="ident">close</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="ident">drop</span>(<span class="ident">window</span>().<span class="ident">unwrap</span>().<span class="ident">close</span>());
+    }
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gooey_browser" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
