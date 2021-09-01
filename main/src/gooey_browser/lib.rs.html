@@ -743,6 +743,10 @@
 <span id="741">741</span>
 <span id="742">742</span>
 <span id="743">743</span>
+<span id="744">744</span>
+<span id="745">745</span>
+<span id="746">746</span>
+<span id="747">747</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that targets web browsers</span>
 <span class="doccomment">//! by creating DOM elements using `web-sys` and `wasm-bindgen`.</span>
@@ -1126,6 +1130,10 @@
         <span class="kw">let</span> <span class="ident">timer</span> <span class="op">=</span> <span class="ident">Timer::from_native</span>(<span class="ident">browser</span>);
         <span class="ident">schedule_timer</span>(<span class="kw-2">&amp;</span><span class="ident">timer</span>, <span class="ident">period</span>);
         <span class="ident">timer</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">gooey_core::Window</span><span class="op">&gt;</span> {
+        <span class="macro">todo!</span>(<span class="string">&quot;implement a way to access basic window information&quot;</span>)
     }
 }
 

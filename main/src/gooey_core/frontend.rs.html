@@ -222,6 +222,21 @@
 <span id="220">220</span>
 <span id="221">221</span>
 <span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any::TypeId</span>, <span class="ident">convert::TryFrom</span>, <span class="ident">fmt::Debug</span>, <span class="ident">time::Duration</span>};
 
@@ -231,9 +246,9 @@
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">assets</span>::{<span class="self">self</span>, <span class="ident">Asset</span>, <span class="ident">Image</span>},
     <span class="ident">styles</span>::{<span class="ident">style_sheet::State</span>, <span class="ident">SystemTheme</span>},
-    <span class="ident">AnySendSync</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>, <span class="ident">LocalizationParameters</span>,
-    <span class="ident">Timer</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>,
-    <span class="ident">WidgetRegistration</span>, <span class="ident">WidgetStorage</span>,
+    <span class="ident">AnySendSync</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">AppContext</span>, <span class="ident">Callback</span>, <span class="ident">Gooey</span>,
+    <span class="ident">LocalizationParameters</span>, <span class="ident">Timer</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>,
+    <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>, <span class="ident">WidgetStorage</span>, <span class="ident">Window</span>,
 };
 
 <span class="doccomment">/// A frontend is an implementation of widgets and layouts.</span>
@@ -290,6 +305,9 @@
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="kw">fn</span> <span class="ident">widget_initialized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetId</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) {}
 
+    <span class="doccomment">/// Returns the window for this interface, if present.</span>
+    <span class="kw">fn</span> <span class="ident">window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">Window</span><span class="op">&gt;</span>;
+
     <span class="doccomment">/// Localizes `key` with `parameters`.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">fn</span> <span class="ident">localize</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
@@ -310,6 +328,14 @@
     <span class="doccomment">/// Returns the widget storage.</span>
     <span class="attribute">#[<span class="ident">must_use</span>]</span>
     <span class="kw">fn</span> <span class="ident">storage</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">WidgetStorage</span>;
+
+    <span class="doccomment">/// Returns the current application context.</span>
+    <span class="kw">fn</span> <span class="ident">app</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">AppContext</span> {
+        <span class="self">self</span>.<span class="ident">storage</span>().<span class="ident">app</span>()
+    }
+
+    <span class="doccomment">/// Returns the window for this frontend instance.</span>
+    <span class="kw">fn</span> <span class="ident">window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">Window</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Returns the current system theme.</span>
     <span class="kw">fn</span> <span class="ident">theme</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SystemTheme</span>;
@@ -397,6 +423,10 @@
 
     <span class="kw">fn</span> <span class="ident">localize</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">parameters</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LocalizationParameters</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
         <span class="self">self</span>.<span class="ident">localize</span>(<span class="ident">key</span>, <span class="ident">parameters</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">Window</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">window</span>()
     }
 }
 
