@@ -712,12 +712,13 @@
 <span id="710">710</span>
 <span id="711">711</span>
 <span id="712">712</span>
+<span id="713">713</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">any::TypeId</span>, <span class="ident">convert::TryFrom</span>, <span class="ident">ops::Deref</span>};
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Rectlike</span>, <span class="ident">Size</span>, <span class="ident">Vector</span>, <span class="ident">Vectorlike</span>},
-    <span class="ident">styles</span>::{<span class="ident">border::Border</span>, <span class="ident">BackgroundColor</span>, <span class="ident">Padding</span>, <span class="ident">Style</span>, <span class="ident">TabIndex</span>},
+    <span class="ident">styles</span>::{<span class="ident">border::Border</span>, <span class="ident">BackgroundColor</span>, <span class="ident">Intent</span>, <span class="ident">Padding</span>, <span class="ident">Style</span>, <span class="ident">TabIndex</span>},
     <span class="ident">AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Scaled</span>, <span class="ident">Transmogrifier</span>,
     <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">Widget</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRegistration</span>,
 };
@@ -780,6 +781,7 @@
                 <span class="op">&lt;</span><span class="self">Self</span><span class="ident">::Widget</span> <span class="kw">as</span> <span class="ident">Widget</span><span class="op">&gt;</span><span class="ident">::FOCUSABLE</span>,
                 <span class="ident">parent_id</span>,
                 <span class="ident">context</span>.<span class="ident">style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">TabIndex</span><span class="op">&gt;</span>().<span class="ident">copied</span>(),
+                <span class="ident">effective_style</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">Intent</span><span class="op">&gt;</span>().<span class="ident">copied</span>(),
             );
         }
     }

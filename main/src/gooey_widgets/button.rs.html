@@ -144,14 +144,37 @@
 <span id="142">142</span>
 <span id="143">143</span>
 <span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
     <span class="ident">assets::Image</span>,
     <span class="ident">figures::Figure</span>,
     <span class="ident">styles</span>::{
-        <span class="ident">style_sheet::Classes</span>, <span class="ident">BackgroundColor</span>, <span class="ident">ColorPair</span>, <span class="ident">FallbackComponent</span>, <span class="ident">Style</span>, <span class="ident">StyleComponent</span>,
+        <span class="ident">style_sheet::Classes</span>, <span class="ident">BackgroundColor</span>, <span class="ident">ColorPair</span>, <span class="ident">FallbackComponent</span>, <span class="ident">Intent</span>, <span class="ident">Style</span>,
+        <span class="ident">StyleComponent</span>,
     },
-    <span class="ident">Callback</span>, <span class="ident">Context</span>, <span class="ident">Scaled</span>, <span class="ident">StyledWidget</span>, <span class="ident">Widget</span>, <span class="ident">SOLID_WIDGET_CLASS</span>,
+    <span class="ident">Callback</span>, <span class="ident">Context</span>, <span class="ident">Scaled</span>, <span class="ident">StyledWidget</span>, <span class="ident">Widget</span>, <span class="ident">PRIMARY_WIDGET_CLASS</span>, <span class="ident">SOLID_WIDGET_CLASS</span>,
 };
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gooey-rasterizer&quot;</span>)]</span>
@@ -233,12 +256,14 @@
 <span class="attribute">#[<span class="ident">must_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Builder</span> {
     <span class="ident">button</span>: <span class="ident">Button</span>,
+    <span class="ident">intent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Intent</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Builder</span> {
     <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">button</span>: <span class="ident">Button::default</span>(),
+            <span class="ident">intent</span>: <span class="prelude-val">None</span>,
         }
     }
 
@@ -257,8 +282,27 @@
         <span class="self">self</span>
     }
 
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">intent</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Intent::Default</span>);
+        <span class="self">self</span>
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cancel</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">intent</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Intent::Cancel</span>);
+        <span class="self">self</span>
+    }
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">finish</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StyledWidget</span><span class="op">&lt;</span><span class="ident">Button</span><span class="op">&gt;</span> {
-        <span class="ident">StyledWidget::from</span>(<span class="self">self</span>.<span class="ident">button</span>)
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widget</span> <span class="op">=</span> <span class="ident">StyledWidget::from</span>(<span class="self">self</span>.<span class="ident">button</span>);
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">intent</span> {
+            <span class="prelude-val">Some</span>(<span class="ident">intent</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="kw">if</span> <span class="macro">matches!</span>(<span class="ident">intent</span>, <span class="ident">Intent::Default</span>) {
+                    <span class="ident">widget</span> <span class="op">=</span> <span class="ident">widget</span>.<span class="ident">with</span>(<span class="ident">Classes::from</span>(<span class="ident">PRIMARY_WIDGET_CLASS</span>));
+                }
+                <span class="ident">widget</span>.<span class="ident">with</span>(<span class="ident">intent</span>)
+            }
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">widget</span>,
+        }
     }
 }
 
