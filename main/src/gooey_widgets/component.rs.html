@@ -468,6 +468,12 @@
 <span id="466">466</span>
 <span id="467">467</span>
 <span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">borrow::Cow</span>,
@@ -604,6 +610,12 @@
             <span class="ident">_phantom</span>: <span class="ident">PhantomData::default</span>(),
         };
         <span class="ident">Callback::new</span>(<span class="ident">mapped_callback</span>)
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">event_mapper</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventMapper</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> {
+        <span class="ident">EventMapper</span> {
+            <span class="ident">widget</span>: <span class="self">self</span>.<span class="ident">callback_widget</span>.<span class="ident">clone</span>(),
+        }
     }
 }
 
