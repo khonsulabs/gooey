@@ -838,6 +838,12 @@
 <span id="836">836</span>
 <span id="837">837</span>
 <span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
+<span id="842">842</span>
+<span id="843">843</span>
+<span id="844">844</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that targets web browsers</span>
 <span class="doccomment">//! by creating DOM elements using `web-sys` and `wasm-bindgen`.</span>
@@ -894,9 +900,10 @@
         <span class="ident">Alignment</span>, <span class="ident">Autofocus</span>, <span class="ident">FontFamily</span>, <span class="ident">FontSize</span>, <span class="ident">Intent</span>, <span class="ident">Padding</span>, <span class="ident">Style</span>, <span class="ident">StyleComponent</span>,
         <span class="ident">SystemTheme</span>, <span class="ident">TabIndex</span>, <span class="ident">VerticalAlignment</span>,
     },
-    <span class="ident">AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">Callback</span>, <span class="ident">Frontend</span>, <span class="ident">Gooey</span>, <span class="ident">NativeTimer</span>,
-    <span class="ident">Timer</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>, <span class="ident">WeakWidgetRegistration</span>,
-    <span class="ident">Widget</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>, <span class="ident">Window</span>,
+    <span class="ident">AnyTransmogrifier</span>, <span class="ident">AnyTransmogrifierContext</span>, <span class="ident">AnyWidget</span>, <span class="ident">AnyWindowBuilder</span>, <span class="ident">Callback</span>, <span class="ident">Frontend</span>,
+    <span class="ident">Gooey</span>, <span class="ident">NativeTimer</span>, <span class="ident">Timer</span>, <span class="ident">Transmogrifier</span>, <span class="ident">TransmogrifierContext</span>, <span class="ident">TransmogrifierState</span>,
+    <span class="ident">WeakWidgetRegistration</span>, <span class="ident">Widget</span>, <span class="ident">WidgetId</span>, <span class="ident">WidgetRef</span>, <span class="ident">WidgetRegistration</span>, <span class="ident">Window</span>,
+    <span class="ident">WindowConfiguration</span>,
 };
 <span class="kw">use</span> <span class="ident">parking_lot::Mutex</span>;
 <span class="kw">use</span> <span class="ident">wasm_bindgen</span>::{<span class="ident">prelude</span>::<span class="kw-2">*</span>, <span class="ident">JsCast</span>};
@@ -1015,7 +1022,8 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">install_in_id</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">install_in_id</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">_window_config</span>: <span class="ident">WindowConfiguration</span>) {
+        <span class="comment">// TODO handle window_config</span>
         <span class="ident">std::panic::set_hook</span>(<span class="ident">Box::new</span>(<span class="ident">console_error_panic_hook::hook</span>));
         <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">web_sys::window</span>().<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="ident">document</span> <span class="op">=</span> <span class="ident">window</span>.<span class="ident">document</span>().<span class="ident">unwrap</span>();
@@ -1242,6 +1250,10 @@
 
     <span class="kw">fn</span> <span class="ident">window</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">gooey_core::Window</span><span class="op">&gt;</span> {
         <span class="prelude-val">Some</span>(<span class="self">self</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_window</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">AnyWindowBuilder</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="bool-val">false</span>
     }
 }
 

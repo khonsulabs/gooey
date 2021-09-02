@@ -51,6 +51,7 @@
 <span id="49">49</span>
 <span id="50">50</span>
 <span id="51">51</span>
+<span id="52">52</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Core traits and types used to create Graphical User Interfaces (GUIs -</span>
 <span class="doccomment">//! `gooey`s).</span>
@@ -75,13 +76,14 @@
 <span class="kw">mod</span> <span class="ident">timer</span>;
 <span class="kw">mod</span> <span class="ident">widget</span>;
 <span class="kw">mod</span> <span class="ident">window</span>;
+<span class="kw">mod</span> <span class="ident">window_builder</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">figures</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">palette</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">unic_langid</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">url</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::{<span class="ident">frontend</span>::<span class="kw-2">*</span>, <span class="ident">gooey</span>::<span class="kw-2">*</span>, <span class="ident">timer</span>::<span class="kw-2">*</span>, <span class="ident">widget</span>::<span class="kw-2">*</span>, <span class="ident">window</span>::<span class="kw-2">*</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::{<span class="ident">frontend</span>::<span class="kw-2">*</span>, <span class="ident">gooey</span>::<span class="kw-2">*</span>, <span class="ident">timer</span>::<span class="kw-2">*</span>, <span class="ident">widget</span>::<span class="kw-2">*</span>, <span class="ident">window</span>::<span class="kw-2">*</span>, <span class="ident">window_builder</span>::<span class="kw-2">*</span>};
 
 <span class="doccomment">/// A unit representing physical pixels on a display.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Pixels</span> <span class="op">=</span> <span class="ident">figures::Pixels</span>;
