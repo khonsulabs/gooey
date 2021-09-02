@@ -15,7 +15,7 @@
         <div>
             <p class="heading">Lines</p>
             <p class="title has-text-danger">
-                <abbr title="0 / 39">0 %</abbr></p>
+                <abbr title="0 / 34">0 %</abbr></p>
         </div>
     </div>
 
@@ -138,7 +138,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    style::default_stylesheet,</pre>
+                <pre class="has-background-white py-0 px-2">    widgets::browser::{default_transmogrifiers, register_transmogrifiers},</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -151,7 +151,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">    widgets::browser::{default_transmogrifiers, register_transmogrifiers},</pre>
+                <pre class="has-background-white py-0 px-2">};</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -164,7 +164,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">};</pre>
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -177,7 +177,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; Runs a browser-based [`App`](crate::app::App) with `transmogrifiers` and the</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -190,7 +190,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; Runs a browser-based [`App`](crate::app::App) with `transmogrifiers` and the</pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; root widget from `initializer`. Unless overriden by `transmogrifier`, all</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -203,7 +203,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; root widget from `initializer`. Unless overriden by `transmogrifier`, all</pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; widgets from [`gooey::widget`](crate::widgets) will use the built-in</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -216,7 +216,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; widgets from [`gooey::widget`](crate::widgets) will use the built-in</pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; transmogrifiers.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -225,11 +225,11 @@
                 <a href="#15">15</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; transmogrifiers.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">pub fn browser_main_with&lt;W: Widget + Send + Sync&gt;(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -242,7 +242,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">pub fn browser_main_with&lt;W: Widget + Send + Sync&gt;(</pre>
+                <pre class="has-background-danger-light py-0 px-2">    transmogrifiers: Transmogrifiers&lt;WebSys&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -255,7 +255,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    transmogrifiers: Transmogrifiers&lt;WebSys&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    mut initial_window: gooey_core::WindowBuilder&lt;W&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -268,7 +268,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    mut initial_window: gooey_core::WindowBuilder&lt;W&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    context: AppContext,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -281,7 +281,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    context: AppContext,</pre>
+                <pre class="has-background-danger-light py-0 px-2">) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -294,7 +294,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    browser_run(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -307,7 +307,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    browser_run(</pre>
+                <pre class="has-background-danger-light py-0 px-2">        browser_app(transmogrifiers, &amp;mut initial_window, context),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -320,7 +320,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        browser_app(transmogrifiers, &amp;mut initial_window, context),</pre>
+                <pre class="has-background-danger-light py-0 px-2">        initial_window.configuration,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -333,7 +333,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        initial_window.configuration,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -346,7 +346,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    );</pre>
+                <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -355,11 +355,11 @@
                 <a href="#25">25</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">}</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -372,7 +372,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; Runs a browser-based [`App`](crate::app::App) with the root widget from</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -385,7 +385,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; Runs a browser-based [`App`](crate::app::App) with the root widget from</pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; `initializer`. All widgets from [`gooey::widget`](crate::widgets) will be</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -398,7 +398,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; `initializer`. All widgets from [`gooey::widget`](crate::widgets) will be</pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; usable. If you wish to use other widgets, use `browser_main_with` and</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -411,7 +411,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; usable. If you wish to use other widgets, use `browser_main_with` and</pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; provide the transmogrifiers for the widgets you wish to use.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -420,11 +420,11 @@
                 <a href="#30">30</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; provide the transmogrifiers for the widgets you wish to use.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">pub fn browser_main&lt;W: Widget + Send + Sync&gt;(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -437,7 +437,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">pub fn browser_main&lt;W: Widget + Send + Sync&gt;(</pre>
+                <pre class="has-background-danger-light py-0 px-2">    initial_window: gooey_core::WindowBuilder&lt;W&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -450,7 +450,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    initial_window: gooey_core::WindowBuilder&lt;W&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    context: AppContext,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -463,7 +463,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    context: AppContext,</pre>
+                <pre class="has-background-danger-light py-0 px-2">) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -476,7 +476,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">) {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    browser_main_with(default_transmogrifiers(), initial_window, context);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -489,7 +489,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    browser_main_with(default_transmogrifiers(), initial_window, context);</pre>
+                <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -498,11 +498,11 @@
                 <a href="#36">36</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">}</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -515,7 +515,7 @@
                 
             </div>
             <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; Returns an initialized frontend using the root widget returned from `initializer`.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -524,11 +524,11 @@
                 <a href="#38">38</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
                 
             </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; Returns an initialized frontend using the root widget returned from `initializer`.</pre>
+            <div class="column has-background-danger-light p-0">
+                <pre class="has-background-danger-light py-0 px-2">pub fn browser_app(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -541,7 +541,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">pub fn browser_app(</pre>
+                <pre class="has-background-danger-light py-0 px-2">    mut transmogrifiers: Transmogrifiers&lt;WebSys&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -554,7 +554,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    mut transmogrifiers: Transmogrifiers&lt;WebSys&gt;,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    builder: &amp;mut dyn AnyWindowBuilder,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -567,7 +567,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    builder: &amp;mut dyn AnyWindowBuilder,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    context: AppContext,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -580,7 +580,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    context: AppContext,</pre>
+                <pre class="has-background-danger-light py-0 px-2">) -&gt; WebSys {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -593,7 +593,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">) -&gt; WebSys {</pre>
+                <pre class="has-background-danger-light py-0 px-2">    register_transmogrifiers(&amp;mut transmogrifiers);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -606,7 +606,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    register_transmogrifiers(&amp;mut transmogrifiers);</pre>
+                <pre class="has-background-danger-light py-0 px-2">    let transmogrifiers = Arc::new(transmogrifiers);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -619,7 +619,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    let transmogrifiers = Arc::new(transmogrifiers);</pre>
+                <pre class="has-background-danger-light py-0 px-2">    let storage = WidgetStorage::new(context);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -632,7 +632,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    let storage = WidgetStorage::new(context);</pre>
+                <pre class="has-background-danger-light py-0 px-2">    let ui = WebSys::new(</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -645,7 +645,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    let ui = WebSys::new(</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Gooey::new(transmogrifiers, builder.build(&amp;storage), storage),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -658,7 +658,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Gooey::new(</pre>
+                <pre class="has-background-danger-light py-0 px-2">        Configuration::default(),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -671,7 +671,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            transmogrifiers,</pre>
+                <pre class="has-background-danger-light py-0 px-2">    );</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -684,7 +684,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            default_stylesheet(),</pre>
+                <pre class="has-background-danger-light py-0 px-2">    ui.gooey().process_widget_messages(&amp;ui);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -697,7 +697,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            builder.build(&amp;storage),</pre>
+                <pre class="has-background-danger-light py-0 px-2">    ui</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -710,7 +710,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">            storage,</pre>
+                <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -719,11 +719,11 @@
                 <a href="#53">53</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        ),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2"></pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -732,11 +732,11 @@
                 <a href="#54">54</a>
             </div>
             <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
+                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
                 
             </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">        Configuration::default(),</pre>
+            <div class="column has-background-white p-0">
+                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; Runs an initialized frontend.</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -749,7 +749,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    );</pre>
+                <pre class="has-background-danger-light py-0 px-2">pub fn browser_run(mut ui: WebSys, window_config: WindowConfiguration) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -762,7 +762,7 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    ui.gooey().process_widget_messages(&amp;ui);</pre>
+                <pre class="has-background-danger-light py-0 px-2">    ui.install_in_id(&quot;gooey&quot;, window_config);</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -775,90 +775,12 @@
                 
             </div>
             <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    ui</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="58">
-                <a href="#58">58</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">}</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="59">
-                <a href="#59">59</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2"></pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="60">
-                <a href="#60">60</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-white has-background-white">
-                
-            </div>
-            <div class="column has-background-white p-0">
-                <pre class="has-background-white py-0 px-2">&#x2F;&#x2F;&#x2F; Runs an initialized frontend.</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="61">
-                <a href="#61">61</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">pub fn browser_run(mut ui: WebSys, window_config: WindowConfiguration) {</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="62">
-                <a href="#62">62</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
-                <pre class="has-background-danger-light py-0 px-2">    ui.install_in_id(&quot;gooey&quot;, window_config);</pre>
-            </div>
-        </div><div class="columns p-0 m-0">
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered"
-                id="63">
-                <a href="#63">63</a>
-            </div>
-            <div
-                class="column is-1 is-narrow p-0 has-text-centered has-text-danger-light has-background-danger">
-                
-            </div>
-            <div class="column has-background-danger-light p-0">
                 <pre class="has-background-danger-light py-0 px-2">}</pre>
             </div>
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-09-02 14:55</p>
+                <p class="heading">Date: 2021-09-02 17:00</p>
             </div>
         </footer>
     </body>

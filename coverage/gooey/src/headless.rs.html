@@ -23,7 +23,7 @@
         <div>
             <p class="heading">Functions</p>
             <p class="title has-text-warning">
-                <abbr title="65 / 84">77.38 %</abbr></p>
+                <abbr title="73 / 95">76.84 %</abbr></p>
         </div>
     </div>
 
@@ -1175,10 +1175,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                156
+                12
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">    pub fn set_cursor(&amp;mut self, position: Point&lt;f32, Scaled&gt;) {</pre>
+                <pre class="has-background-success-light py-0 px-2">    pub fn set_cursor(&amp;mut self, position: impl Into&lt;Point&lt;f32, Scaled&gt;&gt;) {</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1188,7 +1188,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                156
+                12
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">        self.simulate_event(WindowEvent::Input(InputEvent::MouseMoved {</pre>
@@ -1201,10 +1201,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                156
+                12
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">            position: Some(position),</pre>
+                <pre class="has-background-success-light py-0 px-2">            position: Some(position.into()),</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -1214,7 +1214,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                156
+                12
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">        }));</pre>
@@ -1227,7 +1227,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                156
+                12
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">    }</pre>
@@ -4035,7 +4035,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                416
+                32
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">    pub async fn move_cursor_to(</pre>
@@ -4048,7 +4048,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                416
+                32
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">        &amp;mut self,</pre>
@@ -4061,10 +4061,10 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                416
+                32
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        location: Point&lt;f32, Scaled&gt;,</pre>
+                <pre class="has-background-success-light py-0 px-2">        location: impl Into&lt;Point&lt;f32, Scaled&gt;&gt;,</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -4074,7 +4074,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                416
+                32
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">        duration: Duration,</pre>
@@ -4087,7 +4087,7 @@
             </div>
             <div
                 class="column is-1 is-narrow p-0 has-text-centered has-text-success-light has-background-success">
-                416
+                32
             </div>
             <div class="column has-background-success-light p-0">
                 <pre class="has-background-success-light py-0 px-2">    ) -&gt; Result&lt;(), HeadlessError&gt; {</pre>
@@ -4155,7 +4155,7 @@
                 32
             </div>
             <div class="column has-background-success-light p-0">
-                <pre class="has-background-success-light py-0 px-2">        let step = (location.to_vector() - origin.to_vector()) &#x2F; frames;</pre>
+                <pre class="has-background-success-light py-0 px-2">        let step = (location.into().to_vector() - origin.to_vector()) &#x2F; frames;</pre>
             </div>
         </div><div class="columns p-0 m-0">
             <div
@@ -6110,7 +6110,7 @@
         </div></div>
         <footer class="footer">
             <div class="content has-text-centered">
-                <p class="heading">Date: 2021-09-02 14:55</p>
+                <p class="heading">Date: 2021-09-02 17:00</p>
             </div>
         </footer>
     </body>
