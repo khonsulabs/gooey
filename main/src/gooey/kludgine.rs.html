@@ -369,27 +369,14 @@
 <span id="367">367</span>
 <span id="368">368</span>
 <span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
-<span id="380">380</span>
-<span id="381">381</span>
-<span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
-<span id="386">386</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="self">self</span>, <span class="ident">path::PathBuf</span>, <span class="ident">process::Command</span>, <span class="ident">sync::Arc</span>};
 
-<span class="kw">use</span> <span class="ident">gooey_core</span>::{<span class="ident">assets::Configuration</span>, <span class="ident">AnyWindowBuilder</span>, <span class="ident">AppContext</span>, <span class="ident">WindowConfiguration</span>};
+<span class="kw">use</span> <span class="ident">gooey_core</span>::{
+    <span class="ident">assets::Configuration</span>,
+    <span class="ident">figures</span>::{<span class="ident">Pixels</span>, <span class="ident">Points</span>},
+    <span class="ident">AnyWindowBuilder</span>, <span class="ident">AppContext</span>, <span class="ident">WindowConfiguration</span>,
+};
 <span class="kw">use</span> <span class="ident">gooey_rasterizer::winit</span>::{<span class="ident">event::ModifiersState</span>, <span class="ident">window::Theme</span>};
 <span class="kw">use</span> <span class="ident">kludgine::app::OpenableWindow</span>;
 <span class="kw">use</span> <span class="ident">platforms::target</span>::{<span class="ident">OS</span>, <span class="ident">TARGET_OS</span>};
@@ -403,7 +390,6 @@
             <span class="ident">Kludgine</span>,
         },
     },
-    <span class="ident">style::default_stylesheet</span>,
     <span class="ident">widgets::rasterized</span>::{<span class="ident">default_transmogrifiers</span>, <span class="ident">register_transmogrifiers</span>},
 };
 
@@ -440,12 +426,7 @@
     <span class="ident">register_transmogrifiers</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">transmogrifiers</span>);
     <span class="kw">let</span> <span class="ident">transmogrifiers</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">transmogrifiers</span>);
     <span class="kw">let</span> <span class="ident">storage</span> <span class="op">=</span> <span class="ident">WidgetStorage::new</span>(<span class="ident">context</span>);
-    <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">Gooey::new</span>(
-        <span class="ident">transmogrifiers</span>.<span class="ident">clone</span>(),
-        <span class="ident">default_stylesheet</span>(),
-        <span class="ident">builder</span>.<span class="ident">build</span>(<span class="kw-2">&amp;</span><span class="ident">storage</span>),
-        <span class="ident">storage</span>,
-    );
+    <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">Gooey::new</span>(<span class="ident">transmogrifiers</span>.<span class="ident">clone</span>(), <span class="ident">builder</span>.<span class="ident">build</span>(<span class="kw-2">&amp;</span><span class="ident">storage</span>), <span class="ident">storage</span>);
     <span class="ident">initialize_rasterizer</span>(<span class="ident">ui</span>, <span class="ident">transmogrifiers</span>)
 }
 
@@ -457,7 +438,7 @@
     <span class="ident">ui</span>.<span class="ident">set_window_creator</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">context</span>, <span class="ident">builder</span><span class="op">|</span> {
         <span class="kw">let</span> <span class="ident">storage</span> <span class="op">=</span> <span class="ident">WidgetStorage::new</span>(<span class="ident">context</span>);
         <span class="kw">let</span> <span class="ident">root</span> <span class="op">=</span> <span class="ident">builder</span>.<span class="ident">build</span>(<span class="kw-2">&amp;</span><span class="ident">storage</span>);
-        <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">Gooey::new</span>(<span class="ident">transmogrifiers</span>.<span class="ident">clone</span>(), <span class="ident">default_stylesheet</span>(), <span class="ident">root</span>, <span class="ident">storage</span>);
+        <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">Gooey::new</span>(<span class="ident">transmogrifiers</span>.<span class="ident">clone</span>(), <span class="ident">root</span>, <span class="ident">storage</span>);
         <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">initialize_rasterizer</span>(<span class="ident">ui</span>, <span class="ident">transmogrifiers</span>.<span class="ident">clone</span>());
         <span class="ident">GooeyWindow</span> {
             <span class="ident">ui</span>,
@@ -505,26 +486,11 @@
         }
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::option_if_let_else</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">get_window_builder</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WindowBuilder</span> {
-        <span class="kw">let</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">WindowBuilder::default</span>()
-            .<span class="ident">with_title</span>(<span class="self">self</span>.<span class="ident">window_title</span>())
-            .<span class="ident">with_initial_system_theme</span>(<span class="self">self</span>.<span class="ident">initial_system_theme</span>())
-            .<span class="ident">with_size</span>(<span class="self">self</span>.<span class="ident">initial_size</span>())
-            .<span class="ident">with_resizable</span>(<span class="self">self</span>.<span class="ident">resizable</span>())
-            .<span class="ident">with_maximized</span>(<span class="self">self</span>.<span class="ident">maximized</span>())
-            .<span class="ident">with_visible</span>(<span class="self">self</span>.<span class="ident">visible</span>())
-            .<span class="ident">with_transparent</span>(<span class="self">self</span>.<span class="ident">transparent</span>())
-            .<span class="ident">with_decorations</span>(<span class="self">self</span>.<span class="ident">decorations</span>())
-            .<span class="ident">with_always_on_top</span>(<span class="self">self</span>.<span class="ident">always_on_top</span>());
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">position</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">window_config</span>.<span class="ident">position</span> {
-            <span class="ident">builder</span>.<span class="ident">with_position</span>(<span class="ident">position</span>)
-        } <span class="kw">else</span> {
-            <span class="ident">builder</span>
-        }
+    <span class="kw">fn</span> <span class="ident">initial_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Point</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">Pixels</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">window_config</span>.<span class="ident">position</span>
     }
-    
-    <span class="kw">fn</span> <span class="ident">initial_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">gooey_core::figures::Pixels</span><span class="op">&gt;</span> {
+
+    <span class="kw">fn</span> <span class="ident">initial_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Size</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">Points</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">window_config</span>.<span class="ident">size</span>
     }
 

@@ -461,6 +461,19 @@
 <span id="459">459</span>
 <span id="460">460</span>
 <span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">fmt::Debug</span>, <span class="ident">ops::Deref</span>};
 
@@ -896,6 +909,19 @@
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Dimension</span> {
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">length</span>: <span class="ident">Figure</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::Exact</span>(<span class="ident">length</span>)
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Dimension</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">f</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">Figure::new</span>(<span class="ident">f</span>).<span class="ident">into</span>()
+    }
+}
+
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::cast_precision_loss</span>)]</span>
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Dimension</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">i</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">Figure::new</span>(<span class="ident">i</span> <span class="kw">as</span> <span class="ident">f32</span>).<span class="ident">into</span>()
     }
 }
 

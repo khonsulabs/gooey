@@ -555,9 +555,9 @@
     }
 
     <span class="doccomment">/// Sets the location of the cursor to `position`. Does not render any frames.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_cursor</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">position</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_cursor</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">position</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="self">self</span>.<span class="ident">simulate_event</span>(<span class="ident">WindowEvent::Input</span>(<span class="ident">InputEvent::MouseMoved</span> {
-            <span class="ident">position</span>: <span class="prelude-val">Some</span>(<span class="ident">position</span>),
+            <span class="ident">position</span>: <span class="prelude-val">Some</span>(<span class="ident">position</span>.<span class="ident">into</span>()),
         }));
     }
 
@@ -777,14 +777,14 @@
     )]</span>
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">move_cursor_to</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">location</span>: <span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span>,
+        <span class="ident">location</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Point</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Scaled</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">duration</span>: <span class="ident">Duration</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">HeadlessError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">duration</span> <span class="op">=</span> <span class="ident">duration</span>.<span class="ident">as_secs_f32</span>();
         <span class="kw">let</span> <span class="ident">frames</span> <span class="op">=</span> (<span class="ident">duration</span> <span class="op">*</span> <span class="ident">f32::from</span>(<span class="self">self</span>.<span class="ident">fps</span>)).<span class="ident">floor</span>().<span class="ident">max</span>(<span class="number">1.</span>);
         <span class="kw">let</span> <span class="ident">frame_duration</span> <span class="op">=</span> <span class="ident">Duration::from_secs_f32</span>(<span class="ident">duration</span> <span class="op">/</span> <span class="ident">frames</span>);
         <span class="kw">let</span> <span class="ident">origin</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">cursor</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Point::new</span>(<span class="op">-</span><span class="number">16.</span>, <span class="op">-</span><span class="number">16.</span>));
-        <span class="kw">let</span> <span class="ident">step</span> <span class="op">=</span> (<span class="ident">location</span>.<span class="ident">to_vector</span>() <span class="op">-</span> <span class="ident">origin</span>.<span class="ident">to_vector</span>()) <span class="op">/</span> <span class="ident">frames</span>;
+        <span class="kw">let</span> <span class="ident">step</span> <span class="op">=</span> (<span class="ident">location</span>.<span class="ident">into</span>().<span class="ident">to_vector</span>() <span class="op">-</span> <span class="ident">origin</span>.<span class="ident">to_vector</span>()) <span class="op">/</span> <span class="ident">frames</span>;
         <span class="kw">for</span> <span class="ident">frame</span> <span class="kw">in</span> <span class="number">1</span>..<span class="op">=</span><span class="ident">frames</span> <span class="kw">as</span> <span class="ident">u32</span> {
             <span class="self">self</span>.<span class="ident">simulate_event</span>(<span class="ident">WindowEvent::Input</span>(<span class="ident">InputEvent::MouseMoved</span> {
                 <span class="ident">position</span>: <span class="prelude-val">Some</span>(<span class="ident">origin</span> <span class="op">+</span> <span class="ident">step</span> <span class="op">*</span> <span class="ident">frame</span> <span class="kw">as</span> <span class="ident">f32</span>),

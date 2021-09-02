@@ -771,6 +771,13 @@
 <span id="769">769</span>
 <span id="770">770</span>
 <span id="771">771</span>
+<span id="772">772</span>
+<span id="773">773</span>
+<span id="774">774</span>
+<span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
+<span id="778">778</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A [`Frontend`](gooey_core::Frontend) for `Gooey` that rasterizes widgets</span>
 <span class="doccomment">//! using a [`Renderer`](gooey_renderer::Renderer).</span>
@@ -800,7 +807,7 @@
 
 <span class="kw">use</span> <span class="ident">events</span>::{<span class="ident">InputEvent</span>, <span class="ident">WindowEvent</span>};
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
-    <span class="ident">assets</span>::{<span class="self">self</span>, <span class="ident">Configuration</span>, <span class="ident">FrontendImage</span>, <span class="ident">Image</span>},
+    <span class="ident">assets</span>::{<span class="self">self</span>, <span class="ident">Asset</span>, <span class="ident">Configuration</span>, <span class="ident">FrontendImage</span>, <span class="ident">Image</span>},
     <span class="ident">figures</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>, <span class="ident">Size</span>},
     <span class="ident">styles</span>::{
         <span class="ident">style_sheet</span>::{<span class="self">self</span>},
@@ -1484,6 +1491,7 @@
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ImageExt</span> {
     <span class="kw">fn</span> <span class="ident">as_rgba_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RgbaImage</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">from_rgba_image</span>(<span class="ident">image</span>: <span class="ident">RgbaImage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Image</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">ImageExt</span> <span class="kw">for</span> <span class="ident">Image</span> {
@@ -1493,6 +1501,12 @@
                 .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">data</span><span class="op">|</span> <span class="ident">data</span>.<span class="ident">as_any</span>().<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">RasterizerImage</span><span class="op">&gt;</span>())
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">img</span><span class="op">|</span> <span class="ident">img</span>.<span class="number">0</span>.<span class="ident">clone</span>())
         })
+    }
+
+    <span class="kw">fn</span> <span class="ident">from_rgba_image</span>(<span class="ident">image</span>: <span class="ident">RgbaImage</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Image</span> {
+        <span class="kw">let</span> <span class="ident">asset</span> <span class="op">=</span> <span class="ident">Image::from</span>(<span class="ident">Asset::build</span>().<span class="ident">finish</span>());
+        <span class="ident">asset</span>.<span class="ident">set_data</span>(<span class="ident">RasterizerImage</span>(<span class="ident">Arc::new</span>(<span class="ident">image</span>)));
+        <span class="ident">asset</span>
     }
 }
 

@@ -372,16 +372,14 @@
 <span id="370">370</span>
 <span id="371">371</span>
 <span id="372">372</span>
-<span id="373">373</span>
 </pre><pre class="rust">
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">debug_assertions</span>)]</span>
+<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">collections::HashSet</span>,
     <span class="ident">convert::TryInto</span>,
     <span class="ident">fmt::Write</span>,
-    <span class="ident">sync</span>::{
-        <span class="ident">atomic</span>::{<span class="ident">AtomicU32</span>, <span class="ident">Ordering</span>},
-        <span class="ident">Arc</span>,
-    },
+    <span class="ident">sync::atomic</span>::{<span class="ident">AtomicU32</span>, <span class="ident">Ordering</span>},
 };
 
 <span class="kw">use</span> <span class="ident">gooey_core</span>::{
