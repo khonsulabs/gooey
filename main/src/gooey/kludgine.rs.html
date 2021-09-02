@@ -504,12 +504,12 @@
 <span class="kw">fn</span> <span class="ident">gtk3_preferred_theme</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Theme</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">settings_path</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">xdg_config_home</span>) <span class="op">=</span> <span class="ident">std::env::var</span>(<span class="string">&quot;XDG_CONFIG_HOME&quot;</span>) {
         <span class="ident">PathBuf::from</span>(<span class="ident">xdg_config_home</span>)
-            .<span class="ident">join</span>(<span class="string">&quot;gtk-3.window&quot;</span>)
+            .<span class="ident">join</span>(<span class="string">&quot;gtk-3.0&quot;</span>)
             .<span class="ident">join</span>(<span class="string">&quot;settings.ini&quot;</span>)
     } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">home</span>) <span class="op">=</span> <span class="ident">std::env::var</span>(<span class="string">&quot;HOME&quot;</span>) {
         <span class="ident">PathBuf::from</span>(<span class="ident">home</span>)
             .<span class="ident">join</span>(<span class="string">&quot;.config&quot;</span>)
-            .<span class="ident">join</span>(<span class="string">&quot;gtk-3.window&quot;</span>)
+            .<span class="ident">join</span>(<span class="string">&quot;gtk-3.0&quot;</span>)
             .<span class="ident">join</span>(<span class="string">&quot;settings.ini&quot;</span>)
     } <span class="kw">else</span> {
         <span class="kw">return</span> <span class="prelude-val">None</span>;
