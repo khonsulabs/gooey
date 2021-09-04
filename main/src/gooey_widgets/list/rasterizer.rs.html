@@ -293,7 +293,7 @@
                 <span class="ident">child_bounds</span> <span class="op">=</span>
                     <span class="ident">child_bounds</span>.<span class="ident">translate</span>(<span class="ident">content_area</span>.<span class="ident">location</span> <span class="op">+</span> <span class="ident">Vector::from_x</span>(<span class="ident">offset_amount</span>));
 
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">indicator</span>) <span class="op">=</span> <span class="ident">indicators</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>() {
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">indicator</span>) <span class="op">=</span> <span class="ident">indicators</span>.<span class="ident">next</span>().<span class="ident">flatten</span>() {
                     <span class="ident">indicator</span>.<span class="ident">render</span>::<span class="op">&lt;</span><span class="ident">TextColor</span>, <span class="kw">_</span><span class="op">&gt;</span>(
                         <span class="ident">renderer</span>,
                         <span class="ident">child_bounds</span>.<span class="ident">origin</span> <span class="op">-</span> <span class="ident">Vector::from_x</span>(<span class="ident">spacing</span> <span class="op">+</span> <span class="ident">indicator</span>.<span class="ident">size</span>().<span class="ident">width</span>()),
