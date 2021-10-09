@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["bonsaidb_counter_server"] = [{"text":"impl <a class=\"trait\" href=\"bonsaidb_counter_shared/trait.IncrementCounterHandler.html\" title=\"trait bonsaidb_counter_shared::IncrementCounterHandler\">IncrementCounterHandler</a> for <a class=\"struct\" href=\"bonsaidb_counter_server/struct.ApiDispatcher.html\" title=\"struct bonsaidb_counter_server::ApiDispatcher\">ApiDispatcher</a>","synthetic":false,"types":["bonsaidb_counter_server::ApiDispatcher"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
