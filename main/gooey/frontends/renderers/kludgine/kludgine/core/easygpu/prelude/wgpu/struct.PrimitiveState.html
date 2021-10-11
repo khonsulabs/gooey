@@ -15,7 +15,8 @@ This has no effect on non-indexed or non-strip draws.</p>
 </div><span id="structfield.clamp_depth" class="structfield small-section-header"><a href="#structfield.clamp_depth" class="anchor field"></a><code>clamp_depth: <a class="primitive" href="https://doc.rust-lang.org/1.55.0/std/primitive.bool.html">bool</a></code></span><div class="docblock"><p>If set to true, the polygon depth is clamped to 0-1 range instead of being clipped.</p>
 <p>Enabling this requires <code>Features::DEPTH_CLAMPING</code> to be enabled.</p>
 </div><span id="structfield.polygon_mode" class="structfield small-section-header"><a href="#structfield.polygon_mode" class="anchor field"></a><code>polygon_mode: <a class="enum" href="enum.PolygonMode.html" title="enum gooey::frontends::renderers::kludgine::kludgine::core::easygpu::prelude::wgpu::PolygonMode">PolygonMode</a></code></span><div class="docblock"><p>Controls the way each polygon is rasterized. Can be either <code>Fill</code> (default), <code>Line</code> or <code>Point</code></p>
-<p>Setting this to something other than <code>Fill</code> requires <code>Features::NON_FILL_POLYGON_MODE</code> to be enabled.</p>
+<p>Setting this to <code>Line</code> requires <code>Features::POLYGON_MODE_LINE</code> to be enabled.</p>
+<p>Setting this to <code>Point</code> requires <code>Features::POLYGON_MODE_POINT</code> to be enabled.</p>
 </div><span id="structfield.conservative" class="structfield small-section-header"><a href="#structfield.conservative" class="anchor field"></a><code>conservative: <a class="primitive" href="https://doc.rust-lang.org/1.55.0/std/primitive.bool.html">bool</a></code></span><div class="docblock"><p>If set to true, the primitives are rendered with conservative overestimation. I.e. any rastered pixel touched by it is filled.
 Only valid for PolygonMode::Fill!</p>
 <p>Enabling this requires <code>Features::CONSERVATIVE_RASTERIZATION</code> to be enabled.</p>
