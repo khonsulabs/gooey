@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["bonsaidb_counter_server"] = [{"text":"impl CustomApiDispatcher&lt;<a class=\"enum\" href=\"bonsaidb_counter_server/enum.Example.html\" title=\"enum bonsaidb_counter_server::Example\">Example</a>&gt; for <a class=\"struct\" href=\"bonsaidb_counter_server/struct.ApiDispatcher.html\" title=\"struct bonsaidb_counter_server::ApiDispatcher\">ApiDispatcher</a>","synthetic":false,"types":["bonsaidb_counter_server::ApiDispatcher"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
