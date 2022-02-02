@@ -1,7 +1,8 @@
 use std::{
-    any::TypeId,
+    any::{type_name, TypeId},
     borrow::Cow,
     collections::{HashMap, HashSet},
+    convert::Infallible,
     fmt::Debug,
     hash::Hash,
     marker::PhantomData,
@@ -84,32 +85,31 @@ impl<F: Frontend> Gooey<F> {
         frontend: &F,
         callback: C,
     ) -> Option<R> {
-        self.data
-            .transmogrifiers
-            .map
-            .get(&widget_id.type_id)
-            .and_then(|transmogrifier| {
-                let widget_state = self.widget_state(widget_id)?;
-                widget_state.with_state(transmogrifier, frontend, |state, widget| {
-                    let style = widget_state.style.lock();
-                    let channels = widget_state.channels.as_ref();
-                    callback(
-                        transmogrifier,
-                        AnyTransmogrifierContext::new(
-                            // unwrap is guranteed because this block can't
-                            // execute unless the widget registration is still
-                            // alive.
-                            widget_state.id.upgrade().unwrap(),
-                            state,
-                            frontend,
-                            widget,
-                            channels,
-                            &style,
-                            &frontend.ui_state_for(widget_id),
-                        ),
-                    )
-                })
-            })
+        let transmogrifier = match self.data.transmogrifiers.map.get(&widget_id.type_id) {
+            Some(transmogrifer) => transmogrifer,
+            None => panic!("No transmogrifier registered for {}", widget_id.type_name),
+        };
+
+        let widget_state = self.widget_state(widget_id)?;
+        widget_state.with_state(transmogrifier, frontend, |state, widget| {
+            let style = widget_state.style.lock();
+            let channels = widget_state.channels.as_ref();
+            callback(
+                transmogrifier,
+                AnyTransmogrifierContext::new(
+                    // unwrap is guranteed because this block can't
+                    // execute unless the widget registration is still
+                    // alive.
+                    widget_state.id.upgrade().unwrap(),
+                    state,
+                    frontend,
+                    widget,
+                    channels,
+                    &style,
+                    &frontend.ui_state_for(widget_id),
+                ),
+            )
+        })
     }
 
     /// Executes `callback` with the transmogrifier and transmogrifier state as
@@ -427,6 +427,12 @@ impl WidgetStorage {
     pub fn set_widget_has_messages(&self, widget: WidgetId) {
         let mut statuses = self.data.widgets_with_messages.lock();
         statuses.insert(widget);
+    }
+
+    /// Returns the application context for this interface.
+    #[must_use]
+    pub const fn app(&self) -> &AppContext {
+        &self.app
     }
 
     /// Localizes `key` with `parameters`.
@@ -750,6 +756,7 @@ impl WidgetRegistration {
                 id: WidgetId {
                     id,
                     type_id: TypeId::of::<W>(),
+                    type_name: type_name::<W>(),
                 },
                 storage: storage.clone(),
             }),
@@ -1026,3 +1033,48 @@ impl<'a> IntoIterator for LocalizationParameters<'a> {
         self.0.into_iter()
     }
 }
+
+/// An error that can be localized.
+pub trait LocalizableError: std::error::Error + 'static {
+    /// Returns the localized, human-readable version of this error.
+    fn localize(&self, context: &AppContext) -> String;
+}
+
+impl LocalizableError for Infallible {
+    fn localize(&self, _context: &AppContext) -> String {
+        unreachable!()
+    }
+}
+
+/// Enables using `Display` to convert an error to a string. This macro is
+/// provided to make it easy to implement on types from other crates. For your
+/// own types, it might be preferred to use `impl NonLocalizedError for MyError
+/// {}`.
+#[macro_export]
+macro_rules! use_display_to_localize_error {
+    ($err:ty) => {
+        impl LocalizableError for $err {
+            fn localize(&self, _context: &AppContext) -> String {
+                self.to_string()
+            }
+        }
+    };
+}
+
+/// A trait that uses `Display` to convert the error to a String, avoiding any
+/// localization.
+pub trait NonLocalizedError: std::error::Error + 'static {}
+
+impl<T> LocalizableError for T
+where
+    T: NonLocalizedError,
+{
+    fn localize(&self, _context: &AppContext) -> String {
+        self.to_string()
+    }
+}
+
+impl NonLocalizedError for std::num::ParseIntError {}
+impl NonLocalizedError for std::num::ParseFloatError {}
+impl NonLocalizedError for std::net::AddrParseError {}
+impl NonLocalizedError for std::str::ParseBoolError {}
